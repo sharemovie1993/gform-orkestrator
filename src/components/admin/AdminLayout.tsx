@@ -10,6 +10,7 @@ import {
   Platform,
   RefreshControl,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 export type AdminTab = 'jurusan' | 'kelas' | 'siswa' | 'guru' | 'mapel' | 'link_soal';
 
@@ -32,6 +33,9 @@ export default function AdminLayout({
 }: AdminLayoutProps) {
   const { width } = useWindowDimensions();
   const isLargeScreen = width >= 768;
+  const theme = useTheme();
+  
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
 
   const tabs: { id: AdminTab; label: string; emoji: string }[] = [
     { id: 'jurusan', label: 'Jurusan', emoji: '🏫' },
@@ -71,7 +75,7 @@ export default function AdminLayout({
                     style={[styles.sidebarTab, isActive && styles.sidebarTabActive]}
                     onPress={() => onTabChange(tab.id)}
                   >
-                    <Text style={styles.tabIcon}>{tab.emoji}</Text>
+                    <Text style={tabIconStyle(isActive, theme)}>{tab.emoji}</Text>
                     <Text style={[styles.sidebarTabText, isActive && styles.sidebarTabTextActive]}>
                       {tab.label}
                     </Text>
@@ -122,8 +126,8 @@ export default function AdminLayout({
                 <RefreshControl
                   refreshing={refreshing}
                   onRefresh={onRefresh}
-                  tintColor="#3B82F6"
-                  colors={["#3B82F6"]}
+                  tintColor={theme.primary}
+                  colors={[theme.primary]}
                 />
               ) : undefined
             }
@@ -137,10 +141,19 @@ export default function AdminLayout({
   );
 }
 
-const styles = StyleSheet.create({
+// Extra helper for tab icons to maintain nice alignment
+const tabIconStyle = (isActive: boolean, theme: any) => {
+  return {
+    fontSize: 16,
+    marginRight: 12,
+    opacity: isActive ? 1.0 : 0.7,
+  };
+};
+
+const createStyles = (theme: any) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   container: {
     flex: 1,
@@ -155,26 +168,26 @@ const styles = StyleSheet.create({
   // Sidebar styles (Desktop/Web)
   sidebar: {
     width: 260,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRightWidth: 1,
-    borderRightColor: '#334155',
+    borderRightColor: theme.border,
     padding: 20,
     height: '100%',
   },
   sidebarHeader: {
     marginBottom: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
     paddingBottom: 15,
   },
   sidebarTitle: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 20,
     fontWeight: '800',
     letterSpacing: 0.5,
   },
   sidebarSubtitle: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 4,
@@ -183,7 +196,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   navLabel: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 1.5,
@@ -193,11 +206,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     borderRadius: 8,
-    backgroundColor: 'rgba(51, 65, 85, 0.5)',
+    backgroundColor: theme.backgroundSelected,
     marginBottom: 5,
   },
   backButtonText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -210,29 +223,25 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   sidebarTabActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.12)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.12)' : 'rgba(37, 99, 235, 0.08)',
     borderLeftWidth: 3,
-    borderLeftColor: '#3B82F6',
-  },
-  tabIcon: {
-    fontSize: 16,
-    marginRight: 12,
+    borderLeftColor: theme.primary,
   },
   sidebarTabText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 14,
     fontWeight: '600',
   },
   sidebarTabTextActive: {
-    color: '#FFF',
+    color: theme.primary,
     fontWeight: '700',
   },
 
   // Mobile navigation styles (Mobile)
   mobileHeader: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
     paddingTop: 10,
   },
   mobileTopRow: {
@@ -246,15 +255,15 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 6,
-    backgroundColor: 'rgba(51, 65, 85, 0.6)',
+    backgroundColor: theme.backgroundSelected,
   },
   mobileBackBtnText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '600',
   },
   mobileTitle: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 16,
     fontWeight: '800',
   },
@@ -268,33 +277,33 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 8,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.backgroundSelected,
     marginHorizontal: 4,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   mobileTabActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.15)',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.08)',
+    borderColor: theme.primary,
   },
   mobileTabEmoji: {
     fontSize: 14,
     marginRight: 6,
   },
   mobileTabText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '600',
   },
   mobileTabTextActive: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontWeight: '700',
   },
 
   // Content Area
   contentArea: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   contentScroll: {
     padding: 20,

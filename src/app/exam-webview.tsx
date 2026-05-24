@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   BackHandler,
-  Alert,
   AppState,
   AppStateStatus,
   ActivityIndicator,
@@ -19,9 +18,13 @@ import { WebView } from 'react-native-webview';
 import * as ScreenCapture from 'expo-screen-capture';
 import { StorageService } from '@/services/storage';
 import { Siswa } from '@/services/supabase';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function ExamWebviewScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
+  
   const params = useLocalSearchParams();
   const rawUrl = params.url as string;
   const examId = params.examId as string;
@@ -334,13 +337,16 @@ export default function ExamWebviewScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1E293B" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.backgroundElement} />
       
       {/* Secure Exam Header */}
       <View style={styles.header}>
-        <View style={[styles.secureBadge, !isBlockingEnabled && { borderColor: '#94A3B8', backgroundColor: 'rgba(148, 163, 184, 0.1)' }]}>
+        <View style={[
+          styles.secureBadge, 
+          !isBlockingEnabled && { borderColor: theme.textMuted, backgroundColor: theme.activeTheme === 'dark' ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.05)' }
+        ]}>
           <Text style={styles.secureIcon}>{isBlockingEnabled ? '🔒' : '🔓'}</Text>
-          <Text style={[styles.secureText, !isBlockingEnabled && { color: '#94A3B8' }]}>
+          <Text style={[styles.secureText, !isBlockingEnabled && { color: theme.textMuted }]}>
             {isBlockingEnabled ? 'Secure Browser' : 'Standard Browser'}
           </Text>
         </View>
@@ -355,7 +361,7 @@ export default function ExamWebviewScreen() {
       {/* WebView Loader */}
       {isLoadingWeb && (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color={theme.primary} />
           <Text style={styles.loaderText}>Memuat Halaman Soal...</Text>
         </View>
       )}
@@ -384,7 +390,6 @@ export default function ExamWebviewScreen() {
           domStorageEnabled={true}
           javaScriptEnabled={true}
           onShouldStartLoadWithRequest={handleShouldStartLoad}
-          // Force desktop viewport or customized settings if needed, here standard responsive mobile is best for forms
           mixedContentMode="always"
           incognito={true} // Runs in private session to prevent cookie leakage
         />
@@ -455,26 +460,26 @@ export default function ExamWebviewScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   header: {
     height: 60,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
   },
   secureBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.1)',
+    borderColor: theme.success,
     borderWidth: 1,
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -485,21 +490,21 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   secureText: {
-    color: '#10B981',
+    color: theme.success,
     fontSize: 10,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   title: {
     flex: 1,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '700',
     textAlign: 'center',
     marginHorizontal: 10,
   },
   endButton: {
-    backgroundColor: '#EF4444',
+    backgroundColor: theme.danger,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
@@ -515,13 +520,13 @@ const styles = StyleSheet.create({
   },
   loaderContainer: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,
   },
   loaderText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     marginTop: 15,
     fontSize: 14,
     fontWeight: '600',
@@ -529,7 +534,7 @@ const styles = StyleSheet.create({
   // Custom Modal Styles
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(9, 15, 30, 0.85)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(9, 15, 30, 0.85)' : 'rgba(9, 15, 30, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -537,24 +542,26 @@ const styles = StyleSheet.create({
   modalCard: {
     width: '100%',
     maxWidth: 340,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 24,
     padding: 24,
     alignItems: 'center',
     borderWidth: 1.5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
+    ...Platform.select({
+      web: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.2,
+        shadowRadius: 12,
+      },
+    }),
     elevation: 8,
   },
   modalCardInfo: {
-    borderColor: '#10B981',
-    shadowColor: '#10B981',
+    borderColor: theme.success,
   },
   modalCardWarning: {
-    borderColor: '#EF4444',
-    shadowColor: '#EF4444',
+    borderColor: theme.danger,
   },
   modalIconBadge: {
     width: 56,
@@ -566,12 +573,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   modalIconBadgeInfo: {
-    backgroundColor: 'rgba(16, 185, 129, 0.15)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.15)',
+    borderColor: theme.success,
   },
   modalIconBadgeWarning: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)',
-    borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(220, 38, 38, 0.08)' : 'rgba(239, 68, 68, 0.15)',
+    borderColor: theme.danger,
   },
   modalIconText: {
     fontSize: 24,
@@ -584,14 +591,14 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   modalTitleInfo: {
-    color: '#10B981',
+    color: theme.success,
   },
   modalTitleWarning: {
-    color: '#EF4444',
+    color: theme.danger,
   },
   modalMessageText: {
     fontSize: 13,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     textAlign: 'center',
     lineHeight: 18,
     fontWeight: '600',
@@ -606,15 +613,15 @@ const styles = StyleSheet.create({
   },
   modalCancelButton: {
     flex: 1,
-    backgroundColor: '#334155',
+    backgroundColor: theme.backgroundSelected,
     borderRadius: 12,
     paddingVertical: 12,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#475569',
+    borderColor: theme.border,
   },
   modalCancelButtonText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -625,10 +632,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalConfirmButtonInfo: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
   },
   modalConfirmButtonWarning: {
-    backgroundColor: '#EF4444',
+    backgroundColor: theme.danger,
   },
   modalConfirmButtonText: {
     color: '#FFF',
@@ -636,4 +643,3 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 });
-

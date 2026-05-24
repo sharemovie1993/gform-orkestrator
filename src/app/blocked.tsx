@@ -14,9 +14,11 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StorageService } from '@/services/storage';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function BlockedScreen() {
   const router = useRouter();
+  const theme = useTheme();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [reason, setReason] = useState('Membuka aplikasi lain / Keluar halaman ujian');
@@ -69,21 +71,21 @@ export default function BlockedScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.iconContainer}>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <View style={[styles.card, { backgroundColor: theme.backgroundElement, borderColor: theme.danger }]}>
+        <View style={[styles.iconContainer, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)' }]}>
           <Text style={styles.icon}>⚠️</Text>
         </View>
 
-        <Text style={styles.title}>UJIAN TERKUNCI</Text>
-        <Text style={styles.subtitle}>Terdeteksi Percobaan Keluar Aplikasi</Text>
+        <Text style={[styles.title, { color: theme.danger }]}>UJIAN TERKUNCI</Text>
+        <Text style={[styles.subtitle, { color: theme.textSecondary }]}>Terdeteksi Percobaan Keluar Aplikasi</Text>
 
-        <View style={styles.reasonBox}>
-          <Text style={styles.reasonLabel}>Penyebab Kunci:</Text>
-          <Text style={styles.reasonText}>{reason}</Text>
+        <View style={[styles.reasonBox, { backgroundColor: theme.background, borderLeftColor: theme.danger }]}>
+          <Text style={[styles.reasonLabel, { color: theme.textMuted }]}>Penyebab Kunci:</Text>
+          <Text style={[styles.reasonText, { color: theme.text }]}>{reason}</Text>
         </View>
 
-        <Text style={styles.instruction}>
+        <Text style={[styles.instruction, { color: theme.textSecondary }]}>
           Hubungi Pengawas Ujian untuk memasukkan PIN pembuka langsung di perangkat ini.
         </Text>
 
@@ -91,7 +93,8 @@ export default function BlockedScreen() {
           <TextInput
             style={[
               styles.pinInput,
-              isFocused && styles.pinInputFocused,
+              { backgroundColor: theme.background, borderColor: theme.border, color: theme.text },
+              isFocused && [styles.pinInputFocused, { borderColor: theme.danger }],
               Platform.select({
                 web: {
                   outlineStyle: 'none',
@@ -106,16 +109,16 @@ export default function BlockedScreen() {
               setError('');
             }}
             placeholder="Masukkan PIN Pengawas"
-            placeholderTextColor="#888"
+            placeholderTextColor={theme.textMuted}
             keyboardType="number-pad"
             maxLength={6}
             secureTextEntry={true}
           />
         </View>
 
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        {error ? <Text style={[styles.errorText, { color: theme.danger }]}>{error}</Text> : null}
 
-        <TouchableOpacity style={styles.unlockButton} onPress={handleUnlock}>
+        <TouchableOpacity style={[styles.unlockButton, { backgroundColor: theme.danger }]} onPress={handleUnlock}>
           <Text style={styles.unlockButtonText}>BUKA KUNCI</Text>
         </TouchableOpacity>
       </View>
@@ -126,7 +129,6 @@ export default function BlockedScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A', // Premium dark slate background
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -134,23 +136,24 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: '#1E293B',
     borderRadius: 24,
     padding: 30,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
+    ...Platform.select({
+      web: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.1,
+        shadowRadius: 20,
+      },
+    }),
     elevation: 8,
     borderWidth: 1,
-    borderColor: '#EF4444', // Red border indicating locked/error status
   },
   iconContainer: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
@@ -161,7 +164,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '900',
-    color: '#EF4444',
     letterSpacing: 2,
     marginBottom: 5,
     textAlign: 'center',
@@ -169,34 +171,28 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#94A3B8',
     marginBottom: 25,
     textAlign: 'center',
   },
   reasonBox: {
     width: '100%',
-    backgroundColor: '#0F172A',
     borderRadius: 12,
     padding: 15,
     marginBottom: 25,
     borderLeftWidth: 4,
-    borderLeftColor: '#EF4444',
   },
   reasonLabel: {
     fontSize: 12,
-    color: '#64748B',
     fontWeight: '700',
     textTransform: 'uppercase',
     marginBottom: 4,
   },
   reasonText: {
     fontSize: 14,
-    color: '#F1F5F9',
     fontWeight: '600',
   },
   instruction: {
     fontSize: 14,
-    color: '#94A3B8',
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: 25,
@@ -207,27 +203,23 @@ const styles = StyleSheet.create({
   },
   pinInput: {
     width: '100%',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 20,
     fontSize: 18,
-    color: '#FFF',
     textAlign: 'center',
     fontWeight: '700',
     letterSpacing: 8,
   },
   pinInputFocused: {
-    borderColor: '#EF4444',
-    shadowColor: '#EF4444',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 0 3px rgba(239, 68, 68, 0.25)',
+      } as any,
+    }),
   },
   errorText: {
-    color: '#EF4444',
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 15,
@@ -235,14 +227,9 @@ const styles = StyleSheet.create({
   },
   unlockButton: {
     width: '100%',
-    backgroundColor: '#EF4444',
     paddingVertical: 15,
     borderRadius: 12,
     alignItems: 'center',
-    shadowColor: '#EF4444',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
     elevation: 4,
     marginTop: 10,
   },

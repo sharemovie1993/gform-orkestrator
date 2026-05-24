@@ -14,6 +14,7 @@ import {
 import { useRouter } from 'expo-router';
 import * as XLSX from 'xlsx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '@/hooks/use-theme';
 
 import { DbService, Jurusan, Kelas, Siswa, Guru, Mapel, LinkSoal } from '@/services/supabase';
 import AdminLayout, { AdminTab } from '@/components/admin/AdminLayout';
@@ -47,6 +48,8 @@ import { LinkSoalRow } from '@/components/admin/table/LinkSoalRow';
 
 export default function ManageDataScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
 
   // Navigation & Tab State
   const [activeTab, setActiveTab] = useState<AdminTab>('jurusan');
@@ -1314,7 +1317,7 @@ export default function ManageDataScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -1326,11 +1329,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#263347',
+    borderBottomColor: theme.border,
     alignItems: 'center',
   },
   rowSelected: {
-    backgroundColor: 'rgba(239, 68, 68, 0.07)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.07)' : 'rgba(220, 38, 38, 0.05)',
   },
   rowCheckboxCell: {
     width: 36,
@@ -1343,14 +1346,14 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: '#475569',
+    borderColor: theme.border,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
   rowCheckboxChecked: {
-    backgroundColor: '#EF4444',
-    borderColor: '#EF4444',
+    backgroundColor: theme.danger,
+    borderColor: theme.danger,
   },
   rowCheckmark: {
     color: '#FFF',
@@ -1359,18 +1362,18 @@ const styles = StyleSheet.create({
   },
   cellText: {
     flex: 1,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '500',
   },
   mapelBold: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 3,
   },
   mapelLinkSub: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 11,
   },
   statusBadge: {
@@ -1381,22 +1384,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   statusActive: {
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(5, 150, 105, 0.08)',
+    borderColor: theme.success,
   },
   statusInactive: {
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-    borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
   },
   statusText: {
     fontSize: 11,
     fontWeight: '700',
   },
   statusTextActive: {
-    color: '#10B981',
+    color: theme.success,
   },
   statusTextInactive: {
-    color: '#EF4444',
+    color: theme.danger,
   },
   actionsCell: {
     flexDirection: 'row',
@@ -1404,9 +1407,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   actionEdit: {
-    backgroundColor: 'rgba(59, 130, 246, 0.15)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 230, 0.08)',
     borderWidth: 1,
-    borderColor: '#3B82F6',
+    borderColor: theme.primary,
     width: 32,
     height: 32,
     borderRadius: 8,
@@ -1414,9 +1417,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   actionDelete: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(220, 38, 38, 0.08)',
     borderWidth: 1,
-    borderColor: '#EF4444',
+    borderColor: theme.danger,
     width: 32,
     height: 32,
     borderRadius: 8,
@@ -1432,11 +1435,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: '#334155',
+    borderTopColor: theme.border,
     marginTop: 10,
   },
   switchLabel: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -1446,12 +1449,12 @@ const styles = StyleSheet.create({
     gap: 12,
     marginTop: 20,
     borderTopWidth: 1,
-    borderTopColor: '#334155',
+    borderTopColor: theme.border,
     paddingTop: 16,
   },
   modalCancel: {
-    backgroundColor: 'rgba(51, 65, 85, 0.5)',
-    borderColor: '#334155',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(51, 65, 85, 0.5)' : theme.backgroundSelected,
+    borderColor: theme.border,
     borderWidth: 1,
     paddingVertical: 10,
     paddingHorizontal: 18,
@@ -1459,12 +1462,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalCancelText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontWeight: '700',
     fontSize: 13,
   },
   modalSubmit: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     paddingVertical: 10,
     paddingHorizontal: 18,
     borderRadius: 10,
@@ -1476,19 +1479,19 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   importDesc: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     lineHeight: 18,
     marginBottom: 16,
   },
   importErrorText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 12,
     fontWeight: '700',
     marginTop: 8,
   },
   modalImportBtn: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
     paddingVertical: 10,
     paddingHorizontal: 18,
     borderRadius: 10,
@@ -1499,44 +1502,41 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 13,
   },
-  // ==========================================
-  // TOAST STYLES
-  // ==========================================
   toast: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 14,
     paddingVertical: 12,
     paddingHorizontal: 16,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
     gap: 10,
     ...Platform.select({
       web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+        boxShadow: `0 4px 20px ${theme.cardShadow}`,
       },
     }),
   },
   toastSuccess: {
-    backgroundColor: 'rgba(16, 185, 129, 0.12)',
-    borderColor: 'rgba(16, 185, 129, 0.4)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(5, 150, 105, 0.08)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.3)',
   },
   toastError: {
-    backgroundColor: 'rgba(239, 68, 68, 0.12)',
-    borderColor: 'rgba(239, 68, 68, 0.4)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.12)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(220, 38, 38, 0.3)',
   },
   toastInfo: {
-    backgroundColor: 'rgba(59, 130, 246, 0.12)',
-    borderColor: 'rgba(59, 130, 246, 0.4)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.12)' : 'rgba(37, 99, 230, 0.08)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.4)' : 'rgba(37, 99, 230, 0.3)',
   },
   toastIcon: {
     fontSize: 16,
   },
   toastText: {
     flex: 1,
-    color: '#E2E8F0',
+    color: theme.text,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -1544,11 +1544,10 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   toastCloseText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 13,
     fontWeight: '700',
   },
-  // ── Guru toggle switch styles ──
   toggleWrapper: {
     alignItems: 'center',
     gap: 4,
@@ -1560,14 +1559,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   toggleLabelActive: {
-    color: '#10B981',
+    color: theme.success,
   },
   toggleLabelInactive: {
-    color: '#64748B',
+    color: theme.textMuted,
   },
-  // ── Date/Time Picker Styles ──
   formLabel: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
     marginTop: 6,
@@ -1576,8 +1574,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   pickerBtn: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 10,
     paddingVertical: 12,
@@ -1589,32 +1587,32 @@ const styles = StyleSheet.create({
     height: 44,
   },
   pickerBtnError: {
-    borderColor: '#EF4444',
+    borderColor: theme.danger,
   },
   pickerBtnText: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
   },
   pickerBtnArrow: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 12,
   },
   pickerModalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
   pickerModalCard: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 16,
     width: '100%',
     maxWidth: 400,
     maxHeight: '80%',
     padding: 16,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   pickerModalHeader: {
     flexDirection: 'row',
@@ -1623,12 +1621,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   pickerModalTitle: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 16,
     fontWeight: '800',
   },
   pickerSubLabel: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 11,
     fontWeight: '700',
     marginTop: 10,
@@ -1641,12 +1639,12 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   pickerYearBtn: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   pickerGrid: {
     flexDirection: 'row',
@@ -1654,13 +1652,13 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   pickerMonthBtn: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     width: '23%',
     paddingVertical: 8,
     alignItems: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   pickerDayGrid: {
     flexDirection: 'row',
@@ -1668,20 +1666,20 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   pickerDayBtn: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     width: '12%',
     paddingVertical: 8,
     alignItems: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   pickerBtnActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.primary,
+    borderColor: theme.primary,
   },
   pickerBtnTxt: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
   },
@@ -1695,7 +1693,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#334155',
+    borderTopColor: theme.border,
   },
   cancelEditBtn: {
     paddingVertical: 8,
@@ -1703,12 +1701,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cancelEditText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 14,
     fontWeight: '700',
   },
   saveEditBtn: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
@@ -1719,30 +1717,29 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   editModalClose: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 16,
     fontWeight: '700',
   },
   timePreview: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   timePreviewText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 18,
     fontWeight: '800',
   },
   errorText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 11,
     marginTop: -4,
     marginBottom: 8,
     fontWeight: '600',
   },
 });
-

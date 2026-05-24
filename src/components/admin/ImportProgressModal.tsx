@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 interface ImportProgressModalProps {
   visible: boolean;
@@ -22,6 +23,7 @@ export function ImportProgressModal({
   label = 'Data',
   statusText,
 }: ImportProgressModalProps) {
+  const theme = useTheme();
   const animatedWidth = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
@@ -63,44 +65,51 @@ export function ImportProgressModal({
       animationType="fade"
       statusBarTranslucent
     >
-      <View style={styles.overlay}>
-        <View style={styles.card}>
+      <View style={[styles.overlay, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(10, 16, 30, 0.88)' : 'rgba(10, 16, 30, 0.5)' }]}>
+        <View style={[styles.card, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]}>
           {/* Header Icon */}
-          <Animated.View style={[styles.iconWrapper, { opacity: isDone ? 1 : pulseAnim }]}>
+          <Animated.View style={[
+            styles.iconWrapper, 
+            { 
+              opacity: isDone ? 1 : pulseAnim,
+              backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.12)' : 'rgba(37, 99, 235, 0.08)',
+              borderColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.25)' : 'rgba(37, 99, 235, 0.2)'
+            }
+          ]}>
             <Text style={styles.icon}>{isDone ? '✅' : '📥'}</Text>
           </Animated.View>
 
           {/* Title */}
-          <Text style={styles.title}>
+          <Text style={[styles.title, { color: theme.text }]}>
             {isDone ? 'Import Selesai!' : `Mengimpor ${label}...`}
           </Text>
 
           {/* Count info */}
-          <Text style={styles.countText}>
-            {current} <Text style={styles.countSep}>/</Text> {total} baris
+          <Text style={[styles.countText, { color: theme.textSecondary }]}>
+            {current} <Text style={{ color: theme.border }}>/</Text> {total} baris
           </Text>
 
           {/* Progress Bar Track */}
-          <View style={styles.barTrack}>
+          <View style={[styles.barTrack, { backgroundColor: theme.background, borderColor: theme.border }]}>
             <Animated.View
               style={[
                 styles.barFill,
-                { width: barWidth },
-                isDone && styles.barFillDone,
+                { width: barWidth, backgroundColor: theme.primary },
+                isDone && { backgroundColor: theme.success },
               ]}
             />
           </View>
 
           {/* Percent label */}
-          <Text style={[styles.percentText, isDone && styles.percentDone]}>
+          <Text style={[styles.percentText, { color: theme.primary }, isDone && { color: theme.success }]}>
             {percent}%
           </Text>
 
           {/* Status text */}
           {statusText ? (
-            <Text style={styles.statusText}>{statusText}</Text>
+            <Text style={[styles.statusText, { color: theme.textMuted }]}>{statusText}</Text>
           ) : (
-            <Text style={styles.statusText}>
+            <Text style={[styles.statusText, { color: theme.textMuted }]}>
               {isDone
                 ? 'Semua data berhasil disimpan ke database.'
                 : 'Mohon tunggu, jangan tutup halaman ini...'}
@@ -108,16 +117,24 @@ export function ImportProgressModal({
           )}
 
           {/* Shimmer Steps */}
-          <View style={styles.stepsRow}>
+          <View style={[styles.stepsRow, { borderTopColor: theme.border }]}>
             {['Baca File', 'Validasi', 'Simpan ke DB', 'Selesai'].map((step, idx) => {
               const stepPercent = idx * 33;
               const isActive = percent >= stepPercent;
               return (
                 <View key={idx} style={styles.stepItem}>
-                  <View style={[styles.stepDot, isActive && styles.stepDotActive]}>
+                  <View style={[
+                    styles.stepDot, 
+                    { borderColor: theme.border },
+                    isActive && [styles.stepDotActive, { backgroundColor: theme.primary, borderColor: theme.primary }]
+                  ]}>
                     {isActive && <Text style={styles.stepCheck}>✓</Text>}
                   </View>
-                  <Text style={[styles.stepLabel, isActive && styles.stepLabelActive]}>
+                  <Text style={[
+                    styles.stepLabel, 
+                    { color: theme.textMuted },
+                    isActive && [styles.stepLabelActive, { color: theme.text }]
+                  ]}>
                     {step}
                   </Text>
                 </View>
@@ -133,82 +150,61 @@ export function ImportProgressModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(10, 16, 30, 0.88)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
   },
   card: {
-    backgroundColor: '#1E293B',
     borderRadius: 24,
     padding: 28,
     width: '100%',
     maxWidth: 420,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#334155',
     elevation: 20,
   },
   iconWrapper: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: 'rgba(59, 130, 246, 0.12)',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: 'rgba(59, 130, 246, 0.25)',
   },
   icon: {
     fontSize: 30,
   },
   title: {
-    color: '#FFF',
     fontSize: 18,
     fontWeight: '800',
     marginBottom: 6,
     letterSpacing: 0.3,
   },
   countText: {
-    color: '#64748B',
     fontSize: 13,
     fontWeight: '600',
     marginBottom: 18,
   },
-  countSep: {
-    color: '#334155',
-  },
   barTrack: {
     width: '100%',
     height: 10,
-    backgroundColor: '#0F172A',
     borderRadius: 99,
     overflow: 'hidden',
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#253047',
   },
   barFill: {
     height: '100%',
     borderRadius: 99,
-    backgroundColor: '#6366F1',
-  },
-  barFillDone: {
-    backgroundColor: '#10B981',
   },
   percentText: {
-    color: '#3B82F6',
     fontSize: 22,
     fontWeight: '900',
     letterSpacing: 0.5,
     marginBottom: 6,
   },
-  percentDone: {
-    color: '#10B981',
-  },
   statusText: {
-    color: '#64748B',
     fontSize: 12,
     fontWeight: '500',
     textAlign: 'center',
@@ -221,7 +217,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 16,
     borderTopWidth: 1,
-    borderTopColor: '#253047',
     gap: 4,
   },
   stepItem: {
@@ -234,29 +229,22 @@ const styles = StyleSheet.create({
     height: 22,
     borderRadius: 11,
     borderWidth: 2,
-    borderColor: '#334155',
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  stepDotActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
-  },
+  stepDotActive: {},
   stepCheck: {
     color: '#FFF',
     fontSize: 11,
     fontWeight: '900',
   },
   stepLabel: {
-    color: '#475569',
     fontSize: 9,
     fontWeight: '600',
     textAlign: 'center',
     textTransform: 'uppercase',
     letterSpacing: 0.3,
   },
-  stepLabelActive: {
-    color: '#94A3B8',
-  },
+  stepLabelActive: {},
 });

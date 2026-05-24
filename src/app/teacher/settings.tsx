@@ -19,9 +19,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DbService, Tenant } from '@/services/supabase';
 import { StorageService } from '@/services/storage';
+import { useTheme } from '@/hooks/use-theme';
+import { useThemeContext } from '@/context/ThemeContext';
 
 export default function SystemSettingsScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const { themeSetting, setThemeSetting } = useThemeContext();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
   const params = useLocalSearchParams();
   const paramGuruId = params.guruId as string;
 
@@ -248,7 +253,7 @@ export default function SystemSettingsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1E293B" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.backgroundElement} />
 
       {/* Header Bar */}
       <View style={styles.headerBar}>
@@ -415,15 +420,48 @@ export default function SystemSettingsScreen() {
             </View>
           </View>
         </View>
+
+        {/* 3. Application Color Theme Card */}
+        <Text style={[styles.subHeader, { marginTop: 15 }]}>TEMA TAMPILAN APLIKASI</Text>
+        <Text style={styles.explanation}>
+          Pilih tema tampilan yang paling nyaman untuk mata Anda baik saat siang maupun malam hari.
+        </Text>
+
+        <View style={styles.card}>
+          <View style={styles.themeOptionsRow}>
+            {(['system', 'light', 'dark'] as const).map((mode) => {
+              const isActive = themeSetting === mode;
+              const modeLabel = mode === 'system' ? '💻 Sistem' : mode === 'light' ? '☀️ Terang' : '🌙 Gelap';
+              return (
+                <TouchableOpacity
+                  key={mode}
+                  style={[
+                    styles.themeBtn,
+                    isActive && [styles.themeBtnActive, { backgroundColor: theme.primary, borderColor: theme.primary }]
+                  ]}
+                  onPress={() => setThemeSetting(mode)}
+                >
+                  <Text style={[
+                    styles.themeBtnText,
+                    { color: theme.textSecondary },
+                    isActive && { color: '#FFF', fontWeight: '800' }
+                  ]}>
+                    {modeLabel}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   center: {
     justifyContent: 'center',
@@ -431,7 +469,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginTop: 15,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 15,
     fontWeight: '600',
   },
@@ -442,17 +480,17 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#1E293B',
-    backgroundColor: '#1E293B',
+    borderBottomColor: theme.border,
+    backgroundColor: theme.backgroundElement,
   },
   backButton: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 8,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.backgroundSelected,
   },
   backButtonText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 14,
     fontWeight: '700',
   },
@@ -460,17 +498,17 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 8,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.backgroundSelected,
   },
   reloadButtonText: {
-    color: '#06B6D4',
+    color: theme.success,
     fontSize: 12,
     fontWeight: '700',
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
   },
   scrollContent: {
     padding: 20,
@@ -479,46 +517,50 @@ const styles = StyleSheet.create({
   subHeader: {
     fontSize: 13,
     fontWeight: '800',
-    color: '#64748B',
+    color: theme.textSecondary,
     letterSpacing: 1.5,
     marginBottom: 8,
   },
   explanation: {
     fontSize: 13,
-    color: '#94A3B8',
+    color: theme.textMuted,
     lineHeight: 18,
     marginBottom: 20,
   },
   card: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 20,
     borderWidth: 1,
     padding: 20,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.cardShadow,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+      },
+    }),
     elevation: 3,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   cardSimple: {
-    borderColor: '#3B82F6',
+    borderColor: theme.primary,
   },
   cardLogin: {
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   cardBlockActive: {
-    borderColor: '#EF4444',
+    borderColor: theme.danger,
   },
   cardBlockDisabled: {
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
     paddingBottom: 15,
     marginBottom: 15,
   },
@@ -532,13 +574,13 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 16,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
     marginBottom: 4,
   },
   cardStatusLabel: {
     fontSize: 11,
     fontWeight: '800',
-    color: '#64748B',
+    color: theme.textSecondary,
     letterSpacing: 0.5,
   },
   switchRow: {
@@ -550,7 +592,7 @@ const styles = StyleSheet.create({
   switchDescription: {
     flex: 1,
     fontSize: 12,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     lineHeight: 16,
   },
   actionContainer: {
@@ -562,32 +604,28 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 11,
     fontWeight: '800',
-    color: '#94A3B8',
+    color: theme.textSecondary,
     marginBottom: 6,
     letterSpacing: 0.5,
   },
   textInput: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 18,
   },
   saveButton: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
     marginTop: 15,
-    shadowColor: '#10B981',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
     elevation: 3,
   },
   saveButtonText: {
@@ -600,14 +638,14 @@ const styles = StyleSheet.create({
   previewHeader: {
     fontSize: 11,
     fontWeight: '800',
-    color: '#64748B',
+    color: theme.textSecondary,
     marginTop: 10,
     marginBottom: 10,
     letterSpacing: 0.5,
   },
   previewBox: {
-    backgroundColor: '#0F172A',
-    borderColor: '#1E293B',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 16,
     padding: 20,
@@ -623,47 +661,70 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#1E293B',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.primary,
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
-    shadowColor: '#3B82F6',
+    shadowColor: theme.primary,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
   },
   previewFallbackLogoText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 16,
     fontWeight: '900',
   },
   previewSchoolName: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 16,
     fontWeight: '800',
     textAlign: 'center',
     marginBottom: 2,
   },
   previewExamEvent: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '600',
     textAlign: 'center',
     marginBottom: 8,
   },
   previewBadge: {
-    backgroundColor: '#1E293B',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.primary,
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 3,
   },
   previewBadgeText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 9,
     fontWeight: '800',
+  },
+  // Theme options selector
+  themeOptionsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+    width: '100%',
+  },
+  themeBtn: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    borderColor: theme.border,
+    backgroundColor: theme.background,
+    alignItems: 'center',
+  },
+  themeBtnActive: {
+    borderWidth: 1.5,
+  },
+  themeBtnText: {
+    fontSize: 13,
+    fontWeight: '700',
   },
 });

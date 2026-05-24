@@ -1,13 +1,13 @@
 import { Stack } from 'expo-router';
 import React from 'react';
-import { useColorScheme } from 'react-native';
 import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { ThemeContextProvider, useThemeContext } from '@/context/ThemeContext';
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+function InnerLayout() {
+  const { activeTheme } = useThemeContext();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={activeTheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="exam-list" />
@@ -20,6 +20,14 @@ export default function RootLayout() {
         <Stack.Screen name="teacher/settings" />
       </Stack>
     </ThemeProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <ThemeContextProvider>
+      <InnerLayout />
+    </ThemeContextProvider>
   );
 }
 

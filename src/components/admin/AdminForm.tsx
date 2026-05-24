@@ -5,12 +5,11 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Modal,
-  FlatList,
   Platform,
   ScrollView,
   Switch,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 // ==========================================
 // 1. FORM INPUT
@@ -37,24 +36,27 @@ export function FormInput({
   editable = true,
 }: FormInputProps) {
   const [showValue, setShowValue] = useState(false);
+  const theme = useTheme();
 
   return (
     <View style={formStyles.field}>
-      <Text style={formStyles.label}>{label}</Text>
+      <Text style={[formStyles.label, { color: theme.textSecondary }]}>{label}</Text>
       <View style={[
         formStyles.inputContainer,
-        error ? formStyles.inputError : null,
-        !editable && formStyles.inputDisabled,
+        { backgroundColor: theme.background, borderColor: theme.border },
+        error ? { borderColor: theme.danger } : null,
+        !editable && [formStyles.inputDisabled, { backgroundColor: theme.backgroundSelected, borderColor: theme.backgroundSelected }],
       ]}>
         <TextInput
           style={[
             formStyles.inputInside,
-            !editable && formStyles.inputDisabledText,
+            { color: theme.text },
+            !editable && { color: theme.textMuted },
           ]}
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor="#475569"
+          placeholderTextColor={theme.textMuted}
           secureTextEntry={secureTextEntry && !showValue}
           keyboardType={keyboardType}
           editable={editable}
@@ -75,7 +77,7 @@ export function FormInput({
           </TouchableOpacity>
         )}
       </View>
-      {error && <Text style={formStyles.errorText}>{error}</Text>}
+      {error && <Text style={[formStyles.errorText, { color: theme.danger }]}>{error}</Text>}
     </View>
   );
 }
@@ -105,6 +107,7 @@ export function FormSelect({
 }: FormSelectProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const theme = useTheme();
 
   // Find active label
   const selectedOption = options.find((opt) => opt.value === selectedValue);
@@ -123,18 +126,18 @@ export function FormSelect({
   if (Platform.OS === 'web') {
     return (
       <View style={formStyles.field}>
-        <Text style={formStyles.label}>{label}</Text>
+        <Text style={[formStyles.label, { color: theme.textSecondary }]}>{label}</Text>
         <div style={{ position: 'relative', width: '100%', pointerEvents: 'auto' }}>
           <select
             value={selectedValue || ''}
             onChange={(e) => onValueChange(e.target.value)}
             style={{
-              backgroundColor: '#0F172A',
-              borderColor: error ? '#EF4444' : '#334155',
+              backgroundColor: theme.background,
+              borderColor: error ? theme.danger : theme.border,
               borderWidth: '1px',
               borderStyle: 'solid',
               borderRadius: '10px',
-              color: '#FFF',
+              color: theme.text,
               padding: '10px 32px 10px 14px',
               fontSize: '14px',
               height: '44px',
@@ -147,14 +150,14 @@ export function FormSelect({
               pointerEvents: 'auto',
             }}
           >
-            <option value="" disabled style={{ backgroundColor: '#1E293B', color: '#64748B' }}>
+            <option value="" disabled style={{ backgroundColor: theme.backgroundElement, color: theme.textMuted }}>
               {placeholder}
             </option>
             {options.map((opt, idx) => (
               <option 
                 key={`${opt.value}-${idx}`} 
                 value={opt.value} 
-                style={{ backgroundColor: '#1E293B', color: '#FFF' }}
+                style={{ backgroundColor: theme.backgroundElement, color: theme.text }}
               >
                 {opt.label}
               </option>
@@ -166,7 +169,7 @@ export function FormSelect({
               right: '14px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: '#64748B',
+              color: theme.textMuted,
               fontSize: '10px',
               pointerEvents: 'none',
             }}
@@ -174,47 +177,47 @@ export function FormSelect({
             ▼
           </span>
         </div>
-        {error && <Text style={formStyles.errorText}>{error}</Text>}
+        {error && <Text style={[formStyles.errorText, { color: theme.danger }]}>{error}</Text>}
       </View>
     );
   }
 
   return (
     <View style={formStyles.field}>
-      <Text style={formStyles.label}>{label}</Text>
+      <Text style={[formStyles.label, { color: theme.textSecondary }]}>{label}</Text>
       
       <TouchableOpacity
-        style={[formStyles.selectButton, error ? formStyles.inputError : null]}
+        style={[formStyles.selectButton, { backgroundColor: theme.background, borderColor: theme.border }, error ? { borderColor: theme.danger } : null]}
         onPress={() => {
           setIsExpanded(!isExpanded);
           if (isExpanded) setSearchQuery('');
         }}
         activeOpacity={0.7}
       >
-        <Text style={[formStyles.selectButtonText, !selectedOption && formStyles.selectPlaceholder]}>
+        <Text style={[formStyles.selectButtonText, { color: theme.text }, !selectedOption && { color: theme.textMuted }]}>
           {displayText}
         </Text>
-        <Text style={formStyles.selectArrow}>{isExpanded ? '▲' : '▼'}</Text>
+        <Text style={[formStyles.selectArrow, { color: theme.textMuted }]}>{isExpanded ? '▲' : '▼'}</Text>
       </TouchableOpacity>
 
-      {error && <Text style={formStyles.errorText}>{error}</Text>}
+      {error && <Text style={[formStyles.errorText, { color: theme.danger }]}>{error}</Text>}
 
       {/* Inline Options Panel */}
       {isExpanded && (
-        <View style={formStyles.dropdownPanel}>
+        <View style={[formStyles.dropdownPanel, { backgroundColor: theme.background, borderColor: theme.border }]}>
           {searchable && (
             <TextInput
-              style={formStyles.searchInput}
+              style={[formStyles.searchInput, { backgroundColor: theme.backgroundElement, borderColor: theme.border, color: theme.text }]}
               value={searchQuery}
               onChangeText={setSearchQuery}
               placeholder="Cari..."
-              placeholderTextColor="#475569"
+              placeholderTextColor={theme.textMuted}
               autoCapitalize="none"
             />
           )}
           {filteredOptions.length === 0 ? (
             <View style={formStyles.emptyList}>
-              <Text style={formStyles.emptyListText}>Tidak ada pilihan cocok.</Text>
+              <Text style={[formStyles.emptyListText, { color: theme.textMuted }]}>Tidak ada pilihan cocok.</Text>
             </View>
           ) : (
             <ScrollView
@@ -227,13 +230,13 @@ export function FormSelect({
                 return (
                   <TouchableOpacity
                     key={`${opt.value}-${idx}`}
-                    style={[formStyles.listItem, isSelected && formStyles.listItemActive]}
+                    style={[formStyles.listItem, isSelected && [formStyles.listItemActive, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.1)' : 'rgba(37, 99, 235, 0.08)' }]]}
                     onPress={() => handleSelect(opt.value)}
                   >
-                    <Text style={[formStyles.listItemText, isSelected && formStyles.listItemTextActive]}>
+                    <Text style={[formStyles.listItemText, { color: theme.textSecondary }, isSelected && { color: theme.primary, fontWeight: '700' }]}>
                       {opt.label}
                     </Text>
-                    {isSelected && <Text style={formStyles.checkmark}>✓</Text>}
+                    {isSelected && <Text style={[formStyles.checkmark, { color: theme.primary }]}>✓</Text>}
                   </TouchableOpacity>
                 );
               })}
@@ -251,7 +254,6 @@ const formStyles = StyleSheet.create({
     width: '100%',
   },
   label: {
-    color: '#94A3B8',
     fontSize: 12,
     fontWeight: '700',
     marginBottom: 6,
@@ -261,8 +263,6 @@ const formStyles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
     borderWidth: 1,
     borderRadius: 10,
     height: 44,
@@ -270,22 +270,14 @@ const formStyles = StyleSheet.create({
   },
   inputInside: {
     flex: 1,
-    color: '#FFF',
     paddingVertical: 10,
     paddingHorizontal: 14,
     fontSize: 14,
     height: '100%',
   },
-  inputDisabled: {
-    backgroundColor: '#1E293B',
-    borderColor: '#1E293B',
-  },
-  inputDisabledText: {
-    color: '#64748B',
-  },
-  inputError: {
-    borderColor: '#EF4444',
-  },
+  inputDisabled: {},
+  inputDisabledText: {},
+  inputError: {},
   eyeButton: {
     padding: 6,
     justifyContent: 'center',
@@ -295,14 +287,11 @@ const formStyles = StyleSheet.create({
     fontSize: 14,
   },
   errorText: {
-    color: '#EF4444',
     fontSize: 11,
     marginTop: 4,
     fontWeight: '600',
   },
   selectButton: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
     borderWidth: 1,
     borderRadius: 10,
     paddingVertical: 10,
@@ -313,55 +302,11 @@ const formStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   selectButtonText: {
-    color: '#FFF',
     fontSize: 14,
   },
-  selectPlaceholder: {
-    color: '#475569',
-  },
+  selectPlaceholder: {},
   selectArrow: {
-    color: '#64748B',
     fontSize: 10,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.75)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  modalContainer: {
-    backgroundColor: '#1E293B',
-    borderRadius: 16,
-    width: '100%',
-    maxWidth: 400,
-    maxHeight: '70%',
-    borderWidth: 1,
-    borderColor: '#334155',
-    overflow: 'hidden',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#334155',
-  },
-  modalTitle: {
-    color: '#FFF',
-    fontSize: 15,
-    fontWeight: '800',
-  },
-  modalCloseBtn: {
-    padding: 4,
-  },
-  modalCloseText: {
-    color: '#64748B',
-    fontSize: 12,
-  },
-  list: {
-    padding: 8,
   },
   listItem: {
     flexDirection: 'row',
@@ -373,20 +318,13 @@ const formStyles = StyleSheet.create({
     marginVertical: 2,
     backgroundColor: 'transparent',
   },
-  listItemActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-  },
+  listItemActive: {},
   listItemText: {
-    color: '#94A3B8',
     fontSize: 13,
     fontWeight: '600',
   },
-  listItemTextActive: {
-    color: '#3B82F6',
-    fontWeight: '700',
-  },
+  listItemTextActive: {},
   checkmark: {
-    color: '#3B82F6',
     fontWeight: '800',
     fontSize: 14,
   },
@@ -395,13 +333,10 @@ const formStyles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyListText: {
-    color: '#64748B',
     fontSize: 13,
     fontWeight: '500',
   },
   dropdownPanel: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
     borderWidth: 1,
     borderRadius: 10,
     marginTop: 4,
@@ -413,11 +348,8 @@ const formStyles = StyleSheet.create({
     width: '100%',
   },
   searchInput: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
     borderWidth: 1,
     borderRadius: 8,
-    color: '#FFF',
     fontSize: 13,
     paddingHorizontal: 10,
     paddingVertical: 8,
@@ -429,11 +361,9 @@ const formStyles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: '#334155',
     marginTop: 10,
   },
   switchLabel: {
-    color: '#FFF',
     fontSize: 13,
     fontWeight: '700',
   },
@@ -449,14 +379,15 @@ interface FormSwitchProps {
 }
 
 export function FormSwitch({ label, value, onValueChange }: FormSwitchProps) {
+  const theme = useTheme();
   return (
-    <View style={formStyles.switchRow}>
-      <Text style={formStyles.switchLabel}>{label}</Text>
+    <View style={[formStyles.switchRow, { borderTopColor: theme.border }]}>
+      <Text style={[formStyles.switchLabel, { color: theme.text }]}>{label}</Text>
       <Switch
         value={value}
         onValueChange={onValueChange}
-        trackColor={{ false: '#334155', true: '#10B981' }}
-        thumbColor={value ? '#FFF' : '#94A3B8'}
+        trackColor={{ false: theme.border, true: theme.success }}
+        thumbColor={value ? '#FFF' : theme.textSecondary}
       />
     </View>
   );

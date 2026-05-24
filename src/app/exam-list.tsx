@@ -8,14 +8,18 @@ import {
   ActivityIndicator,
   StatusBar,
   RefreshControl,
+  Platform,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, LinkSoal, Siswa } from '@/services/supabase';
 import { StorageService } from '@/services/storage';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function ExamListScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
   const params = useLocalSearchParams();
   const kelasId = params.kelasId as string;
   const kelasName = params.kelasName as string;
@@ -131,7 +135,6 @@ export default function ExamListScreen() {
       
       return now.getTime() >= examDateTime.getTime();
     } catch (e) {
-      console.error('Failed to parse exam date time:', e);
       return true;
     }
   };
@@ -158,13 +161,13 @@ export default function ExamListScreen() {
       
       return `${hari}, ${day} ${bulan} ${year}`;
     } catch (e) {
-      console.error('Failed to format date:', e);
       return dateStr;
     }
   };
 
   const renderExamItem = ({ item }: { item: LinkSoal }) => {
     const available = isExamAvailable(item);
+    const isCompleted = completedExams.includes(item.id);
 
     return (
       <View style={styles.examCard}>
@@ -177,8 +180,14 @@ export default function ExamListScreen() {
               <Text style={styles.examDateTime}>
                 📅 {formatIndonesianDate(item.tanggal_ujian)}  |  🕒 {item.waktu_ujian.substring(0, 5)}
               </Text>
-              <View style={[styles.badge, item.enable_blocking !== false ? styles.badgeLocked : styles.badgeUnlocked]}>
-                <Text style={styles.badgeText}>
+              <View style={[
+                styles.badge, 
+                item.enable_blocking !== false ? styles.badgeLocked : styles.badgeUnlocked
+              ]}>
+                <Text style={[
+                  styles.badgeText,
+                  { color: item.enable_blocking !== false ? theme.success : theme.danger }
+                ]}>
                   {item.enable_blocking !== false ? '🔒 Terkunci' : '🔓 Bebas'}
                 </Text>
               </View>
@@ -190,7 +199,7 @@ export default function ExamListScreen() {
             </View>
           </View>
         </View>
-        {completedExams.includes(item.id) ? (
+        {isCompleted ? (
           <TouchableOpacity
             style={[styles.startButton, styles.startButtonCompleted]}
             onPress={() => handleStartExam(item)}
@@ -214,7 +223,7 @@ export default function ExamListScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} />
       
       {/* Header Bar */}
       <View style={styles.headerBar}>
@@ -243,7 +252,7 @@ export default function ExamListScreen() {
 
       {loading ? (
         <View style={[styles.container, styles.center]}>
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color={theme.primary} />
           <Text style={styles.loadingText}>Memuat Daftar Ujian...</Text>
         </View>
       ) : (
@@ -256,8 +265,8 @@ export default function ExamListScreen() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={handlePullToRefresh}
-              tintColor="#3B82F6"
-              colors={["#3B82F6"]}
+              tintColor={theme.primary}
+              colors={[theme.primary]}
             />
           }
           ListEmptyComponent={
@@ -275,10 +284,10 @@ export default function ExamListScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   center: {
     justifyContent: 'center',
@@ -291,17 +300,17 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#1E293B',
-    backgroundColor: '#1E293B',
+    borderBottomColor: theme.border,
+    backgroundColor: theme.backgroundElement,
   },
   backButton: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 8,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.backgroundSelected,
   },
   backButtonText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 14,
     fontWeight: '700',
   },
@@ -309,21 +318,21 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderRadius: 8,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.backgroundSelected,
   },
   reloadButtonText: {
-    color: '#10B981',
+    color: theme.success,
     fontSize: 12,
     fontWeight: '700',
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
   },
   loadingText: {
     marginTop: 15,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 15,
     fontWeight: '600',
   },
@@ -331,14 +340,18 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   examCard: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.cardShadow,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+      },
+    }),
     elevation: 3,
   },
   cardHeader: {
@@ -356,12 +369,12 @@ const styles = StyleSheet.create({
   subjectName: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
     marginBottom: 4,
   },
   teacherName: {
     fontSize: 13,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontWeight: '600',
   },
   metaRow: {
@@ -373,7 +386,7 @@ const styles = StyleSheet.create({
   },
   examDateTime: {
     fontSize: 12,
-    color: '#3B82F6',
+    color: theme.primary,
     fontWeight: '700',
   },
   badge: {
@@ -383,27 +396,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   badgeLocked: {
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.1)',
+    borderColor: theme.success,
   },
   badgeUnlocked: {
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-    borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(220, 38, 38, 0.08)' : 'rgba(239, 68, 68, 0.1)',
+    borderColor: theme.danger,
   },
   badgeText: {
     fontSize: 10,
     fontWeight: '800',
-    color: '#F1F5F9',
   },
   startButton: {
-    backgroundColor: '#10B981', // Solid emerald green for "Start"
+    backgroundColor: theme.success, // Solid emerald green for "Start"
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
-    shadowColor: '#10B981',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
     elevation: 3,
   },
   startButtonText: {
@@ -424,20 +432,20 @@ const styles = StyleSheet.create({
   emptyTextTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
     marginBottom: 8,
   },
   emptyTextSub: {
     fontSize: 14,
-    color: '#64748B',
+    color: theme.textMuted,
     textAlign: 'center',
     lineHeight: 20,
   },
   studentBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1E293B',
-    borderColor: '#10B981',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.success,
     borderBottomWidth: 2,
     paddingHorizontal: 20,
     paddingVertical: 12,
@@ -450,56 +458,53 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   studentNameText: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '800',
   },
   studentMetaText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 11,
     fontWeight: '600',
     marginTop: 2,
   },
   studentBadge: {
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.1)',
+    borderColor: theme.success,
     borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 8,
     paddingVertical: 3,
   },
   studentBadgeText: {
-    color: '#10B981',
+    color: theme.success,
     fontSize: 9,
     fontWeight: '800',
   },
   startButtonDisabled: {
-    backgroundColor: '#334155',
-    shadowOpacity: 0,
+    backgroundColor: theme.backgroundSelected,
     elevation: 0,
   },
   startButtonTextDisabled: {
-    color: '#64748B',
+    color: theme.textMuted,
   },
   badgeNotStarted: {
-    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-    borderColor: '#F59E0B',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(217, 119, 6, 0.08)' : 'rgba(245, 158, 11, 0.1)',
+    borderColor: theme.warning,
   },
   badgeNotStartedText: {
     fontSize: 10,
     fontWeight: '800',
-    color: '#F59E0B',
+    color: theme.warning,
   },
   startButtonCompleted: {
-    backgroundColor: '#0F172A',
-    borderColor: '#10B981',
+    backgroundColor: theme.background,
+    borderColor: theme.success,
     borderWidth: 1.5,
-    shadowColor: '#10B981',
-    shadowOpacity: 0.1,
     elevation: 0,
   },
   startButtonTextCompleted: {
-    color: '#10B981',
+    color: theme.success,
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 1,

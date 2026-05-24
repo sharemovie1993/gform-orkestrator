@@ -17,9 +17,12 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Jurusan, Kelas, Guru, Mapel } from '@/services/supabase';
 import { DateTimePicker } from '@/components/admin/DateTimePicker';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function CreateExamScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
   const params = useLocalSearchParams();
   const guruId = params.guruId as string;
   const guruNama = params.guruNama as string;
@@ -218,7 +221,7 @@ export default function CreateExamScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.backgroundElement} />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         
         {/* Header Bar */}
@@ -249,12 +252,12 @@ export default function CreateExamScreen() {
                   setSelectedMapel(found || null);
                 }}
                 style={{
-                  backgroundColor: '#0F172A',
-                  borderColor: '#334155',
+                  backgroundColor: theme.background,
+                  borderColor: theme.border,
                   borderWidth: '1.5px',
                   borderStyle: 'solid',
                   borderRadius: '12px',
-                  color: '#FFF',
+                  color: theme.text,
                   padding: '12px 36px 12px 16px',
                   fontSize: '15px',
                   fontWeight: '600',
@@ -268,14 +271,14 @@ export default function CreateExamScreen() {
                   pointerEvents: 'auto',
                 }}
               >
-                <option value="" disabled style={{ backgroundColor: '#1E293B', color: '#64748B' }}>Pilih Mapel</option>
+                <option value="" disabled style={{ backgroundColor: theme.backgroundElement, color: theme.textMuted }}>Pilih Mapel</option>
                 {mapels.map((item, idx) => (
-                  <option key={`${item.id}-${idx}`} value={item.id} style={{ backgroundColor: '#1E293B', color: '#FFF' }}>
+                  <option key={`${item.id}-${idx}`} value={item.id} style={{ backgroundColor: theme.backgroundElement, color: theme.text }}>
                     {item.nama_mapel} ({item.singkatan})
                   </option>
                 ))}
               </select>
-              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: '#64748B', fontSize: '12px', pointerEvents: 'none' }}>▼</span>
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: theme.textMuted, fontSize: '12px', pointerEvents: 'none' }}>▼</span>
             </div>
           ) : (
             <TouchableOpacity
@@ -299,12 +302,12 @@ export default function CreateExamScreen() {
                   setSelectedGuru(found || null);
                 }}
                 style={{
-                  backgroundColor: '#0F172A',
-                  borderColor: '#334155',
+                  backgroundColor: theme.background,
+                  borderColor: theme.border,
                   borderWidth: '1.5px',
                   borderStyle: 'solid',
                   borderRadius: '12px',
-                  color: '#FFF',
+                  color: theme.text,
                   padding: '12px 36px 12px 16px',
                   fontSize: '15px',
                   fontWeight: '600',
@@ -318,14 +321,14 @@ export default function CreateExamScreen() {
                   pointerEvents: 'auto',
                 }}
               >
-                <option value="" disabled style={{ backgroundColor: '#1E293B', color: '#64748B' }}>Pilih Guru</option>
+                <option value="" disabled style={{ backgroundColor: theme.backgroundElement, color: theme.textMuted }}>Pilih Guru</option>
                 {gurus.map((item, idx) => (
-                  <option key={`${item.id}-${idx}`} value={item.id} style={{ backgroundColor: '#1E293B', color: '#FFF' }}>
+                  <option key={`${item.id}-${idx}`} value={item.id} style={{ backgroundColor: theme.backgroundElement, color: theme.text }}>
                     {item.nama_guru}
                   </option>
                 ))}
               </select>
-              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: '#64748B', fontSize: '12px', pointerEvents: 'none' }}>▼</span>
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', color: theme.textMuted, fontSize: '12px', pointerEvents: 'none' }}>▼</span>
             </div>
           ) : (
             <TouchableOpacity
@@ -348,7 +351,7 @@ export default function CreateExamScreen() {
             value={link}
             onChangeText={setLink}
             placeholder="https://docs.google.com/forms/d/..."
-            placeholderTextColor="#64748B"
+            placeholderTextColor={theme.textMuted}
             autoCapitalize="none"
             keyboardType="url"
           />
@@ -361,12 +364,12 @@ export default function CreateExamScreen() {
                 value={tanggalUjian}
                 onChange={(e) => setTanggalUjian(e.target.value)}
                 style={{
-                  backgroundColor: '#0F172A',
-                  borderColor: '#334155',
+                  backgroundColor: theme.background,
+                  borderColor: theme.border,
                   borderWidth: '1.5px',
                   borderStyle: 'solid',
                   borderRadius: '12px',
-                  color: '#FFF',
+                  color: theme.text,
                   padding: '12px 16px',
                   fontSize: '15px',
                   fontWeight: '600',
@@ -375,7 +378,7 @@ export default function CreateExamScreen() {
                   outline: 'none',
                   boxSizing: 'border-box',
                   cursor: 'pointer',
-                  colorScheme: 'dark',
+                  colorScheme: theme.activeTheme === 'dark' ? 'dark' : 'light',
                 }}
               />
             </div>
@@ -399,12 +402,12 @@ export default function CreateExamScreen() {
                 value={waktuUjian}
                 onChange={(e) => setWaktuUjian(e.target.value)}
                 style={{
-                  backgroundColor: '#0F172A',
-                  borderColor: '#334155',
+                  backgroundColor: theme.background,
+                  borderColor: theme.border,
                   borderWidth: '1.5px',
                   borderStyle: 'solid',
                   borderRadius: '12px',
-                  color: '#FFF',
+                  color: theme.text,
                   padding: '12px 16px',
                   fontSize: '15px',
                   fontWeight: '600',
@@ -413,7 +416,7 @@ export default function CreateExamScreen() {
                   outline: 'none',
                   boxSizing: 'border-box',
                   cursor: 'pointer',
-                  colorScheme: 'dark',
+                  colorScheme: theme.activeTheme === 'dark' ? 'dark' : 'light',
                 }}
               />
             </div>
@@ -597,7 +600,7 @@ export default function CreateExamScreen() {
               value={guruSearchQuery}
               onChangeText={setGuruSearchQuery}
               placeholder="Cari nama guru..."
-              placeholderTextColor="#64748B"
+              placeholderTextColor={theme.textMuted}
               autoCapitalize="none"
             />
             <FlatList
@@ -620,7 +623,7 @@ export default function CreateExamScreen() {
               )}
               ListEmptyComponent={() => (
                 <View style={{ padding: 20, alignItems: 'center' }}>
-                  <Text style={{ color: '#64748B', fontSize: 14 }}>Tidak ada guru yang cocok.</Text>
+                  <Text style={{ color: theme.textMuted, fontSize: 14 }}>Tidak ada guru yang cocok.</Text>
                 </View>
               )}
             />
@@ -639,10 +642,10 @@ export default function CreateExamScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   scrollContent: {
     padding: 20,
@@ -659,36 +662,38 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   backButton: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundSelected,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
   },
   backButtonText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 13,
     fontWeight: '700',
   },
   headerTitle: {
     fontSize: 16,
     fontWeight: '800',
-    color: '#FFF',
+    color: theme.text,
     letterSpacing: 1,
   },
   formCard: {
     width: '100%',
     maxWidth: 600,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 24,
     padding: 24,
-    shadowColor: '#000',
+    shadowColor: theme.cardShadow,
     shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.15,
     shadowRadius: 15,
     elevation: 5,
+    borderWidth: 1,
+    borderColor: theme.border,
   },
   label: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -696,19 +701,19 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '600',
   },
   dropdownButton: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 14,
@@ -718,32 +723,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   dropdownText: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '600',
   },
   placeholderText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 15,
   },
   dropdownArrow: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 12,
   },
   submitButton: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
     borderRadius: 12,
     paddingVertical: 15,
     alignItems: 'center',
     marginTop: 30,
-    shadowColor: '#10B981',
+    shadowColor: theme.success,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.25,
     shadowRadius: 10,
     elevation: 4,
   },
   submitButtonDisabled: {
-    backgroundColor: '#334155',
+    backgroundColor: theme.border,
     shadowOpacity: 0,
     elevation: 0,
   },
@@ -755,17 +760,19 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
     paddingHorizontal: 20,
     paddingBottom: 45,
     maxHeight: '60%',
+    borderWidth: 1,
+    borderColor: theme.border,
   },
   modalHeader: {
     flexDirection: 'row',
@@ -774,24 +781,24 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
   },
   closeButton: {
     fontSize: 18,
-    color: '#94A3B8',
+    color: theme.textMuted,
     fontWeight: 'bold',
   },
   modalSearchInput: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 10,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -801,20 +808,20 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#273549',
+    borderBottomColor: theme.border,
   },
   modalItemActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+    backgroundColor: theme.backgroundSelected,
   },
   modalItemText: {
     fontSize: 15,
-    color: '#F1F5F9',
+    color: theme.textSecondary,
     fontWeight: '600',
   },
   // Tab Bar specific styles
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     borderRadius: 14,
     padding: 6,
     marginBottom: 20,
@@ -832,20 +839,20 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   tabButtonActive: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
+    backgroundColor: theme.backgroundSelected,
+    borderColor: theme.border,
     borderWidth: 1,
   },
   tabText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 13,
     fontWeight: '700',
   },
   tabTextActive: {
-    color: '#10B981',
+    color: theme.success,
   },
   tabBadge: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
     borderRadius: 8,
     paddingHorizontal: 6,
     paddingVertical: 1.5,
@@ -863,8 +870,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   globalSelectButton: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 12,
@@ -873,23 +880,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   globalSelectButtonActive: {
-    borderColor: '#10B981',
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+    borderColor: theme.success,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(5, 150, 105, 0.08)',
   },
   globalSelectText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 14,
     fontWeight: '700',
   },
   globalSelectTextActive: {
-    color: '#10B981',
+    color: theme.success,
   },
   majorSection: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     borderRadius: 16,
     padding: 16,
     marginBottom: 16,
-    borderColor: '#1E293B',
+    borderColor: theme.border,
     borderWidth: 1,
   },
   majorHeaderRow: {
@@ -898,30 +905,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#1E293B',
+    borderBottomColor: theme.border,
     paddingBottom: 8,
   },
   majorTitle: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '800',
     flex: 1,
     marginRight: 8,
   },
   majorSelectAllBtn: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
+    backgroundColor: theme.backgroundSelected,
+    borderColor: theme.border,
     borderWidth: 1.2,
     paddingVertical: 4,
     paddingHorizontal: 10,
     borderRadius: 6,
   },
   majorSelectAllBtnActive: {
-    backgroundColor: '#10B981',
-    borderColor: '#10B981',
+    backgroundColor: theme.success,
+    borderColor: theme.success,
   },
   majorSelectAllText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 11,
     fontWeight: '700',
   },
@@ -934,8 +941,8 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   classChip: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 10,
     paddingVertical: 8,
@@ -945,8 +952,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   classChipSelected: {
-    borderColor: '#10B981',
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+    borderColor: theme.success,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(5, 150, 105, 0.08)',
   },
   chipCheckboxRow: {
     flexDirection: 'row',
@@ -958,14 +965,14 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 4,
     borderWidth: 1.5,
-    borderColor: '#64748B',
+    borderColor: theme.border,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   customCheckboxIndicatorActive: {
-    borderColor: '#10B981',
-    backgroundColor: '#10B981',
+    borderColor: theme.success,
+    backgroundColor: theme.success,
   },
   checkmarkIcon: {
     color: '#FFF',
@@ -974,16 +981,16 @@ const styles = StyleSheet.create({
     lineHeight: 12,
   },
   classChipText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '700',
   },
   classChipTextSelected: {
-    color: '#F8FAFC',
+    color: theme.text,
   },
   pickerButton: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingHorizontal: 16,
@@ -996,12 +1003,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   pickerButtonText: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '600',
   },
   pickerSubLabel: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
     marginTop: 14,
@@ -1016,8 +1023,8 @@ const styles = StyleSheet.create({
   },
   pickerYearBtn: {
     flex: 1,
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 8,
@@ -1025,8 +1032,8 @@ const styles = StyleSheet.create({
   },
   pickerMonthBtn: {
     width: '23%',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 8,
@@ -1034,8 +1041,8 @@ const styles = StyleSheet.create({
   },
   pickerDayBtn: {
     width: '12%',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 6,
@@ -1043,8 +1050,8 @@ const styles = StyleSheet.create({
   },
   pickerHourBtn: {
     width: '14.5%',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 6,
@@ -1052,19 +1059,19 @@ const styles = StyleSheet.create({
   },
   pickerMinuteBtn: {
     width: '23%',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 8,
     alignItems: 'center',
   },
   pickerBtnActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.primary,
+    borderColor: theme.primary,
   },
   pickerBtnText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -1103,21 +1110,21 @@ const styles = StyleSheet.create({
   },
   pickerCancelBtn: {
     flex: 1,
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-    borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
     borderWidth: 1,
     borderRadius: 10,
     paddingVertical: 10,
     alignItems: 'center',
   },
   pickerCancelBtnText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 13,
     fontWeight: '700',
   },
   pickerConfirmBtn: {
     flex: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     borderRadius: 10,
     paddingVertical: 10,
     alignItems: 'center',
@@ -1128,8 +1135,8 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   timePreviewContainer: {
-    backgroundColor: '#0F172A',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.background,
+    borderColor: theme.primary,
     borderWidth: 1,
     borderRadius: 12,
     paddingVertical: 12,
@@ -1137,7 +1144,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   timePreviewText: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 22,
     fontWeight: '900',
     letterSpacing: 1,
@@ -1146,8 +1153,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 12,
@@ -1155,22 +1162,21 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   fineTuneBtn: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
+    backgroundColor: theme.backgroundSelected,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
   fineTuneBtnText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 12,
     fontWeight: '700',
   },
   fineTuneValue: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '800',
   },
 });
-

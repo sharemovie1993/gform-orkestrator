@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { LinkSoal } from '@/services/supabase';
 import { RowCheckbox, RowActions } from './RowComponents';
 import { StatusBadge } from './StatusBadge';
+import { useTheme } from '@/hooks/use-theme';
 
 interface LinkSoalRowProps {
   item: LinkSoal;
@@ -19,16 +20,21 @@ export const LinkSoalRow = React.memo(function LinkSoalRow({
   onEdit,
   onDelete,
 }: LinkSoalRowProps) {
+  const theme = useTheme();
   const isProtected = item.enable_blocking !== false;
   return (
-    <View style={[styles.rowItem, selected && styles.rowSelected]}>
+    <View style={[
+      styles.rowItem, 
+      { borderBottomColor: theme.border },
+      selected && { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.07)' : 'rgba(220, 38, 38, 0.04)' }
+    ]}>
       <RowCheckbox selected={selected} onToggle={onToggleSelect} />
-      <Text style={[styles.cellText, { color: '#FFF', fontWeight: '700' }]}>{item.mapel_nama || 'Tidak ada'}</Text>
-      <Text style={styles.cellText}>{item.kelas_nama || 'Tidak ada'}</Text>
-      <Text style={styles.cellText}>{item.guru_nama || 'Tidak ada'}</Text>
-      <Text style={styles.cellText}>{item.tanggal_ujian}</Text>
-      <Text style={styles.cellText}>{item.waktu_ujian}</Text>
-      <Text style={[styles.cellText, { flex: 1.5, color: '#3B82F6' }]} numberOfLines={1}>{item.google_form_link}</Text>
+      <Text style={[styles.cellText, { color: theme.text, fontWeight: '700' }]}>{item.mapel_nama || 'Tidak ada'}</Text>
+      <Text style={[styles.cellText, { color: theme.textSecondary }]}>{item.kelas_nama || 'Tidak ada'}</Text>
+      <Text style={[styles.cellText, { color: theme.textSecondary }]}>{item.guru_nama || 'Tidak ada'}</Text>
+      <Text style={[styles.cellText, { color: theme.textSecondary }]}>{item.tanggal_ujian}</Text>
+      <Text style={[styles.cellText, { color: theme.textSecondary }]}>{item.waktu_ujian}</Text>
+      <Text style={[styles.cellText, { flex: 1.5, color: theme.primary }]} numberOfLines={1}>{item.google_form_link}</Text>
       <View style={[styles.cellText, { flex: 0.8 }]}>
         <StatusBadge active={isProtected} activeText="🔒 Kunci" inactiveText="🔓 Bebas" />
       </View>
@@ -46,15 +52,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#263347',
     alignItems: 'center',
-  },
-  rowSelected: {
-    backgroundColor: 'rgba(239, 68, 68, 0.07)',
   },
   cellText: {
     flex: 1,
-    color: '#94A3B8',
     fontSize: 13,
     fontWeight: '500',
   },

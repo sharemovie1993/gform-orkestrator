@@ -8,6 +8,7 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 interface AdminTableProps {
   headers: string[];
@@ -33,10 +34,12 @@ export default function AdminTable({
   isAllSelected = false,
   onToggleSelectAll,
 }: AdminTableProps) {
+  const theme = useTheme();
+  
   const TableContent = () => (
     <View style={{ minWidth }}>
       {/* Table Header */}
-      <View style={styles.headerRow}>
+      <View style={[styles.headerRow, { backgroundColor: theme.background, borderBottomColor: theme.border }]}>
         {/* Checkbox "Pilih Semua" di header */}
         {showCheckbox && (
           <TouchableOpacity
@@ -44,13 +47,13 @@ export default function AdminTable({
             onPress={onToggleSelectAll}
             activeOpacity={0.7}
           >
-            <View style={[styles.checkbox, isAllSelected && styles.checkboxChecked]}>
+            <View style={[styles.checkbox, { borderColor: theme.textSecondary }, isAllSelected && [styles.checkboxChecked, { backgroundColor: theme.danger, borderColor: theme.danger }]]}>
               {isAllSelected && <Text style={styles.checkmark}>✓</Text>}
             </View>
           </TouchableOpacity>
         )}
         {headers.map((header, idx) => (
-          <Text key={idx} style={[styles.headerCell, idx === headers.length - 1 && styles.textRight]}>
+          <Text key={idx} style={[styles.headerCell, { color: theme.textMuted }, idx === headers.length - 1 && styles.textRight]}>
             {header}
           </Text>
         ))}
@@ -59,15 +62,15 @@ export default function AdminTable({
       {/* Table Body */}
       {loading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="small" color="#3B82F6" />
-          <Text style={styles.loadingText}>Memuat data...</Text>
+          <ActivityIndicator size="small" color={theme.primary} />
+          <Text style={[styles.loadingText, { color: theme.textSecondary }]}>Memuat data...</Text>
         </View>
       ) : data.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>⚠️ {emptyMessage}</Text>
+          <Text style={[styles.emptyText, { color: theme.textMuted }]}>⚠️ {emptyMessage}</Text>
         </View>
       ) : (
-        <View style={styles.body}>
+        <View style={[styles.body, { backgroundColor: theme.backgroundElement }]}>
           {data.map((item, index) => renderRow(item, index))}
         </View>
       )}
@@ -75,7 +78,7 @@ export default function AdminTable({
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]}>
       {Platform.OS === 'web' ? (
         <ScrollView horizontal showsHorizontalScrollIndicator={true} contentContainerStyle={styles.webHorizontalScroll}>
           <TableContent />
@@ -91,10 +94,8 @@ export default function AdminTable({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1E293B',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#334155',
     overflow: 'hidden',
     marginBottom: 10,
   },
@@ -103,9 +104,7 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     flexDirection: 'row',
-    backgroundColor: '#0F172A',
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',
@@ -121,15 +120,11 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: '#475569',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
-  checkboxChecked: {
-    backgroundColor: '#EF4444',
-    borderColor: '#EF4444',
-  },
+  checkboxChecked: {},
   checkmark: {
     color: '#FFF',
     fontSize: 10,
@@ -137,7 +132,6 @@ const styles = StyleSheet.create({
   },
   headerCell: {
     flex: 1,
-    color: '#64748B',
     fontSize: 12,
     fontWeight: '800',
     textTransform: 'uppercase',
@@ -146,16 +140,13 @@ const styles = StyleSheet.create({
   textRight: {
     textAlign: 'right',
   },
-  body: {
-    backgroundColor: '#1E293B',
-  },
+  body: {},
   loadingContainer: {
     padding: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
   loadingText: {
-    color: '#94A3B8',
     fontSize: 13,
     marginTop: 10,
     fontWeight: '500',
@@ -166,7 +157,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   emptyText: {
-    color: '#64748B',
     fontSize: 13,
     fontWeight: '600',
   },

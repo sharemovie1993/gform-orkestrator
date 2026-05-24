@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 interface StatusBadgeProps {
   active: boolean;
@@ -12,9 +13,19 @@ export const StatusBadge = React.memo(function StatusBadge({
   activeText = 'Aktif',
   inactiveText = 'Nonaktif',
 }: StatusBadgeProps) {
+  const theme = useTheme();
+  
+  const badgeStyle = active 
+    ? { backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.1)', borderColor: theme.success }
+    : { backgroundColor: theme.activeTheme === 'light' ? 'rgba(220, 38, 38, 0.08)' : 'rgba(239, 68, 68, 0.1)', borderColor: theme.danger };
+
+  const textStyle = active 
+    ? { color: theme.success }
+    : { color: theme.danger };
+
   return (
-    <View style={[styles.badge, active ? styles.active : styles.inactive]}>
-      <Text style={[styles.text, active ? styles.textActive : styles.textInactive]}>
+    <View style={[styles.badge, badgeStyle]}>
+      <Text style={[styles.text, textStyle]}>
         {active ? activeText : inactiveText}
       </Text>
     </View>
@@ -29,22 +40,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
   },
-  active: {
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    borderColor: '#10B981',
-  },
-  inactive: {
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-    borderColor: '#EF4444',
-  },
   text: {
     fontSize: 11,
     fontWeight: '700',
-  },
-  textActive: {
-    color: '#10B981',
-  },
-  textInactive: {
-    color: '#EF4444',
   },
 });

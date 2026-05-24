@@ -16,9 +16,12 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Guru } from '@/services/supabase';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function TeacherLoginScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
 
   // Dropdown state
   const [guruList, setGuruList] = useState<Guru[]>([]);
@@ -114,7 +117,7 @@ export default function TeacherLoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.background} />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
@@ -142,7 +145,7 @@ export default function TeacherLoginScreen() {
 
                 {loadingGuru ? (
                   <View style={styles.loadingDropdown}>
-                    <ActivityIndicator size="small" color="#3B82F6" />
+                    <ActivityIndicator size="small" color={theme.primary} />
                     <Text style={styles.loadingDropdownText}>Memuat daftar guru...</Text>
                   </View>
                 ) : (
@@ -181,7 +184,7 @@ export default function TeacherLoginScreen() {
                       setError('');
                     }}
                     placeholder="Masukkan PIN"
-                    placeholderTextColor="#64748B"
+                    placeholderTextColor={theme.textMuted}
                     secureTextEntry={!showPin}
                     maxLength={20}
                     returnKeyType="go"
@@ -257,7 +260,7 @@ export default function TeacherLoginScreen() {
                 value={searchQuery}
                 onChangeText={setSearchQuery}
                 placeholder="Cari nama guru..."
-                placeholderTextColor="#475569"
+                placeholderTextColor={theme.textMuted}
                 autoCapitalize="none"
                 returnKeyType="search"
               />
@@ -314,10 +317,10 @@ export default function TeacherLoginScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -327,13 +330,13 @@ const styles = StyleSheet.create({
   },
   backButton: {
     alignSelf: 'flex-start',
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundSelected,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
   },
   backText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 14,
     fontWeight: '700',
   },
@@ -347,15 +350,17 @@ const styles = StyleSheet.create({
   loginCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 24,
     padding: 30,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: theme.cardShadow,
     shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.15,
     shadowRadius: 15,
     elevation: 6,
+    borderWidth: 1,
+    borderColor: theme.border,
   },
   emoji: {
     fontSize: 48,
@@ -364,13 +369,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '900',
-    color: '#3B82F6',
+    color: theme.primary,
     letterSpacing: 2,
     marginBottom: 5,
   },
   subtitle: {
     fontSize: 14,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontWeight: '600',
     marginBottom: 25,
     textAlign: 'center',
@@ -380,7 +385,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   label: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -390,8 +395,8 @@ const styles = StyleSheet.create({
   loadingDropdown: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 13,
@@ -399,7 +404,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   loadingDropdownText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 14,
   },
   // Dropdown trigger button
@@ -407,33 +412,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 13,
     paddingHorizontal: 16,
   },
   dropdownTriggerActive: {
-    borderColor: '#3B82F6',
-    shadowColor: '#3B82F6',
+    borderColor: theme.primary,
+    shadowColor: theme.primary,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
     elevation: 2,
   },
   dropdownTriggerText: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '600',
     flex: 1,
   },
   dropdownPlaceholder: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontWeight: '400',
   },
   dropdownArrow: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 11,
     marginLeft: 8,
   },
@@ -441,8 +446,8 @@ const styles = StyleSheet.create({
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingRight: 14,
@@ -451,7 +456,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '600',
   },
@@ -465,15 +470,15 @@ const styles = StyleSheet.create({
   },
   // Feedback
   errorText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 13,
     fontWeight: '600',
     marginBottom: 12,
     textAlign: 'center',
   },
   successBanner: {
-    backgroundColor: 'rgba(16, 185, 129, 0.12)',
-    borderColor: 'rgba(16, 185, 129, 0.4)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(5, 150, 105, 0.1)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.3)',
     borderWidth: 1,
     borderRadius: 10,
     paddingVertical: 10,
@@ -482,7 +487,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   successText: {
-    color: '#34D399',
+    color: theme.success,
     fontSize: 13,
     fontWeight: '700',
     textAlign: 'center',
@@ -490,11 +495,11 @@ const styles = StyleSheet.create({
   // Login button
   loginButton: {
     width: '100%',
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
-    shadowColor: '#3B82F6',
+    shadowColor: theme.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
@@ -502,7 +507,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   loginButtonDisabled: {
-    backgroundColor: '#1E3A5F',
+    backgroundColor: theme.activeTheme === 'dark' ? '#1E3A5F' : '#93C5FD',
     shadowOpacity: 0,
     elevation: 0,
   },
@@ -513,7 +518,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   copyrightText: {
-    color: '#475569',
+    color: theme.textMuted,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 25,
@@ -521,7 +526,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   versionText: {
-    color: '#475569',
+    color: theme.textMuted,
     fontSize: 10,
     fontWeight: '600',
     marginTop: 4,
@@ -539,7 +544,7 @@ const styles = StyleSheet.create({
   dropdownModal: {
     width: '100%',
     maxWidth: 380,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 18,
     overflow: 'hidden',
     maxHeight: 420,
@@ -548,6 +553,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 20,
     elevation: 10,
+    borderWidth: 1,
+    borderColor: theme.border,
   },
   dropdownHeader: {
     flexDirection: 'row',
@@ -555,16 +562,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
     borderBottomWidth: 1,
   },
   dropdownHeaderTitle: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 16,
     fontWeight: '700',
   },
   dropdownClose: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 18,
     fontWeight: '700',
     paddingHorizontal: 4,
@@ -580,27 +587,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   dropdownItemSelected: {
-    backgroundColor: 'rgba(59, 130, 246, 0.15)',
+    backgroundColor: theme.backgroundSelected,
   },
   dropdownItemText: {
-    color: '#CBD5E1',
+    color: theme.textSecondary,
     fontSize: 15,
     fontWeight: '500',
     flex: 1,
   },
   dropdownItemTextSelected: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontWeight: '700',
   },
   checkIcon: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 16,
     fontWeight: '800',
     marginLeft: 8,
   },
   separator: {
     height: 1,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.border,
     marginHorizontal: 12,
   },
   emptyDropdown: {
@@ -608,7 +615,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyDropdownText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 14,
     textAlign: 'center',
   },
@@ -616,8 +623,8 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     marginHorizontal: 16,
@@ -630,13 +637,13 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '500',
     paddingVertical: 10,
   },
   searchClear: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 16,
     fontWeight: '700',
     paddingLeft: 8,

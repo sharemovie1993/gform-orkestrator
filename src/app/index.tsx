@@ -20,9 +20,12 @@ import * as Updates from 'expo-updates';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Jurusan, Kelas, Siswa, isSupabaseConfigured, supabase } from '@/services/supabase';
 import { StorageService } from '@/services/storage';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
 
   // Student Login States
   const [studentSession, setStudentSession] = useState<Siswa | null>(null);
@@ -396,7 +399,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} />
       
       {/* Floating Refresh Button */}
       <TouchableOpacity 
@@ -828,10 +831,10 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
   },
   center: {
     justifyContent: 'center',
@@ -845,7 +848,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginTop: 15,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -857,19 +860,19 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 32,
     fontWeight: '900',
-    color: '#3B82F6', // Vibrant blue
+    color: theme.primary, // Vibrant blue
     letterSpacing: 4,
   },
   headerSubtitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#F1F5F9',
+    color: theme.text,
     letterSpacing: 2,
     marginTop: -2,
   },
   badge: {
-    backgroundColor: '#1E293B',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.primary,
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 12,
@@ -877,7 +880,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   badgeText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 10,
     fontWeight: '800',
     textTransform: 'uppercase',
@@ -886,21 +889,21 @@ const styles = StyleSheet.create({
   cachedCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: 'rgba(59, 130, 246, 0.08)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.08)' : 'rgba(37, 99, 235, 0.05)',
     borderRadius: 16,
-    borderColor: '#3B82F6',
+    borderColor: theme.primary,
     borderWidth: 1,
     padding: 16,
     marginBottom: 25,
   },
   cachedTitle: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '600',
     marginBottom: 10,
   },
   cachedButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 20,
@@ -923,13 +926,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   clearCachedText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 13,
     fontWeight: '600',
     textDecorationLine: 'underline',
   },
   copyrightText: {
-    color: '#475569',
+    color: theme.textMuted,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 25,
@@ -937,7 +940,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   versionText: {
-    color: '#475569',
+    color: theme.textMuted,
     fontSize: 10,
     fontWeight: '600',
     marginTop: 4,
@@ -947,19 +950,23 @@ const styles = StyleSheet.create({
   selectionCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 24,
     padding: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 15,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.cardShadow,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.1,
+        shadowRadius: 15,
+      },
+    }),
     elevation: 5,
   },
   cardHeader: {
     fontSize: 16,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
     letterSpacing: 1,
     textAlign: 'center',
     marginBottom: 20,
@@ -969,7 +976,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   label: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -979,7 +986,7 @@ const styles = StyleSheet.create({
   // Segmented control switcher tab styles
   segmentTabBar: {
     flexDirection: 'row',
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     borderRadius: 12,
     padding: 4,
     marginBottom: 20,
@@ -992,41 +999,42 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   segmentTabActive: {
-    backgroundColor: '#1E293B',
-    borderColor: '#334155',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.border,
     borderWidth: 1,
   },
   segmentTabText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 13,
     fontWeight: '700',
   },
   segmentTabTextActive: {
-    color: '#3B82F6',
+    color: theme.primary,
   },
   // NISN Input specific styles
   nisnInput: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 20,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
     letterSpacing: 3,
   },
   nisnInputFocused: {
-    borderColor: '#3B82F6',
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
+    borderColor: theme.primary,
+    ...Platform.select({
+      web: {
+        boxShadow: `0 0 0 3px ${theme.primary}40`,
+      } as any,
+    }),
   },
   loginErrorText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 8,
@@ -1034,8 +1042,8 @@ const styles = StyleSheet.create({
   },
   // Guest Dropdowns
   dropdownButton: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 14,
@@ -1045,16 +1053,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   dropdownText: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '600',
   },
   placeholderText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 15,
   },
   dropdownArrow: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 12,
   },
   tingkatGroup: {
@@ -1064,8 +1072,8 @@ const styles = StyleSheet.create({
   },
   tingkatButton: {
     flex: 1,
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 12,
@@ -1073,11 +1081,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tingkatButtonActive: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.primary,
+    borderColor: theme.primary,
   },
   tingkatButtonText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 14,
     fontWeight: '700',
   },
@@ -1086,21 +1094,16 @@ const styles = StyleSheet.create({
   },
   // Submit Portal Button
   submitButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: theme.primary,
     borderRadius: 12,
     paddingVertical: 15,
     alignItems: 'center',
     marginTop: 25,
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
     elevation: 4,
     width: '100%',
   },
   submitButtonDisabled: {
-    backgroundColor: '#334155',
-    shadowOpacity: 0,
+    backgroundColor: theme.backgroundSelected,
     elevation: 0,
   },
   submitButtonText: {
@@ -1113,16 +1116,20 @@ const styles = StyleSheet.create({
   dashboardCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 24,
     padding: 24,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 15,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.cardShadow,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.1,
+        shadowRadius: 15,
+      },
+    }),
     elevation: 5,
-    borderColor: '#10B981',
+    borderColor: theme.success,
     borderWidth: 1.5,
   },
   emojiIcon: {
@@ -1132,12 +1139,12 @@ const styles = StyleSheet.create({
   dashboardHeader: {
     fontSize: 20,
     fontWeight: '900',
-    color: '#10B981', // Emerald green
+    color: theme.success, // Emerald green
     letterSpacing: 2,
     marginBottom: 20,
   },
   studentInfoBox: {
-    backgroundColor: '#0F172A',
+    backgroundColor: theme.background,
     borderRadius: 16,
     padding: 16,
     width: '100%',
@@ -1150,30 +1157,26 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   studentInfoLabel: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0.5,
   },
   studentInfoValue: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     fontWeight: '700',
   },
   studentDivider: {
     height: 1,
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.border,
     marginVertical: 6,
   },
   goToExamsButton: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
     borderRadius: 12,
     paddingVertical: 15,
     alignItems: 'center',
-    shadowColor: '#10B981',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
     elevation: 4,
     width: '100%',
     marginBottom: 12,
@@ -1185,7 +1188,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   logoutButton: {
-    borderColor: '#EF4444',
+    borderColor: theme.danger,
     borderWidth: 1.5,
     borderRadius: 12,
     paddingVertical: 13,
@@ -1193,7 +1196,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   logoutText: {
-    color: '#EF4444',
+    color: theme.danger,
     fontSize: 14,
     fontWeight: '700',
   },
@@ -1202,7 +1205,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   teacherLinkText: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -1217,8 +1220,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
-    backgroundColor: 'rgba(16, 185, 129, 0.15)',
-    borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.15)',
+    borderColor: theme.success,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1228,17 +1231,17 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   checkUpdateBtnText: {
-    color: '#10B981',
+    color: theme.success,
     fontSize: 13,
     fontWeight: '700',
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.75)' : 'rgba(15, 23, 42, 0.4)',
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
@@ -1253,30 +1256,30 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
   },
   closeButton: {
     fontSize: 18,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontWeight: 'bold',
   },
   modalItem: {
     paddingVertical: 16,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#273549',
+    borderBottomColor: theme.border,
   },
   modalItemActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+    backgroundColor: theme.backgroundSelected,
   },
   modalItemText: {
     fontSize: 15,
-    color: '#F1F5F9',
+    color: theme.text,
     fontWeight: '600',
   },
   emptyView: {
@@ -1284,25 +1287,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 14,
     textAlign: 'center',
   },
   simpleTitle: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 18,
     fontWeight: '800',
     textAlign: 'center',
     marginBottom: 15,
   },
   searchBarInput: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     marginBottom: 20,
     width: '100%',
@@ -1318,8 +1321,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   classCard: {
-    backgroundColor: '#0F172A',
-    borderColor: '#1E293B',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 12,
     paddingVertical: 12,
@@ -1330,7 +1333,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   classCardText: {
-    color: '#FFF',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '800',
     textAlign: 'center',
@@ -1349,20 +1352,20 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#1E293B',
-    borderColor: '#3B82F6',
+    backgroundColor: theme.backgroundElement,
+    borderColor: theme.primary,
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 15,
-    shadowColor: '#3B82F6',
+    shadowColor: theme.primary,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 3,
   },
   fallbackLogoText: {
-    color: '#3B82F6',
+    color: theme.primary,
     fontSize: 22,
     fontWeight: '900',
     letterSpacing: 1,
@@ -1370,11 +1373,11 @@ const styles = StyleSheet.create({
   // Student modal styles
   studentModalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(9, 15, 30, 0.75)',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(9, 15, 30, 0.75)' : 'rgba(9, 15, 30, 0.4)',
     justifyContent: 'flex-end',
   },
   studentModalContent: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 20,
@@ -1382,7 +1385,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     maxHeight: '80%',
     width: '100%',
-    borderColor: '#334155',
+    borderColor: theme.border,
     borderTopWidth: 1.5,
   },
   studentModalHeader: {
@@ -1392,28 +1395,28 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    borderBottomColor: theme.border,
   },
   studentModalTitle: {
     fontSize: 16,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: theme.text,
     flex: 1,
   },
   studentModalCloseText: {
     fontSize: 18,
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontWeight: 'bold',
     marginLeft: 15,
   },
   studentModalSearchBar: {
-    backgroundColor: '#0F172A',
-    borderColor: '#334155',
+    backgroundColor: theme.background,
+    borderColor: theme.border,
     borderWidth: 1,
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    color: '#FFF',
+    color: theme.text,
     fontSize: 14,
     marginBottom: 15,
     width: '100%',
@@ -1424,45 +1427,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   studentModalEmptyText: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 15,
     fontWeight: '700',
     marginBottom: 5,
   },
   studentModalEmptySubtext: {
-    color: '#64748B',
+    color: theme.textMuted,
     fontSize: 12,
   },
   studentModalItem: {
     paddingVertical: 14,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#273549',
-    backgroundColor: '#0F172A',
+    borderBottomColor: theme.border,
+    backgroundColor: theme.background,
     borderRadius: 12,
     marginBottom: 8,
-    borderColor: '#1E293B',
+    borderColor: theme.border,
     borderWidth: 1,
   },
   studentModalItemText: {
     fontSize: 15,
-    color: '#F1F5F9',
+    color: theme.text,
     fontWeight: '700',
   },
   studentModalItemNisn: {
     fontSize: 12,
-    color: '#64748B',
+    color: theme.textMuted,
     marginTop: 4,
     fontWeight: '600',
   },
   connectionCard: {
-    backgroundColor: '#1E293B',
+    backgroundColor: theme.backgroundElement,
     borderRadius: 16,
     padding: 14,
     marginHorizontal: 20,
     marginTop: 20,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
   },
   connectionRow: {
     flexDirection: 'row',
@@ -1476,16 +1479,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   connectionStatusDotConnected: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.success,
   },
   connectionStatusDotError: {
-    backgroundColor: '#EF4444',
+    backgroundColor: theme.danger,
   },
   connectionStatusDotChecking: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: theme.warning,
   },
   connectionStatusText: {
-    color: '#F1F5F9',
+    color: theme.text,
     fontSize: 13,
     fontWeight: '700',
     flex: 1,
@@ -1494,25 +1497,25 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderRadius: 8,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    backgroundColor: theme.backgroundSelected,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: theme.border,
   },
   reconnectBtnText: {
-    color: '#94A3B8',
+    color: theme.textSecondary,
     fontSize: 11,
     fontWeight: '700',
   },
   connectionErrorText: {
-    color: '#FCA5A5',
+    color: theme.danger,
     fontSize: 11,
     marginTop: 10,
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
-    backgroundColor: 'rgba(239, 68, 68, 0.08)',
+    backgroundColor: theme.activeTheme === 'light' ? 'rgba(220, 38, 38, 0.05)' : 'rgba(239, 68, 68, 0.08)',
     padding: 8,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(239, 68, 68, 0.15)',
+    borderColor: theme.activeTheme === 'light' ? 'rgba(220, 38, 38, 0.15)' : 'rgba(239, 68, 68, 0.15)',
   },
   refreshFloatingBtn: {
     position: 'absolute',
@@ -1522,9 +1525,9 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: 'rgba(30, 41, 59, 0.75)',
+    backgroundColor: theme.backgroundSelected,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: theme.border,
     justifyContent: 'center',
     alignItems: 'center',
   },

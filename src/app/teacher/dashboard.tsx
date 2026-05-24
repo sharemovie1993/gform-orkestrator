@@ -20,9 +20,12 @@ import { DbService, LinkSoal, Mapel, Kelas } from '@/services/supabase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConfirmDialog } from '@/components/admin/AdminComponents';
 import { DateTimePicker } from '@/components/admin/DateTimePicker';
+import { useTheme } from '@/hooks/use-theme';
 
 export default function TeacherDashboard() {
   const router = useRouter();
+  const theme = useTheme();
+  const styles = React.useMemo(() => createStyles(theme), [theme]);
   const params = useLocalSearchParams();
   const guruId = params.guruId as string;
   const guruNama = params.guruNama as string;
@@ -327,15 +330,15 @@ export default function TeacherDashboard() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.backgroundElement} />
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handlePullToRefresh}
-            tintColor="#3B82F6"
-            colors={["#3B82F6"]}
+            tintColor={theme.primary}
+            colors={[theme.primary]}
           />
         }
       >
@@ -389,7 +392,7 @@ export default function TeacherDashboard() {
           {isAdmin && (
             <>
               <TouchableOpacity
-                style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: '#10B981' }]}
+                style={[styles.actionButton, { borderLeftWidth: 4, borderLeftColor: theme.success }]}
                 onPress={() => router.push({ pathname: '/teacher/manage-data', params: { guruId, guruNama } })}
               >
                 <Text style={styles.actionButtonEmoji}>⚙️</Text>
@@ -400,7 +403,7 @@ export default function TeacherDashboard() {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: '#3B82F6' }]}
+                style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: theme.primary }]}
                 onPress={() => router.push({ pathname: '/teacher/settings', params: { guruId: guruIdState || guruId, guruNama: guruNamaState || guruNama } })}
               >
                 <Text style={styles.actionButtonEmoji}>🔧</Text>
@@ -431,7 +434,7 @@ export default function TeacherDashboard() {
           </View>
 
           {loading ? (
-            <ActivityIndicator size="small" color="#3B82F6" style={{ marginTop: 20 }} />
+            <ActivityIndicator size="small" color={theme.primary} style={{ marginTop: 20 }} />
           ) : exams.length === 0 ? (
             <Text style={styles.emptyText}>Belum ada ujian yang dibuat.</Text>
           ) : (
@@ -533,9 +536,9 @@ export default function TeacherDashboard() {
                     value={editMapelId}
                     onChange={(e) => setEditMapelId(e.target.value)}
                     style={{
-                      backgroundColor: '#0F172A', borderColor: '#334155',
+                      backgroundColor: theme.background, borderColor: theme.border,
                       borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '10px',
-                      color: '#FFF', padding: '10px 14px', fontSize: '14px',
+                      color: theme.text, padding: '10px 14px', fontSize: '14px',
                       width: '100%', outline: 'none', cursor: 'pointer',
                     } as any}
                   >
@@ -571,9 +574,9 @@ export default function TeacherDashboard() {
                     value={editKelasId}
                     onChange={(e) => setEditKelasId(e.target.value)}
                     style={{
-                      backgroundColor: '#0F172A', borderColor: '#334155',
+                      backgroundColor: theme.background, borderColor: theme.border,
                       borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '10px',
-                      color: '#FFF', padding: '10px 14px', fontSize: '14px',
+                      color: theme.text, padding: '10px 14px', fontSize: '14px',
                       width: '100%', outline: 'none', cursor: 'pointer',
                     } as any}
                   >
@@ -608,7 +611,7 @@ export default function TeacherDashboard() {
                 value={editLink}
                 onChangeText={setEditLink}
                 placeholder="https://docs.google.com/forms/..."
-                placeholderTextColor="#475569"
+                placeholderTextColor={theme.textMuted}
                 autoCapitalize="none"
                 keyboardType="url"
               />
@@ -622,11 +625,11 @@ export default function TeacherDashboard() {
                     value={editTanggal}
                     onChange={(e) => setEditTanggal(e.target.value)}
                     style={{
-                      backgroundColor: '#0F172A', borderColor: '#334155',
+                      backgroundColor: theme.background, borderColor: theme.border,
                       borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '10px',
-                      color: '#FFF', padding: '10px 14px', fontSize: '14px',
+                      color: theme.text, padding: '10px 14px', fontSize: '14px',
                       width: '100%', outline: 'none', boxSizing: 'border-box',
-                      cursor: 'pointer', colorScheme: 'dark',
+                      cursor: 'pointer', colorScheme: theme.activeTheme === 'dark' ? 'dark' : 'light',
                     } as any}
                   />
                 </div>
@@ -651,11 +654,11 @@ export default function TeacherDashboard() {
                     value={editWaktu}
                     onChange={(e) => setEditWaktu(e.target.value)}
                     style={{
-                      backgroundColor: '#0F172A', borderColor: '#334155',
+                      backgroundColor: theme.background, borderColor: theme.border,
                       borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '10px',
-                      color: '#FFF', padding: '10px 14px', fontSize: '14px',
+                      color: theme.text, padding: '10px 14px', fontSize: '14px',
                       width: '100%', outline: 'none', boxSizing: 'border-box',
-                      cursor: 'pointer', colorScheme: 'dark',
+                      cursor: 'pointer', colorScheme: theme.activeTheme === 'dark' ? 'dark' : 'light',
                     } as any}
                   />
                 </div>
@@ -720,240 +723,273 @@ export default function TeacherDashboard() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0F172A' },
+const createStyles = (theme: any) => StyleSheet.create({
+  container: { flex: 1, backgroundColor: theme.background },
   scrollContent: { padding: 20, paddingBottom: 40 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 25 },
-  welcomeText: { color: '#94A3B8', fontSize: 14, fontWeight: '600' },
-  guruName: { color: '#FFF', fontSize: 20, fontWeight: '800' },
+  welcomeText: { color: theme.textSecondary, fontSize: 14, fontWeight: '600' },
+  guruName: { color: theme.text, fontSize: 20, fontWeight: '800' },
   logoutButton: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)', borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
     borderWidth: 1, paddingVertical: 8, paddingHorizontal: 16, borderRadius: 8,
   },
   reloadButton: {
-    backgroundColor: 'rgba(59, 130, 246, 0.15)', borderColor: '#3B82F6',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 230, 0.08)',
+    borderColor: theme.primary,
     borderWidth: 1, paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8,
     justifyContent: 'center', alignItems: 'center',
   },
-  reloadButtonText: { color: '#3B82F6', fontSize: 12, fontWeight: '700' },
-  logoutText: { color: '#EF4444', fontSize: 12, fontWeight: '700' },
+  reloadButtonText: { color: theme.primary, fontSize: 12, fontWeight: '700' },
+  logoutText: { color: theme.danger, fontSize: 12, fontWeight: '700' },
 
   pinCard: {
-    backgroundColor: '#1E293B', borderRadius: 20, padding: 20,
-    marginBottom: 25, borderLeftWidth: 4, borderLeftColor: '#3B82F6',
+    backgroundColor: theme.backgroundElement, borderRadius: 20, padding: 20,
+    marginBottom: 25, borderLeftWidth: 4, borderLeftColor: theme.primary,
+    borderWidth: 1, borderColor: theme.border,
   },
-  pinTitle: { color: '#94A3B8', fontSize: 13, fontWeight: '700', textTransform: 'uppercase', marginBottom: 10 },
+  pinTitle: { color: theme.textSecondary, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', marginBottom: 10 },
   pinRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 },
-  pinValue: { color: '#FFF', fontSize: 28, fontWeight: '900', letterSpacing: 4 },
+  pinValue: { color: theme.text, fontSize: 28, fontWeight: '900', letterSpacing: 4 },
   pinShowButton: {
-    backgroundColor: '#0F172A', paddingVertical: 6, paddingHorizontal: 12,
-    borderRadius: 8, borderWidth: 1, borderColor: '#334155',
+    backgroundColor: theme.background, paddingVertical: 6, paddingHorizontal: 12,
+    borderRadius: 8, borderWidth: 1, borderColor: theme.border,
   },
-  pinShowText: { color: '#3B82F6', fontSize: 12, fontWeight: '700' },
-  pinHint: { color: '#64748B', fontSize: 12, lineHeight: 16 },
+  pinShowText: { color: theme.primary, fontSize: 12, fontWeight: '700' },
+  pinHint: { color: theme.textMuted, fontSize: 12, lineHeight: 16 },
 
   actionSection: { marginBottom: 25 },
-  sectionTitle: { color: '#64748B', fontSize: 12, fontWeight: '800', letterSpacing: 1, marginBottom: 12 },
-  actionButton: { backgroundColor: '#1E293B', borderRadius: 20, padding: 20, flexDirection: 'row', alignItems: 'center' },
+  sectionTitle: { color: theme.textSecondary, fontSize: 12, fontWeight: '800', letterSpacing: 1, marginBottom: 12 },
+  actionButton: {
+    backgroundColor: theme.backgroundElement, borderRadius: 20, padding: 20,
+    flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: theme.border,
+  },
   actionButtonEmoji: { fontSize: 28, marginRight: 15 },
   actionButtonTexts: { flex: 1 },
-  actionButtonTitle: { color: '#FFF', fontSize: 16, fontWeight: '800', marginBottom: 2 },
-  actionButtonSub: { color: '#94A3B8', fontSize: 12, fontWeight: '500' },
+  actionButtonTitle: { color: theme.text, fontSize: 16, fontWeight: '800', marginBottom: 2 },
+  actionButtonSub: { color: theme.textSecondary, fontSize: 12, fontWeight: '500' },
 
   // ── Exam list ──
-  examsSection: { backgroundColor: '#1E293B', borderRadius: 20, padding: 20 },
+  examsSection: {
+    backgroundColor: theme.backgroundElement, borderRadius: 20, padding: 20,
+    borderWidth: 1, borderColor: theme.border,
+  },
   examsSectionHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 },
   bulkDeleteButton: {
-    backgroundColor: 'rgba(239,68,68,0.15)', borderColor: '#EF4444',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
     borderWidth: 1, paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8,
   },
-  bulkDeleteText: { color: '#EF4444', fontSize: 12, fontWeight: '700' },
+  bulkDeleteText: { color: theme.danger, fontSize: 12, fontWeight: '700' },
 
   selectAllRow: {
     flexDirection: 'row', alignItems: 'center', paddingVertical: 10,
-    borderBottomWidth: 1, borderBottomColor: '#334155', marginBottom: 4,
+    borderBottomWidth: 1, borderBottomColor: theme.border, marginBottom: 4,
   },
-  selectAllText: { color: '#94A3B8', fontSize: 13, fontWeight: '600', marginLeft: 10 },
+  selectAllText: { color: theme.textSecondary, fontSize: 13, fontWeight: '600', marginLeft: 10 },
 
   // ── Row ──
   examRow: {
     flexDirection: 'row', alignItems: 'center', paddingVertical: 12,
-    borderBottomWidth: 1, borderBottomColor: '#334155',
+    borderBottomWidth: 1, borderBottomColor: theme.border,
   },
-  examRowSelected: { backgroundColor: 'rgba(59,130,246,0.07)', borderRadius: 8 },
+  examRowSelected: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59,130,246,0.07)' : 'rgba(37, 99, 230, 0.05)',
+    borderRadius: 8,
+  },
 
   // ── Checkbox ──
   checkboxContainer: { marginRight: 10, padding: 2 },
   checkbox: {
     width: 20, height: 20, borderRadius: 5, borderWidth: 2,
-    borderColor: '#475569', alignItems: 'center', justifyContent: 'center',
+    borderColor: theme.border, alignItems: 'center', justifyContent: 'center',
     backgroundColor: 'transparent',
   },
-  checkboxChecked: { backgroundColor: '#3B82F6', borderColor: '#3B82F6' },
+  checkboxChecked: { backgroundColor: theme.primary, borderColor: theme.primary },
   checkboxTick: { color: '#FFF', fontSize: 12, fontWeight: '800' },
   checkboxDash: { color: '#FFF', fontSize: 14, fontWeight: '800' },
 
   examInfo: { flex: 1, marginRight: 8 },
-  examName: { color: '#FFF', fontSize: 14, fontWeight: '700', marginBottom: 2 },
-  examMeta: { color: '#3B82F6', fontSize: 11, fontWeight: '700', marginTop: 2, marginBottom: 3 },
-  examLink: { color: '#64748B', fontSize: 11 },
+  examName: { color: theme.text, fontSize: 14, fontWeight: '700', marginBottom: 2 },
+  examMeta: { color: theme.primary, fontSize: 11, fontWeight: '700', marginTop: 2, marginBottom: 3 },
+  examLink: { color: theme.textMuted, fontSize: 11 },
 
   statusBadge: {
-    backgroundColor: 'rgba(16,185,129,0.1)', borderColor: '#10B981',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16,185,129,0.1)' : 'rgba(5, 150, 105, 0.08)',
+    borderColor: theme.success,
     borderWidth: 1, paddingVertical: 3, paddingHorizontal: 7, borderRadius: 6, marginRight: 6,
   },
-  statusBadgeInactive: { backgroundColor: 'rgba(239,68,68,0.1)', borderColor: '#EF4444' },
-  statusText: { color: '#10B981', fontSize: 10, fontWeight: '700' },
-  statusTextInactive: { color: '#EF4444' },
+  statusBadgeInactive: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
+  },
+  statusText: { color: theme.success, fontSize: 10, fontWeight: '700' },
+  statusTextInactive: { color: theme.danger },
 
   actionBtns: { flexDirection: 'column', gap: 4 },
   editBtn: {
-    backgroundColor: 'rgba(59,130,246,0.15)', borderRadius: 6,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59,130,246,0.15)' : 'rgba(37, 99, 230, 0.08)',
+    borderRadius: 6,
     padding: 5, alignItems: 'center', justifyContent: 'center',
   },
   editBtnText: { fontSize: 14 },
   deleteBtn: {
-    backgroundColor: 'rgba(239,68,68,0.15)', borderRadius: 6,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.15)' : 'rgba(220, 38, 38, 0.08)',
+    borderRadius: 6,
     padding: 5, alignItems: 'center', justifyContent: 'center',
   },
   deleteBtnText: { fontSize: 14 },
 
-  emptyText: { color: '#64748B', fontSize: 14, textAlign: 'center', marginTop: 10 },
+  emptyText: { color: theme.textMuted, fontSize: 14, textAlign: 'center', marginTop: 10 },
 
   // ── Edit Modal ──
   modalOverlay: {
-    flex: 1, backgroundColor: 'rgba(0,0,0,0.7)',
+    flex: 1, backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'flex-end',
   },
   editModalCard: {
-    backgroundColor: '#1E293B', borderTopLeftRadius: 24, borderTopRightRadius: 24,
+    backgroundColor: theme.backgroundElement, borderTopLeftRadius: 24, borderTopRightRadius: 24,
     maxHeight: '90%', paddingBottom: 20,
     shadowColor: '#000', shadowOffset: { width: 0, height: -5 },
-    shadowOpacity: 0.3, shadowRadius: 15, elevation: 10,
+    shadowOpacity: 0.2, shadowRadius: 15, elevation: 10,
+    borderWidth: 1, borderColor: theme.border,
   },
   editModalHeader: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    padding: 20, borderBottomWidth: 1, borderBottomColor: '#334155',
+    padding: 20, borderBottomWidth: 1, borderBottomColor: theme.border,
   },
-  editModalTitle: { color: '#F1F5F9', fontSize: 17, fontWeight: '800' },
-  editModalClose: { color: '#64748B', fontSize: 20, fontWeight: '700', paddingHorizontal: 6 },
+  editModalTitle: { color: theme.text, fontSize: 17, fontWeight: '800' },
+  editModalClose: { color: theme.textMuted, fontSize: 20, fontWeight: '700', paddingHorizontal: 6 },
   editModalBody: { paddingHorizontal: 20, paddingTop: 16 },
   editLabel: {
-    color: '#94A3B8', fontSize: 11, fontWeight: '700',
+    color: theme.textSecondary, fontSize: 11, fontWeight: '700',
     textTransform: 'uppercase', marginBottom: 6, marginTop: 12,
   },
   editInput: {
-    backgroundColor: '#0F172A', borderColor: '#334155', borderWidth: 1.5,
+    backgroundColor: theme.background, borderColor: theme.border, borderWidth: 1.5,
     borderRadius: 10, paddingVertical: 11, paddingHorizontal: 14,
-    color: '#FFF', fontSize: 14, fontWeight: '600', marginBottom: 4,
+    color: theme.text, fontSize: 14, fontWeight: '600', marginBottom: 4,
   },
   chipOption: {
-    backgroundColor: '#0F172A', borderWidth: 1.5, borderColor: '#334155',
+    backgroundColor: theme.background, borderWidth: 1.5, borderColor: theme.border,
     borderRadius: 8, paddingVertical: 8, paddingHorizontal: 12,
   },
-  chipOptionActive: { backgroundColor: 'rgba(59,130,246,0.2)', borderColor: '#3B82F6' },
-  chipOptionText: { color: '#64748B', fontSize: 13, fontWeight: '600' },
-  chipOptionTextActive: { color: '#3B82F6' },
+  chipOptionActive: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59,130,246,0.2)' : 'rgba(37, 99, 230, 0.08)',
+    borderColor: theme.primary,
+  },
+  chipOptionText: { color: theme.textSecondary, fontSize: 13, fontWeight: '600' },
+  chipOptionTextActive: { color: theme.primary },
   statusToggleRow: { flexDirection: 'row', gap: 10, marginBottom: 16 },
   statusToggleBtn: {
     flex: 1, paddingVertical: 10, borderRadius: 10, borderWidth: 1.5,
-    borderColor: '#334155', alignItems: 'center', backgroundColor: '#0F172A',
+    borderColor: theme.border, alignItems: 'center', backgroundColor: theme.background,
   },
-  statusToggleBtnActive: { backgroundColor: 'rgba(16,185,129,0.15)', borderColor: '#10B981' },
-  statusToggleBtnInactive: { backgroundColor: 'rgba(239,68,68,0.15)', borderColor: '#EF4444' },
-  statusToggleText: { color: '#64748B', fontSize: 13, fontWeight: '700' },
-  statusToggleTextActive: { color: '#10B981' },
-  statusToggleTextInactive: { color: '#EF4444' },
+  statusToggleBtnActive: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16,185,129,0.15)' : 'rgba(5, 150, 105, 0.08)',
+    borderColor: theme.success,
+  },
+  statusToggleBtnInactive: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.15)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
+  },
+  statusToggleText: { color: theme.textSecondary, fontSize: 13, fontWeight: '700' },
+  statusToggleTextActive: { color: theme.success },
+  statusToggleTextInactive: { color: theme.danger },
   editModalFooter: {
     flexDirection: 'row', gap: 12, paddingHorizontal: 20, paddingTop: 16,
-    borderTopWidth: 1, borderTopColor: '#334155',
+    borderTopWidth: 1, borderTopColor: theme.border,
   },
   cancelEditBtn: {
     flex: 1, paddingVertical: 13, borderRadius: 12, borderWidth: 1.5,
-    borderColor: '#334155', alignItems: 'center', backgroundColor: '#0F172A',
+    borderColor: theme.border, alignItems: 'center', backgroundColor: theme.background,
   },
-  cancelEditText: { color: '#94A3B8', fontSize: 15, fontWeight: '700' },
+  cancelEditText: { color: theme.textSecondary, fontSize: 15, fontWeight: '700' },
   saveEditBtn: {
     flex: 2, paddingVertical: 13, borderRadius: 12,
-    backgroundColor: '#3B82F6', alignItems: 'center',
-    shadowColor: '#3B82F6', shadowOffset: { width: 0, height: 3 },
+    backgroundColor: theme.primary, alignItems: 'center',
+    shadowColor: theme.primary, shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3, shadowRadius: 8, elevation: 4,
   },
-  saveEditBtnDisabled: { backgroundColor: '#1E3A5F', shadowOpacity: 0, elevation: 0 },
+  saveEditBtnDisabled: {
+    backgroundColor: theme.activeTheme === 'dark' ? '#1E3A5F' : '#93C5FD',
+    shadowOpacity: 0, elevation: 0,
+  },
   saveEditText: { color: '#FFF', fontSize: 15, fontWeight: '800' },
 
   // ── Picker button (date/time) ──
   pickerBtn: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: '#0F172A', borderColor: '#334155', borderWidth: 1.5,
+    backgroundColor: theme.background, borderColor: theme.border, borderWidth: 1.5,
     borderRadius: 10, paddingVertical: 11, paddingHorizontal: 14, marginBottom: 4,
   },
-  pickerBtnText: { color: '#F1F5F9', fontSize: 14, fontWeight: '600', flex: 1 },
-  pickerBtnArrow: { color: '#64748B', fontSize: 11 },
+  pickerBtnText: { color: theme.text, fontSize: 14, fontWeight: '600', flex: 1 },
+  pickerBtnArrow: { color: theme.textMuted, fontSize: 11 },
 
   // ── Picker Modals ──
   pickerModalOverlay: {
-    flex: 1, backgroundColor: 'rgba(0,0,0,0.75)',
+    flex: 1, backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center', alignItems: 'center', padding: 20,
   },
   pickerModalCard: {
-    width: '100%', maxWidth: 380, backgroundColor: '#1E293B',
+    width: '100%', maxWidth: 380, backgroundColor: theme.backgroundElement,
     borderRadius: 20, overflow: 'hidden',
     shadowColor: '#000', shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.4, shadowRadius: 20, elevation: 10,
+    shadowOpacity: 0.2, shadowRadius: 20, elevation: 10,
+    borderWidth: 1, borderColor: theme.border,
   },
   pickerModalHeader: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 20, paddingVertical: 16,
-    borderBottomColor: '#334155', borderBottomWidth: 1,
+    borderBottomColor: theme.border, borderBottomWidth: 1,
   },
-  pickerModalTitle: { color: '#F1F5F9', fontSize: 16, fontWeight: '700' },
+  pickerModalTitle: { color: theme.text, fontSize: 16, fontWeight: '700' },
   pickerModalFooter: {
     flexDirection: 'row', gap: 12, padding: 16,
-    borderTopWidth: 1, borderTopColor: '#334155',
+    borderTopWidth: 1, borderTopColor: theme.border,
   },
   pickerSubLabel: {
-    color: '#64748B', fontSize: 11, fontWeight: '700',
+    color: theme.textSecondary, fontSize: 11, fontWeight: '700',
     textTransform: 'uppercase', marginTop: 14, marginBottom: 8,
     marginHorizontal: 16,
   },
   pickerYearRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16 },
   pickerYearBtn: {
     paddingVertical: 8, paddingHorizontal: 16, borderRadius: 8,
-    backgroundColor: '#0F172A', borderWidth: 1, borderColor: '#334155',
+    backgroundColor: theme.background, borderWidth: 1, borderColor: theme.border,
   },
   pickerGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16, paddingBottom: 8 },
   pickerMonthBtn: {
     width: 56, paddingVertical: 8, borderRadius: 8, alignItems: 'center',
-    backgroundColor: '#0F172A', borderWidth: 1, borderColor: '#334155',
+    backgroundColor: theme.background, borderWidth: 1, borderColor: theme.border,
   },
   pickerDayGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, paddingHorizontal: 16, paddingBottom: 16 },
   pickerDayBtn: {
     width: 40, height: 36, borderRadius: 8, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: '#0F172A', borderWidth: 1, borderColor: '#334155',
+    backgroundColor: theme.background, borderWidth: 1, borderColor: theme.border,
   },
-  pickerBtnActive: { backgroundColor: '#3B82F6', borderColor: '#3B82F6' },
-  pickerBtnTxt: { color: '#94A3B8', fontSize: 13, fontWeight: '600' },
+  pickerBtnActive: { backgroundColor: theme.primary, borderColor: theme.primary },
+  pickerBtnTxt: { color: theme.textSecondary, fontSize: 13, fontWeight: '600' },
   pickerBtnTxtActive: { color: '#FFF', fontWeight: '800' },
   timePreview: {
     alignItems: 'center', paddingVertical: 16,
-    borderBottomWidth: 1, borderBottomColor: '#334155', marginBottom: 4,
+    borderBottomWidth: 1, borderBottomColor: theme.border, marginBottom: 4,
   },
-  timePreviewText: { color: '#3B82F6', fontSize: 28, fontWeight: '900', letterSpacing: 2 },
+  timePreviewText: { color: theme.primary, fontSize: 28, fontWeight: '900', letterSpacing: 2 },
 
   // Unused legacy styles kept for TS compat
-  modeCard: { backgroundColor: '#1E293B', borderRadius: 20, padding: 20, marginBottom: 25, borderLeftWidth: 4 },
-  modeCardSimple: { borderLeftColor: '#10B981' },
-  modeCardLogin: { borderLeftColor: '#8B5CF6' },
-  modeCardTitle: { color: '#94A3B8', fontSize: 13, fontWeight: '700', textTransform: 'uppercase', marginBottom: 12 },
+  modeCard: { backgroundColor: theme.backgroundElement, borderRadius: 20, padding: 20, marginBottom: 25, borderLeftWidth: 4, borderColor: theme.border, borderWidth: 1 },
+  modeCardSimple: { borderLeftColor: theme.success },
+  modeCardLogin: { borderLeftColor: theme.primary },
+  modeCardTitle: { color: theme.textSecondary, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', marginBottom: 12 },
   modeRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, flexWrap: 'wrap', gap: 10 },
   modeDetails: { flex: 1, minWidth: 150 },
-  modeStatusLabel: { color: '#64748B', fontSize: 10, fontWeight: '800', marginBottom: 4 },
+  modeStatusLabel: { color: theme.textMuted, fontSize: 10, fontWeight: '800', marginBottom: 4 },
   modeBadge: { paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8, alignSelf: 'flex-start' },
   modeBadgeSimple: { backgroundColor: 'rgba(16, 185, 129, 0.15)' },
   modeBadgeLogin: { backgroundColor: 'rgba(139, 92, 246, 0.15)' },
   modeBadgeText: { fontSize: 11, fontWeight: '800', color: '#FFF' },
-  modeSwitchButton: { backgroundColor: '#0F172A', paddingVertical: 8, paddingHorizontal: 14, borderRadius: 10, borderWidth: 1, borderColor: '#334155', minWidth: 150, alignItems: 'center', justifyContent: 'center' },
-  modeSwitchButtonText: { color: '#3B82F6', fontSize: 11, fontWeight: '800' },
-  modeHint: { color: '#64748B', fontSize: 11, lineHeight: 16 },
+  modeSwitchButton: { backgroundColor: theme.background, paddingVertical: 8, paddingHorizontal: 14, borderRadius: 10, borderWidth: 1, borderColor: theme.border, minWidth: 150, alignItems: 'center', justifyContent: 'center' },
+  modeSwitchButtonText: { color: theme.primary, fontSize: 11, fontWeight: '800' },
+  modeHint: { color: theme.textMuted, fontSize: 11, lineHeight: 16 },
 });

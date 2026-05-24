@@ -8,6 +8,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
+import { useTheme } from '@/hooks/use-theme';
 
 interface DateTimePickerProps {
   visible: boolean;
@@ -31,6 +32,8 @@ export function DateTimePicker({
   currentDate,
   currentTime,
 }: DateTimePickerProps) {
+  const theme = useTheme();
+
   // Parse initial date
   const [viewYear, setViewYear] = useState(2026);
   const [viewMonth, setViewMonth] = useState(4); // 0-indexed (Mei = 4)
@@ -124,10 +127,17 @@ export function DateTimePicker({
         cells.push(
           <TouchableOpacity
             key={`day-${dayNum}`}
-            style={[styles.dayCell, isSelected && styles.dayCellActive]}
+            style={[
+              styles.dayCell, 
+              isSelected && [styles.dayCellActive, { backgroundColor: theme.primary }]
+            ]}
             onPress={() => handleDaySelect(dayNum)}
           >
-            <Text style={[styles.dayText, isSelected && styles.dayTextActive]}>
+            <Text style={[
+              styles.dayText, 
+              { color: theme.textSecondary },
+              isSelected && styles.dayTextActive
+            ]}>
               {dayNum}
             </Text>
           </TouchableOpacity>
@@ -146,29 +156,29 @@ export function DateTimePicker({
       animationType="fade"
       onRequestClose={onClose}
     >
-      <View style={styles.overlay}>
-        <View style={styles.card}>
+      <View style={[styles.overlay, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.85)' : 'rgba(15, 23, 42, 0.5)' }]}>
+        <View style={[styles.card, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]}>
           {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>📅 Pilih Tanggal & Waktu</Text>
+          <View style={[styles.header, { backgroundColor: theme.backgroundElement, borderBottomColor: theme.border }]}>
+            <Text style={[styles.headerTitle, { color: theme.text }]}>📅 Pilih Tanggal & Waktu</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-              <Text style={styles.closeBtnText}>✕</Text>
+              <Text style={[styles.closeBtnText, { color: theme.textSecondary }]}>✕</Text>
             </TouchableOpacity>
           </View>
 
           <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollBody}>
             {/* 1. CALENDAR SECTION */}
-            <View style={styles.sectionContainer}>
+            <View style={[styles.sectionContainer, { backgroundColor: theme.background, borderColor: theme.border }]}>
               {/* Calendar Month Navigation */}
               <View style={styles.navRow}>
-                <TouchableOpacity style={styles.navBtn} onPress={handlePrevMonth}>
-                  <Text style={styles.navBtnText}>◀</Text>
+                <TouchableOpacity style={[styles.navBtn, { backgroundColor: theme.backgroundSelected }]} onPress={handlePrevMonth}>
+                  <Text style={[styles.navBtnText, { color: theme.primary }]}>◀</Text>
                 </TouchableOpacity>
-                <Text style={styles.navTitle}>
+                <Text style={[styles.navTitle, { color: theme.text }]}>
                   {MONTHS_ID[viewMonth]} {viewYear}
                 </Text>
-                <TouchableOpacity style={styles.navBtn} onPress={handleNextMonth}>
-                  <Text style={styles.navBtnText}>▶</Text>
+                <TouchableOpacity style={[styles.navBtn, { backgroundColor: theme.backgroundSelected }]} onPress={handleNextMonth}>
+                  <Text style={[styles.navBtnText, { color: theme.primary }]}>▶</Text>
                 </TouchableOpacity>
               </View>
 
@@ -176,7 +186,7 @@ export function DateTimePicker({
               <View style={styles.weekHeader}>
                 {WEEKDAYS_ID.map((day, idx) => (
                   <View key={`week-${idx}`} style={styles.weekLabelContainer}>
-                    <Text style={styles.weekLabel}>{day}</Text>
+                    <Text style={[styles.weekLabel, { color: theme.textMuted }]}>{day}</Text>
                   </View>
                 ))}
               </View>
@@ -186,23 +196,27 @@ export function DateTimePicker({
             </View>
 
             {/* 2. TIME PICKER SECTION */}
-            <View style={[styles.sectionContainer, styles.timeSection]}>
-              <Text style={styles.sectionLabel}>🕒 WAKTU UJIAN</Text>
+            <View style={[styles.sectionContainer, styles.timeSection, { backgroundColor: theme.background, borderColor: theme.border }]}>
+              <Text style={[styles.sectionLabel, { color: theme.textSecondary }]}>🕒 WAKTU UJIAN</Text>
               
               <View style={styles.timeSelectRow}>
                 {/* Hour selection */}
                 <View style={styles.timeColumn}>
-                  <Text style={styles.timeColumnLabel}>Jam</Text>
-                  <ScrollView nestedScrollEnabled style={styles.timeScroll} showsVerticalScrollIndicator={false}>
+                  <Text style={[styles.timeColumnLabel, { color: theme.textMuted }]}>Jam</Text>
+                  <ScrollView nestedScrollEnabled style={[styles.timeScroll, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]} showsVerticalScrollIndicator={false}>
                     {Array.from({ length: 24 }, (_, i) => i).map((h) => {
                       const isActive = selectedHour === h;
                       return (
                         <TouchableOpacity
                           key={`hr-${h}`}
-                          style={[styles.timeBtn, isActive && styles.timeBtnActive]}
+                          style={[styles.timeBtn, isActive && [styles.timeBtnActive, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.08)' }]]}
                           onPress={() => setSelectedHour(h)}
                         >
-                          <Text style={[styles.timeBtnTxt, isActive && styles.timeBtnTxtActive]}>
+                          <Text style={[
+                            styles.timeBtnTxt, 
+                            { color: theme.textSecondary },
+                            isActive && [styles.timeBtnTxtActive, { color: theme.primary }]
+                          ]}>
                             {String(h).padStart(2, '0')}
                           </Text>
                         </TouchableOpacity>
@@ -211,21 +225,25 @@ export function DateTimePicker({
                   </ScrollView>
                 </View>
 
-                <Text style={styles.timeSeparator}>:</Text>
+                <Text style={[styles.timeSeparator, { color: theme.primary }]}>:</Text>
 
                 {/* Minute selection */}
                 <View style={styles.timeColumn}>
-                  <Text style={styles.timeColumnLabel}>Menit</Text>
-                  <ScrollView nestedScrollEnabled style={styles.timeScroll} showsVerticalScrollIndicator={false}>
+                  <Text style={[styles.timeColumnLabel, { color: theme.textMuted }]}>Menit</Text>
+                  <ScrollView nestedScrollEnabled style={[styles.timeScroll, { backgroundColor: theme.backgroundElement, borderColor: theme.border }]} showsVerticalScrollIndicator={false}>
                     {[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map((m) => {
                       const isActive = selectedMinute === m;
                       return (
                         <TouchableOpacity
                           key={`min-${m}`}
-                          style={[styles.timeBtn, isActive && styles.timeBtnActive]}
+                          style={[styles.timeBtn, isActive && [styles.timeBtnActive, { backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.08)' }]]}
                           onPress={() => setSelectedMinute(m)}
                         >
-                          <Text style={[styles.timeBtnTxt, isActive && styles.timeBtnTxtActive]}>
+                          <Text style={[
+                            styles.timeBtnTxt, 
+                            { color: theme.textSecondary },
+                            isActive && [styles.timeBtnTxtActive, { color: theme.primary }]
+                          ]}>
                             {String(m).padStart(2, '0')}
                           </Text>
                         </TouchableOpacity>
@@ -238,11 +256,11 @@ export function DateTimePicker({
           </ScrollView>
 
           {/* Footer Buttons */}
-          <View style={styles.footer}>
+          <View style={[styles.footer, { backgroundColor: theme.backgroundElement, borderTopColor: theme.border }]}>
             <TouchableOpacity style={styles.cancelBtn} onPress={onClose}>
-              <Text style={styles.cancelBtnText}>Batal</Text>
+              <Text style={[styles.cancelBtnText, { color: theme.textSecondary }]}>Batal</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.confirmBtn} onPress={handleConfirmPress}>
+            <TouchableOpacity style={[styles.confirmBtn, { backgroundColor: theme.primary }]} onPress={handleConfirmPress}>
               <Text style={styles.confirmBtnText}>Pilih & Simpan</Text>
             </TouchableOpacity>
           </View>
@@ -255,19 +273,16 @@ export function DateTimePicker({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.85)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
   },
   card: {
-    backgroundColor: '#1E293B',
     borderRadius: 20,
     width: '100%',
     maxWidth: 420,
     maxHeight: '90%',
     borderWidth: 1,
-    borderColor: '#334155',
     overflow: 'hidden',
   },
   header: {
@@ -276,11 +291,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#334155',
-    backgroundColor: '#1E293B',
   },
   headerTitle: {
-    color: '#FFF',
     fontSize: 16,
     fontWeight: '800',
   },
@@ -288,7 +300,6 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   closeBtnText: {
-    color: '#94A3B8',
     fontSize: 16,
     fontWeight: '700',
   },
@@ -296,11 +307,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   sectionContainer: {
-    backgroundColor: '#0F172A',
     borderRadius: 14,
     padding: 12,
     borderWidth: 1,
-    borderColor: '#263347',
     marginBottom: 16,
   },
   navRow: {
@@ -313,17 +322,14 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 8,
-    backgroundColor: '#1E293B',
     justifyContent: 'center',
     alignItems: 'center',
   },
   navBtnText: {
-    color: '#3B82F6',
     fontSize: 12,
     fontWeight: '700',
   },
   navTitle: {
-    color: '#FFF',
     fontSize: 14,
     fontWeight: '800',
   },
@@ -337,7 +343,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   weekLabel: {
-    color: '#64748B',
     fontSize: 11,
     fontWeight: '800',
     textTransform: 'uppercase',
@@ -355,15 +360,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 2,
   },
-  dayCellActive: {
-    backgroundColor: '#3B82F6',
-  },
+  dayCellActive: {},
   dayCellEmpty: {
     width: '13%',
     height: 36,
   },
   dayText: {
-    color: '#94A3B8',
     fontSize: 13,
     fontWeight: '600',
   },
@@ -376,7 +378,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sectionLabel: {
-    color: '#94A3B8',
     fontSize: 12,
     fontWeight: '800',
     marginBottom: 10,
@@ -395,7 +396,6 @@ const styles = StyleSheet.create({
     maxWidth: 80,
   },
   timeColumnLabel: {
-    color: '#64748B',
     fontSize: 10,
     fontWeight: '700',
     marginBottom: 4,
@@ -405,30 +405,23 @@ const styles = StyleSheet.create({
     height: 100,
     width: '100%',
     borderWidth: 1,
-    borderColor: '#263347',
     borderRadius: 8,
-    backgroundColor: '#0F172A',
   },
   timeBtn: {
     paddingVertical: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  timeBtnActive: {
-    backgroundColor: 'rgba(59, 130, 246, 0.15)',
-  },
+  timeBtnActive: {},
   timeBtnTxt: {
-    color: '#64748B',
     fontSize: 13,
     fontWeight: '700',
   },
   timeBtnTxtActive: {
-    color: '#3B82F6',
     fontSize: 14,
     fontWeight: '800',
   },
   timeSeparator: {
-    color: '#3B82F6',
     fontSize: 24,
     fontWeight: '800',
     marginTop: 12,
@@ -438,8 +431,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     padding: 16,
     borderTopWidth: 1,
-    borderTopColor: '#334155',
-    backgroundColor: '#1E293B',
     gap: 8,
   },
   cancelBtn: {
@@ -448,12 +439,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   cancelBtnText: {
-    color: '#94A3B8',
     fontSize: 14,
     fontWeight: '700',
   },
   confirmBtn: {
-    backgroundColor: '#3B82F6',
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 10,
