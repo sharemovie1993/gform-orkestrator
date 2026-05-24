@@ -227,6 +227,24 @@
   </div>
 
   <!-- ========================================================
+     MODAL: PREMIUM DIALOG MODAL (ALERT & CONFIRM)
+     ======================================================== -->
+  <div id="premiumDialogModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 transition-all duration-300 opacity-0">
+    <div id="premiumDialogCard" class="bg-slate-800 border border-slate-700/80 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl p-6 text-center space-y-5 transform scale-95 transition-all duration-300">
+      <div id="dialogIconContainer" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto">
+        <!-- Injected icon -->
+      </div>
+      <div>
+        <h4 id="dialogTitle" class="text-base font-extrabold text-white uppercase tracking-wider"><!-- Title --></h4>
+        <p id="dialogMessage" class="text-xs text-slate-400 mt-2 leading-relaxed"><!-- Message --></p>
+      </div>
+      <div id="dialogActions" class="flex gap-3 pt-2">
+        <!-- Injected buttons -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
      FOOTER
      ======================================================== -->
   <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 font-semibold tracking-wide">
@@ -427,48 +445,84 @@
 
     // Approve license action
     window.approveLicense = function(id) {
-      if (!confirm('Apakah Anda yakin ingin menyetujui lisensi ini?')) return;
-      
-      fetch(`${API_BASE}/api/license/approve/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-admin-secret': ADMIN_SECRET
+      showPremiumDialog({
+        type: 'confirm',
+        title: 'Setujui Lisensi',
+        message: 'Apakah Anda yakin ingin menyetujui lisensi sekolah ini? Status akan diaktifkan secara instan.',
+        onConfirm: () => {
+          fetch(`${API_BASE}/api/license/approve/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-admin-secret': ADMIN_SECRET
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              loadAllData();
+              showPremiumDialog({
+                type: 'success',
+                title: 'Aktivasi Berhasil',
+                message: data.message
+              });
+            } else {
+              showPremiumDialog({
+                type: 'error',
+                title: 'Gagal Menyetujui',
+                message: data.message
+              });
+            }
+          })
+          .catch(() => {
+            showPremiumDialog({
+              type: 'error',
+              title: 'Kesalahan Jaringan',
+              message: 'Terjadi kesalahan saat menghubungi server.'
+            });
+          });
         }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          loadAllData();
-        } else {
-          alert('Gagal menyetujui: ' + data.message);
-        }
-      })
-      .catch(err => {
-        alert('Terjadi kesalahan jaringan!');
       });
     };
 
     // Delete license action
     window.deleteLicense = function(id) {
-      if (!confirm('Apakah Anda yakin ingin menghapus lisensi ini? Tindakan ini permanen.')) return;
-
-      fetch(`${API_BASE}/api/license/delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'x-admin-secret': ADMIN_SECRET
+      showPremiumDialog({
+        type: 'confirm',
+        title: 'Hapus Lisensi',
+        message: 'Apakah Anda yakin ingin menghapus lisensi ini secara permanen? Perangkat yang terhubung akan langsung terblokir.',
+        onConfirm: () => {
+          fetch(`${API_BASE}/api/license/delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'x-admin-secret': ADMIN_SECRET
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              loadAllData();
+              showPremiumDialog({
+                type: 'success',
+                title: 'Berhasil Dihapus',
+                message: data.message
+              });
+            } else {
+              showPremiumDialog({
+                type: 'error',
+                title: 'Gagal Menghapus',
+                message: data.message
+              });
+            }
+          })
+          .catch(() => {
+            showPremiumDialog({
+              type: 'error',
+              title: 'Kesalahan Jaringan',
+              message: 'Terjadi kesalahan saat menghubungi server.'
+            });
+          });
         }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          loadAllData();
-        } else {
-          alert('Gagal menghapus: ' + data.message);
-        }
-      })
-      .catch(err => {
-        alert('Terjadi kesalahan jaringan!');
       });
     };
 
@@ -501,11 +555,26 @@
           generateModal.classList.add('hidden');
           generateForm.reset();
           loadAllData();
+          showPremiumDialog({
+            type: 'success',
+            title: 'Lisensi Dibuat',
+            message: `Kunci lisensi manual berhasil dibuat:\n${data.data.license_key}`
+          });
         } else {
-          alert('Gagal membuat lisensi: ' + data.message);
+          showPremiumDialog({
+            type: 'error',
+            title: 'Gagal Membuat',
+            message: data.message
+          });
         }
       })
-      .catch(() => alert('Terjadi kesalahan jaringan!'));
+      .catch(() => {
+        showPremiumDialog({
+          type: 'error',
+          title: 'Kesalahan Jaringan',
+          message: 'Gagal menghubungi server untuk membuat lisensi.'
+        });
+      });
     });
 
     // Helper Date formatter
@@ -524,6 +593,76 @@
       } catch { return dateStr; }
     }
 
+    // Modern Premium Dialog Modal Helper (Tailwind-Powered)
+    const premiumDialogModal = document.getElementById('premiumDialogModal');
+    const premiumDialogCard = document.getElementById('premiumDialogCard');
+    const dialogIconContainer = document.getElementById('dialogIconContainer');
+    const dialogTitle = document.getElementById('dialogTitle');
+    const dialogMessage = document.getElementById('dialogMessage');
+    const dialogActions = document.getElementById('dialogActions');
+
+    window.showPremiumDialog = function(options) {
+      const { type, title, message, onConfirm } = options;
+      
+      // Setup icon based on type
+      if (type === 'confirm') {
+        dialogIconContainer.className = "w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-3xl mx-auto shadow-inner border border-amber-500/20";
+        dialogIconContainer.textContent = "❓";
+      } else if (type === 'error') {
+        dialogIconContainer.className = "w-16 h-16 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center text-3xl mx-auto shadow-inner border border-red-500/20";
+        dialogIconContainer.textContent = "⚠️";
+      } else {
+        dialogIconContainer.className = "w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-3xl mx-auto shadow-inner border border-emerald-500/20";
+        dialogIconContainer.textContent = "✔️";
+      }
+
+      dialogTitle.textContent = title;
+      dialogMessage.textContent = message;
+      dialogActions.innerHTML = '';
+
+      if (type === 'confirm') {
+        // Create cancel button
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = "flex-grow bg-slate-700/80 hover:bg-slate-700 text-slate-300 hover:text-white px-4 py-3 rounded-xl text-xs font-bold transition-all duration-300 border border-slate-600";
+        cancelBtn.textContent = "BATAL";
+        cancelBtn.onclick = closePremiumDialog;
+
+        // Create confirm button
+        const confirmBtn = document.createElement('button');
+        confirmBtn.className = "flex-grow bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 shadow-lg shadow-blue-600/20";
+        confirmBtn.textContent = "YA, SETUJU";
+        confirmBtn.onclick = () => {
+          closePremiumDialog();
+          if (onConfirm) onConfirm();
+        };
+
+        dialogActions.appendChild(cancelBtn);
+        dialogActions.appendChild(confirmBtn);
+      } else {
+        // Alert type - just show OK button
+        const okBtn = document.createElement('button');
+        okBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 shadow-lg shadow-blue-600/20";
+        okBtn.textContent = "OK, SAYA PAHAM";
+        okBtn.onclick = closePremiumDialog;
+        dialogActions.appendChild(okBtn);
+      }
+
+      // Show modal with transition
+      premiumDialogModal.classList.remove('hidden');
+      setTimeout(() => {
+        premiumDialogModal.classList.remove('opacity-0');
+        premiumDialogCard.classList.remove('scale-95');
+      }, 10);
+    };
+
+    function closePremiumDialog() {
+      premiumDialogModal.classList.add('opacity-0');
+      premiumDialogCard.classList.add('scale-95');
+      setTimeout(() => {
+        premiumDialogModal.classList.add('hidden');
+      }, 300);
+    }
+
     // Load QRIS Image preview from server
     function loadQrisPreview() {
       if (qrisImgPreview) {
@@ -538,7 +677,11 @@
 
       // Limit file size (5MB)
       if (file.size > 5 * 1024 * 1024) {
-        alert('File terlalu besar! Maksimal ukuran file adalah 5MB.');
+        showPremiumDialog({
+          type: 'error',
+          title: 'File Terlalu Besar',
+          message: 'Maksimal ukuran gambar QRIS adalah 5MB. Silakan kompres gambar Anda.'
+        });
         qrisFileInput.value = '';
         return;
       }
@@ -578,7 +721,11 @@
         qrisStatusOverlay.classList.add('opacity-0', 'pointer-events-none');
         
         if (data.success) {
-          alert('Gambar QRIS berhasil diperbarui!');
+          showPremiumDialog({
+            type: 'success',
+            title: 'QRIS Diperbarui',
+            message: 'Gambar QRIS Merchant Anda berhasil diunggah dan disimpan ke server secara dinamis!'
+          });
           loadQrisPreview();
           selectedQrisBase64 = null;
           
@@ -587,15 +734,23 @@
           uploadQrisBtn.className = "w-full bg-blue-600/50 cursor-not-allowed text-slate-400 font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2";
           qrisFileInput.value = '';
         } else {
-          alert('Gagal mengunggah QRIS: ' + data.message);
+          showPremiumDialog({
+            type: 'error',
+            title: 'Gagal Mengunggah',
+            message: data.message
+          });
           // Restore button
           uploadQrisBtn.disabled = false;
           uploadQrisBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 cursor-pointer";
         }
       })
-      .catch(err => {
+      .catch(() => {
         qrisStatusOverlay.classList.add('opacity-0', 'pointer-events-none');
-        alert('Terjadi kesalahan jaringan saat mengunggah QRIS.');
+        showPremiumDialog({
+          type: 'error',
+          title: 'Kesalahan Jaringan',
+          message: 'Gagal mengunggah gambar QRIS. Pastikan server aktif.'
+        });
         uploadQrisBtn.disabled = false;
         uploadQrisBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 cursor-pointer";
       });

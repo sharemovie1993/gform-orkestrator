@@ -70,6 +70,34 @@ function InnerLayout() {
   const [schoolBoundName, setSchoolBoundName] = useState<string>('');
   const [licenseExpiry, setLicenseExpiry] = useState<string>('');
 
+  // Custom Dialog Modal State
+  const [dialogConfig, setDialogConfig] = useState<{
+    visible: boolean;
+    type: 'alert' | 'confirm';
+    title: string;
+    message: string;
+    onConfirm?: () => void;
+  }>({
+    visible: false,
+    type: 'alert',
+    title: '',
+    message: '',
+  });
+
+  const showDialog = (type: 'alert' | 'confirm', title: string, message: string, onConfirm?: () => void) => {
+    setDialogConfig({
+      visible: true,
+      type,
+      title,
+      message,
+      onConfirm,
+    });
+  };
+
+  const closeDialog = () => {
+    setDialogConfig(prev => ({ ...prev, visible: false }));
+  };
+
   // 1. Initial Check on Mount
   useEffect(() => {
     checkLicense();
@@ -135,8 +163,9 @@ function InnerLayout() {
             await AsyncStorage.setItem('@license_token', data.token);
             await AsyncStorage.removeItem('@license_pending_key');
             setPendingKey('');
-            setLicenseStatus('unlocked');
-            alert('Aktivasi Sukses! Pembayaran QRIS Anda disetujui Admin. Aplikasi terbuka.');
+            showDialog('alert', 'Aktivasi Sukses', 'Pembayaran QRIS Anda telah disetujui oleh Admin. Aplikasi kini terbuka sepenuhnya!', () => {
+              setLicenseStatus('unlocked');
+            });
             clearInterval(intervalId);
           }
         } catch (err) {
@@ -208,8 +237,9 @@ function InnerLayout() {
       if (data.success && data.token) {
         await AsyncStorage.setItem('@license_token', data.token);
         await AsyncStorage.removeItem('@license_pending_key');
-        setLicenseStatus('unlocked');
-        alert('Aktivasi manual sukses! Lisensi Anda aktif.');
+        showDialog('alert', 'Aktivasi Sukses', 'Kunci lisensi manual Anda berhasil diverifikasi. Selamat mencoba!', () => {
+          setLicenseStatus('unlocked');
+        });
       } else {
         setErrorMessage(data.message || 'Kunci lisensi tidak ditemukan atau kuota HP penuh.');
       }
@@ -221,18 +251,72 @@ function InnerLayout() {
   };
 
   const handleCancelRequest = async () => {
-    if (Platform.OS === 'web') {
-      if (confirm('Batalkan antrean pembayaran QRIS saat ini?')) {
-        await AsyncStorage.removeItem('@license_pending_key');
-        setPendingKey('');
-      }
-    } else {
+    showDialog('confirm', 'Batalkan Permintaan', 'Apakah Anda yakin ingin membatalkan antrean permintaan lisensi Anda?', async () => {
       await AsyncStorage.removeItem('@license_pending_key');
       setPendingKey('');
-    }
+    });
   };
 
-  // 4. Render Locked Screens
+  // 4. Custom Dialog Render Helper
+  const renderPremiumDialog = () => {
+    if (!dialogConfig.visible) return null;
+
+    const isConfirm = dialogConfig.type === 'confirm';
+    let icon = '✔️';
+    let iconBg = 'rgba(16, 185, 129, 0.1)';
+    let iconBorder = 'rgba(16, 185, 129, 0.2)';
+    let iconColor = '#10B981';
+
+    if (isConfirm) {
+      icon = '❓';
+      iconBg = 'rgba(245, 158, 11, 0.1)';
+      iconBorder = 'rgba(245, 158, 11, 0.2)';
+      iconColor = '#F59E0B';
+    } else if (dialogConfig.title.toLowerCase().includes('gagal') || dialogConfig.title.toLowerCase().includes('error') || dialogConfig.title.toLowerCase().includes('batal')) {
+      icon = '⚠️';
+      iconBg = 'rgba(239, 68, 68, 0.1)';
+      iconBorder = 'rgba(239, 68, 68, 0.2)';
+      iconColor = '#EF4444';
+    }
+
+    return (
+      <View style={styles.dialogOverlay}>
+        <View style={styles.dialogCard}>
+          <View style={[styles.dialogIconBox, { backgroundColor: iconBg, borderColor: iconBorder }]}>
+            <Text style={[styles.dialogIconText, { color: iconColor }]}>{icon}</Text>
+          </View>
+          
+          <Text style={styles.dialogTitleText}>{dialogConfig.title}</Text>
+          <Text style={styles.dialogMessageText}>{dialogConfig.message}</Text>
+          
+          <View style={styles.dialogActionsBox}>
+            {isConfirm ? (
+              <>
+                <TouchableOpacity style={styles.dialogBtnCancel} onPress={closeDialog}>
+                  <Text style={styles.dialogBtnCancelText}>BATAL</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.dialogBtnConfirm} 
+                  onPress={() => {
+                    closeDialog();
+                    if (dialogConfig.onConfirm) dialogConfig.onConfirm();
+                  }}
+                >
+                  <Text style={styles.dialogBtnConfirmText}>YA, SETUJU</Text>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <TouchableOpacity style={styles.dialogBtnOk} onPress={closeDialog}>
+                <Text style={styles.dialogBtnOkText}>OK, SAYA PAHAM</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      </View>
+    );
+  };
+
+  // 5. Render Locked Screens
   if (licenseStatus === 'checking') {
     return (
       <View style={styles.lockContainer}>
@@ -244,9 +328,10 @@ function InnerLayout() {
 
   if (licenseStatus === 'locked') {
     return (
-      <View style={styles.lockContainer}>
-        <StatusBar barStyle="light-content" backgroundColor="#0F172A" />
-        <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+      <View style={{ flex: 1 }}>
+        <View style={styles.lockContainer}>
+          <StatusBar barStyle="light-content" backgroundColor="#0F172A" />
+          <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
           
           <View style={styles.card}>
             <Text style={styles.lockEmoji}>🛡️</Text>
@@ -355,23 +440,28 @@ function InnerLayout() {
           
         </ScrollView>
       </View>
-    );
-  }
+      {renderPremiumDialog()}
+    </View>
+  );
+}
 
-  // 5. Normal Stack Render (Unlocked)
+  // 6. Normal Stack Render (Unlocked)
   return (
     <ThemeProvider value={activeTheme === 'dark' ? NavDarkTheme : NavDefaultTheme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="exam-list" />
-        <Stack.Screen name="exam-webview" />
-        <Stack.Screen name="blocked" />
-        <Stack.Screen name="teacher/login" />
-        <Stack.Screen name="teacher/dashboard" />
-        <Stack.Screen name="teacher/create-exam" />
-        <Stack.Screen name="teacher/manage-data" />
-        <Stack.Screen name="teacher/settings" />
-      </Stack>
+      <View style={{ flex: 1 }}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="exam-list" />
+          <Stack.Screen name="exam-webview" />
+          <Stack.Screen name="blocked" />
+          <Stack.Screen name="teacher/login" />
+          <Stack.Screen name="teacher/dashboard" />
+          <Stack.Screen name="teacher/create-exam" />
+          <Stack.Screen name="teacher/manage-data" />
+          <Stack.Screen name="teacher/settings" />
+        </Stack>
+        {renderPremiumDialog()}
+      </View>
     </ThemeProvider>
   );
 }
@@ -594,5 +684,119 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     marginTop: 24,
+  },
+  
+  // Custom Premium Dialog Modal styles
+  dialogOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(9, 15, 30, 0.85)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 9999,
+    padding: 24,
+  },
+  dialogCard: {
+    width: '100%',
+    maxWidth: 320,
+    backgroundColor: '#1E293B',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: '#334155',
+    padding: 24,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.45,
+    shadowRadius: 24,
+    elevation: 12,
+  },
+  dialogIconBox: {
+    width: 60,
+    height: 60,
+    borderRadius: 18,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  dialogIconText: {
+    fontSize: 26,
+    fontWeight: 'bold',
+  },
+  dialogTitleText: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    textAlign: 'center',
+  },
+  dialogMessageText: {
+    fontSize: 12,
+    color: '#94A3B8',
+    textAlign: 'center',
+    lineHeight: 18,
+    marginTop: 8,
+    marginBottom: 20,
+  },
+  dialogActionsBox: {
+    flexDirection: 'row',
+    gap: 12,
+    width: '100%',
+  },
+  dialogBtnCancel: {
+    flex: 1,
+    backgroundColor: '#334155',
+    borderRadius: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#475569',
+  },
+  dialogBtnCancelText: {
+    color: '#CBD5E1',
+    fontWeight: '800',
+    fontSize: 11,
+    letterSpacing: 0.5,
+  },
+  dialogBtnConfirm: {
+    flex: 1,
+    backgroundColor: '#2563EB',
+    borderRadius: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  dialogBtnConfirmText: {
+    color: '#FFFFFF',
+    fontWeight: '800',
+    fontSize: 11,
+    letterSpacing: 0.5,
+  },
+  dialogBtnOk: {
+    width: '100%',
+    backgroundColor: '#2563EB',
+    borderRadius: 14,
+    paddingVertical: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  dialogBtnOkText: {
+    color: '#FFFFFF',
+    fontWeight: '900',
+    fontSize: 11,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   }
 });
