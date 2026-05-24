@@ -53,12 +53,41 @@ function decodeJWT(token: string) {
   }
 }
 
+// Premium visual licensing packages
+const PACKAGES = [
+  {
+    id: 'monthly',
+    title: 'Bulanan',
+    price: 'Rp 150.000',
+    duration: '30 Hari',
+    limit: 50,
+    badge: null,
+  },
+  {
+    id: 'semester',
+    title: 'Semesteran',
+    price: 'Rp 750.000',
+    duration: '180 Hari',
+    limit: 200,
+    badge: 'Terpopuler',
+  },
+  {
+    id: 'annual',
+    title: 'Tahunan',
+    price: 'Rp 1.200.000',
+    duration: '365 Hari',
+    limit: 500,
+    badge: 'Terbaik',
+  }
+] as const;
+
 function InnerLayout() {
   const { activeTheme } = useThemeContext();
 
   // Licensing States
   const [licenseStatus, setLicenseStatus] = useState<'checking' | 'locked' | 'unlocked'>('checking');
   const [pendingKey, setPendingKey] = useState<string>('');
+  const [selectedPackage, setSelectedPackage] = useState<'monthly' | 'semester' | 'annual'>('monthly');
   
   // Inputs
   const [requestSchoolName, setRequestSchoolName] = useState<string>('');
@@ -188,14 +217,15 @@ function InnerLayout() {
     
     setIsRequesting(true);
     setErrorMessage('');
+    const activePack = PACKAGES.find(p => p.id === selectedPackage) || PACKAGES[0];
     
     try {
       const res = await fetch(`${LICENSE_SERVER_URL}/api/license/request`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          school_name: requestSchoolName.trim(),
-          device_limit: 50 // default limit devices
+          school_name: `${requestSchoolName.trim()} (${activePack.title})`,
+          device_limit: activePack.limit
         })
       });
       const data = await res.json();
@@ -378,6 +408,37 @@ function InnerLayout() {
                 </Text>
 
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+
+                {/* Modern Pricing List Section */}
+                <View style={styles.formSection}>
+                  <Text style={styles.pricingTitle}>Pilih Paket Lisensi Sekolah:</Text>
+                  <View style={styles.pricingGrid}>
+                    {PACKAGES.map((pkg) => {
+                      const isSelected = selectedPackage === pkg.id;
+                      return (
+                        <TouchableOpacity 
+                          key={pkg.id}
+                          style={[styles.priceCard, isSelected && styles.priceCardSelected]}
+                          onPress={() => setSelectedPackage(pkg.id)}
+                          activeOpacity={0.8}
+                        >
+                          {pkg.badge ? (
+                            <View style={styles.priceBadge}>
+                              <Text style={styles.priceBadgeText}>{pkg.badge}</Text>
+                            </View>
+                          ) : null}
+                          <Text style={styles.pricePackTitle}>{pkg.title}</Text>
+                          <Text style={styles.priceText}>{pkg.price}</Text>
+                          <Text style={styles.priceSub}>/ {pkg.duration}</Text>
+                          
+                          <Text style={[styles.priceLimit, isSelected && styles.priceLimitSelected]}>
+                            Limit {pkg.limit} HP
+                          </Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                </View>
 
                 {/* Form A: Request QRIS Activation */}
                 <View style={styles.formSection}>
@@ -798,5 +859,97 @@ const styles = StyleSheet.create({
     fontSize: 11,
     letterSpacing: 1,
     textTransform: 'uppercase',
+  },
+  
+  // Pricing Section styling
+  pricingTitle: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#3B82F6',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    marginBottom: 10,
+    alignSelf: 'flex-start',
+  },
+  pricingGrid: {
+    width: '100%',
+    flexDirection: Platform.OS === 'web' ? 'row' : 'column',
+    gap: 12,
+    marginBottom: 14,
+  },
+  priceCard: {
+    flex: 1,
+    backgroundColor: '#0F172A',
+    borderWidth: 2,
+    borderColor: '#334155',
+    borderRadius: 18,
+    padding: 16,
+    alignItems: 'center',
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  priceCardSelected: {
+    borderColor: '#2563EB',
+    backgroundColor: 'rgba(37, 99, 235, 0.05)',
+  },
+  priceBadge: {
+    position: 'absolute',
+    top: -10,
+    backgroundColor: '#F59E0B',
+    borderRadius: 12,
+    paddingVertical: 3,
+    paddingHorizontal: 8,
+    shadowColor: '#F59E0B',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  priceBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 7,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  pricePackTitle: {
+    fontSize: 12,
+    fontWeight: '900',
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginTop: 4,
+  },
+  priceText: {
+    fontSize: 15,
+    fontWeight: '900',
+    color: '#3B82F6',
+    marginTop: 6,
+  },
+  priceSub: {
+    fontSize: 9,
+    color: '#64748B',
+    fontWeight: '700',
+    marginTop: 2,
+  },
+  priceLimit: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#CBD5E1',
+    marginTop: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderWidth: 1,
+    borderColor: '#334155',
+  },
+  priceLimitSelected: {
+    color: '#60A5FA',
+    borderColor: 'rgba(37, 99, 235, 0.2)',
+    backgroundColor: 'rgba(37, 99, 235, 0.1)',
   }
 });
