@@ -12,6 +12,34 @@ const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 const ADMIN_SECRET = process.env.ADMIN_SECRET || 'admin123';
 
+// Master pricing packages configuration (Single Source of Truth)
+const PACKAGES = [
+  {
+    id: 'monthly',
+    title: 'Bulanan',
+    price: 'Rp 150.000',
+    duration: '30 Hari',
+    limit: 50,
+    badge: null,
+  },
+  {
+    id: 'semester',
+    title: 'Semesteran',
+    price: 'Rp 750.000',
+    duration: '180 Hari',
+    limit: 200,
+    badge: 'Terpopuler',
+  },
+  {
+    id: 'annual',
+    title: 'Tahunan',
+    price: 'Rp 1.200.000',
+    duration: '365 Hari',
+    limit: 500,
+    badge: 'Terbaik',
+  }
+];
+
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
@@ -94,6 +122,14 @@ function generateKey() {
 // 1. Redirect root to admin.html for ease of use
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+// 1b. Get active licensing packages pricing list (PUBLIC ENDPOINT)
+app.get('/api/license/packages', (req, res) => {
+  res.json({
+    success: true,
+    data: PACKAGES
+  });
 });
 
 // 2. Generate License Key (ADMIN ONLY)

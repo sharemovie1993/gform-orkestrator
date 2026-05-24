@@ -53,8 +53,8 @@ function decodeJWT(token: string) {
   }
 }
 
-// Premium visual licensing packages
-const PACKAGES = [
+// Premium visual licensing packages fallback (Offline Safety Guarantee)
+const FALLBACK_PACKAGES = [
   {
     id: 'monthly',
     title: 'Bulanan',
@@ -88,6 +88,7 @@ function InnerLayout() {
   const [licenseStatus, setLicenseStatus] = useState<'checking' | 'locked' | 'unlocked'>('checking');
   const [pendingKey, setPendingKey] = useState<string>('');
   const [selectedPackage, setSelectedPackage] = useState<'monthly' | 'semester' | 'annual'>('monthly');
+  const [packagesList, setPackagesList] = useState<any[]>([]);
   
   // Inputs
   const [requestSchoolName, setRequestSchoolName] = useState<string>('');
@@ -98,6 +99,26 @@ function InnerLayout() {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [schoolBoundName, setSchoolBoundName] = useState<string>('');
   const [licenseExpiry, setLicenseExpiry] = useState<string>('');
+
+  // Fetch dynamic pricing packages from server API on mount
+  useEffect(() => {
+    fetchPackages();
+  }, []);
+
+  const fetchPackages = async () => {
+    try {
+      const res = await fetch(`${LICENSE_SERVER_URL}/api/license/packages`);
+      const data = await res.json();
+      if (data.success && data.data) {
+        setPackagesList(data.data);
+        return;
+      }
+    } catch (err) {
+      console.log('[FETCH PACKAGES ERROR]', err);
+    }
+    // Safe Offline fallback
+    setPackagesList(Array.from(FALLBACK_PACKAGES));
+  };
 
   // Custom Dialog Modal State
   const [dialogConfig, setDialogConfig] = useState<{
@@ -217,7 +238,7 @@ function InnerLayout() {
     
     setIsRequesting(true);
     setErrorMessage('');
-    const activePack = PACKAGES.find(p => p.id === selectedPackage) || PACKAGES[0];
+    const activePack = packagesList.find(p => p.id === selectedPackage) || packagesList[0] || FALLBACK_PACKAGES[0];
     
     try {
       const res = await fetch(`${LICENSE_SERVER_URL}/api/license/request`, {
@@ -413,7 +434,7 @@ function InnerLayout() {
                 <View style={styles.formSection}>
                   <Text style={styles.pricingTitle}>Pilih Paket Lisensi Sekolah:</Text>
                   <View style={styles.pricingGrid}>
-                    {PACKAGES.map((pkg) => {
+                    {packagesList.map((pkg) => {
                       const isSelected = selectedPackage === pkg.id;
                       return (
                         <TouchableOpacity 
