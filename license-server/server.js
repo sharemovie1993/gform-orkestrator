@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -12,7 +13,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 const ADMIN_SECRET = process.env.ADMIN_SECRET || 'admin123';
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // Serve static admin dashboard UI
 app.use(express.static(path.join(__dirname, 'public')));
@@ -440,6 +441,41 @@ app.post('/api/license/approve/:id', adminAuth, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Gagal menyetujui kunci lisensi di database.' });
+  }
+});
+
+// 7b. Upload Merchant QRIS Image (ADMIN ONLY)
+app.post('/api/admin/qris', adminAuth, async (req, res) => {
+  const { image } = req.body;
+
+  if (!image) {
+    return res.status(400).json({ success: false, message: 'Data gambar QRIS wajib disertakan.' });
+  }
+
+  try {
+    // Extract base64 content
+    const matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    
+    if (!matches || matches.length !== 3) {
+      return res.status(400).json({ success: false, message: 'Format base64 gambar tidak valid.' });
+    }
+
+    const base64Data = matches[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+
+    // Save statically as public/qris.png
+    const targetPath = path.join(__dirname, 'public', 'qris.png');
+    
+    fs.writeFileSync(targetPath, buffer);
+
+    res.json({
+      success: true,
+      message: 'Gambar QRIS berhasil diperbarui!',
+      url: `/qris.png?t=${Date.now()}`
+    });
+  } catch (err) {
+    console.error('[QRIS UPLOAD ERROR]', err);
+    res.status(500).json({ success: false, message: 'Gagal menyimpan gambar QRIS di server.' });
   }
 });
 

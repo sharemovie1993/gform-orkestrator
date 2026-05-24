@@ -74,9 +74,12 @@
     </section>
 
     <!-- ========================================================
-       PENDING QRIS APPROVAL QUEUE (DYNAMIC CARD LIST)
-       ======================================================== -->
-    <section class="space-y-4">
+     GRID ROW: PENDING APPROVALS & QRIS CONFIGURATION
+     ======================================================== -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    
+    <!-- Pending Queue (Col Span 2) -->
+    <div class="lg:col-span-2 space-y-4">
       <div class="flex justify-between items-center">
         <h2 class="text-lg font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
           <span class="w-3.5 h-3.5 bg-amber-500 rounded-full animate-ping"></span>
@@ -90,12 +93,51 @@
       </div>
       
       <!-- Placeholder if empty -->
-      <div id="pendingEmptyState" class="hidden bg-slate-800/30 border border-slate-800 rounded-2xl p-10 text-center">
+      <div id="pendingEmptyState" class="hidden bg-slate-800/30 border border-slate-800/50 rounded-2xl p-10 text-center">
         <p class="text-5xl mb-3">🎉</p>
         <h4 class="text-slate-300 font-bold text-sm uppercase">Antrean Bersih!</h4>
         <p class="text-xs text-slate-500 mt-1">Tidak ada konfirmasi pembayaran QRIS yang tertunda saat ini.</p>
       </div>
-    </section>
+    </div>
+
+    <!-- Merchant QRIS Configuration (Col Span 1) -->
+    <div class="bg-slate-800/80 border border-slate-700/50 rounded-2xl p-6 shadow-lg flex flex-col justify-between space-y-6">
+      <div>
+        <h2 class="text-lg font-extrabold text-white uppercase tracking-wider">QRIS Merchant Anda</h2>
+        <p class="text-xs text-slate-400 mt-1">Unggah gambar QRIS merchant aktif Anda agar tampil saat pembayaran di aplikasi mobile.</p>
+      </div>
+
+      <div class="flex flex-col items-center space-y-4">
+        <!-- QRIS Image Container -->
+        <div class="relative group">
+          <img id="qrisImgPreview" src="" onerror="this.onerror=null; this.src='https://placehold.co/300x400/0f172a/94a3b8?text=Belum+Ada+QRIS'" class="w-44 h-56 object-contain rounded-xl border border-slate-700 bg-slate-950 p-2 shadow-inner transition-transform duration-300 group-hover:scale-[1.02]" alt="Merchant QRIS">
+          <!-- Overlay status badge -->
+          <div id="qrisStatusOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center space-y-2 opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <span class="text-xs text-blue-400 font-bold tracking-wider uppercase">Mengunggah...</span>
+          </div>
+        </div>
+
+        <div class="w-full text-center space-y-2">
+          <!-- Custom File Input -->
+          <label class="block cursor-pointer">
+            <span class="inline-block bg-slate-700/80 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-600 transition-all duration-300 shadow-md">
+              📂 Pilih File QRIS
+            </span>
+            <input type="file" id="qrisFileInput" accept="image/*" class="hidden">
+          </label>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Format: JPG, JPEG, PNG (Maks 5MB)</p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-700/50 pt-4">
+        <button id="uploadQrisBtn" disabled class="w-full bg-blue-600/50 cursor-not-allowed text-slate-400 font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2">
+          🚀 UNGGAH SEKARANG
+        </button>
+      </div>
+    </div>
+    
+  </section>
 
     <!-- ========================================================
        ACTIVE LICENSES MANAGER
@@ -209,6 +251,13 @@
     const pendingEmptyState = document.getElementById('pendingEmptyState');
     const pendingCountBadge = document.getElementById('pendingCountBadge');
     
+    // QRIS Elements
+    const qrisImgPreview = document.getElementById('qrisImgPreview');
+    const qrisFileInput = document.getElementById('qrisFileInput');
+    const uploadQrisBtn = document.getElementById('uploadQrisBtn');
+    const qrisStatusOverlay = document.getElementById('qrisStatusOverlay');
+    let selectedQrisBase64 = null;
+    
     const licenseTableBody = document.getElementById('licenseTableBody');
     const openGenerateModalBtn = document.getElementById('openGenerateModalBtn');
     const generateModal = document.getElementById('generateModal');
@@ -224,6 +273,7 @@
     if (ADMIN_SECRET) {
       authModal.classList.add('hidden');
       loadAllData();
+      loadQrisPreview();
     }
 
     // Auth actions
@@ -246,6 +296,7 @@
           localStorage.setItem('@license_admin_secret', pin);
           authModal.classList.add('hidden');
           loadAllData();
+          loadQrisPreview();
         } else {
           authErrorMsg.classList.remove('hidden');
         }
@@ -472,6 +523,84 @@
         return `${day} ${months[monthIdx]} ${year}`;
       } catch { return dateStr; }
     }
+
+    // Load QRIS Image preview from server
+    function loadQrisPreview() {
+      if (qrisImgPreview) {
+        qrisImgPreview.src = `${API_BASE}/qris.png?t=${Date.now()}`;
+      }
+    }
+
+    // Handle QRIS File Select
+    qrisFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      // Limit file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File terlalu besar! Maksimal ukuran file adalah 5MB.');
+        qrisFileInput.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        selectedQrisBase64 = event.target.result;
+        qrisImgPreview.src = selectedQrisBase64;
+        
+        // Enable upload button and make it interactive
+        uploadQrisBtn.disabled = false;
+        uploadQrisBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 cursor-pointer";
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Handle QRIS Upload Action
+    uploadQrisBtn.addEventListener('click', () => {
+      if (!selectedQrisBase64 || !ADMIN_SECRET) return;
+
+      // Show loading overlay
+      qrisStatusOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      uploadQrisBtn.disabled = true;
+      uploadQrisBtn.className = "w-full bg-blue-600/50 cursor-not-allowed text-slate-400 font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2";
+
+      fetch(`${API_BASE}/api/admin/qris`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-secret': ADMIN_SECRET
+        },
+        body: JSON.stringify({ image: selectedQrisBase64 })
+      })
+      .then(res => res.json())
+      .then(data => {
+        // Hide loading overlay
+        qrisStatusOverlay.classList.add('opacity-0', 'pointer-events-none');
+        
+        if (data.success) {
+          alert('Gambar QRIS berhasil diperbarui!');
+          loadQrisPreview();
+          selectedQrisBase64 = null;
+          
+          // Disable upload button again
+          uploadQrisBtn.disabled = true;
+          uploadQrisBtn.className = "w-full bg-blue-600/50 cursor-not-allowed text-slate-400 font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2";
+          qrisFileInput.value = '';
+        } else {
+          alert('Gagal mengunggah QRIS: ' + data.message);
+          // Restore button
+          uploadQrisBtn.disabled = false;
+          uploadQrisBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 cursor-pointer";
+        }
+      })
+      .catch(err => {
+        qrisStatusOverlay.classList.add('opacity-0', 'pointer-events-none');
+        alert('Terjadi kesalahan jaringan saat mengunggah QRIS.');
+        uploadQrisBtn.disabled = false;
+        uploadQrisBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 cursor-pointer";
+      });
+    });
+
   </script>
 </body>
 </html>
