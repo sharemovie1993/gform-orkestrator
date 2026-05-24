@@ -14,6 +14,9 @@ const ADMIN_SECRET = process.env.ADMIN_SECRET || 'admin123';
 app.use(cors());
 app.use(express.json());
 
+// Serve static admin dashboard UI
+app.use(express.static(path.join(__dirname, 'public')));
+
 let db;
 
 // ── DATABASE INITIALIZATION ──
@@ -24,7 +27,7 @@ async function initDatabase() {
     driver: sqlite3.Database
   });
 
-  // Table licenses
+  // Table licenses (Added status and is_active columns)
   await db.exec(`
     CREATE TABLE IF NOT EXISTS licenses (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,6 +35,7 @@ async function initDatabase() {
       school_name TEXT NOT NULL,
       device_limit INTEGER DEFAULT 1,
       is_active INTEGER DEFAULT 1,
+      status TEXT DEFAULT 'active', -- 'pending' or 'active'
       created_at TEXT DEFAULT (datetime('now', 'localtime')),
       expires_at TEXT NOT NULL
     )
@@ -58,7 +62,7 @@ async function initDatabase() {
     const expiresStr = oneYearLater.toISOString().slice(0, 10); // YYYY-MM-DD
 
     await db.run(
-      'INSERT INTO licenses (license_key, school_name, device_limit, expires_at) VALUES (?, ?, ?, ?)',
+      "INSERT INTO licenses (license_key, school_name, device_limit, expires_at, status, is_active) VALUES (?, ?, ?, ?, 'active', 1)",
       [demoKey, 'SMK Ujicoba Indonesia', 50, expiresStr]
     );
     console.log(`[SEED] Created default demo license: ${demoKey} (Limit: 50 devices, Expires: ${expiresStr})`);
@@ -86,13 +90,9 @@ function generateKey() {
 
 // ── ENDPOINTS ──
 
-// 1. Status Heartbeat
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Orkestrator Ujian License Server is healthy and running.',
-    timestamp: new Date().toISOString()
-  });
+// 1. Redirect root to admin.html for ease of use
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // 2. Generate License Key (ADMIN ONLY)
@@ -114,7 +114,7 @@ app.post('/api/license/generate', adminAuth, async (req, res) => {
 
   try {
     await db.run(
-      'INSERT INTO licenses (license_key, school_name, device_limit, expires_at) VALUES (?, ?, ?, ?)',
+      "INSERT INTO licenses (license_key, school_name, device_limit, expires_at, status, is_active) VALUES (?, ?, ?, ?, 'active', 1)",
       [newKey, school_name, limit, expiresStr]
     );
 
@@ -135,9 +135,137 @@ app.post('/api/license/generate', adminAuth, async (req, res) => {
   }
 });
 
-// 3. Activate License (CLIENT APP)
+// 3. Client request license (PUBLIC - QRIS PAYMENT GATEWAY PREPARATION)
+app.post('/api/license/request', async (req, res) => {
+  const { school_name, device_limit } = req.body;
+
+  if (!school_name || !device_limit) {
+    return res.status(400).json({ success: false, message: 'Nama Sekolah dan Limit Perangkat wajib diisi.' });
+  }
+
+  const limit = parseInt(device_limit, 10) || 10;
+  const newKey = generateKey();
+  
+  // Set temporary placeholder expiration (e.g. 365 days from now, will be finalized upon approval)
+  const placeholderExpire = new Date();
+  placeholderExpire.setFullYear(placeholderExpire.getFullYear() + 1);
+  const expiresStr = placeholderExpire.toISOString().slice(0, 10);
+
+  try {
+    await db.run(
+      "INSERT INTO licenses (license_key, school_name, device_limit, expires_at, status, is_active) VALUES (?, ?, ?, ?, 'pending', 0)",
+      [newKey, school_name.trim(), limit, expiresStr]
+    );
+
+    res.json({
+      success: true,
+      message: 'Permintaan aktivasi lisensi berhasil dibuat. Silakan selesaikan pembayaran QRIS.',
+      data: {
+        license_key: newKey,
+        school_name,
+        device_limit: limit,
+        status: 'pending'
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Gagal memproses permintaan lisensi.' });
+  }
+});
+
+// 4. Client check pending license status (PUBLIC POLLING ENDPOINT)
+app.get('/api/license/check/:key', async (req, res) => {
+  const { key } = req.params;
+  const deviceId = req.query.device_id;
+
+  if (!key) {
+    return res.status(400).json({ success: false, message: 'Kunci lisensi wajib disertakan.' });
+  }
+
+  try {
+    const license = await db.get('SELECT * FROM licenses WHERE license_key = ?', [key.trim()]);
+    
+    if (!license) {
+      return res.status(404).json({ success: false, message: 'Kunci lisensi tidak ditemukan.' });
+    }
+
+    if (license.status === 'pending') {
+      return res.json({
+        success: true,
+        status: 'pending',
+        message: 'Lisensi dalam antrean persetujuan. Menunggu konfirmasi transfer QRIS.'
+      });
+    }
+
+    if (license.status === 'active' && license.is_active === 1) {
+      // License is now approved! Instantly activate this requesting device!
+      let token = null;
+      if (deviceId) {
+        // Register device ID if not already bound
+        const alreadyActive = await db.get(
+          'SELECT * FROM activated_devices WHERE license_id = ? AND device_id = ?',
+          [license.id, deviceId]
+        );
+
+        if (!alreadyActive) {
+          // Count currently bound devices
+          const activeCount = await db.get(
+            'SELECT COUNT(*) as count FROM activated_devices WHERE license_id = ?',
+            [license.id]
+          );
+
+          if (activeCount.count < license.device_limit) {
+            await db.run(
+              'INSERT INTO activated_devices (license_id, device_id) VALUES (?, ?)',
+              [license.id, deviceId]
+            );
+          } else {
+            return res.json({
+              success: true,
+              status: 'active_limit_reached',
+              message: 'Lisensi disetujui, namun kuota limit perangkat (HP) sudah penuh.'
+            });
+          }
+        }
+
+        // Sign JWT Token
+        token = jwt.sign(
+          {
+            license_key: license.license_key,
+            school_name: license.school_name,
+            device_id: deviceId,
+            expires_at: license.expires_at
+          },
+          JWT_SECRET,
+          { expiresIn: '365d' }
+        );
+      }
+
+      return res.json({
+        success: true,
+        status: 'active',
+        message: 'Lisensi aktif dan disetujui!',
+        token,
+        school_name: license.school_name,
+        expires_at: license.expires_at
+      });
+    }
+
+    res.json({
+      success: true,
+      status: 'inactive',
+      message: 'Lisensi dalam status tidak aktif.'
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Kesalahan sistem saat memeriksa status lisensi.' });
+  }
+});
+
+// 5. Activate License manually with Direct Input (CLIENT APP)
 app.post('/api/license/activate', async (req, res) => {
-  const { license_key, device_id, school_name } = req.body;
+  const { license_key, device_id } = req.body;
 
   if (!license_key || !device_id) {
     return res.status(400).json({ success: false, message: 'Kunci lisensi (key) dan Device ID wajib diisi.' });
@@ -146,12 +274,12 @@ app.post('/api/license/activate', async (req, res) => {
   try {
     // Check if license exists and is active
     const license = await db.get(
-      'SELECT * FROM licenses WHERE license_key = ? AND is_active = 1',
+      'SELECT * FROM licenses WHERE license_key = ? AND is_active = 1 AND status = "active"',
       [license_key.trim()]
     );
 
     if (!license) {
-      return res.status(404).json({ success: false, message: 'Kunci lisensi tidak ditemukan atau sudah dinonaktifkan.' });
+      return res.status(404).json({ success: false, message: 'Kunci lisensi tidak ditemukan, kedaluwarsa, atau belum disetujui.' });
     }
 
     // Check expiration
@@ -167,7 +295,6 @@ app.post('/api/license/activate', async (req, res) => {
     );
 
     if (alreadyActive) {
-      // Return a fresh token for this device instantly without consuming a new limit slot
       const token = jwt.sign(
         {
           license_key: license.license_key,
@@ -176,7 +303,7 @@ app.post('/api/license/activate', async (req, res) => {
           expires_at: license.expires_at
         },
         JWT_SECRET,
-        { expiresIn: '365d' } // Long local token session
+        { expiresIn: '365d' }
       );
 
       return res.json({
@@ -197,7 +324,7 @@ app.post('/api/license/activate', async (req, res) => {
     if (activeCount.count >= license.device_limit) {
       return res.status(403).json({
         success: false,
-        message: `Batas limit perangkat tercapai. Lisensi ini maksimal hanya untuk ${license.device_limit} perangkat.`
+        message: `Batas limit perangkat tercapai. Kunci lisensi ini hanya untuk maksimal ${license.device_limit} HP.`
       });
     }
 
@@ -207,7 +334,7 @@ app.post('/api/license/activate', async (req, res) => {
       [license.id, device_id]
     );
 
-    // Sign JWT Token containing activation payload
+    // Sign JWT Token
     const token = jwt.sign(
       {
         license_key: license.license_key,
@@ -233,7 +360,7 @@ app.post('/api/license/activate', async (req, res) => {
   }
 });
 
-// 4. Verify License JWT (CLIENT APP)
+// 6. Verify License JWT (CLIENT APP BACKGROUND CHECK)
 app.post('/api/license/verify', async (req, res) => {
   const { token } = req.body;
 
@@ -245,9 +372,9 @@ app.post('/api/license/verify', async (req, res) => {
     // Decode and verify JWT signature
     const decoded = jwt.verify(token, JWT_SECRET);
 
-    // Query database to ensure this license is still active and exists
+    // Query database to ensure this license is still active
     const license = await db.get(
-      'SELECT * FROM licenses WHERE license_key = ? AND is_active = 1',
+      'SELECT * FROM licenses WHERE license_key = ? AND is_active = 1 AND status = "active"',
       [decoded.license_key]
     );
 
@@ -255,13 +382,13 @@ app.post('/api/license/verify', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Lisensi dibatalkan atau dinonaktifkan oleh administrator.' });
     }
 
-    // Double check database expiration date in case of local clock tamper
+    // Double check database expiration date
     const todayStr = new Date().toISOString().slice(0, 10);
     if (license.expires_at < todayStr) {
       return res.status(401).json({ success: false, message: 'Lisensi ini sudah habis masa berlakunya.' });
     }
 
-    // Ensure the device ID is still registered/allowed
+    // Ensure the device ID is still registered
     const deviceRecord = await db.get(
       'SELECT * FROM activated_devices WHERE license_id = ? AND device_id = ?',
       [license.id, decoded.device_id]
@@ -286,7 +413,37 @@ app.post('/api/license/verify', async (req, res) => {
   }
 });
 
-// 5. List all licenses & activations (ADMIN ONLY)
+// 7. Approve Pending License Key (ADMIN ONLY)
+app.post('/api/license/approve/:id', adminAuth, async (req, res) => {
+  const { id } = req.params;
+  
+  // Set expiration starting from approval date (e.g. 1 year from today)
+  const oneYearFromNow = new Date();
+  oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+  const expiresStr = oneYearFromNow.toISOString().slice(0, 10);
+
+  try {
+    const license = await db.get('SELECT * FROM licenses WHERE id = ?', [id]);
+    if (!license) {
+      return res.status(404).json({ success: false, message: 'Kunci lisensi tidak ditemukan.' });
+    }
+
+    await db.run(
+      "UPDATE licenses SET status = 'active', is_active = 1, expires_at = ? WHERE id = ?",
+      [expiresStr, id]
+    );
+
+    res.json({
+      success: true,
+      message: `Lisensi untuk ${license.school_name} berhasil disetujui! Masa aktif disetel hingga ${expiresStr}.`
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Gagal menyetujui kunci lisensi di database.' });
+  }
+});
+
+// 8. List all licenses & activations (ADMIN ONLY)
 app.get('/api/license/list', adminAuth, async (req, res) => {
   try {
     const list = await db.all('SELECT * FROM licenses ORDER BY id DESC');
@@ -313,7 +470,7 @@ app.get('/api/license/list', adminAuth, async (req, res) => {
   }
 });
 
-// 6. Delete or deactivate license key (ADMIN ONLY)
+// 9. Delete or deactivate license key (ADMIN ONLY)
 app.delete('/api/license/delete/:id', adminAuth, async (req, res) => {
   const { id } = req.params;
   try {

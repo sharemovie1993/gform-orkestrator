@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasbor Lisensi - Orkestrator Ujian</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Outfit & Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- ========================================================
+     HEADER / NAVIGATION
+     ======================================================== -->
+  <header class="bg-slate-800/60 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-30 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl">🛡️</span>
+        <div>
+          <h1 class="text-xl font-black text-blue-500 tracking-wider">ORKESTRA LICENSING</h1>
+          <p class="text-xs text-slate-400 font-semibold uppercase tracking-widest">Sistem Validasi &amp; Approval Ujian</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button id="logoutBtn" class="bg-slate-700/80 hover:bg-red-600/90 text-slate-200 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300">
+          🔑 Keluar Panel
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+     MAIN CONTAINER
+     ======================================================== -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-6">
+
+    <!-- ========================================================
+       STATISTICS / COUNTERS
+       ======================================================== -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-slate-800/80 border border-slate-700/50 rounded-2xl p-6 flex items-center space-x-5 shadow-lg">
+        <div class="bg-blue-500/10 text-blue-500 p-4 rounded-xl text-2xl">🔑</div>
+        <div>
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Kunci Aktif</p>
+          <h3 id="statActiveKeys" class="text-3xl font-black text-white mt-1">0</h3>
+        </div>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700/50 rounded-2xl p-6 flex items-center space-x-5 shadow-lg">
+        <div class="bg-amber-500/10 text-amber-500 p-4 rounded-xl text-2xl">⏳</div>
+        <div>
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Antrean Pending (QRIS)</p>
+          <h3 id="statPendingKeys" class="text-3xl font-black text-amber-500 mt-1">0</h3>
+        </div>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700/50 rounded-2xl p-6 flex items-center space-x-5 shadow-lg">
+        <div class="bg-emerald-500/10 text-emerald-500 p-4 rounded-xl text-2xl">📱</div>
+        <div>
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Perangkat Terdaftar</p>
+          <h3 id="statActiveDevices" class="text-3xl font-black text-emerald-500 mt-1">0</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+       PENDING QRIS APPROVAL QUEUE (DYNAMIC CARD LIST)
+       ======================================================== -->
+    <section class="space-y-4">
+      <div class="flex justify-between items-center">
+        <h2 class="text-lg font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
+          <span class="w-3.5 h-3.5 bg-amber-500 rounded-full animate-ping"></span>
+          Antrean Persetujuan Pembayaran QRIS
+        </h2>
+        <span id="pendingCountBadge" class="bg-amber-500/10 text-amber-500 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30">0 Permintaan</span>
+      </div>
+
+      <div id="pendingContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamically injected pending request cards -->
+      </div>
+      
+      <!-- Placeholder if empty -->
+      <div id="pendingEmptyState" class="hidden bg-slate-800/30 border border-slate-800 rounded-2xl p-10 text-center">
+        <p class="text-5xl mb-3">🎉</p>
+        <h4 class="text-slate-300 font-bold text-sm uppercase">Antrean Bersih!</h4>
+        <p class="text-xs text-slate-500 mt-1">Tidak ada konfirmasi pembayaran QRIS yang tertunda saat ini.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+       ACTIVE LICENSES MANAGER
+       ======================================================== -->
+    <section class="bg-slate-800/80 border border-slate-700/50 rounded-2xl overflow-hidden shadow-lg">
+      <div class="p-6 border-b border-slate-700/50 flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h2 class="text-lg font-extrabold text-white uppercase tracking-wider">Kelola Kunci Lisensi Aktif</h2>
+          <p class="text-xs text-slate-400 mt-1">Daftar kunci lisensi sekolah yang terverifikasi dan aktif digunakan.</p>
+        </div>
+        <button id="openGenerateModalBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs tracking-wider uppercase transition-all duration-300 shadow-lg shadow-blue-600/20">
+          ➕ Buat Lisensi Manual
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="bg-slate-900/60 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-700/50">
+            <tr>
+              <th class="p-4">Nama Sekolah</th>
+              <th class="p-4">Kunci Lisensi (Key)</th>
+              <th class="p-4">Limit HP</th>
+              <th class="p-4">Tgl Kedaluwarsa</th>
+              <th class="p-4">Status</th>
+              <th class="p-4 text-right">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody id="licenseTableBody" class="divide-y divide-slate-700/40">
+            <!-- Dynamic license rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+     MODAL: GENERATE LICENSE MANUAL
+     ======================================================== -->
+  <div id="generateModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div class="px-6 py-5 border-b border-slate-700/50 flex justify-between items-center">
+        <h3 class="text-base font-extrabold text-white uppercase tracking-wider">Buat Lisensi Baru (Manual)</h3>
+        <button id="closeGenerateModalBtn" class="text-slate-400 hover:text-white text-lg font-bold">✕</button>
+      </div>
+      <form id="generateForm" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Nama Sekolah / Lembaga</label>
+          <input type="text" id="genSchoolName" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-200 text-sm font-semibold focus:outline-none focus:border-blue-500" placeholder="Contoh: SMKN 1 Bandung">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Limit Perangkat (HP)</label>
+            <input type="number" id="genDeviceLimit" value="50" min="1" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-200 text-sm font-semibold focus:outline-none focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Masa Aktif (Hari)</label>
+            <input type="number" id="genDurationDays" value="365" min="1" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-200 text-sm font-semibold focus:outline-none focus:border-blue-500">
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all duration-300 mt-2 shadow-lg shadow-blue-600/10">
+          💾 BUAT KUNCI LISENSI
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+     MODAL: AUTHENTICATION SHIELD (PIN LOGIN)
+     ======================================================== -->
+  <div id="authModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700/80 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl p-6 text-center space-y-6">
+      <div>
+        <span class="text-5xl block mb-2">🔐</span>
+        <h3 class="text-xl font-black text-white">Security Shield</h3>
+        <p class="text-xs text-slate-400 mt-1">Masukkan PIN Rahasia Admin untuk membuka dasbor lisensi.</p>
+      </div>
+      
+      <div class="space-y-4">
+        <input type="password" id="adminPinInput" class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 text-center text-slate-100 text-lg tracking-widest font-black focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="••••" maxlength="20">
+        <p id="authErrorMsg" class="text-red-500 text-xs font-bold hidden">⚠️ PIN Admin tidak valid!</p>
+        <button id="authSubmitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 rounded-2xl text-xs tracking-wider uppercase transition-all duration-300 shadow-lg shadow-blue-600/10">
+          MASUK DASBOR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+     FOOTER
+     ======================================================== -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 font-semibold tracking-wide">
+    <p>powered by BARAYA TEKNOLOGI &copy; 2026. All rights reserved.</p>
+  </footer>
+
+  <!-- ========================================================
+     DASHBOARD SCRIPT / CONTROLLER
+     ======================================================== -->
+  <script>
+    const API_BASE = window.location.origin;
+    let ADMIN_SECRET = localStorage.getItem('@license_admin_secret') || '';
+
+    // Elements
+    const authModal = document.getElementById('authModal');
+    const adminPinInput = document.getElementById('adminPinInput');
+    const authSubmitBtn = document.getElementById('authSubmitBtn');
+    const authErrorMsg = document.getElementById('authErrorMsg');
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    const pendingContainer = document.getElementById('pendingContainer');
+    const pendingEmptyState = document.getElementById('pendingEmptyState');
+    const pendingCountBadge = document.getElementById('pendingCountBadge');
+    
+    const licenseTableBody = document.getElementById('licenseTableBody');
+    const openGenerateModalBtn = document.getElementById('openGenerateModalBtn');
+    const generateModal = document.getElementById('generateModal');
+    const closeGenerateModalBtn = document.getElementById('closeGenerateModalBtn');
+    const generateForm = document.getElementById('generateForm');
+
+    // Stats
+    const statActiveKeys = document.getElementById('statActiveKeys');
+    const statPendingKeys = document.getElementById('statPendingKeys');
+    const statActiveDevices = document.getElementById('statActiveDevices');
+
+    // Check auth on load
+    if (ADMIN_SECRET) {
+      authModal.classList.add('hidden');
+      loadAllData();
+    }
+
+    // Auth actions
+    authSubmitBtn.addEventListener('click', handleAuth);
+    adminPinInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleAuth(); });
+
+    function handleAuth() {
+      const pin = adminPinInput.value.trim();
+      if (!pin) return;
+      authErrorMsg.classList.add('hidden');
+      
+      // Attempt verification
+      fetch(`${API_BASE}/api/license/list`, {
+        headers: { 'x-admin-secret': pin }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          ADMIN_SECRET = pin;
+          localStorage.setItem('@license_admin_secret', pin);
+          authModal.classList.add('hidden');
+          loadAllData();
+        } else {
+          authErrorMsg.classList.remove('hidden');
+        }
+      })
+      .catch(() => {
+        authErrorMsg.textContent = '⚠️ Gagal terhubung ke API!';
+        authErrorMsg.classList.remove('hidden');
+      });
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('@license_admin_secret');
+      ADMIN_SECRET = '';
+      adminPinInput.value = '';
+      authModal.classList.remove('hidden');
+    });
+
+    // Fetch and render dashboard metrics & lists
+    function loadAllData() {
+      if (!ADMIN_SECRET) return;
+
+      fetch(`${API_BASE}/api/license/list`, {
+        headers: { 'x-admin-secret': ADMIN_SECRET }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success) {
+          // Token invalid, force re-login
+          logoutBtn.click();
+          return;
+        }
+
+        const items = data.data || [];
+        
+        // Filter pending (requested from QRIS)
+        const pendingItems = items.filter(x => x.status === 'pending');
+        // Filter active
+        const activeItems = items.filter(x => x.status === 'active');
+        // Count active devices
+        const totalDevices = items.reduce((acc, curr) => acc + (curr.active_devices_count || 0), 0);
+
+        // Update stats widgets
+        statActiveKeys.textContent = activeItems.length;
+        statPendingKeys.textContent = pendingItems.length;
+        statActiveDevices.textContent = totalDevices;
+
+        renderPendingList(pendingItems);
+        renderLicenseTable(activeItems);
+      })
+      .catch(err => {
+        console.error('Failed to load list:', err);
+      });
+    }
+
+    // Render Pending approvals
+    function renderPendingList(items) {
+      pendingContainer.innerHTML = '';
+      pendingCountBadge.textContent = `${items.length} Permintaan`;
+
+      if (items.length === 0) {
+        pendingEmptyState.classList.remove('hidden');
+        return;
+      }
+      pendingEmptyState.classList.add('hidden');
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-slate-800 border border-amber-500/30 rounded-2xl p-6 space-y-4 shadow-lg";
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="bg-amber-500/10 text-amber-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/20 uppercase tracking-widest">Konfirmasi Transfer QRIS</span>
+              <h4 class="text-base font-black text-white mt-1.5">${item.school_name}</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Key: <code class="bg-slate-900 px-1.5 py-0.5 rounded text-blue-400 text-[11px] font-bold">${item.license_key}</code></p>
+            </div>
+            <div class="text-right">
+              <p class="text-xs text-slate-400">Kuota Perangkat</p>
+              <h5 class="text-lg font-black text-white">${item.device_limit} HP</h5>
+            </div>
+          </div>
+          <div class="border-t border-slate-700/50 pt-4 flex gap-3">
+            <button onclick="approveLicense(${item.id})" class="flex-grow bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs tracking-wider uppercase transition-all duration-300">
+              ✔️ SETUJUI LISENSI
+            </button>
+            <button onclick="deleteLicense(${item.id})" class="bg-slate-700 hover:bg-red-600 hover:text-white text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300">
+              🗑️ Tolak
+            </button>
+          </div>
+        `;
+        pendingContainer.appendChild(card);
+      });
+    }
+
+    // Render Active licenses table
+    function renderLicenseTable(items) {
+      licenseTableBody.innerHTML = '';
+      if (items.length === 0) {
+        licenseTableBody.innerHTML = `
+          <tr>
+            <td colspan="6" class="p-8 text-center text-slate-500 font-bold text-xs uppercase">
+              Tidak ada lisensi aktif yang terdaftar.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/20 transition-all duration-200";
+        tr.innerHTML = `
+          <td class="p-4 font-bold text-white">${item.school_name}</td>
+          <td class="p-4"><code class="bg-slate-900/60 px-2 py-0.5 rounded text-blue-400 font-bold text-xs">${item.license_key}</code></td>
+          <td class="p-4 font-semibold text-slate-400">${item.active_devices_count || 0} / ${item.device_limit} HP</td>
+          <td class="p-4 font-semibold text-slate-400">${formatIndonesianDate(item.expires_at)}</td>
+          <td class="p-4">
+            <span class="bg-emerald-500/10 text-emerald-500 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-emerald-500/20 uppercase tracking-widest">AKTIF</span>
+          </td>
+          <td class="p-4 text-right">
+            <button onclick="deleteLicense(${item.id})" class="bg-slate-800 border border-slate-700/50 hover:border-red-500/50 hover:bg-red-600/10 text-slate-400 hover:text-red-500 p-2 rounded-lg transition-all duration-300">
+              🗑️
+            </button>
+          </td>
+        `;
+        licenseTableBody.appendChild(tr);
+      });
+    }
+
+    // Approve license action
+    window.approveLicense = function(id) {
+      if (!confirm('Apakah Anda yakin ingin menyetujui lisensi ini?')) return;
+      
+      fetch(`${API_BASE}/api/license/approve/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-secret': ADMIN_SECRET
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          loadAllData();
+        } else {
+          alert('Gagal menyetujui: ' + data.message);
+        }
+      })
+      .catch(err => {
+        alert('Terjadi kesalahan jaringan!');
+      });
+    };
+
+    // Delete license action
+    window.deleteLicense = function(id) {
+      if (!confirm('Apakah Anda yakin ingin menghapus lisensi ini? Tindakan ini permanen.')) return;
+
+      fetch(`${API_BASE}/api/license/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'x-admin-secret': ADMIN_SECRET
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          loadAllData();
+        } else {
+          alert('Gagal menghapus: ' + data.message);
+        }
+      })
+      .catch(err => {
+        alert('Terjadi kesalahan jaringan!');
+      });
+    };
+
+    // Modal UI handling
+    openGenerateModalBtn.addEventListener('click', () => generateModal.classList.remove('hidden'));
+    closeGenerateModalBtn.addEventListener('click', () => generateModal.classList.add('hidden'));
+    window.addEventListener('click', (e) => { if (e.target === generateModal) generateModal.classList.add('hidden'); });
+
+    // Generate Manual Form submission
+    generateForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        school_name: document.getElementById('genSchoolName').value.trim(),
+        device_limit: document.getElementById('genDeviceLimit').value,
+        duration_days: document.getElementById('genDurationDays').value
+      };
+
+      fetch(`${API_BASE}/api/license/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-secret': ADMIN_SECRET
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          generateModal.classList.add('hidden');
+          generateForm.reset();
+          loadAllData();
+        } else {
+          alert('Gagal membuat lisensi: ' + data.message);
+        }
+      })
+      .catch(() => alert('Terjadi kesalahan jaringan!'));
+    });
+
+    // Helper Date formatter
+    function formatIndonesianDate(dateStr) {
+      try {
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        const year = parts[0];
+        const monthIdx = parseInt(parts[1], 10) - 1;
+        const day = parseInt(parts[2], 10);
+        const months = [
+          'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+          'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        return `${day} ${months[monthIdx]} ${year}`;
+      } catch { return dateStr; }
+    }
+  </script>
+</body>
+</html>
