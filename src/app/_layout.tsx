@@ -127,7 +127,7 @@ function InnerLayout() {
     if (pendingKey) {
       intervalId = setInterval(async () => {
         try {
-          const res = await fetch(`${LICENSE_SERVER_URL}/api/license/check/${pendingKey}`);
+          const res = await fetch(`${LICENSE_SERVER_URL}/api/license/check/${pendingKey}?device_id=DEV-MOBILE-TEST-2026`);
           const data = await res.json();
           
           if (data.success && data.status === 'active' && data.token) {
