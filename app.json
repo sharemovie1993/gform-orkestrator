@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "gform-orkestrator",
+    "name": "Orkestrator Ujian",
     "slug": "gform-orkestrator",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,10 +11,11 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.bti.gformorkestrator",
+      "versionCode": 1,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0F172A",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
@@ -39,6 +40,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5e1ad67a-a833-4b34-9f25-124dd382a1c9"
+      }
+    },
+    "owner": "baraya-teknologi",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5e1ad67a-a833-4b34-9f25-124dd382a1c9"
     }
   }
 }
