@@ -488,7 +488,7 @@ export default function HomeScreen() {
     setLoginError('');
 
     try {
-      const student = await DbService.loginSiswa(nisn.trim());
+      const student = await DbService.loginSiswa(nisn.trim(), Platform.OS === 'web' ? 'web' : 'android');
       if (student) {
         // Perform license validation before completing login session
         await checkAndActivateLicenseForStudent(student);

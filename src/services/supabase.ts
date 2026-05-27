@@ -34,6 +34,7 @@ export interface Siswa {
   nama_siswa: string;
   kelas_id: string;
   kelas_nama?: string;
+  tenant_id?: string;
   is_active: boolean;
   created_at?: string;
 }
@@ -74,10 +75,30 @@ export interface LinkSoal {
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://xjnctgbzilrhbzsbrtpu.supabase.co';
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg';
 
-export const isSupabaseConfigured = supabaseUrl !== '' && supabaseAnonKey !== '';
-export const supabase = isSupabaseConfigured 
+// Master Supabase client is always bound to the central/master database
+export const masterSupabase = createClient(
+  'https://xjnctgbzilrhbzsbrtpu.supabase.co',
+  'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg'
+);
+
+export let isSupabaseConfigured = supabaseUrl !== '' && supabaseAnonKey !== '';
+export let supabase = isSupabaseConfigured 
   ? createClient(supabaseUrl, supabaseAnonKey) 
   : null;
+
+// Helper function to re-initialize Supabase client dynamically for a tenant
+export function initializeDynamicSupabase(url: string, key: string) {
+  console.log('[Supabase] Re-initializing dynamic Supabase client for tenant with URL:', url);
+  supabase = createClient(url, key);
+  isSupabaseConfigured = true;
+}
+
+export let activeTenantId: string | null = null;
+
+export function setActiveTenantId(id: string | null) {
+  console.log('[Supabase] Setting active tenant ID:', id);
+  activeTenantId = id;
+}
 
 // Debug log
 console.log('[Supabase] isSupabaseConfigured =', isSupabaseConfigured, '| URL =', supabaseUrl ? supabaseUrl.substring(0, 40) + '...' : 'KOSONG');
@@ -98,6 +119,8 @@ export class DbService {
   static async getJurusan(activeOnly: boolean = false): Promise<Jurusan[]> {
     checkConfig();
     let query = supabase!.from('jurusan').select('*');
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query.order('nama_jurusan');
     if (error) throw error;
@@ -109,7 +132,11 @@ export class DbService {
 
   static async addJurusan(nama: string): Promise<Jurusan> {
     checkConfig();
-    const { data, error } = await supabase!.from('jurusan').insert([{ nama_jurusan: nama, is_active: true }]).select().single();
+    const payload: any = { nama_jurusan: nama, is_active: true };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { data, error } = await supabase!.from('jurusan').insert([payload]).select().single();
     if (error) throw error;
     return {
       ...data,
@@ -137,6 +164,8 @@ export class DbService {
   static async getKelas(jurusanId?: string, activeOnly: boolean = false): Promise<Kelas[]> {
     checkConfig();
     let query = supabase!.from('kelas').select('*, jurusan(nama_jurusan)');
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (jurusanId) query = query.eq('jurusan_id', jurusanId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query;
@@ -153,9 +182,11 @@ export class DbService {
 
   static async addKelas(tingkat: string, nama: string, jurusanId: string): Promise<Kelas> {
     checkConfig();
-    const { data, error } = await supabase!.from('kelas').insert([
-      { tingkat, nama_kelas: nama, jurusan_id: jurusanId, is_active: true }
-    ]).select().single();
+    const payload: any = { tingkat, nama_kelas: nama, jurusan_id: jurusanId, is_active: true };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { data, error } = await supabase!.from('kelas').insert([payload]).select().single();
     if (error) throw error;
     return {
       ...data,
@@ -183,6 +214,8 @@ export class DbService {
   static async getSiswa(activeOnly: boolean = false): Promise<Siswa[]> {
     checkConfig();
     let query = supabase!.from('siswa').select('*, kelas(nama_kelas)');
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query.order('nama_siswa');
     if (error) throw error;
@@ -202,6 +235,8 @@ export class DbService {
       .from('siswa')
       .select('*, kelas(nama_kelas)')
       .eq('kelas_id', kelasId);
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query.order('nama_siswa');
     if (error) throw error;
@@ -211,15 +246,18 @@ export class DbService {
       nama_siswa: s.nama_siswa,
       kelas_id: s.kelas_id,
       kelas_nama: s.kelas?.nama_kelas || 'Tanpa Kelas',
+      tenant_id: s.tenant_id,
       is_active: s.is_active !== false
     }));
   }
 
   static async addSiswa(nisn: string, nama: string, kelasId: string): Promise<Siswa> {
     checkConfig();
-    const { data, error } = await supabase!.from('siswa').insert([
-      { nisn, nama_siswa: nama, kelas_id: kelasId, is_active: true }
-    ]).select().single();
+    const payload: any = { nisn: nisn.trim(), nama_siswa: nama, kelas_id: kelasId, is_active: true };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { data, error } = await supabase!.from('siswa').insert([payload]).select().single();
     if (error) throw error;
     return {
       ...data,
@@ -244,9 +282,13 @@ export class DbService {
   // ==========================================
   // GURU CRUD
   // ==========================================
-  static async getGuru(activeOnly: boolean = false): Promise<Guru[]> {
+  static async getGuru(activeOnly: boolean = true): Promise<Guru[]> {
     checkConfig();
     let query = supabase!.from('guru').select('*');
+    // Selalu filter tenant: gunakan activeTenantId atau default tenant ID jika null untuk mencegah kueri global lintas tenant
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
+    
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query.order('nama_guru');
     if (error) throw error;
@@ -258,9 +300,11 @@ export class DbService {
 
   static async addGuru(nama: string, username: string, pin: string): Promise<Guru> {
     checkConfig();
-    const { data, error } = await supabase!.from('guru').insert([
-      { nama_guru: nama, username, pin_pengawas: pin, password_hash: 'pbkdf2_sha256$260000$mockhash$' + username, is_active: true }
-    ]).select().single();
+    const payload: any = { nama_guru: nama, username, pin_pengawas: pin, password_hash: 'pbkdf2_sha256$260000$mockhash$' + username, is_active: true };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { data, error } = await supabase!.from('guru').insert([payload]).select().single();
     if (error) throw error;
     return {
       ...data,
@@ -288,6 +332,8 @@ export class DbService {
   static async getMapel(activeOnly: boolean = false): Promise<Mapel[]> {
     checkConfig();
     let query = supabase!.from('mapel').select('id, nama_mapel, singkatan, created_at, is_active');
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query.order('nama_mapel');
     if (error) throw error;
@@ -299,9 +345,11 @@ export class DbService {
 
   static async addMapel(namaMapel: string, singkatan: string): Promise<boolean> {
     checkConfig();
-    const { error } = await supabase!.from('mapel').insert([
-      { nama_mapel: namaMapel, singkatan: singkatan, is_active: true }
-    ]);
+    const payload: any = { nama_mapel: namaMapel, singkatan: singkatan, is_active: true };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { error } = await supabase!.from('mapel').insert([payload]);
     if (error) throw error;
     return true;
   }
@@ -327,10 +375,13 @@ export class DbService {
   // ==========================================
   // LINK SOAL CRUD
   // ==========================================
-  static async getLinkSoal(kelasId?: string): Promise<LinkSoal[]> {
+  static async getLinkSoal(kelasId?: string, activeOnly: boolean = false): Promise<LinkSoal[]> {
     checkConfig();
     let query = supabase!.from('link_soal').select('*, kelas(nama_kelas), mapel(nama_mapel), guru(nama_guru)');
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    query = query.eq('tenant_id', targetTenantId);
     if (kelasId) query = query.eq('kelas_id', kelasId);
+    if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query;
     if (error) throw error;
     return (data || []).map(l => ({
@@ -360,18 +411,20 @@ export class DbService {
     enableBlocking: boolean = true
   ): Promise<boolean> {
     checkConfig();
-    const { error } = await supabase!.from('link_soal').insert([
-      {
-        kelas_id: kelasId,
-        mapel_id: mapelId,
-        guru_id: guruId,
-        tanggal_ujian: tanggalUjian,
-        waktu_ujian: waktuUjian,
-        google_form_link: link,
-        is_active: true,
-        enable_blocking: enableBlocking
-      }
-    ]);
+    const payload: any = {
+      kelas_id: kelasId,
+      mapel_id: mapelId,
+      guru_id: guruId,
+      tanggal_ujian: tanggalUjian,
+      waktu_ujian: waktuUjian,
+      google_form_link: link,
+      is_active: true,
+      enable_blocking: enableBlocking
+    };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
+    const { error } = await supabase!.from('link_soal').insert([payload]);
     if (error) throw error;
     return true;
   }
@@ -409,116 +462,311 @@ export class DbService {
     return true;
   }
 
+  static async deleteBulk(table: string, ids: string[]): Promise<boolean> {
+    checkConfig();
+    const { error } = await supabase!.from(table).delete().in('id', ids);
+    if (error) throw error;
+    return true;
+  }
+
+
   // ==========================================
   // BULK EXCEL IMPORTS
   // ==========================================
-  static async importJurusans(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
-    const total = data.length;
-    for (let i = 0; i < total; i++) {
-      const row = data[i];
-      const nama = row.nama_jurusan || row.Nama || row.NAMA;
-      if (nama) await this.addJurusan(nama);
-      onProgress?.(i + 1, total);
-    }
-    return true;
+
+  /** Normalisasi string untuk pencocokan fuzzy: lowercase, hapus spasi & tanda baca */
+  private static normalizeName(s: string): string {
+    return s.toLowerCase().replace(/[\s\-_.,()]+/g, '');
   }
 
-  static async importKelas(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
+  /** Fuzzy match: exact → includes → normalizeName exact → normalizeName includes */
+  private static fuzzyFind<T extends { [key: string]: any }>(list: T[], field: string, input: string): T | undefined {
+    const inp = input.trim();
+    const inpNorm = this.normalizeName(inp);
+    // 1. Exact
+    let found = list.find(item => item[field].trim() === inp);
+    // 2. Case-insensitive exact
+    if (!found) found = list.find(item => item[field].toLowerCase() === inp.toLowerCase());
+    // 3. Normalized exact
+    if (!found) found = list.find(item => this.normalizeName(item[field]) === inpNorm);
+    // 4. Normalized includes (input inside db value)
+    if (!found) found = list.find(item => this.normalizeName(item[field]).includes(inpNorm));
+    // 5. Normalized includes (db value inside input)
+    if (!found) found = list.find(item => inpNorm.includes(this.normalizeName(item[field])));
+    return found;
+  }
+
+  static async importJurusans(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    checkConfig();
+    // Tangkap tenant_id sekali di awal — tidak bergantung pada global mid-loop
+    const tenantId = activeTenantId;
+    if (!tenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
+
+    const total = data.length;
+    let skipped = 0, failed = 0;
+
+    // Bangun payload secara eksplisit dengan tenant_id
+    const payloads: any[] = [];
+    for (let i = 0; i < total; i++) {
+      const row = data[i];
+      const nama = (row.nama_jurusan || row.Nama || row.NAMA || row.jurusan || '')?.toString().trim();
+      if (!nama) { skipped++; continue; }
+      payloads.push({ nama_jurusan: nama, tenant_id: tenantId, is_active: true });
+    }
+
+    if (payloads.length === 0) return { imported: 0, skipped, failed };
+
+    // Bulk insert per batch 100
+    const chunkSize = 100;
+    let imported = 0;
+    for (let i = 0; i < payloads.length; i += chunkSize) {
+      const chunk = payloads.slice(i, i + chunkSize);
+      const { error } = await supabase!.from('jurusan').insert(chunk);
+      if (error) { console.error('[importJurusans] chunk error:', error); failed += chunk.length; }
+      else { imported += chunk.length; }
+      onProgress?.(Math.min(i + chunkSize, payloads.length), payloads.length);
+    }
+    return { imported, skipped, failed };
+  }
+
+  static async importKelas(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    checkConfig();
+    const tenantId = activeTenantId;
+    if (!tenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
+
+    // Ambil jurusan MILIK tenant ini saja
     const jurusans = await this.getJurusan();
     const total = data.length;
+    let skipped = 0, failed = 0;
+
+    const payloads: any[] = [];
     for (let i = 0; i < total; i++) {
       const row = data[i];
-      const tingkat = String(row.tingkat || row.Tingkat || row.TINGKAT || 'XII');
-      const nama = row.nama_kelas || row.Nama || row.NAMA;
-      const jurusanNamaInput = row.nama_jurusan || row.Jurusan || row.JURUSAN;
-      let jid = jurusans[0]?.id;
+      const tingkat = String(row.tingkat || row.Tingkat || row.TINGKAT || 'XII').trim();
+      const nama = (row.nama_kelas || row.Nama || row.NAMA || '')?.toString().trim();
+      const jurusanNamaInput = (row.nama_jurusan || row.Jurusan || row.JURUSAN || '')?.toString().trim();
+      if (!nama) { skipped++; continue; }
+
+      let jid: string | undefined;
       if (jurusanNamaInput) {
-        const found = jurusans.find(j => j.nama_jurusan.toLowerCase().includes(jurusanNamaInput.toLowerCase()));
+        const found = this.fuzzyFind(jurusans, 'nama_jurusan', jurusanNamaInput);
         if (found) jid = found.id;
       }
-      if (nama && jid) await this.addKelas(tingkat, nama, jid);
-      onProgress?.(i + 1, total);
+      if (!jid) {
+        console.warn(`[importKelas] Jurusan tidak ditemukan untuk kelas "${nama}", input: "${jurusanNamaInput}"`);
+        skipped++;
+        continue;
+      }
+
+      // Payload dengan tenant_id eksplisit — tidak pakai global
+      payloads.push({ tingkat, nama_kelas: nama, jurusan_id: jid, tenant_id: tenantId, is_active: true });
     }
-    return true;
+
+    if (payloads.length === 0) return { imported: 0, skipped, failed };
+
+    const chunkSize = 100;
+    let imported = 0;
+    for (let i = 0; i < payloads.length; i += chunkSize) {
+      const chunk = payloads.slice(i, i + chunkSize);
+      const { error } = await supabase!.from('kelas').insert(chunk);
+      if (error) { console.error('[importKelas] chunk error:', error); failed += chunk.length; }
+      else { imported += chunk.length; }
+      onProgress?.(Math.min(i + chunkSize, payloads.length), payloads.length);
+    }
+    return { imported, skipped, failed };
   }
 
-  static async importSiswa(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
+  static async importSiswa(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    checkConfig();
+    if (!activeTenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
     const classes = await this.getKelas();
     const total = data.length;
+    let skipped = 0, failed = 0;
+
+    // Siapkan payloads untuk bulk insert dengan fuzzy matching
+    const payloads: any[] = [];
     for (let i = 0; i < total; i++) {
       const row = data[i];
-      const nisn = String(row.nisn || row.NISN || Math.floor(Math.random() * 100000000));
-      const nama = row.nama_siswa || row.Nama || row.NAMA || row.nama || row.NamaSiswa;
-      const kelasNamaInput = row.nama_kelas || row.Kelas || row.KELAS || row.kelas;
-      let kid = classes[0]?.id;
+      const nisn = String(row.nisn || row.NISN || row.NIS || row.nis || '').trim() ||
+                   String(Math.floor(Math.random() * 100000000));
+      const nama = (row.nama_siswa || row.Nama || row.NAMA || row.nama || row.NamaSiswa || '')?.toString().trim();
+      const kelasNamaInput = (row.nama_kelas || row.Kelas || row.KELAS || row.kelas || '')?.toString().trim();
+
+      if (!nama) { skipped++; continue; }
+
+      let kid: string | undefined;
       if (kelasNamaInput) {
-        const found = classes.find(c => c.nama_kelas.toLowerCase().replace(/\s+/g, '') === kelasNamaInput.toLowerCase().replace(/\s+/g, ''));
+        const found = this.fuzzyFind(classes, 'nama_kelas', kelasNamaInput);
         if (found) kid = found.id;
       }
-      if (nama && kid) await this.addSiswa(nisn, nama, kid);
-      onProgress?.(i + 1, total);
+
+      if (!kid) {
+        console.warn(`[importSiswa] Kelas tidak ditemukan untuk siswa "${nama}", input kelas: "${kelasNamaInput}"`);
+        skipped++;
+        continue;
+      }
+
+      payloads.push({
+        nisn,
+        nama_siswa: nama,
+        kelas_id: kid,
+        tenant_id: activeTenantId,
+        is_active: true,
+      });
     }
-    return true;
+
+    if (payloads.length === 0) return { imported: 0, skipped, failed };
+
+    // Bulk insert per batch 200 data
+    const chunkSize = 200;
+    let imported = 0;
+    for (let i = 0; i < payloads.length; i += chunkSize) {
+      const chunk = payloads.slice(i, i + chunkSize);
+      const { error } = await supabase!.from('siswa').insert(chunk);
+      if (error) {
+        console.error('[importSiswa] Error inserting chunk:', error);
+        failed += chunk.length;
+      } else {
+        imported += chunk.length;
+      }
+      onProgress?.(Math.min(i + chunkSize, payloads.length), payloads.length);
+    }
+
+    return { imported, skipped, failed };
   }
 
-  static async importGuru(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
+
+  static async importGuru(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    checkConfig();
+    const tenantId = activeTenantId;
+    if (!tenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
+
     const total = data.length;
+    let skipped = 0, failed = 0;
+
+    const payloads: any[] = [];
     for (let i = 0; i < total; i++) {
       const row = data[i];
-      const nama = row.nama_guru || row.Nama || row.NAMA || row.guru;
-      const username = (row.username || row.Username || nama?.split(' ')[0] || `guru_${Date.now()}_${Math.floor(Math.random() * 1000)}`).toLowerCase();
-      const pin = String(row.pin_pengawas || row.pin || row.PIN || '1234');
-      if (nama) await this.addGuru(nama, username, pin);
-      onProgress?.(i + 1, total);
+      const nama = (row.nama_guru || row.Nama || row.NAMA || row.guru || '')?.toString().trim();
+      if (!nama) { skipped++; continue; }
+      const username = (row.username || row.Username || nama.split(' ')[0] || `guru_${i}`)
+        .toString().toLowerCase().replace(/\s+/g, '');
+      const pin = String(row.pin_pengawas || row.pin || row.PIN || '1234').trim();
+      // Payload dengan tenant_id eksplisit
+      payloads.push({
+        nama_guru: nama,
+        username,
+        pin_pengawas: pin,
+        password_hash: 'pbkdf2_sha256$260000$mockhash$' + username,
+        tenant_id: tenantId,
+        is_active: true,
+      });
     }
-    return true;
+
+    if (payloads.length === 0) return { imported: 0, skipped, failed };
+
+    const chunkSize = 100;
+    let imported = 0;
+    for (let i = 0; i < payloads.length; i += chunkSize) {
+      const chunk = payloads.slice(i, i + chunkSize);
+      const { error } = await supabase!.from('guru').insert(chunk);
+      if (error) { console.error('[importGuru] chunk error:', error); failed += chunk.length; }
+      else { imported += chunk.length; }
+      onProgress?.(Math.min(i + chunkSize, payloads.length), payloads.length);
+    }
+    return { imported, skipped, failed };
   }
 
-  static async importMapel(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
+  static async importMapel(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    checkConfig();
+    const tenantId = activeTenantId;
+    if (!tenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
+
     const total = data.length;
+    let skipped = 0, failed = 0;
+
+    const payloads: any[] = [];
     for (let i = 0; i < total; i++) {
       const row = data[i];
-      const nama = row.nama_mapel || row.Nama || row.NAMA || row.mapel || row.subject;
-      const singkatan = row.singkatan || row.Singkatan || row.SINGKATAN || row.code || row.Kode;
-      if (nama && singkatan) await this.addMapel(nama, singkatan);
-      onProgress?.(i + 1, total);
+      const nama = (row.nama_mapel || row.Nama || row.NAMA || row.mapel || row.subject || '')?.toString().trim();
+      const singkatan = (row.singkatan || row.Singkatan || row.SINGKATAN || row.code || row.Kode || '')?.toString().trim();
+      if (!nama || !singkatan) { skipped++; continue; }
+      // Payload dengan tenant_id eksplisit
+      payloads.push({ nama_mapel: nama, singkatan, tenant_id: tenantId, is_active: true });
     }
-    return true;
+
+    if (payloads.length === 0) return { imported: 0, skipped, failed };
+
+    const chunkSize = 100;
+    let imported = 0;
+    for (let i = 0; i < payloads.length; i += chunkSize) {
+      const chunk = payloads.slice(i, i + chunkSize);
+      const { error } = await supabase!.from('mapel').insert(chunk);
+      if (error) { console.error('[importMapel] chunk error:', error); failed += chunk.length; }
+      else { imported += chunk.length; }
+      onProgress?.(Math.min(i + chunkSize, payloads.length), payloads.length);
+    }
+    return { imported, skipped, failed };
   }
 
-  static async importLinkSoal(data: any[], onProgress?: (current: number, total: number) => void): Promise<boolean> {
+  static async importLinkSoal(
+    data: any[],
+    onProgress?: (current: number, total: number) => void
+  ): Promise<{ imported: number; skipped: number; failed: number }> {
+    if (!activeTenantId) throw new Error('Sesi tenant tidak aktif. Silakan refresh halaman dan coba lagi.');
     const classes = await this.getKelas();
     const mapels = await this.getMapel();
     const gurus = await this.getGuru();
     const total = data.length;
+    let imported = 0, skipped = 0, failed = 0;
 
     for (let i = 0; i < total; i++) {
       const row = data[i];
-      const kelasNamaInput = row.nama_kelas || row.Kelas || row.KELAS || row.kelas;
-      const mapelNamaInput = row.nama_mapel || row.Mapel || row.MAPEL || row.mapel || row.nama_mata_pelajaran || row.singkatan || row.Singkatan;
-      const guruNamaInput = row.nama_guru || row.Guru || row.GURU || row.guru;
-      const tanggalUjian = row.tanggal_ujian || row.Tanggal || row.TANGGAL || row.tanggal || '2026-05-22';
-      const waktuUjian = row.waktu_ujian || row.Waktu || row.WAKTU || row.waktu || '08:00:00';
-      const link = row.google_form_link || row.link || row.URL || row.url || row.Link;
+      const kelasNamaInput = (row.nama_kelas || row.Kelas || row.KELAS || row.kelas || '')?.toString().trim();
+      const mapelNamaInput = (row.nama_mapel || row.Mapel || row.MAPEL || row.mapel || row.nama_mata_pelajaran || row.singkatan || row.Singkatan || '')?.toString().trim();
+      const guruNamaInput = (row.nama_guru || row.Guru || row.GURU || row.guru || '')?.toString().trim();
+      const tanggalUjian = (row.tanggal_ujian || row.Tanggal || row.TANGGAL || row.tanggal || '2026-05-22').toString().trim();
+      const waktuUjian = (row.waktu_ujian || row.Waktu || row.WAKTU || row.waktu || '08:00:00').toString().trim();
+      const link = (row.google_form_link || row.link || row.URL || row.url || row.Link || '')?.toString().trim();
 
-      let kid = classes[0]?.id;
+      // Fuzzy match kelas
+      let kid: string | undefined;
       if (kelasNamaInput) {
-        const found = classes.find(c => c.nama_kelas.toLowerCase().replace(/\s+/g, '') === kelasNamaInput.toLowerCase().replace(/\s+/g, ''));
+        const found = this.fuzzyFind(classes, 'nama_kelas', kelasNamaInput);
         if (found) kid = found.id;
       }
 
-      let mid = mapels[0]?.id;
+      // Fuzzy match mapel (nama atau singkatan)
+      let mid: string | undefined;
       if (mapelNamaInput) {
+        const normInput = this.normalizeName(mapelNamaInput);
         const found = mapels.find(m =>
-          m.nama_mapel.toLowerCase().includes(mapelNamaInput.toLowerCase()) ||
-          m.singkatan.toLowerCase() === mapelNamaInput.toLowerCase()
+          this.normalizeName(m.nama_mapel).includes(normInput) ||
+          normInput.includes(this.normalizeName(m.nama_mapel)) ||
+          this.normalizeName(m.singkatan) === normInput
         );
         if (found) mid = found.id;
       }
 
-      let gid = gurus[0]?.id;
+      // Fuzzy match guru
+      let gid: string | undefined;
       if (guruNamaInput) {
-        const found = gurus.find(g => g.nama_guru.toLowerCase().includes(guruNamaInput.toLowerCase()));
+        const found = this.fuzzyFind(gurus, 'nama_guru', guruNamaInput);
         if (found) gid = found.id;
       }
 
@@ -538,11 +786,20 @@ export class DbService {
       }
 
       if (kid && mid && gid && link) {
-        await this.addLinkSoal(kid, mid, gid, tanggalUjian, waktuUjian, link, enableBlocking);
+        try {
+          await this.addLinkSoal(kid, mid, gid, tanggalUjian, waktuUjian, link, enableBlocking);
+          imported++;
+        } catch (e) {
+          console.warn('[importLinkSoal] Failed row:', row, e);
+          failed++;
+        }
+      } else {
+        console.warn(`[importLinkSoal] Skip row ${i + 1}: kelas=${kid ? '✓' : '✗'} mapel=${mid ? '✓' : '✗'} guru=${gid ? '✓' : '✗'} link=${link ? '✓' : '✗'}`);
+        skipped++;
       }
       onProgress?.(i + 1, total);
     }
-    return true;
+    return { imported, skipped, failed };
   }
 
   // Helper method for PIN unblocking
@@ -552,21 +809,41 @@ export class DbService {
   }
 
   static async loginGuru(username: string, pin: string): Promise<Guru | null> {
-    const gurus = await this.getGuru();
-    const found = gurus.find(g => g.username === username.toLowerCase() && g.pin_pengawas === pin);
-    if (found && found.is_active === false) {
-      throw new Error('Akun Anda dinonaktifkan. Silakan hubungi administrator.');
+    let gurus = await this.getGuru();
+    if (gurus.length === 0) {
+      console.log('[Supabase] No guru records found for tenant:', activeTenantId, '. Auto-seeding default admin...');
+      const profile = await this.getTenantProfile();
+      const schoolName = profile?.name || 'Sekolah';
+      const defaultAdmin = await this.addGuru('Admin ' + schoolName, 'admin', '123456');
+      gurus = [defaultAdmin];
     }
-    return found || null;
+
+    const found = gurus.find(g => g.username === username.toLowerCase() && g.pin_pengawas === pin);
+    if (found) {
+      if (found.is_active === false) {
+        throw new Error('Akun Anda dinonaktifkan. Silakan hubungi administrator.');
+      }
+      return found;
+    }
+
+    // If they typed wrong credentials but they are a brand new tenant
+    if (gurus.length === 1 && gurus[0].username === 'admin') {
+      throw new Error('Username atau PIN salah. Silakan login menggunakan username: admin dan PIN: 123456.');
+    }
+
+    return null;
   }
 
-  static async loginSiswa(nisn: string): Promise<Siswa | null> {
+  static async loginSiswa(nisn: string, platform: string = 'web'): Promise<Siswa | null> {
     checkConfig();
-    const { data, error } = await supabase!
+    let query = supabase!
       .from('siswa')
       .select('*, kelas(nama_kelas)')
-      .eq('nisn', nisn.trim())
-      .maybeSingle();
+      .eq('nisn', nisn.trim());
+    if (activeTenantId) {
+      query = query.eq('tenant_id', activeTenantId);
+    }
+    const { data, error } = await query.maybeSingle();
 
     if (error) throw error;
     if (!data) return null;
@@ -575,12 +852,30 @@ export class DbService {
       throw new Error('Akun Anda dinonaktifkan. Silakan hubungi admin/pengawas.');
     }
 
+    // Catat riwayat login secara asynchronous (tidak memperlambat loading masuk portal)
+    supabase!
+      .from('login_logs')
+      .insert([
+        {
+          tenant_id: data.tenant_id,
+          siswa_id: data.id,
+          nama_siswa: data.nama_siswa,
+          kelas_nama: data.kelas?.nama_kelas || 'Tanpa Kelas',
+          platform: platform,
+          ip_address: platform === 'web' ? 'Web Browser' : 'Android App'
+        }
+      ])
+      .then(({ error: logError }) => {
+        if (logError) console.warn('[Log Login Error]', logError);
+      });
+
     return {
       id: data.id,
       nisn: data.nisn,
       nama_siswa: data.nama_siswa,
       kelas_id: data.kelas_id,
       kelas_nama: data.kelas?.nama_kelas || 'Tanpa Kelas',
+      tenant_id: data.tenant_id,
       is_active: data.is_active !== false
     };
   }
@@ -590,24 +885,47 @@ export class DbService {
   // ==========================================
   static async getSetting(key: string): Promise<string> {
     checkConfig();
-    const { data, error } = await supabase!
+    let query = supabase!
       .from('settings')
       .select('value')
-      .eq('key', key)
-      .maybeSingle();
+      .eq('key', key);
+    if (activeTenantId) {
+      query = query.eq('tenant_id', activeTenantId);
+    }
+    const { data, error } = await query.maybeSingle();
 
     if (error) throw error;
-    return data?.value || 'simple';
+    if (data?.value) return data.value;
+    if (key === 'cache_version') return '1';
+    if (key === 'max_violations') return '5';
+    if (key === 'cheat_blocking_enabled') return 'true';
+    return 'simple';
   }
 
   static async updateSetting(key: string, value: string): Promise<boolean> {
     checkConfig();
+    const payload: any = { key, value, updated_at: new Date().toISOString() };
+    if (activeTenantId) {
+      payload.tenant_id = activeTenantId;
+    }
     const { error } = await supabase!
       .from('settings')
-      .upsert({ key, value, updated_at: new Date().toISOString() });
+      .upsert(payload);
 
     if (error) throw error;
     return true;
+  }
+
+  static async incrementCacheVersion(): Promise<void> {
+    checkConfig();
+    try {
+      const current = await this.getSetting('cache_version');
+      const nextVer = String(parseInt(current || '1', 10) + 1);
+      await this.updateSetting('cache_version', nextVer);
+      console.log('[CACHE MANAGER] Cache version global incremented to:', nextVer);
+    } catch (e) {
+      console.warn('Failed to increment cache version:', e);
+    }
   }
 
   // ==========================================
@@ -615,14 +933,30 @@ export class DbService {
   // ==========================================
   static async getTenantProfile(): Promise<Tenant | null> {
     checkConfig();
-    const { data, error } = await supabase!
-      .from('tenants')
-      .select('*')
-      .eq('is_active', true)
-      .limit(1)
-      .maybeSingle();
+    let query = supabase!.from('tenants').select('*');
+    if (activeTenantId) {
+      query = query.eq('id', activeTenantId);
+    } else {
+      query = query.eq('domain_or_slug', 'default');
+    }
+    const { data, error } = await query.limit(1).maybeSingle();
 
     if (error) throw error;
+    return data;
+  }
+
+  static async getTenantProfileBySlug(slug: string): Promise<any | null> {
+    // Queries the central/master database for the school subdomain configuration
+    const { data, error } = await masterSupabase
+      .from('tenants')
+      .select('*')
+      .eq('domain_or_slug', slug)
+      .maybeSingle();
+
+    if (error) {
+      console.error('[Supabase] Error fetching tenant profile by slug:', error);
+      throw error;
+    }
     return data;
   }
 
