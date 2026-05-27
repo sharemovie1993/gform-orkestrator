@@ -58,7 +58,8 @@ export default async function handler(req) {
     // 2. Fetch file APK dari CDN Expo menggunakan Fetch API
     const apkRes = await fetch(downloadUrl);
     if (!apkRes.ok) {
-      return new Response('Gagal mengunduh berkas APK dari CDN Expo.', { status: 502 });
+      const errBody = await apkRes.text().catch(() => '');
+      return new Response(`Gagal mengunduh berkas APK dari CDN Expo (HTTP ${apkRes.status} ${apkRes.statusText}). Detail: ${errBody.substring(0, 200)}`, { status: 502 });
     }
 
     // 3. Set header agar didownload dengan nama Orkestrator Ujian.apk
