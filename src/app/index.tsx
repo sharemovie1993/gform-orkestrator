@@ -14,6 +14,7 @@ import {
   Image,
   Alert,
   RefreshControl,
+  Animated,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as Updates from 'expo-updates';
@@ -21,11 +22,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Jurusan, Kelas, Siswa, isSupabaseConfigured, supabase } from '@/services/supabase';
 import { StorageService } from '@/services/storage';
 import { useTheme } from '@/hooks/use-theme';
+import { LicenseBlocker } from '../utils/LicenseBlocker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeScreen() {
   const router = useRouter();
   const theme = useTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
+
+  // Animated values for premium entry transitions
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const slideAnim = React.useRef(new Animated.Value(30)).current;
 
   // Student Login States
   const [studentSession, setStudentSession] = useState<Siswa | null>(null);
@@ -34,6 +41,7 @@ export default function HomeScreen() {
   const [isNisnFocused, setIsNisnFocused] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
+  const [downloadCount, setDownloadCount] = useState<number | null>(null);
 
   // System mode setting
   const [loginMode, setLoginMode] = useState<'simple' | 'login'>('simple');
@@ -68,6 +76,12 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [checkingUpdate, setCheckingUpdate] = useState(false);
 
+  // Tenant Domain States (Mobile)
+  const [showDomainInput, setShowDomainInput] = useState(false);
+  const [domainInput, setDomainInput] = useState('');
+  const [domainError, setDomainError] = useState('');
+  const [domainLoading, setDomainLoading] = useState(false);
+
   const [connectionStatus, setConnectionStatus] = useState<'checking' | 'connected' | 'error'>('checking');
   const [connectionError, setConnectionError] = useState<string | null>(null);
 
@@ -75,15 +89,15 @@ export default function HomeScreen() {
     setConnectionStatus('checking');
     setConnectionError(null);
     try {
-      if (!isSupabaseConfigured) {
+      const { isSupabaseConfigured: currentConfigured, supabase: currentSupabase } = require('@/services/supabase');
+      if (!currentConfigured || !currentSupabase) {
         throw new Error('Supabase URL atau Anon Key tidak terkonfigurasi di bundel aplikasi.');
       }
       
-      const { data, error } = await supabase!
-        .from('settings')
-        .select('value')
-        .eq('key', 'login_mode')
-        .maybeSingle();
+      const { data, error } = await currentSupabase
+        .from('tenants')
+        .select('id')
+        .limit(1);
 
       if (error) {
         throw error;
@@ -149,7 +163,82 @@ export default function HomeScreen() {
 
   const initApp = async () => {
     setIsNavigating(false); // Reset lock on mount
+
+    // SaaS Multi-Tenancy Dynamic Tenant Routing
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      try {
+        const hostname = window.location.hostname;
+        const searchParams = new URLSearchParams(window.location.search);
+        const tenantParam = searchParams.get('tenant');
+        
+        let slug = '';
+        if (tenantParam) {
+          slug = tenantParam.trim();
+        } else {
+          const parts = hostname.split('.');
+          // Support wildcard subdomains (e.g. smkn1pld.absenta.id)
+          if (parts.length > 2 && parts[0] !== 'www' && parts[0] !== 'api' && parts[0] !== 'localhost') {
+            slug = parts[0];
+          }
+        }
+        if (!slug && (hostname === 'absenta.id' || hostname === 'www.absenta.id')) {
+          console.log('[Tenant Routing] Direct portal access detected. Redirecting to landing page...');
+          window.location.replace('/landing.html');
+          return;
+        }
+        if (slug) {
+          console.log('[Tenant Routing] Detected school slug:', slug);
+          const tenant = await DbService.getTenantProfileBySlug(slug);
+          if (tenant) {
+            console.log('[Tenant Routing] Setting active tenant ID:', tenant.id, 'for school:', tenant.name);
+            const { setActiveTenantId, initializeDynamicSupabase } = require('@/services/supabase');
+            setActiveTenantId(tenant.id);
+
+            if (tenant.supabase_url && tenant.supabase_anon_key) {
+              console.log('[Tenant Routing] Re-initializing dynamic Supabase client for private database:', tenant.name);
+              initializeDynamicSupabase(tenant.supabase_url, tenant.supabase_anon_key);
+            } else {
+              console.log('[Tenant Routing] Using shared database for tenant:', tenant.name);
+              // Ensure dynamic Supabase points to master database and reset previous private clients
+              initializeDynamicSupabase('https://xjnctgbzilrhbzsbrtpu.supabase.co', 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg');
+            }
+          } else {
+            console.warn('[Tenant Routing] Tenant profile not found for slug:', slug);
+          }
+        }
+      } catch (err) {
+        console.error('[Tenant Routing] Failed to parse or route tenant:', err);
+      }
+    }
+
     checkDatabaseConnection();
+    
+    // Platform Mobile Domain Restriction Check
+    if (Platform.OS !== 'web') {
+      try {
+        const savedDomain = await StorageService.getSavedDomain();
+        if (!savedDomain) {
+          setShowDomainInput(true);
+          setLoading(false);
+          return;
+        } else {
+          setShowDomainInput(false);
+          // Set active tenant ID dynamically based on saved domain
+          let cleanDomain = savedDomain.replace(/(^\w+:|^)\/\//, '').trim();
+          const parts = cleanDomain.split('.');
+          let slug = parts[0];
+          
+          const tenant = await DbService.getTenantProfileBySlug(slug);
+          if (tenant) {
+            const { setActiveTenantId } = require('@/services/supabase');
+            setActiveTenantId(tenant.id);
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to verify saved domain on startup:', err);
+      }
+    }
+
     // 1. Check if blocked
     const blocked = await StorageService.isBlocked();
     if (blocked) {
@@ -161,47 +250,21 @@ export default function HomeScreen() {
     const savedStudent = await StorageService.getStudentSession();
     if (savedStudent) {
       setStudentSession(savedStudent);
+      // Bind active tenant ID
+      const { setActiveTenantId } = require('@/services/supabase');
+      setActiveTenantId(savedStudent.tenant_id);
+
+      // Auto-redirect directly to exam list to bypass intermediate portal and prevent accidental logout
+      router.replace({
+        pathname: '/exam-list',
+        params: { kelasId: savedStudent.kelas_id, kelasName: savedStudent.kelas_nama || 'Kelas' },
+      });
+      return;
     }
 
-    // 3. Load cached class
-    const savedClass = await StorageService.getSelectedClass();
-    if (savedClass) {
-      setCachedClass(savedClass);
-    }
-
-    // 4. Load cached login mode & classrooms for instant startup rendering
-    const cachedMode = await StorageService.getCachedLoginMode();
-    if (cachedMode) {
-      setLoginMode(cachedMode);
-    }
-
-    const cachedClasses = await StorageService.getCachedClasses();
-    if (cachedClasses && cachedClasses.length > 0) {
-      setKelasList(cachedClasses);
-      setLoading(false); // Instantly show cached UI!
-    }
-
-    // 5. Fetch fresh data from Supabase in background (Stale-While-Revalidate)
+    // 3. Fetch fresh tenant profile and configuration in background
     try {
-      let freshMode: 'simple' | 'login' = 'simple';
-      try {
-        const mode = await DbService.getSetting('login_mode');
-        freshMode = mode as 'simple' | 'login';
-        setLoginMode(freshMode);
-        await StorageService.cacheLoginMode(freshMode);
-      } catch (settingError) {
-        console.warn('Could not load portal settings, using fallback/cached mode:', settingError);
-      }
-
-      // Fetch global cheat blocking configuration
-      try {
-        const blockVal = await DbService.getSetting('cheat_blocking_enabled');
-        await StorageService.cacheCheatBlocking(blockVal === 'true');
-      } catch (blockError) {
-        console.warn('Could not load global cheat blocking configuration:', blockError);
-      }
-
-      // Fetch fresh school/tenant profile branding (SaaS Multi-tenant ready)
+      // Fetch school/tenant branding
       try {
         const tenant = await DbService.getTenantProfile();
         if (tenant) {
@@ -214,10 +277,14 @@ export default function HomeScreen() {
         console.warn('Could not load school profile branding:', tenantErr);
       }
 
-      const classesData = await DbService.getKelas(undefined, true);
-      if (classesData && classesData.length > 0) {
-        setKelasList(classesData);
-        await StorageService.cacheClasses(classesData);
+      // If student is logged in, sync tenant-specific configurations
+      if (savedStudent) {
+        try {
+          const blockVal = await DbService.getSetting('cheat_blocking_enabled');
+          await StorageService.cacheCheatBlocking(blockVal === 'true');
+        } catch (blockError) {
+          console.warn('Could not load global cheat blocking configuration:', blockError);
+        }
       }
     } catch (e) {
       console.error('Failed to load initial welcome screen data:', e);
@@ -237,8 +304,97 @@ export default function HomeScreen() {
     setRefreshing(false);
   };
 
+  const handleSaveDomain = async () => {
+    if (!domainInput.trim()) {
+      setDomainError('Alamat domain sekolah tidak boleh kosong.');
+      return;
+    }
+
+    setDomainLoading(true);
+    setDomainError('');
+
+    try {
+      // Bersihkan domain input dari http/https dan slashes
+      let cleanDomain = domainInput.replace(/(^\w+:|^)\/\//, '').trim().toLowerCase();
+      const parts = cleanDomain.split('.');
+      let slug = parts[0]; // e.g. 'smkn1pld' dari 'smkn1pld.absenta.id'
+
+      console.log('[Domain Validation] Checking slug:', slug);
+      const tenant = await DbService.getTenantProfileBySlug(slug);
+      
+      if (tenant) {
+        // Simpan domain terpilih
+        await StorageService.saveSavedDomain(cleanDomain);
+        
+        // Bind tenant ID secara dinamis
+        const { setActiveTenantId } = require('@/services/supabase');
+        setActiveTenantId(tenant.id);
+        
+        // Reset status input dan refresh data
+        setShowDomainInput(false);
+        setLoading(true);
+        await initApp();
+      } else {
+        setDomainError('Domain sekolah tidak terdaftar atau tidak aktif. Periksa kembali ejaannya.');
+      }
+    } catch (err: any) {
+      console.warn('Gagal memverifikasi domain:', err);
+      setDomainError('Gagal memvalidasi domain. Pastikan Anda terhubung ke internet.');
+    } finally {
+      setDomainLoading(false);
+    }
+  };
+
+  const handleResetDomain = async () => {
+    Alert.alert(
+      'Ganti Sekolah',
+      'Apakah Anda yakin ingin memutus koneksi dan mengganti sekolah/domain Anda?',
+      [
+        { text: 'Batal', style: 'cancel' },
+        {
+          text: 'Ya, Ganti',
+          style: 'destructive',
+          onPress: async () => {
+            await StorageService.clearSavedDomain();
+            const { setActiveTenantId } = require('@/services/supabase');
+            setActiveTenantId(null);
+            setDomainInput('');
+            setShowDomainInput(true);
+          }
+        }
+      ]
+    );
+  };
+
   useEffect(() => {
     initApp();
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        tension: 40,
+        friction: 8,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  // Ambil data jumlah unduhan APK secara dinamis dari API (Khusus platform Web)
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      fetch('https://api.absenta.id/api/license/download-stats')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && typeof data.download_count === 'number') {
+            setDownloadCount(data.download_count);
+          }
+        })
+        .catch(err => console.warn('Gagal memuat statistik unduhan:', err));
+    }
   }, []);
 
   // Check for OTA Updates on mount (for production release)
@@ -288,9 +444,43 @@ export default function HomeScreen() {
     });
   }, [kelasList, activeTingkatTab, classSearchQuery]);
 
+  const checkAndActivateLicenseForStudent = async (student: any): Promise<boolean> => {
+    try {
+      const tenantId = student.tenant_id;
+      if (!tenantId) {
+        console.warn('[License Activation] Student does not have a tenant_id. Skipping license validation.');
+        return true;
+      }
+
+      const { setActiveTenantId } = require('@/services/supabase');
+      setActiveTenantId(tenantId);
+
+      const tenant = await DbService.getTenantProfile();
+      if (!tenant) {
+        throw new Error('Profil sekolah Anda tidak ditemukan di database.');
+      }
+
+      const { initializeDynamicSupabase } = require('@/services/supabase');
+      const tenantData: any = tenant;
+      if (tenantData.supabase_url && tenantData.supabase_anon_key) {
+        initializeDynamicSupabase(tenantData.supabase_url, tenantData.supabase_anon_key);
+      }
+
+      // Skip license activation and blocking check for universal login
+      console.log('[Background Licensing] Universal login active, bypassing blocking license verification.');
+      return true;
+    } catch (err: any) {
+      console.warn('[Background Licensing] Activation check failed:', err.message);
+      const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+      await AsyncStorage.removeItem('@license_token');
+      await StorageService.clearStudentSession();
+      throw err;
+    }
+  };
+
   const handleStudentLogin = async () => {
     if (!nisn.trim()) {
-      setLoginError('Harap masukkan NISN Anda.');
+      setLoginError('Harap masukkan NIS Anda.');
       return;
     }
 
@@ -300,11 +490,14 @@ export default function HomeScreen() {
     try {
       const student = await DbService.loginSiswa(nisn.trim());
       if (student) {
+        // Perform license validation before completing login session
+        await checkAndActivateLicenseForStudent(student);
+
         await StorageService.saveStudentSession(student);
         setStudentSession(student);
         setNisn('');
       } else {
-        setLoginError('NISN tidak terdaftar! Harap hubungi pengawas.');
+        setLoginError('NIS tidak terdaftar! Harap hubungi pengawas.');
       }
     } catch (e: any) {
       console.error(e);
@@ -368,17 +561,29 @@ export default function HomeScreen() {
 
   const handleSelectStudent = async (student: Siswa) => {
     try {
+      setStudentModalVisible(false);
+      setLoading(true);
+      
+      // Perform license validation before completing login session
+      await checkAndActivateLicenseForStudent(student);
+
       await StorageService.saveStudentSession(student);
       await StorageService.saveSelectedClass(student.kelas_id, student.kelas_nama || 'Kelas');
       setStudentSession(student);
-      setStudentModalVisible(false);
       
       router.push({
         pathname: '/exam-list',
         params: { kelasId: student.kelas_id, kelasName: student.kelas_nama || 'Kelas' },
       });
-    } catch (e) {
+    } catch (e: any) {
       console.error('Failed to select student:', e);
+      Alert.alert(
+        'Aktivasi Lisensi Gagal',
+        e.message || 'Terjadi kesalahan saat memverifikasi lisensi sekolah Anda. Silakan hubungi proktor.',
+        [{ text: 'OK' }]
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -421,353 +626,262 @@ export default function HomeScreen() {
           />
         }
       >
-        
-        {/* School Branding Header */}
-        <View style={styles.headerSection}>
-          {logoUrl ? (
-            <Image source={{ uri: logoUrl }} style={styles.schoolLogo} resizeMode="contain" />
+        <Animated.View style={[styles.animatedContent, { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
+          
+          {/* School Branding Header */}
+          <View style={styles.headerSection}>
+            <View style={styles.logoWrapper}>
+              {logoUrl ? (
+                <Image source={{ uri: logoUrl }} style={styles.schoolLogo} resizeMode="contain" />
+              ) : (
+                <View style={styles.fallbackLogoContainer}>
+                  <Text style={styles.fallbackLogoText}>
+                    {schoolName ? schoolName.split(' ').filter(word => word.length > 0).map(n => n[0]).join('').substring(0, 3).toUpperCase() : 'SCH'}
+                  </Text>
+                </View>
+              )}
+            </View>
+            <Text style={styles.headerTitle}>{schoolName}</Text>
+            <Text style={styles.headerSubtitle}>{examEvent}</Text>
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>SEB Secure Mode</Text>
+            </View>
+          </View>
+
+          {studentSession ? (
+            /* ========================================================
+               STUDENT DASHBOARD (LOGGED IN STATE)
+               ======================================================== */
+            <View style={styles.dashboardCard}>
+              <Text style={styles.emojiIcon}>🎓</Text>
+              <Text style={styles.dashboardHeader}>PORTAL SISWA</Text>
+              
+              <View style={styles.studentInfoBox}>
+                <View style={styles.studentInfoRow}>
+                  <Text style={styles.studentInfoLabel}>NAMA</Text>
+                  <Text style={styles.studentInfoValue}>{studentSession.nama_siswa}</Text>
+                </View>
+                <View style={styles.studentDivider} />
+                <View style={styles.studentInfoRow}>
+                  <Text style={styles.studentInfoLabel}>NIS</Text>
+                  <Text style={styles.studentInfoValue}>{studentSession.nisn}</Text>
+                </View>
+                <View style={styles.studentDivider} />
+                <View style={styles.studentInfoRow}>
+                  <Text style={styles.studentInfoLabel}>KELAS</Text>
+                  <Text style={styles.studentInfoValue}>{studentSession.kelas_nama || 'Kelas Aktif'}</Text>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                style={styles.goToExamsButton}
+                onPress={() => handleOpenExamList(studentSession.kelas_id, studentSession.kelas_nama || 'Kelas')}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.goToExamsText}>🚀 BUKA DAFTAR UJIAN</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.logoutButton}
+                onPress={handleStudentLogout}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.logoutText}>🚪 Keluar Akun</Text>
+              </TouchableOpacity>
+            </View>
           ) : (
-            <View style={styles.fallbackLogoContainer}>
-              <Text style={styles.fallbackLogoText}>
-                {schoolName ? schoolName.split(' ').filter(word => word.length > 0).map(n => n[0]).join('').substring(0, 3).toUpperCase() : 'SCH'}
+            /* ========================================================
+               🔒 SECURE NIS LOGIN PORTAL MODE
+               ======================================================== */
+            <View style={styles.selectionCard}>
+              <Text style={styles.simpleTitle}>🔑 PORTAL LOGIN SISWA</Text>
+              
+              <View style={styles.formContainer}>
+                <Text style={styles.label}>NIS SISWA</Text>
+                
+                <View style={[
+                  styles.inputContainer,
+                  isNisnFocused && styles.inputContainerFocused,
+                ]}>
+                  <Text style={styles.inputIcon}>👤</Text>
+                  <TextInput
+                    style={[
+                      styles.nisInput,
+                      Platform.select({
+                        web: {
+                          outlineStyle: 'none',
+                        } as any,
+                      }),
+                    ]}
+                    value={nisn}
+                    onChangeText={(text) => {
+                      setNisn(text.replace(/[^0-9]/g, ''));
+                      setLoginError('');
+                    }}
+                    onFocus={() => setIsNisnFocused(true)}
+                    onBlur={() => setIsNisnFocused(false)}
+                    placeholder="Masukkan NIS Anda"
+                    placeholderTextColor="#64748B"
+                    keyboardType="number-pad"
+                    maxLength={15}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    spellCheck={false}
+                    onSubmitEditing={handleStudentLogin}
+                  />
+                </View>
+
+                {loginError ? (
+                  <View style={styles.errorBanner}>
+                    <Text style={styles.errorBannerText}>⚠️ {loginError}</Text>
+                  </View>
+                ) : null}
+
+                <TouchableOpacity
+                  style={[
+                    styles.submitButton,
+                    (!nisn.trim() || loginLoading) && styles.submitButtonDisabled
+                  ]}
+                  disabled={loginLoading || !nisn.trim()}
+                  onPress={handleStudentLogin}
+                  activeOpacity={0.8}
+                >
+                  {loginLoading ? (
+                    <ActivityIndicator color="#FFF" />
+                  ) : (
+                    <Text style={styles.submitButtonText}>MASUK PORTAL</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+
+              {Platform.OS !== 'web' && (
+                <TouchableOpacity
+                  style={styles.changeSchoolLink}
+                  onPress={handleResetDomain}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.changeSchoolLinkText}>🏢 Hubungkan ke Sekolah Lain</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
+
+          {/* ── APK Download Banner (Web Only) ── */}
+          {Platform.OS === 'web' && (
+            <View style={styles.apkDownloadSection}>
+              <View style={styles.apkDownloadCard}>
+                <View style={styles.apkDownloadLeft}>
+                  <Text style={styles.apkAndroidIcon}>🤖</Text>
+                  <View>
+                    <Text style={styles.apkDownloadTitle}>Pakai Aplikasi Android</Text>
+                    <Text style={styles.apkDownloadDesc}>Lebih cepat & stabil saat ujian berlangsung</Text>
+                  </View>
+                </View>
+                <TouchableOpacity
+                  style={styles.apkDownloadBtn}
+                  onPress={() => {
+                    if (typeof window !== 'undefined') {
+                      window.open('https://api.absenta.id/download-apk', '_blank');
+                    }
+                  }}
+                  activeOpacity={0.85}
+                >
+                  <Text style={styles.apkDownloadBtnText}>⬇ Unduh APK</Text>
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.apkDownloadNote}>
+                ✦ APK terbaru {downloadCount !== null ? `· Diunduh ${downloadCount} kali ` : ''}· Otomatis update dari cloud
               </Text>
             </View>
           )}
-          <Text style={styles.headerTitle}>{schoolName}</Text>
-          <Text style={styles.headerSubtitle}>{examEvent}</Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>SEB Secure Mode</Text>
-          </View>
-        </View>
 
-        {studentSession ? (
-          /* ========================================================
-             STUDENT DASHBOARD (LOGGED IN STATE)
-             ======================================================== */
-          <View style={styles.dashboardCard}>
-            <Text style={styles.emojiIcon}>🎓</Text>
-            <Text style={styles.dashboardHeader}>PORTAL SISWA</Text>
-            
-            <View style={styles.studentInfoBox}>
-              <View style={styles.studentInfoRow}>
-                <Text style={styles.studentInfoLabel}>NAMA</Text>
-                <Text style={styles.studentInfoValue}>{studentSession.nama_siswa}</Text>
-              </View>
-              <View style={styles.studentDivider} />
-              <View style={styles.studentInfoRow}>
-                <Text style={styles.studentInfoLabel}>NISN</Text>
-                <Text style={styles.studentInfoValue}>{studentSession.nisn}</Text>
-              </View>
-              <View style={styles.studentDivider} />
-              <View style={styles.studentInfoRow}>
-                <Text style={styles.studentInfoLabel}>KELAS</Text>
-                <Text style={styles.studentInfoValue}>{studentSession.kelas_nama || 'Kelas Aktif'}</Text>
-              </View>
-            </View>
-
+          {/* Footer Admin Entry & Check Update Button */}
+          <View style={styles.footerButtonsRow}>
             <TouchableOpacity
-              style={styles.goToExamsButton}
-              onPress={() => handleOpenExamList(studentSession.kelas_id, studentSession.kelas_nama || 'Kelas')}
+              style={styles.teacherLink}
+              onPress={() => router.push('/teacher/login')}
+              activeOpacity={0.7}
             >
-              <Text style={styles.goToExamsText}>🚀 BUKA DAFTAR UJIAN</Text>
+              <Text style={styles.teacherLinkText}>🔑 Panel Guru</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.logoutButton}
-              onPress={handleStudentLogout}
+              style={[styles.checkUpdateBtn, checkingUpdate && styles.checkUpdateBtnDisabled]}
+              disabled={checkingUpdate}
+              onPress={handleManualCheckUpdate}
+              activeOpacity={0.7}
             >
-              <Text style={styles.logoutText}>🚪 Keluar Akun</Text>
+              {checkingUpdate ? (
+                <ActivityIndicator size="small" color="#10B981" />
+              ) : (
+                <Text style={styles.checkUpdateBtnText}>🔄 Cek Update</Text>
+              )}
             </TouchableOpacity>
           </View>
-        ) : (
-          /* ========================================================
-             LOGIN / ACCESS GUEST STATE
-             ======================================================== */
-          <>
-            {loginMode === 'simple' ? (
-              /* ========================================================
-                 ⚡ ACCESS DIRECT SIMPLE TABULAR MODE
-                 ======================================================== */
-              <View style={styles.selectionCard}>
-                <Text style={styles.simpleTitle}>Pilih Kelas Ujian Anda</Text>
-                
-                {/* Tingkat Tab Switcher */}
-                <View style={styles.tingkatGroup}>
-                  {(['X', 'XI', 'XII'] as const).map((tingkat) => (
-                    <TouchableOpacity
-                      key={tingkat}
-                      style={[
-                        styles.tingkatButton,
-                        activeTingkatTab === tingkat && styles.tingkatButtonActive,
-                      ]}
-                      onPress={() => {
-                        setActiveTingkatTab(tingkat);
-                      }}
-                    >
-                      <Text
-                        style={[
-                          styles.tingkatButtonText,
-                          activeTingkatTab === tingkat && styles.tingkatButtonTextActive,
-                        ]}
-                      >
-                        KELAS {tingkat}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
 
-                {/* Class Search Query */}
+          <Text style={styles.copyrightText}>powered by BARAYA TEKNOLOGI</Text>
+          <Text style={styles.versionText}>v1.0.1 (OTA)</Text>
+        </Animated.View>
+      </ScrollView>
+
+      {/* ── Mobile Domain Input Modal Overlay (Premium) ── */}
+      <Modal
+        visible={showDomainInput && Platform.OS !== 'web'}
+        transparent={false}
+        animationType="fade"
+      >
+        <SafeAreaView style={[styles.container, styles.domainContainer]}>
+          <StatusBar barStyle={theme.activeTheme === 'dark' ? 'light-content' : 'dark-content'} />
+          <ScrollView contentContainerStyle={styles.domainScroll} keyboardShouldPersistTaps="handled">
+            <Animated.View style={[styles.domainCard, { opacity: fadeAnim }]}>
+              <Text style={styles.domainEmoji}>🌐</Text>
+              <Text style={styles.domainTitle}>Portal Ujian Bersama</Text>
+              <Text style={styles.domainSubtitle}>Masukkan alamat domain server sekolah Anda untuk memulai ujian.</Text>
+              
+              <View style={styles.domainInputWrapper}>
+                <Text style={styles.domainInputLabel}>Domain / Alamat Sekolah</Text>
                 <TextInput
                   style={[
-                    styles.searchBarInput,
-                    Platform.select({
-                      web: { outlineStyle: 'none' } as any
-                    })
+                    styles.domainInputText,
+                    Platform.select({ web: { outlineStyle: 'none' } as any }),
                   ]}
-                  placeholder="🔍 Cari nama kelas Anda..."
+                  value={domainInput}
+                  onChangeText={(text) => {
+                    setDomainInput(text);
+                    setDomainError('');
+                  }}
+                  placeholder="Contoh: smkn1plered.absenta.id"
                   placeholderTextColor="#64748B"
-                  value={classSearchQuery}
-                  onChangeText={setClassSearchQuery}
                   autoCapitalize="none"
                   autoCorrect={false}
                   spellCheck={false}
+                  onSubmitEditing={handleSaveDomain}
                 />
-
-                {/* Active Classes Grid */}
-                <View style={styles.classesGridContainer}>
-                  {filteredClassesForSimpleMode.length === 0 ? (
-                    <View style={styles.emptyContainer}>
-                      <Text style={styles.emptyText}>Tidak ada kelas yang cocok.</Text>
-                    </View>
-                  ) : (
-                    <View style={styles.classesGrid}>
-                      {filteredClassesForSimpleMode.map((k) => (
-                        <TouchableOpacity
-                          key={k.id}
-                          style={styles.classCard}
-                          onPress={() => handleSelectClassInSimpleMode(k.id, k.nama_kelas)}
-                        >
-                          <Text style={styles.classCardText}>{k.nama_kelas}</Text>
-                        </TouchableOpacity>
-                      ))}
-                    </View>
-                  )}
-                </View>
               </View>
-            ) : (
-              /* ========================================================
-                 🔒 SECURE NISN LOGIN PORTAL MODE
-                 ======================================================== */
-              <View style={styles.selectionCard}>
-                {/* Segmented Switch Tab */}
-                <View style={styles.segmentTabBar}>
-                  <TouchableOpacity
-                    style={[
-                      styles.segmentTab,
-                      activeTab === 'student' && styles.segmentTabActive
-                    ]}
-                    onPress={() => {
-                      setActiveTab('student');
-                      setLoginError('');
-                    }}
-                  >
-                    <Text style={[
-                      styles.segmentTabText,
-                      activeTab === 'student' && styles.segmentTabTextActive
-                    ]}>🔑 Login Siswa</Text>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity
-                    style={[
-                      styles.segmentTab,
-                      activeTab === 'guest' && styles.segmentTabActive
-                    ]}
-                    onPress={() => {
-                      setActiveTab('guest');
-                      setLoginError('');
-                    }}
-                  >
-                    <Text style={[
-                      styles.segmentTabText,
-                      activeTab === 'guest' && styles.segmentTabTextActive
-                    ]}>🌐 Akses Tamu</Text>
-                  </TouchableOpacity>
+
+              {domainError ? (
+                <View style={styles.domainErrorBox}>
+                  <Text style={styles.domainErrorText}>⚠️ {domainError}</Text>
                 </View>
+              ) : null}
 
-                {activeTab === 'student' ? (
-                  /* student LOGIN FORM */
-                  <View style={styles.formContainer}>
-                    <Text style={styles.label}>NISN SISWA</Text>
-                    <TextInput
-                      style={[
-                        styles.nisnInput,
-                        isNisnFocused && styles.nisnInputFocused,
-                        Platform.select({
-                          web: {
-                            outlineStyle: 'none',
-                          } as any,
-                        }),
-                      ]}
-                      value={nisn}
-                      onChangeText={(text) => {
-                        setNisn(text.replace(/[^0-9]/g, ''));
-                        setLoginError('');
-                      }}
-                      onFocus={() => setIsNisnFocused(true)}
-                      onBlur={() => setIsNisnFocused(false)}
-                      placeholder="Masukkan NISN Anda"
-                      placeholderTextColor="#64748B"
-                      keyboardType="number-pad"
-                      maxLength={15}
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      spellCheck={false}
-                    />
-
-                    {loginError ? (
-                      <Text style={styles.loginErrorText}>⚠️ {loginError}</Text>
-                    ) : null}
-
-                    <TouchableOpacity
-                      style={[
-                        styles.submitButton,
-                        !nisn.trim() && styles.submitButtonDisabled
-                      ]}
-                      disabled={loginLoading || !nisn.trim()}
-                      onPress={handleStudentLogin}
-                    >
-                      {loginLoading ? (
-                        <ActivityIndicator color="#FFF" />
-                      ) : (
-                        <Text style={styles.submitButtonText}>MASUK PORTAL</Text>
-                      )}
-                    </TouchableOpacity>
-                  </View>
+              <TouchableOpacity
+                style={[styles.domainSubmitBtn, domainLoading && styles.domainSubmitBtnDisabled]}
+                onPress={handleSaveDomain}
+                disabled={domainLoading}
+                activeOpacity={0.8}
+              >
+                {domainLoading ? (
+                  <ActivityIndicator color="#FFF" />
                 ) : (
-                  /* GUEST DIRECT TABULAR ACCESS */
-                  <View style={styles.formContainer}>
-                    {/* Tingkat Tab Switcher */}
-                    <View style={styles.tingkatGroup}>
-                      {(['X', 'XI', 'XII'] as const).map((tingkat) => (
-                        <TouchableOpacity
-                          key={tingkat}
-                          style={[
-                            styles.tingkatButton,
-                            activeTingkatTab === tingkat && styles.tingkatButtonActive,
-                          ]}
-                          onPress={() => {
-                            setActiveTingkatTab(tingkat);
-                          }}
-                        >
-                          <Text
-                            style={[
-                              styles.tingkatButtonText,
-                              activeTingkatTab === tingkat && styles.tingkatButtonTextActive,
-                            ]}
-                          >
-                            KELAS {tingkat}
-                          </Text>
-                        </TouchableOpacity>
-                      ))}
-                    </View>
-
-                    {/* Class Search Query */}
-                    <TextInput
-                      style={[
-                        styles.searchBarInput,
-                        Platform.select({
-                          web: { outlineStyle: 'none' } as any
-                        }),
-                        { marginBottom: 15 }
-                      ]}
-                      placeholder="🔍 Cari nama kelas Anda..."
-                      placeholderTextColor="#64748B"
-                      value={classSearchQuery}
-                      onChangeText={setClassSearchQuery}
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      spellCheck={false}
-                    />
-
-                    {/* Active Classes Grid */}
-                    <View style={styles.classesGridContainer}>
-                      {filteredClassesForSimpleMode.length === 0 ? (
-                        <View style={styles.emptyContainer}>
-                          <Text style={styles.emptyText}>Tidak ada kelas yang cocok.</Text>
-                        </View>
-                      ) : (
-                        <View style={styles.classesGrid}>
-                          {filteredClassesForSimpleMode.map((k) => (
-                            <TouchableOpacity
-                              key={k.id}
-                              style={styles.classCard}
-                              onPress={() => handleSelectClassInSimpleMode(k.id, k.nama_kelas)}
-                            >
-                              <Text style={styles.classCardText}>{k.nama_kelas}</Text>
-                            </TouchableOpacity>
-                          ))}
-                        </View>
-                      )}
-                    </View>
-                  </View>
+                  <Text style={styles.domainSubmitText}>HUBUNGKAN SEKARANG</Text>
                 )}
-              </View>
-            )}
-          </>
-        )}
-
-        {/* Database Connection Indicator Card */}
-        <View style={styles.connectionCard}>
-          <View style={styles.connectionRow}>
-            <View style={[
-              styles.connectionStatusDot,
-              connectionStatus === 'connected' && styles.connectionStatusDotConnected,
-              connectionStatus === 'error' && styles.connectionStatusDotError,
-              connectionStatus === 'checking' && styles.connectionStatusDotChecking,
-            ]} />
-            <Text style={styles.connectionStatusText}>
-              {connectionStatus === 'connected' && '🟢 Database Terhubung'}
-              {connectionStatus === 'checking' && '🟡 Memeriksa Koneksi Database...'}
-              {connectionStatus === 'error' && '🔴 Koneksi Database Terputus'}
-            </Text>
-            {connectionStatus !== 'checking' && (
-              <TouchableOpacity onPress={checkDatabaseConnection} style={styles.reconnectBtn}>
-                <Text style={styles.reconnectBtnText}>🔄 Cek Ulang</Text>
               </TouchableOpacity>
-            )}
-          </View>
-          {connectionStatus === 'error' && connectionError && (
-            <Text style={styles.connectionErrorText} numberOfLines={4}>
-              {connectionError}
-            </Text>
-          )}
-        </View>
-
-        {/* Footer Admin Entry & Check Update Button */}
-        <View style={styles.footerButtonsRow}>
-          <TouchableOpacity
-            style={styles.teacherLink}
-            onPress={() => router.push('/teacher/login')}
-          >
-            <Text style={styles.teacherLinkText}>🔑 Panel Guru</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.checkUpdateBtn, checkingUpdate && styles.checkUpdateBtnDisabled]}
-            disabled={checkingUpdate}
-            onPress={handleManualCheckUpdate}
-          >
-            {checkingUpdate ? (
-              <ActivityIndicator size="small" color="#10B981" />
-            ) : (
-              <Text style={styles.checkUpdateBtnText}>🔄 Cek Update</Text>
-            )}
-          </TouchableOpacity>
-        </View>
-
-        <Text style={styles.copyrightText}>powered by BARAYA TEKNOLOGI</Text>
-        <Text style={styles.versionText}>v1.0.1 (OTA)</Text>
-      </ScrollView>
+            </Animated.View>
+            <Text style={styles.copyrightText}>powered by BARAYA TEKNOLOGI</Text>
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
 
       {/* Student Selection Modal (For Simple Mode / Guest name picking) */}
       <Modal
@@ -946,22 +1060,35 @@ const createStyles = (theme: any) => StyleSheet.create({
     marginTop: 4,
     alignSelf: 'center',
   },
-  // Main Selection Box Card
+  animatedContent: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  // Main Selection Box Card (Glassmorphic)
   selectionCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: theme.backgroundElement,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(30, 41, 59, 0.75)' : 'rgba(255, 255, 255, 0.85)',
     borderRadius: 24,
-    padding: 24,
+    padding: 28,
+    borderWidth: 1,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
     ...Platform.select({
       web: {
-        shadowColor: theme.cardShadow,
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.1,
-        shadowRadius: 15,
-      },
+        backdropFilter: 'blur(10px)',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+      } as any,
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+      }
     }),
-    elevation: 5,
+    elevation: 6,
   },
   cardHeader: {
     fontSize: 16,
@@ -1011,106 +1138,90 @@ const createStyles = (theme: any) => StyleSheet.create({
   segmentTabTextActive: {
     color: theme.primary,
   },
-  // NISN Input specific styles
-  nisnInput: {
-    backgroundColor: theme.background,
+  // Premium input container styles
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.6)' : 'rgba(241, 245, 249, 0.8)',
     borderColor: theme.border,
     borderWidth: 1.5,
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    color: theme.text,
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'center',
-    letterSpacing: 3,
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    height: 56,
   },
-  nisnInputFocused: {
+  inputContainerFocused: {
     borderColor: theme.primary,
     ...Platform.select({
       web: {
-        boxShadow: `0 0 0 3px ${theme.primary}40`,
+        boxShadow: `0 0 0 3px ${theme.primary}30`,
       } as any,
     }),
   },
-  loginErrorText: {
-    color: theme.danger,
-    fontSize: 12,
-    fontWeight: '600',
-    marginTop: 8,
-    textAlign: 'center',
+  inputIcon: {
+    fontSize: 18,
+    marginRight: 12,
+    opacity: 0.8,
   },
-  // Guest Dropdowns
-  dropdownButton: {
-    backgroundColor: theme.background,
-    borderColor: theme.border,
-    borderWidth: 1.5,
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  dropdownText: {
-    color: theme.text,
-    fontSize: 15,
-    fontWeight: '600',
-  },
-  placeholderText: {
-    color: theme.textMuted,
-    fontSize: 15,
-  },
-  dropdownArrow: {
-    color: theme.textMuted,
-    fontSize: 12,
-  },
-  tingkatGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 4,
-  },
-  tingkatButton: {
+  nisInput: {
     flex: 1,
-    backgroundColor: theme.background,
-    borderColor: theme.border,
-    borderWidth: 1.5,
+    color: theme.text,
+    fontSize: 16,
+    fontWeight: '700',
+    height: '100%',
+    letterSpacing: 2,
+  },
+  errorBanner: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
+    borderWidth: 1,
     borderRadius: 12,
-    paddingVertical: 12,
-    marginHorizontal: 4,
+    padding: 12,
+    marginTop: 15,
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  tingkatButtonActive: {
-    backgroundColor: theme.primary,
-    borderColor: theme.primary,
-  },
-  tingkatButtonText: {
-    color: theme.textSecondary,
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  tingkatButtonTextActive: {
-    color: '#FFF',
+  errorBannerText: {
+    color: theme.danger,
+    fontSize: 13,
+    fontWeight: '600',
+    flex: 1,
+    textAlign: 'center',
   },
   // Submit Portal Button
   submitButton: {
     backgroundColor: theme.primary,
-    borderRadius: 12,
-    paddingVertical: 15,
+    borderRadius: 14,
+    height: 56,
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 25,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.primary,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+      } as any,
+      default: {
+        shadowColor: theme.primary,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      }
+    }),
     elevation: 4,
     width: '100%',
   },
   submitButtonDisabled: {
     backgroundColor: theme.backgroundSelected,
+    opacity: 0.6,
     elevation: 0,
   },
   submitButtonText: {
     color: '#FFF',
     fontSize: 16,
     fontWeight: '800',
-    letterSpacing: 1,
+    letterSpacing: 1.5,
   },
   // Student Dashboard logged in card
   dashboardCard: {
@@ -1202,24 +1313,98 @@ const createStyles = (theme: any) => StyleSheet.create({
   },
   // Teacher link footer
   teacherLink: {
-    padding: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
+    borderColor: theme.border,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   teacherLinkText: {
-    color: theme.textMuted,
-    fontSize: 14,
-    fontWeight: '600',
+    color: theme.textSecondary,
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  // ── APK Download Banner (Web Only) ──
+  apkDownloadSection: {
+    marginTop: 24,
+    marginBottom: 4,
+    paddingHorizontal: 0,
+  },
+  apkDownloadCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: theme.activeTheme === 'dark'
+      ? 'rgba(52, 211, 153, 0.08)'
+      : 'rgba(5, 150, 105, 0.07)',
+    borderWidth: 1,
+    borderColor: theme.activeTheme === 'dark'
+      ? 'rgba(52, 211, 153, 0.25)'
+      : 'rgba(5, 150, 105, 0.2)',
+    borderRadius: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    gap: 10,
+  },
+  apkDownloadLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    flex: 1,
+  },
+  apkAndroidIcon: {
+    fontSize: 28,
+  },
+  apkDownloadTitle: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: theme.activeTheme === 'dark' ? '#34D399' : '#065F46',
+    letterSpacing: 0.3,
+  },
+  apkDownloadDesc: {
+    fontSize: 11,
+    color: theme.textSecondary,
+    marginTop: 2,
+  },
+  apkDownloadBtn: {
+    backgroundColor: theme.activeTheme === 'dark' ? '#10B981' : '#059669',
+    paddingVertical: 9,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    shadowColor: '#10B981',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.35,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  apkDownloadBtnText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 0.5,
+  },
+  apkDownloadNote: {
+    textAlign: 'center',
+    fontSize: 10,
+    color: theme.textSecondary,
+    marginTop: 6,
+    letterSpacing: 0.3,
   },
   footerButtonsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 15,
-    marginTop: 40,
+    marginTop: 20,
   },
   checkUpdateBtn: {
     paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
+    paddingHorizontal: 14,
+    borderRadius: 10,
     backgroundColor: theme.activeTheme === 'light' ? 'rgba(5, 150, 105, 0.08)' : 'rgba(16, 185, 129, 0.15)',
     borderColor: theme.success,
     borderWidth: 1,
@@ -1343,10 +1528,23 @@ const createStyles = (theme: any) => StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  logoWrapper: {
+    padding: 6,
+    borderRadius: 50,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.08)' : 'rgba(37, 99, 235, 0.05)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)',
+    borderWidth: 1.5,
+    marginBottom: 15,
+    ...Platform.select({
+      web: {
+        boxShadow: `0 0 15px ${theme.primary}20`,
+      } as any,
+    }),
+  },
   schoolLogo: {
     width: 80,
     height: 80,
-    marginBottom: 15,
+    borderRadius: 40,
   },
   fallbackLogoContainer: {
     width: 80,
@@ -1357,7 +1555,6 @@ const createStyles = (theme: any) => StyleSheet.create({
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
     shadowColor: theme.primary,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.3,
@@ -1533,5 +1730,120 @@ const createStyles = (theme: any) => StyleSheet.create({
   },
   refreshFloatingIcon: {
     fontSize: 14,
+  },
+
+  // ── Domain Input Styles ──
+  domainContainer: {
+    backgroundColor: theme.background,
+    justifyContent: 'center',
+  },
+  domainScroll: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  domainCard: {
+    width: '100%',
+    maxWidth: 420,
+    borderRadius: 24,
+    padding: 30,
+    backgroundColor: theme.backgroundElement,
+    borderWidth: 1,
+    borderColor: theme.border,
+    alignItems: 'center',
+    ...Platform.select({
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.15,
+        shadowRadius: 12,
+      }
+    }),
+  },
+  domainEmoji: {
+    fontSize: 54,
+    marginBottom: 16,
+  },
+  domainTitle: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: theme.primary,
+    marginBottom: 6,
+    letterSpacing: 0.5,
+  },
+  domainSubtitle: {
+    fontSize: 13,
+    color: theme.textSecondary,
+    textAlign: 'center',
+    lineHeight: 18,
+    marginBottom: 24,
+    fontWeight: '600',
+  },
+  domainInputWrapper: {
+    width: '100%',
+    marginBottom: 18,
+  },
+  domainInputLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: theme.textSecondary,
+    textTransform: 'uppercase',
+    marginBottom: 6,
+  },
+  domainInputText: {
+    width: '100%',
+    height: 54,
+    borderRadius: 14,
+    borderWidth: 1.5,
+    borderColor: theme.border,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.6)' : 'rgba(241, 245, 249, 0.8)',
+    paddingHorizontal: 16,
+    color: theme.text,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  domainErrorBox: {
+    width: '100%',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+  },
+  domainErrorText: {
+    color: theme.danger,
+    fontSize: 13,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  domainSubmitBtn: {
+    width: '100%',
+    backgroundColor: theme.primary,
+    height: 54,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 3,
+  },
+  domainSubmitBtnDisabled: {
+    opacity: 0.6,
+  },
+  domainSubmitText: {
+    color: '#FFF',
+    fontWeight: '800',
+    fontSize: 14,
+    letterSpacing: 0.5,
+  },
+  changeSchoolLink: {
+    marginTop: 18,
+    alignSelf: 'center',
+    padding: 8,
+  },
+  changeSchoolLinkText: {
+    color: theme.textSecondary,
+    fontSize: 12,
+    fontWeight: '700',
   },
 });
