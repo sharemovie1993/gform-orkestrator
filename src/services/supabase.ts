@@ -970,4 +970,20 @@ export class DbService {
     if (error) throw error;
     return true;
   }
+
+  // ==========================================
+  // LOG LOGIN / AKTIVITAS SISWA
+  // ==========================================
+  static async getLoginLogs(): Promise<any[]> {
+    checkConfig();
+    let query = supabase!
+      .from('login_logs')
+      .select('*');
+    if (activeTenantId) {
+      query = query.eq('tenant_id', activeTenantId);
+    }
+    const { data, error } = await query.order('created_at', { ascending: false });
+    if (error) throw error;
+    return data || [];
+  }
 }

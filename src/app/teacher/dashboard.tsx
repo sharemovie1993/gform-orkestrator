@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { DbService, LinkSoal, Mapel, Kelas } from '@/services/supabase';
+import { DbService, LinkSoal, Mapel, Kelas, Guru } from '@/services/supabase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConfirmDialog } from '@/components/admin/AdminComponents';
 import { DateTimePicker } from '@/components/admin/DateTimePicker';
@@ -41,6 +41,14 @@ export default function TeacherDashboard() {
   const [loginMode, setLoginMode] = useState<'simple' | 'login'>('simple');
   const [updatingMode, setUpdatingMode] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+
+  // ── Filter and Pagination states ──
+  const [gurusList, setGurusList] = useState<any[]>([]);
+  const [selectedGuruFilter, setSelectedGuruFilter] = useState('all');
+  const [selectedKelasFilter, setSelectedKelasFilter] = useState('all');
+  const [selectedMapelFilter, setSelectedMapelFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   // ── Bulk delete state ──
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -82,9 +90,78 @@ export default function TeacherDashboard() {
         if (activeGuruNama) await AsyncStorage.setItem('@logged_in_guru_nama', activeGuruNama);
       }
 
+      // --- Caching Strategy Opsi B: Cache Versioning ---
+      let dbCacheVersion = '1';
+      try {
+        dbCacheVersion = await DbService.getSetting('cache_version');
+      } catch (e) {
+        console.warn('[CACHE MANAGER] Failed to fetch cache_version, defaulting to 1', e);
+      }
+
+      const localCacheVersion = await AsyncStorage.getItem('@cache_version');
+      let gurusListLocal: Guru[] = [];
+      let mapelsLocal: Mapel[] = [];
+      let kelasListLocal: Kelas[] = [];
+      let loadedFromCache = false;
+
+      if (dbCacheVersion && dbCacheVersion === localCacheVersion) {
+        try {
+          const cachedGurus = await AsyncStorage.getItem('@cached_gurus');
+          const cachedMapels = await AsyncStorage.getItem('@cached_mapels');
+          const cachedKelas = await AsyncStorage.getItem('@cached_kelas');
+
+          if (cachedGurus && cachedMapels && cachedKelas) {
+            gurusListLocal = JSON.parse(cachedGurus);
+            mapelsLocal = JSON.parse(cachedMapels);
+            kelasListLocal = JSON.parse(cachedKelas);
+            loadedFromCache = true;
+            console.log('[CACHE MANAGER] Successfully loaded all master data from local cache (version:', dbCacheVersion, ')');
+          }
+        } catch (err) {
+          console.warn('[CACHE MANAGER] Failed to parse cached master data:', err);
+        }
+      }
+
+      if (!loadedFromCache) {
+        console.log('[CACHE MANAGER] Cache miss/stale. Fetching fresh master data from Supabase...');
+        try {
+          const [freshGurus, freshMapels, freshKelas] = await Promise.all([
+            DbService.getGuru(true), // active only
+            DbService.getMapel(true), // active only
+            DbService.getKelas(undefined, true), // active only
+          ]);
+
+          gurusListLocal = freshGurus;
+          mapelsLocal = freshMapels;
+          kelasListLocal = freshKelas;
+
+          // Save to LocalStorage
+          await AsyncStorage.setItem('@cached_gurus', JSON.stringify(freshGurus));
+          await AsyncStorage.setItem('@cached_mapels', JSON.stringify(freshMapels));
+          await AsyncStorage.setItem('@cached_kelas', JSON.stringify(freshKelas));
+          await AsyncStorage.setItem('@cache_version', dbCacheVersion);
+          console.log('[CACHE MANAGER] Fresh master data cached successfully (version:', dbCacheVersion, ')');
+        } catch (err) {
+          console.error('[CACHE MANAGER] Failed to load/cache fresh master data:', err);
+          // Fallback if network fails completely and we have some old cache
+          try {
+            const cachedGurus = await AsyncStorage.getItem('@cached_gurus');
+            const cachedMapels = await AsyncStorage.getItem('@cached_mapels');
+            const cachedKelas = await AsyncStorage.getItem('@cached_kelas');
+            if (cachedGurus) gurusListLocal = JSON.parse(cachedGurus);
+            if (cachedMapels) mapelsLocal = JSON.parse(cachedMapels);
+            if (cachedKelas) kelasListLocal = JSON.parse(cachedKelas);
+          } catch (fallbackErr) {
+            console.warn('[CACHE MANAGER] Fallback parser failed:', fallbackErr);
+          }
+        }
+      }
+
       let isUserAdmin = false;
+      const gurus = gurusListLocal;
+      setGurusList(gurus);
+
       if (activeGuruId) {
-        const gurus = await DbService.getGuru();
         const currentGuru = gurus.find(g => g.id === activeGuruId);
         if (currentGuru) {
           setPin(currentGuru.pin_pengawas);
@@ -105,10 +182,9 @@ export default function TeacherDashboard() {
         console.warn('Failed to load login_mode:', err);
       }
 
-      const [list, mList, kList] = await Promise.all([
+      // LinkSoal is dynamic and changes continuously, so we fetch it freshly every time
+      const [list] = await Promise.all([
         DbService.getLinkSoal(),
-        DbService.getMapel(true),
-        DbService.getKelas(undefined, true),
       ]);
 
       const myExams = isUserAdmin
@@ -118,8 +194,8 @@ export default function TeacherDashboard() {
         : list;
 
       setExams(myExams);
-      setMapels(mList);
-      setKelasList(kList);
+      setMapels(mapelsLocal);
+      setKelasList(kelasListLocal);
     } catch (e) {
       console.error('Failed to load dashboard data:', e);
     } finally {
@@ -149,11 +225,39 @@ export default function TeacherDashboard() {
     );
   };
 
+  // ── Filter and Pagination logic ──
+  const filteredExams = React.useMemo(() => {
+    let result = [...exams];
+    if (selectedGuruFilter && selectedGuruFilter !== 'all') {
+      result = result.filter(x => x.guru_id === selectedGuruFilter);
+    }
+    if (selectedKelasFilter && selectedKelasFilter !== 'all') {
+      result = result.filter(x => x.kelas_id === selectedKelasFilter);
+    }
+    if (selectedMapelFilter && selectedMapelFilter !== 'all') {
+      result = result.filter(x => x.mapel_id === selectedMapelFilter);
+    }
+    return result;
+  }, [exams, selectedGuruFilter, selectedKelasFilter, selectedMapelFilter]);
+
+  const totalPages = Math.max(Math.ceil(filteredExams.length / pageSize), 1);
+
+  const paginatedExams = React.useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    return filteredExams.slice(startIndex, startIndex + pageSize);
+  }, [filteredExams, currentPage]);
+
+  const allSelectedOnPage = paginatedExams.length > 0 && paginatedExams.every(e => selectedIds.includes(e.id));
+  const someSelectedOnPage = paginatedExams.some(e => selectedIds.includes(e.id));
+
   const toggleSelectAll = () => {
-    if (selectedIds.length === exams.length) {
-      setSelectedIds([]);
+    if (allSelectedOnPage) {
+      setSelectedIds(prev => prev.filter(id => !paginatedExams.some(e => e.id === id)));
     } else {
-      setSelectedIds(exams.map(e => e.id));
+      setSelectedIds(prev => {
+        const otherPagesSelected = prev.filter(id => !paginatedExams.some(e => e.id === id));
+        return [...otherPagesSelected, ...paginatedExams.map(e => e.id)];
+      });
     }
   };
 
@@ -272,7 +376,7 @@ export default function TeacherDashboard() {
     }
   };
 
-  const allSelected = exams.length > 0 && selectedIds.length === exams.length;
+  const allSelected = allSelectedOnPage;
   const someSelected = selectedIds.length > 0;
 
   // ── Render each exam row ──
@@ -412,6 +516,17 @@ export default function TeacherDashboard() {
                   <Text style={styles.actionButtonSub}>Ubah Mode Login &amp; Sistem Blokir Curang Global</Text>
                 </View>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: '#8B5CF6' }]}
+                onPress={() => router.push({ pathname: '/teacher/login-logs', params: { guruId: guruIdState || guruId, guruNama: guruNamaState || guruNama } })}
+              >
+                <Text style={styles.actionButtonEmoji}>📊</Text>
+                <View style={styles.actionButtonTexts}>
+                  <Text style={styles.actionButtonTitle}>Log Aktivitas Siswa</Text>
+                  <Text style={styles.actionButtonSub}>Pantau platform login (Web vs Android) siswa secara real-time</Text>
+                </View>
+              </TouchableOpacity>
             </>
           )}
         </View>
@@ -439,23 +554,158 @@ export default function TeacherDashboard() {
             <Text style={styles.emptyText}>Belum ada ujian yang dibuat.</Text>
           ) : (
             <>
-              {/* Select all row */}
-              <TouchableOpacity style={styles.selectAllRow} onPress={toggleSelectAll}>
-                <View style={[styles.checkbox, allSelected && styles.checkboxChecked]}>
-                  {allSelected && <Text style={styles.checkboxTick}>✓</Text>}
-                  {!allSelected && someSelected && <Text style={styles.checkboxDash}>–</Text>}
-                </View>
-                <Text style={styles.selectAllText}>
-                  {allSelected ? 'Batalkan Semua' : someSelected ? `${selectedIds.length} dipilih` : 'Pilih Semua'}
-                </Text>
-              </TouchableOpacity>
+              {/* Dropdown Filters (Admin Only) */}
+              {isAdmin && (
+                <View style={styles.filterContainer}>
+                  <Text style={styles.filterTitle}>🔍 Filter Ujian</Text>
+                  <View style={styles.filterRow}>
+                    {/* Filter Guru */}
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.filterLabel}>Guru Pembuat</Text>
+                      {Platform.OS === 'web' ? (
+                        <select
+                          value={selectedGuruFilter}
+                          onChange={(e) => {
+                            setSelectedGuruFilter(e.target.value);
+                            setCurrentPage(1);
+                          }}
+                          style={{
+                            backgroundColor: theme.background, borderColor: theme.border,
+                            borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '8px',
+                            color: theme.text, padding: '8px 10px', fontSize: '12px',
+                            width: '100%', outline: 'none', cursor: 'pointer',
+                          } as any}
+                        >
+                          <option value="all">🌐 Semua Guru</option>
+                          {gurusList.map(g => (
+                            <option key={g.id} value={g.id}>{g.nama_guru}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <TextInput
+                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
+                          placeholder="Semua Guru"
+                          value={selectedGuruFilter}
+                          onChangeText={(t) => { setSelectedGuruFilter(t); setCurrentPage(1); }}
+                        />
+                      )}
+                    </View>
 
-              <FlatList
-                data={exams}
-                keyExtractor={(item) => item.id}
-                renderItem={renderExamItem}
-                scrollEnabled={false}
-              />
+                    {/* Filter Kelas */}
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.filterLabel}>Target Kelas</Text>
+                      {Platform.OS === 'web' ? (
+                        <select
+                          value={selectedKelasFilter}
+                          onChange={(e) => {
+                            setSelectedKelasFilter(e.target.value);
+                            setCurrentPage(1);
+                          }}
+                          style={{
+                            backgroundColor: theme.background, borderColor: theme.border,
+                            borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '8px',
+                            color: theme.text, padding: '8px 10px', fontSize: '12px',
+                            width: '100%', outline: 'none', cursor: 'pointer',
+                          } as any}
+                        >
+                          <option value="all">🌐 Semua Kelas</option>
+                          {kelasList.map(k => (
+                            <option key={k.id} value={k.id}>{k.nama_kelas}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <TextInput
+                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
+                          placeholder="Semua Kelas"
+                          value={selectedKelasFilter}
+                          onChangeText={(t) => { setSelectedKelasFilter(t); setCurrentPage(1); }}
+                        />
+                      )}
+                    </View>
+
+                    {/* Filter Mapel */}
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.filterLabel}>Mata Pelajaran</Text>
+                      {Platform.OS === 'web' ? (
+                        <select
+                          value={selectedMapelFilter}
+                          onChange={(e) => {
+                            setSelectedMapelFilter(e.target.value);
+                            setCurrentPage(1);
+                          }}
+                          style={{
+                            backgroundColor: theme.background, borderColor: theme.border,
+                            borderWidth: '1.5px', borderStyle: 'solid', borderRadius: '8px',
+                            color: theme.text, padding: '8px 10px', fontSize: '12px',
+                            width: '100%', outline: 'none', cursor: 'pointer',
+                          } as any}
+                        >
+                          <option value="all">🌐 Semua Mapel</option>
+                          {mapels.map(m => (
+                            <option key={m.id} value={m.id}>{m.nama_mapel}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <TextInput
+                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
+                          placeholder="Semua Mapel"
+                          value={selectedMapelFilter}
+                          onChangeText={(t) => { setSelectedMapelFilter(t); setCurrentPage(1); }}
+                        />
+                      )}
+                    </View>
+                  </View>
+                </View>
+              )}
+
+              {filteredExams.length === 0 ? (
+                <Text style={styles.emptyText}>Tidak ada jadwal ujian yang cocok dengan filter.</Text>
+              ) : (
+                <>
+                  {/* Select all row */}
+                  <TouchableOpacity style={styles.selectAllRow} onPress={toggleSelectAll}>
+                    <View style={[styles.checkbox, allSelected && styles.checkboxChecked]}>
+                      {allSelected && <Text style={styles.checkboxTick}>✓</Text>}
+                      {!allSelected && someSelected && <Text style={styles.checkboxDash}>–</Text>}
+                    </View>
+                    <Text style={styles.selectAllText}>
+                      {allSelected ? 'Batalkan Semua' : someSelected ? `${selectedIds.length} dipilih` : 'Pilih Semua'}
+                    </Text>
+                  </TouchableOpacity>
+
+                  <FlatList
+                    data={paginatedExams}
+                    keyExtractor={(item) => item.id}
+                    renderItem={renderExamItem}
+                    scrollEnabled={false}
+                  />
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <View style={styles.paginationRow}>
+                      <TouchableOpacity
+                        style={[styles.pageBtn, currentPage === 1 && styles.pageBtnDisabled]}
+                        disabled={currentPage === 1}
+                        onPress={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      >
+                        <Text style={[styles.pageBtnText, currentPage === 1 && styles.pageBtnTextDisabled]}>◀️ Sebelumnya</Text>
+                      </TouchableOpacity>
+
+                      <Text style={styles.pageInfoText}>
+                        Halaman {currentPage} dari {totalPages}
+                      </Text>
+
+                      <TouchableOpacity
+                        style={[styles.pageBtn, currentPage === totalPages && styles.pageBtnDisabled]}
+                        disabled={currentPage === totalPages}
+                        onPress={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      >
+                        <Text style={[styles.pageBtnText, currentPage === totalPages && styles.pageBtnTextDisabled]}>Selanjutnya ▶️</Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </>
+              )}
             </>
           )}
         </View>
@@ -725,6 +975,29 @@ export default function TeacherDashboard() {
 
 const createStyles = (theme: any) => StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.background },
+  filterContainer: {
+    backgroundColor: theme.background, borderRadius: 12, padding: 12,
+    marginBottom: 15, borderWidth: 1, borderColor: theme.border,
+  },
+  filterTitle: { color: theme.text, fontSize: 13, fontWeight: '800', marginBottom: 8 },
+  filterRow: { flexDirection: 'row', gap: 10 },
+  filterLabel: { color: theme.textSecondary, fontSize: 11, fontWeight: '700', marginBottom: 4 },
+  filterInput: {
+    backgroundColor: theme.backgroundElement, borderColor: theme.border,
+    borderWidth: 1, borderRadius: 8, padding: 6, fontSize: 12, color: theme.text
+  },
+  paginationRow: {
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    marginTop: 15, paddingTop: 12, borderTopWidth: 1, borderTopColor: theme.border,
+  },
+  pageBtn: {
+    backgroundColor: theme.background, borderWidth: 1, borderColor: theme.border,
+    paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8,
+  },
+  pageBtnDisabled: { backgroundColor: theme.border, borderColor: theme.border },
+  pageBtnText: { color: theme.primary, fontSize: 12, fontWeight: '700' },
+  pageBtnTextDisabled: { color: theme.textMuted },
+  pageInfoText: { color: theme.text, fontSize: 12, fontWeight: '700' },
   scrollContent: { padding: 20, paddingBottom: 40 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 25 },
   welcomeText: { color: theme.textSecondary, fontSize: 14, fontWeight: '600' },
