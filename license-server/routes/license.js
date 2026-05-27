@@ -1684,6 +1684,21 @@ router.get('/download-apk', async (req, res) => {
   // Jika berkas sudah ada di SSD VPS lokal, langsung sajikan super cepat!
   if (fs.existsSync(apkPath)) {
     console.log(`[Download APK] ✓ Serving local static APK instantly to ${req.ip}`);
+    
+    // Tingkatkan hit counter di build-meta.json secara idempoten
+    try {
+      const metaPath = path.join(__dirname, '../public/build-meta.json');
+      let meta = { downloadCount: 0 };
+      if (fs.existsSync(metaPath)) {
+        meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+      }
+      meta.downloadCount = (meta.downloadCount || 0) + 1;
+      fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+      console.log(`[Download APK] Total unduhan meningkat menjadi: ${meta.downloadCount}`);
+    } catch (e) {
+      console.error('[Download APK Counter Error]', e.message);
+    }
+
     return res.download(apkPath, 'Orkestrator Ujian.apk');
   }
 
@@ -1886,6 +1901,27 @@ router.get('/api/license/sync-apk-now', async (req, res) => {
 
   syncApkFromExpoInBackground();
   res.send('Sinkronisasi APK di latar belakang telah dipicu. Silakan pantau log server.');
+});
+
+// Tambahkan rute statistik unduhan APK untuk admin
+router.get('/api/license/download-stats', async (req, res) => {
+  try {
+    const metaPath = path.join(__dirname, '../public/build-meta.json');
+    let meta = { downloadCount: 0 };
+    if (fs.existsSync(metaPath)) {
+      meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+    }
+    
+    res.json({
+      success: true,
+      download_count: meta.downloadCount || 0,
+      last_build_id: meta.buildId || 'N/A',
+      last_sync_time: meta.createdAt || 'N/A',
+      local_file_exists: fs.existsSync(path.join(__dirname, '../public/Orkestrator Ujian.apk'))
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal mengambil statistik: ' + err.message });
+  }
 });
 
 module.exports = router;
