@@ -519,7 +519,7 @@ export default function TeacherDashboard() {
 
               <TouchableOpacity
                 style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: '#8B5CF6' }]}
-                onPress={() => router.push({ pathname: '/teacher/login-logs', params: { guruId: guruIdState || guruId, guruNama: guruNamaState || guruNama } })}
+                onPress={() => router.push({ pathname: '/teacher/login-logs' as any, params: { guruId: guruIdState || guruId, guruNama: guruNamaState || guruNama } })}
               >
                 <Text style={styles.actionButtonEmoji}>📊</Text>
                 <View style={styles.actionButtonTexts}>
