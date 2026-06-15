@@ -1964,10 +1964,10 @@ router.post('/api/license/tunnel/request', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Subdomain slug hanya boleh huruf kecil, angka, dan strip (-).' });
     }
 
-    // 1. Verifikasi lisensi aktif
-    const license = await db.get('SELECT * FROM licenses WHERE license_key = ? AND is_active = 1', [license_key.trim()]);
+    // 1. Verifikasi lisensi aktif untuk produk vpn-tunnel
+    const license = await db.get('SELECT * FROM licenses WHERE license_key = ? AND is_active = 1 AND product_id = "vpn-tunnel"', [license_key.trim()]);
     if (!license) {
-      return res.status(403).json({ success: false, message: 'Lisensi tidak ditemukan atau tidak aktif.' });
+      return res.status(403).json({ success: false, message: 'Lisensi VPN Tunneling tidak ditemukan atau tidak aktif.' });
     }
 
     // 2. Cek apakah slug sudah terdaftar untuk license/tenant lain
