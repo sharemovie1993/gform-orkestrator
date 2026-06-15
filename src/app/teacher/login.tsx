@@ -12,7 +12,11 @@ import {
   KeyboardAvoidingView,
   Modal,
   FlatList,
+  Animated,
+  Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StorageService } from '@/services/storage';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Guru } from '@/services/supabase';
@@ -22,6 +26,26 @@ export default function TeacherLoginScreen() {
   const router = useRouter();
   const theme = useTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
+
+  // Animated values for premium entry transitions
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const slideAnim = React.useRef(new Animated.Value(30)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        tension: 40,
+        friction: 8,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   // Dropdown state
   const [guruList, setGuruList] = useState<Guru[]>([]);
@@ -45,8 +69,54 @@ export default function TeacherLoginScreen() {
     (async () => {
       try {
         setLoadingGuru(true);
-        const list = await DbService.getGuru(true); // activeOnly = true
+        // Pastikan activeTenantId dimuat berbasis domain tersimpan saat mobile startup
+        // Resolve tenant ID for both web and mobile to prevent race conditions
+        let slug = '';
+        if (Platform.OS === 'web' && typeof window !== 'undefined') {
+          const hostname = window.location.hostname;
+          const searchParams = new URLSearchParams(window.location.search);
+          const tenantParam = searchParams.get('tenant');
+          if (tenantParam) {
+            slug = tenantParam.trim();
+          } else {
+            const parts = hostname.split('.');
+            if (parts.length > 2 && parts[0] !== 'www' && parts[0] !== 'api' && parts[0] !== 'localhost') {
+              slug = parts[0];
+            }
+          }
+        } else {
+          const savedDomain = await StorageService.getSavedDomain();
+          if (savedDomain) {
+            let cleanDomain = savedDomain.replace(/(^\w+:|^)\/\//, '').trim();
+            const parts = cleanDomain.split('.');
+            slug = parts[0];
+          }
+        }
+        
+        if (slug) {
+          const tenant = await DbService.getTenantProfileBySlug(slug);
+          if (tenant) {
+            const { setActiveTenantId } = require('@/services/supabase');
+            setActiveTenantId(tenant.id);
+          }
+        }
+        
+        let list = await DbService.getGuru(true); // activeOnly = true
+        if (list.length === 0) {
+          list = [{
+            id: 'new-tenant-admin',
+            nama_guru: 'Admin Utama (Default)',
+            username: 'admin',
+            pin_pengawas: '123456',
+            password_hash: '',
+            is_active: true,
+            created_at: new Date().toISOString()
+          } as any];
+        }
         setGuruList(list);
+        if (list.length === 1) {
+          setSelectedGuru(list[0]);
+        }
       } catch (e) {
         console.error('Gagal memuat daftar guru:', e);
         setError('Gagal memuat daftar guru. Periksa koneksi.');
@@ -55,6 +125,26 @@ export default function TeacherLoginScreen() {
       }
     })();
   }, []);
+
+  const handleResetDomain = async () => {
+    Alert.alert(
+      'Ganti Sekolah',
+      'Apakah Anda yakin ingin memutus koneksi dan mengganti sekolah/domain Anda?',
+      [
+        { text: 'Batal', style: 'cancel' },
+        {
+          text: 'Ya, Ganti',
+          style: 'destructive',
+          onPress: async () => {
+            await StorageService.clearSavedDomain();
+            const { setActiveTenantId } = require('@/services/supabase');
+            setActiveTenantId(null);
+            router.replace('/');
+          }
+        }
+      ]
+    );
+  };
 
   const filteredGuruList = guruList.filter(g =>
     g.nama_guru.toLowerCase().includes(searchQuery.toLowerCase())
@@ -128,12 +218,12 @@ export default function TeacherLoginScreen() {
         >
           {/* Back to student entry */}
           <View style={styles.header}>
-            <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/')}>
+            <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/')} activeOpacity={0.7}>
               <Text style={styles.backText}>◀ Portal Siswa</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.content}>
+          <Animated.View style={[styles.content, { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
             <View style={styles.loginCard}>
               <Text style={styles.emoji}>🔐</Text>
               <Text style={styles.title}>PANEL GURU</Text>
@@ -170,6 +260,7 @@ export default function TeacherLoginScreen() {
                 {/* ── Input PIN ── */}
                 <Text style={[styles.label, { marginTop: 16 }]}>PIN Pengawas</Text>
                 <View style={styles.passwordContainer}>
+                  <Text style={styles.inputIcon}>🔑</Text>
                   <TextInput
                     ref={pinInputRef}
                     style={[
@@ -203,10 +294,14 @@ export default function TeacherLoginScreen() {
                 </View>
               </View>
 
-              {error ? <Text style={styles.errorText}>⚠️ {error}</Text> : null}
+              {error ? (
+                <View style={styles.errorBanner}>
+                  <Text style={styles.errorBannerText}>⚠️ {error}</Text>
+                </View>
+              ) : null}
               {successMsg ? (
                 <View style={styles.successBanner}>
-                  <Text style={styles.successText}>✅ {successMsg}</Text>
+                  <Text style={styles.successBannerText}>✅ {successMsg}</Text>
                 </View>
               ) : null}
 
@@ -214,6 +309,7 @@ export default function TeacherLoginScreen() {
                 style={[styles.loginButton, (loading || !selectedGuru) && styles.loginButtonDisabled]}
                 onPress={handleLogin}
                 disabled={loading || !selectedGuru}
+                activeOpacity={0.8}
               >
                 {loading ? (
                   <ActivityIndicator color="#FFF" />
@@ -222,9 +318,19 @@ export default function TeacherLoginScreen() {
                 )}
               </TouchableOpacity>
             </View>
+
+            {Platform.OS !== 'web' && (
+              <TouchableOpacity
+                style={styles.changeSchoolLink}
+                onPress={handleResetDomain}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.changeSchoolLinkText}>🏢 Hubungkan ke Sekolah Lain</Text>
+              </TouchableOpacity>
+            )}
             <Text style={styles.copyrightText}>powered by BARAYA TEKNOLOGI</Text>
             <Text style={styles.versionText}>v1.0.1 (OTA)</Text>
-          </View>
+          </Animated.View>
         </ScrollView>
       </KeyboardAvoidingView>
 
@@ -330,10 +436,12 @@ const createStyles = (theme: any) => StyleSheet.create({
   },
   backButton: {
     alignSelf: 'flex-start',
-    backgroundColor: theme.backgroundSelected,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 10,
+    borderColor: theme.border,
+    borderWidth: 1,
   },
   backText: {
     color: theme.primary,
@@ -346,21 +454,33 @@ const createStyles = (theme: any) => StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingBottom: 40,
+    width: '100%',
   },
   loginCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: theme.backgroundElement,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(30, 41, 59, 0.75)' : 'rgba(255, 255, 255, 0.85)',
     borderRadius: 24,
     padding: 30,
     alignItems: 'center',
-    shadowColor: theme.cardShadow,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.15,
-    shadowRadius: 15,
-    elevation: 6,
     borderWidth: 1,
-    borderColor: theme.border,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+      } as any,
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+      }
+    }),
+    elevation: 6,
   },
   emoji: {
     fontSize: 48,
@@ -412,11 +532,11 @@ const createStyles = (theme: any) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: theme.background,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.6)' : 'rgba(241, 245, 249, 0.8)',
     borderColor: theme.border,
     borderWidth: 1.5,
-    borderRadius: 12,
-    paddingVertical: 13,
+    borderRadius: 14,
+    paddingVertical: 14,
     paddingHorizontal: 16,
   },
   dropdownTriggerActive: {
@@ -442,23 +562,29 @@ const createStyles = (theme: any) => StyleSheet.create({
     fontSize: 11,
     marginLeft: 8,
   },
-  // Password input
+  // Password input container
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme.background,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.6)' : 'rgba(241, 245, 249, 0.8)',
     borderColor: theme.border,
     borderWidth: 1.5,
-    borderRadius: 12,
-    paddingRight: 14,
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    height: 56,
+  },
+  inputIcon: {
+    fontSize: 18,
+    marginRight: 12,
+    opacity: 0.8,
   },
   passwordInput: {
     flex: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
     color: theme.text,
-    fontSize: 15,
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: '700',
+    height: '100%',
+    letterSpacing: 2,
   },
   eyeButton: {
     padding: 6,
@@ -469,53 +595,78 @@ const createStyles = (theme: any) => StyleSheet.create({
     fontSize: 18,
   },
   // Feedback
-  errorText: {
+  errorBanner: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.08)',
+    borderColor: theme.danger,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+  },
+  errorBannerText: {
     color: theme.danger,
     fontSize: 13,
     fontWeight: '600',
-    marginBottom: 12,
+    flex: 1,
     textAlign: 'center',
   },
   successBanner: {
     backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(5, 150, 105, 0.1)',
     borderColor: theme.activeTheme === 'dark' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.3)',
     borderWidth: 1,
-    borderRadius: 10,
-    paddingVertical: 10,
+    borderRadius: 12,
+    paddingVertical: 12,
     paddingHorizontal: 14,
-    marginBottom: 12,
+    marginBottom: 16,
     width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  successText: {
+  successBannerText: {
     color: theme.success,
     fontSize: 13,
     fontWeight: '700',
+    flex: 1,
     textAlign: 'center',
   },
   // Login button
   loginButton: {
     width: '100%',
     backgroundColor: theme.primary,
-    paddingVertical: 14,
-    borderRadius: 12,
+    height: 56,
+    borderRadius: 14,
+    justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: theme.primary,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 4,
     marginTop: 10,
+    ...Platform.select({
+      web: {
+        shadowColor: theme.primary,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+      } as any,
+      default: {
+        shadowColor: theme.primary,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      }
+    }),
+    elevation: 4,
   },
   loginButtonDisabled: {
-    backgroundColor: theme.activeTheme === 'dark' ? '#1E3A5F' : '#93C5FD',
-    shadowOpacity: 0,
+    backgroundColor: theme.backgroundSelected,
+    opacity: 0.6,
     elevation: 0,
   },
   loginButtonText: {
     color: '#FFF',
     fontSize: 16,
     fontWeight: '800',
-    letterSpacing: 1,
+    letterSpacing: 1.5,
   },
   copyrightText: {
     color: theme.textMuted,
@@ -647,5 +798,15 @@ const createStyles = (theme: any) => StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     paddingLeft: 8,
+  },
+  changeSchoolLink: {
+    marginTop: 18,
+    alignSelf: 'center',
+    padding: 8,
+  },
+  changeSchoolLinkText: {
+    color: theme.textSecondary,
+    fontSize: 12,
+    fontWeight: '700',
   },
 });

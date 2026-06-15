@@ -72,13 +72,13 @@ export interface LinkSoal {
   created_at?: string;
 }
 
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://xjnctgbzilrhbzsbrtpu.supabase.co';
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg';
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://supabaselocal.absenta.id';
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE';
 
-// Master Supabase client is always bound to the central/master database
+// Master Supabase client is always bound to the local database gateway now
 export const masterSupabase = createClient(
-  'https://xjnctgbzilrhbzsbrtpu.supabase.co',
-  'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg'
+  'https://supabaselocal.absenta.id',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE'
 );
 
 export let isSupabaseConfigured = supabaseUrl !== '' && supabaseAnonKey !== '';
@@ -163,14 +163,16 @@ export class DbService {
   // ==========================================
   static async getKelas(jurusanId?: string, activeOnly: boolean = false): Promise<Kelas[]> {
     checkConfig();
-    let query = supabase!.from('kelas').select('*, jurusan(nama_jurusan)');
+    let query = supabase!
+      .from('kelas')
+      .select('id, tingkat, nama_kelas, jurusan_id, is_active, jurusan(nama_jurusan)');
     const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
     query = query.eq('tenant_id', targetTenantId);
     if (jurusanId) query = query.eq('jurusan_id', jurusanId);
     if (activeOnly) query = query.eq('is_active', true);
     const { data, error } = await query;
     if (error) throw error;
-    return (data || []).map(k => ({
+    return (data || []).map((k: any) => ({
       id: k.id,
       tingkat: k.tingkat,
       nama_kelas: k.nama_kelas,
@@ -227,6 +229,17 @@ export class DbService {
       kelas_nama: s.kelas?.nama_kelas || 'Tanpa Kelas',
       is_active: s.is_active !== false
     }));
+  }
+
+  static async getSiswaCount(): Promise<number> {
+    checkConfig();
+    const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
+    const { count, error } = await supabase!
+      .from('siswa')
+      .select('id', { count: 'exact', head: true })
+      .eq('tenant_id', targetTenantId);
+    if (error) throw error;
+    return count || 0;
   }
 
   static async getSiswaByKelas(kelasId: string, activeOnly: boolean = true): Promise<Siswa[]> {
@@ -377,14 +390,25 @@ export class DbService {
   // ==========================================
   static async getLinkSoal(kelasId?: string, activeOnly: boolean = false): Promise<LinkSoal[]> {
     checkConfig();
-    let query = supabase!.from('link_soal').select('*, kelas(nama_kelas), mapel(nama_mapel), guru(nama_guru)');
+    let query = supabase!
+      .from('link_soal')
+      .select('id, kelas_id, mapel_id, guru_id, tanggal_ujian, waktu_ujian, google_form_link, is_active, enable_blocking, created_at, kelas(nama_kelas), mapel(nama_mapel), guru(nama_guru)');
     const targetTenantId = activeTenantId || '00000000-0000-0000-0000-000000000001';
     query = query.eq('tenant_id', targetTenantId);
     if (kelasId) query = query.eq('kelas_id', kelasId);
-    if (activeOnly) query = query.eq('is_active', true);
+    if (activeOnly) {
+      query = query.eq('is_active', true);
+      // Filter tanggal ujian: hari ini ke belakang
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const localTodayStr = `${year}-${month}-${day}`;
+      query = query.lte('tanggal_ujian', localTodayStr);
+    }
     const { data, error } = await query;
     if (error) throw error;
-    return (data || []).map(l => ({
+    return (data || []).map((l: any) => ({
       id: l.id,
       kelas_id: l.kelas_id,
       kelas_nama: l.kelas?.nama_kelas || 'Tanpa Kelas',
@@ -985,5 +1009,119 @@ export class DbService {
     const { data, error } = await query.order('created_at', { ascending: false });
     if (error) throw error;
     return data || [];
+  }
+
+  // ==========================================
+  // BLOCKED SISWA / REMOTE CONTROL
+  // ==========================================
+  static async setSiswaActiveStatus(id: string, isActive: boolean): Promise<void> {
+    checkConfig();
+    const { error } = await supabase!
+      .from('siswa')
+      .update({ is_active: isActive })
+      .eq('id', id);
+    if (error) {
+      console.warn('[Supabase] Failed to set siswa active status:', error);
+      throw error;
+    }
+  }
+
+  static async getSiswaActiveStatus(id: string): Promise<boolean> {
+    checkConfig();
+    const { data, error } = await supabase!
+      .from('siswa')
+      .select('is_active')
+      .eq('id', id)
+      .maybeSingle();
+    if (error) {
+      console.warn('[Supabase] Failed to get siswa active status:', error);
+      return true; // Default to active if lookup fails to prevent permanent lockouts
+    }
+    return data?.is_active !== false;
+  }
+
+  static async getBlockedSiswa(): Promise<any[]> {
+    checkConfig();
+    let query = supabase!
+      .from('siswa')
+      .select('*, kelas(nama_kelas)')
+      .eq('is_active', false);
+    if (activeTenantId) {
+      query = query.eq('tenant_id', activeTenantId);
+    }
+    const { data, error } = await query.order('nama_siswa', { ascending: true });
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async bulkUnblockSiswa(ids: string[]): Promise<boolean> {
+    checkConfig();
+    if (!ids || ids.length === 0) return true;
+    const { error } = await supabase!
+      .from('siswa')
+      .update({ is_active: true })
+      .in('id', ids);
+    if (error) throw error;
+    return true;
+  }
+
+  // ==========================================
+  // REAL-TIME ACTIVE SESSIONS MONITOR
+  // ==========================================
+  static async updateLatestLoginLogStatus(siswaId: string, status: string): Promise<void> {
+    checkConfig();
+    try {
+      // Find the latest login log for this student
+      const { data: latestLog, error: fetchError } = await supabase!
+        .from('login_logs')
+        .select('id')
+        .eq('siswa_id', siswaId)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (fetchError) throw fetchError;
+      if (!latestLog) return;
+
+      // Update the status of this log
+      const { error: updateError } = await supabase!
+        .from('login_logs')
+        .update({ status: status })
+        .eq('id', latestLog.id);
+
+      if (updateError) throw updateError;
+      console.log(`[Supabase] Updated student session ${siswaId} status to: ${status}`);
+    } catch (err) {
+      console.warn('[Supabase] Failed to update latest login log status:', err);
+    }
+  }
+
+  static async getActiveSessions(): Promise<any[]> {
+    checkConfig();
+    let query = supabase!
+      .from('login_logs')
+      .select('*');
+    if (activeTenantId) {
+      query = query.eq('tenant_id', activeTenantId);
+    }
+    const { data, error } = await query.order('created_at', { ascending: false });
+    if (error) throw error;
+    
+    // Group by student to show their latest session status
+    const uniqueSessions: any[] = [];
+    const seenSiswaIds = new Set<string>();
+    
+    if (data) {
+      for (const log of data) {
+        if (!seenSiswaIds.has(log.siswa_id)) {
+          seenSiswaIds.add(log.siswa_id);
+          uniqueSessions.push({
+            ...log,
+            status: log.status || 'active' // Fallback if column is not added yet
+          });
+        }
+      }
+    }
+    return uniqueSessions;
   }
 }

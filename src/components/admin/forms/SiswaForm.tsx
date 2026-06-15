@@ -31,10 +31,10 @@ export function SiswaForm({
   return (
     <View style={{ gap: 6 }}>
       <FormInput
-        label="NISN Siswa"
+        label="NIS Siswa"
         value={nisn}
         onChangeText={onChangeNisn}
-        placeholder="Masukkan 10 digit NISN"
+        placeholder="Masukkan NIS"
         keyboardType="numeric"
         error={errors.nisn}
       />

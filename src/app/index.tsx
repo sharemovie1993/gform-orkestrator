@@ -15,6 +15,7 @@ import {
   Alert,
   RefreshControl,
   Animated,
+  Linking,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as Updates from 'expo-updates';
@@ -199,8 +200,10 @@ export default function HomeScreen() {
               initializeDynamicSupabase(tenant.supabase_url, tenant.supabase_anon_key);
             } else {
               console.log('[Tenant Routing] Using shared database for tenant:', tenant.name);
-              // Ensure dynamic Supabase points to master database and reset previous private clients
-              initializeDynamicSupabase('https://xjnctgbzilrhbzsbrtpu.supabase.co', 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg');
+              initializeDynamicSupabase(
+                process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://supabaselocal.absenta.id',
+                process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE'
+              );
             }
           } else {
             console.warn('[Tenant Routing] Tenant profile not found for slug:', slug);
@@ -239,14 +242,26 @@ export default function HomeScreen() {
       }
     }
 
-    // 1. Check if blocked
+    // 1. Check if blocked (Disabled - Anticheat completely disabled)
+    /*
     const blocked = await StorageService.isBlocked();
     if (blocked) {
       router.replace('/blocked');
       return;
     }
+    */
 
-    // 2. Load student session if logged in
+    // 2. Load saved class if selected (Public Mode)
+    const savedClass = await StorageService.getSelectedClass();
+    if (savedClass) {
+      router.replace({
+        pathname: '/exam-list',
+        params: { kelasId: savedClass.id, kelasName: savedClass.name },
+      });
+      return;
+    }
+
+    // 3. Fallback: Load student session if logged in
     const savedStudent = await StorageService.getStudentSession();
     if (savedStudent) {
       setStudentSession(savedStudent);
@@ -262,7 +277,7 @@ export default function HomeScreen() {
       return;
     }
 
-    // 3. Fetch fresh tenant profile and configuration in background
+    // 4. Fetch fresh tenant profile and configuration in background
     try {
       // Fetch school/tenant branding
       try {
@@ -275,6 +290,14 @@ export default function HomeScreen() {
         }
       } catch (tenantErr) {
         console.warn('Could not load school profile branding:', tenantErr);
+      }
+
+      // Fetch active classes for public selection
+      try {
+        const classes = await DbService.getKelas(undefined, true);
+        setKelasList(classes);
+      } catch (classErr) {
+        console.warn('Could not load active classes list:', classErr);
       }
 
       // If student is logged in, sync tenant-specific configurations
@@ -508,6 +531,9 @@ export default function HomeScreen() {
   };
 
   const handleStudentLogout = async () => {
+    if (studentSession?.id) {
+      DbService.updateLatestLoginLogStatus(studentSession.id, 'logged_out').catch(e => console.warn(e));
+    }
     await StorageService.clearStudentSession();
     setStudentSession(null);
   };
@@ -691,68 +717,89 @@ export default function HomeScreen() {
             </View>
           ) : (
             /* ========================================================
-               🔒 SECURE NIS LOGIN PORTAL MODE
+               🏫 PUBLIC CLASS SELECTION MODE
                ======================================================== */
             <View style={styles.selectionCard}>
-              <Text style={styles.simpleTitle}>🔑 PORTAL LOGIN SISWA</Text>
+              <Text style={styles.simpleTitle}>🏫 PILIH KELAS ANDA</Text>
               
-              <View style={styles.formContainer}>
-                <Text style={styles.label}>NIS SISWA</Text>
-                
-                <View style={[
-                  styles.inputContainer,
-                  isNisnFocused && styles.inputContainerFocused,
-                ]}>
-                  <Text style={styles.inputIcon}>👤</Text>
-                  <TextInput
+              {/* Tingkat Tabs */}
+              <View style={styles.segmentTabBar}>
+                {(['X', 'XI', 'XII'] as const).map((tingkat) => (
+                  <TouchableOpacity
+                    key={tingkat}
                     style={[
-                      styles.nisInput,
-                      Platform.select({
-                        web: {
-                          outlineStyle: 'none',
-                        } as any,
-                      }),
+                      styles.segmentTab,
+                      activeTingkatTab === tingkat && styles.segmentTabActive
                     ]}
-                    value={nisn}
-                    onChangeText={(text) => {
-                      setNisn(text.replace(/[^0-9]/g, ''));
-                      setLoginError('');
-                    }}
-                    onFocus={() => setIsNisnFocused(true)}
-                    onBlur={() => setIsNisnFocused(false)}
-                    placeholder="Masukkan NIS Anda"
-                    placeholderTextColor="#64748B"
-                    keyboardType="number-pad"
-                    maxLength={15}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    spellCheck={false}
-                    onSubmitEditing={handleStudentLogin}
-                  />
-                </View>
-
-                {loginError ? (
-                  <View style={styles.errorBanner}>
-                    <Text style={styles.errorBannerText}>⚠️ {loginError}</Text>
-                  </View>
-                ) : null}
-
-                <TouchableOpacity
-                  style={[
-                    styles.submitButton,
-                    (!nisn.trim() || loginLoading) && styles.submitButtonDisabled
-                  ]}
-                  disabled={loginLoading || !nisn.trim()}
-                  onPress={handleStudentLogin}
-                  activeOpacity={0.8}
-                >
-                  {loginLoading ? (
-                    <ActivityIndicator color="#FFF" />
-                  ) : (
-                    <Text style={styles.submitButtonText}>MASUK PORTAL</Text>
-                  )}
-                </TouchableOpacity>
+                    onPress={() => setActiveTingkatTab(tingkat)}
+                  >
+                    <Text style={[
+                      styles.segmentTabText,
+                      activeTingkatTab === tingkat && styles.segmentTabTextActive
+                    ]}>
+                      Kelas {tingkat}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </View>
+
+              {/* Class Search Bar */}
+              <View style={styles.searchContainer}>
+                <TextInput
+                  style={[
+                    styles.searchBar,
+                    Platform.select({
+                      web: {
+                        outlineStyle: 'none',
+                      } as any,
+                    }),
+                  ]}
+                  placeholder="🔍 Cari Kelas..."
+                  placeholderTextColor="#64748B"
+                  value={classSearchQuery}
+                  onChangeText={setClassSearchQuery}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  spellCheck={false}
+                />
+              </View>
+
+              {/* Classes List */}
+              <ScrollView style={styles.classListScroll} nestedScrollEnabled={true}>
+                {filteredClassesForSimpleMode.length === 0 ? (
+                  <Text style={styles.emptyClassText}>Tidak ada kelas yang ditemukan.</Text>
+                ) : (
+                  filteredClassesForSimpleMode.map((kelas) => (
+                    <TouchableOpacity
+                      key={kelas.id}
+                      style={styles.classItemButton}
+                      onPress={() => handleOpenExamList(kelas.id, kelas.nama_kelas)}
+                      activeOpacity={0.7}
+                    >
+                      <View style={styles.classItemLeft}>
+                        <Text style={styles.classIcon}>🏫</Text>
+                        <View>
+                          <Text style={styles.classNameText}>{kelas.nama_kelas}</Text>
+                          <Text style={styles.classJurusanText}>{kelas.jurusan_nama || 'Umum'}</Text>
+                        </View>
+                      </View>
+                      <Text style={styles.classArrow}>▶</Text>
+                    </TouchableOpacity>
+                  ))
+                )}
+              </ScrollView>
+
+              {/* 📺 Video Tutorial Button */}
+              <TouchableOpacity
+                style={styles.tutorialButton}
+                onPress={() => {
+                  Linking.openURL('https://drive.google.com/drive/folders/1YlXgn1EoHdS6gCZNDaJ4fTcFWWk_pgdF')
+                    .catch(err => console.warn('Gagal membuka link tutorial:', err));
+                }}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.tutorialButtonText}>📺 Tonton Video Panduan Ujian</Text>
+              </TouchableOpacity>
 
               {Platform.OS !== 'web' && (
                 <TouchableOpacity
@@ -766,34 +813,7 @@ export default function HomeScreen() {
             </View>
           )}
 
-          {/* ── APK Download Banner (Web Only) ── */}
-          {Platform.OS === 'web' && (
-            <View style={styles.apkDownloadSection}>
-              <View style={styles.apkDownloadCard}>
-                <View style={styles.apkDownloadLeft}>
-                  <Text style={styles.apkAndroidIcon}>🤖</Text>
-                  <View>
-                    <Text style={styles.apkDownloadTitle}>Pakai Aplikasi Android</Text>
-                    <Text style={styles.apkDownloadDesc}>Lebih cepat & stabil saat ujian berlangsung</Text>
-                  </View>
-                </View>
-                <TouchableOpacity
-                  style={styles.apkDownloadBtn}
-                  onPress={() => {
-                    if (typeof window !== 'undefined') {
-                      window.open('https://api.absenta.id/download-apk', '_blank');
-                    }
-                  }}
-                  activeOpacity={0.85}
-                >
-                  <Text style={styles.apkDownloadBtnText}>⬇ Unduh APK</Text>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.apkDownloadNote}>
-                ✦ APK terbaru {downloadCount !== null ? `· Diunduh ${downloadCount} kali ` : ''}· Otomatis update dari cloud
-              </Text>
-            </View>
-          )}
+
 
           {/* Footer Admin Entry & Check Update Button */}
           <View style={styles.footerButtonsRow}>
@@ -1845,5 +1865,85 @@ const createStyles = (theme: any) => StyleSheet.create({
     color: theme.textSecondary,
     fontSize: 12,
     fontWeight: '700',
+  },
+  tutorialButton: {
+    width: '100%',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.06)',
+    borderColor: theme.primary,
+    borderWidth: 1,
+    borderRadius: 14,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  tutorialButtonText: {
+    color: theme.primary,
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  searchContainer: {
+    width: '100%',
+    marginBottom: 15,
+  },
+  searchBar: {
+    backgroundColor: theme.background,
+    borderColor: theme.border,
+    borderWidth: 1.5,
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    color: theme.text,
+    fontSize: 15,
+    fontWeight: '600',
+    width: '100%',
+  },
+  classListScroll: {
+    maxHeight: 280,
+    width: '100%',
+    marginTop: 5,
+  },
+  classItemButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(15, 23, 42, 0.4)' : 'rgba(241, 245, 249, 0.5)',
+    borderColor: theme.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 8,
+    width: '100%',
+  },
+  classItemLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  classIcon: {
+    fontSize: 22,
+  },
+  classNameText: {
+    color: theme.text,
+    fontSize: 15,
+    fontWeight: '800',
+  },
+  classJurusanText: {
+    color: theme.textMuted,
+    fontSize: 11,
+    fontWeight: '700',
+    marginTop: 2,
+  },
+  classArrow: {
+    color: theme.primary,
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  emptyClassText: {
+    color: theme.textMuted,
+    fontSize: 13,
+    fontWeight: '600',
+    textAlign: 'center',
+    paddingVertical: 20,
   },
 });

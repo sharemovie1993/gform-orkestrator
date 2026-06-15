@@ -14,11 +14,13 @@ import {
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { WebView } from 'react-native-webview';
+import { WebView as RNWebView } from 'react-native-webview';
 import * as ScreenCapture from 'expo-screen-capture';
 import { StorageService } from '@/services/storage';
-import { Siswa } from '@/services/supabase';
+import { Siswa, DbService } from '@/services/supabase';
 import { useTheme } from '@/hooks/use-theme';
+
+const WebView = RNWebView || View;
 
 export default function ExamWebviewScreen() {
   const router = useRouter();
@@ -193,6 +195,10 @@ export default function ExamWebviewScreen() {
         'Batal',
         async () => {
           await StorageService.setBlocked(true, 'Menutup halaman ujian secara paksa (tombol kembali)');
+          if (studentSession?.id) {
+            DbService.setSiswaActiveStatus(studentSession.id, false).catch(err => console.warn('Failed to sync block to cloud:', err));
+            DbService.updateLatestLoginLogStatus(studentSession.id, 'blocked').catch(err => console.warn(err));
+          }
           router.replace('/blocked');
         }
       );
@@ -212,15 +218,33 @@ export default function ExamWebviewScreen() {
         ) {
           console.log('Cheat detected: App went to background/inactive');
           
-          await StorageService.setBlocked(
-            true,
-            'Membuka aplikasi lain, membagi layar, atau membuka panel notifikasi'
-          );
+          const maxAllowed = await StorageService.getCachedMaxViolations();
+          const currentViolations = await StorageService.incrementViolationCount();
+          const remaining = maxAllowed - currentViolations;
           
-          backHandler.remove();
-          if (subscription) subscription.remove();
-          
-          router.replace('/blocked');
+          if (remaining <= 0) {
+            // Out of chances -> BLOCK IMMEDIATELY
+            await StorageService.setBlocked(
+              true,
+              `Keluar aplikasi sebanyak ${currentViolations} kali (batas toleransi ${maxAllowed} kali habis)`
+            );
+            if (studentSession?.id) {
+              DbService.setSiswaActiveStatus(studentSession.id, false).catch(err => console.warn('Failed to sync block to cloud:', err));
+              DbService.updateLatestLoginLogStatus(studentSession.id, 'blocked').catch(err => console.warn(err));
+            }
+            
+            backHandler.remove();
+            if (subscription) subscription.remove();
+            
+            router.replace('/blocked');
+          } else {
+            // Show alert warning with remaining chances
+            showCustomAlert(
+              '⚠️ Deteksi Pelanggaran!',
+              `Anda terdeteksi keluar dari layar ujian! \n\nPelanggaran: ${currentViolations}/${maxAllowed} kali.\nSisa kesempatan Anda: ${remaining} kali sebelum aplikasi terkunci total!`,
+              'warning'
+            );
+          }
         }
         appState.current = nextAppState;
       };
@@ -246,15 +270,35 @@ export default function ExamWebviewScreen() {
 
     const blockUser = async (reasonText: string) => {
       if (isBlockedActionFired) return;
-      isBlockedActionFired = true;
-      console.log(`Cheat detected on Web: ${reasonText}`);
-      await StorageService.setBlocked(true, reasonText);
-      router.replace('/blocked');
+      
+      const maxAllowed = await StorageService.getCachedMaxViolations();
+      const currentViolations = await StorageService.incrementViolationCount();
+      const remaining = maxAllowed - currentViolations;
+      
+      if (remaining <= 0) {
+        isBlockedActionFired = true;
+        console.log(`Cheat detected on Web: ${reasonText} (Limit Reached)`);
+        await StorageService.setBlocked(
+          true,
+          `${reasonText} sebanyak ${currentViolations} kali (batas toleransi ${maxAllowed} kali habis)`
+        );
+        if (studentSession?.id) {
+          DbService.setSiswaActiveStatus(studentSession.id, false).catch(err => console.warn('Failed to sync block to cloud:', err));
+          DbService.updateLatestLoginLogStatus(studentSession.id, 'blocked').catch(err => console.warn(err));
+        }
+        router.replace('/blocked');
+      } else {
+        showCustomAlert(
+          '⚠️ Deteksi Pelanggaran!',
+          `Anda terdeteksi melakukan pelanggaran di browser! (${reasonText})\n\nPelanggaran: ${currentViolations}/${maxAllowed} kali.\nSisa kesempatan Anda: ${remaining} kali sebelum halaman terkunci total!`,
+          'warning'
+        );
+      }
     };
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        blockUser('Membuka tab lain, jendela lain, atau memperkecil browser');
+        blockUser('Membuka tab/jendela lain');
       }
     };
 
@@ -296,6 +340,9 @@ export default function ExamWebviewScreen() {
             () => {
               if (examId) {
                 const studentId = studentSession?.id || 'guest';
+                if (studentSession?.id) {
+                  DbService.updateLatestLoginLogStatus(studentSession.id, 'completed').catch(err => console.warn(err));
+                }
                 StorageService.markExamAsCompleted(examId, studentId).then(() => {
                   router.replace('/');
                 }).catch((err) => {

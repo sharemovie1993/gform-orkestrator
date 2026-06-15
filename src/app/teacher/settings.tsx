@@ -35,6 +35,7 @@ export default function SystemSettingsScreen() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loginMode, setLoginMode] = useState<'simple' | 'login'>('simple');
   const [cheatBlocking, setCheatBlocking] = useState(true);
+  const [maxViolations, setMaxViolations] = useState('5');
   
   // School Profile & Branding States
   const [tenantProfile, setTenantProfile] = useState<Tenant | null>(null);
@@ -44,6 +45,7 @@ export default function SystemSettingsScreen() {
 
   const [updatingMode, setUpdatingMode] = useState(false);
   const [updatingCheat, setUpdatingCheat] = useState(false);
+  const [updatingViolations, setUpdatingViolations] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
 
   const loadSettings = async () => {
@@ -86,6 +88,9 @@ export default function SystemSettingsScreen() {
       const blockVal = await DbService.getSetting('cheat_blocking_enabled');
       setCheatBlocking(blockVal === 'true');
 
+      const violationsVal = await DbService.getSetting('max_violations');
+      setMaxViolations(violationsVal || '5');
+
       // Fetch school profile branding (SaaS ready)
       const tenant = await DbService.getTenantProfile();
       if (tenant) {
@@ -100,6 +105,26 @@ export default function SystemSettingsScreen() {
       Alert.alert('Gagal Memuat Data', 'Tidak dapat memuat konfigurasi dari database Supabase.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveMaxViolations = async () => {
+    const val = parseInt(maxViolations, 10);
+    if (isNaN(val) || val < 1 || val > 50) {
+      Alert.alert('Batas Tidak Valid', 'Batas toleransi pelanggaran harus berupa angka antara 1 sampai 50.');
+      return;
+    }
+
+    setUpdatingViolations(true);
+    try {
+      await DbService.updateSetting('max_violations', String(val));
+      await StorageService.cacheMaxViolations(val);
+      Alert.alert('Sukses', `Batas toleransi pelanggaran siswa berhasil diubah menjadi ${val} kali.`);
+    } catch (err: any) {
+      console.error(err);
+      Alert.alert('Gagal Menyimpan', err.message || 'Terjadi kesalahan jaringan.');
+    } finally {
+      setUpdatingViolations(false);
     }
   };
 
@@ -121,7 +146,7 @@ export default function SystemSettingsScreen() {
 
   const handleToggleLoginMode = async () => {
     const targetMode = loginMode === 'simple' ? 'login' : 'simple';
-    const modeTitle = targetMode === 'simple' ? 'Mode Simple (Tabular)' : 'Mode Login (NISN)';
+    const modeTitle = targetMode === 'simple' ? 'Mode Simple (Tabular)' : 'Mode Login (NIS)';
     const alertTitle = 'Ubah Mode Akses Siswa?';
     const alertMessage = `Apakah Anda yakin ingin beralih ke ${modeTitle}? Halaman siswa akan berubah seketika di hari H.`;
 
@@ -349,6 +374,40 @@ export default function SystemSettingsScreen() {
         </View>
 
         {/* ========================================================
+           SECTION 1.5: SCHOOL LICENSE & BILLING (SAAS READY)
+           ======================================================== */}
+        <Text style={[styles.subHeader, { marginTop: 15 }]}>STATUS LISENSI &amp; BILLING SEKOLAH</Text>
+        <Text style={styles.explanation}>
+          Pantau status paket langganan aktif, daur hidup lisensi sekolah, dan riwayat tagihan invoice resmi.
+        </Text>
+
+        <View style={styles.card}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+            <Text style={{ fontSize: 24, marginRight: 12 }}>🧾</Text>
+            <View>
+              <Text style={{ color: theme.text, fontSize: 15, fontWeight: '800' }}>Detail Tagihan &amp; Invoice</Text>
+              <Text style={{ color: theme.textSecondary, fontSize: 11, fontWeight: '600', marginTop: 2 }}>
+                Pengelolaan Riwayat Transaksi Lembaga
+              </Text>
+            </View>
+          </View>
+
+          <Text style={styles.explanation}>
+            Klik tombol di bawah untuk menampilkan seluruh detail transaksi pembayaran, tagihan invoice BOS, dan status paket langganan aktif untuk sekolah Anda.
+          </Text>
+
+          <TouchableOpacity
+            style={[styles.saveButton, { backgroundColor: '#3B82F6', marginTop: 10 }]}
+            onPress={() => {
+              const { DeviceEventEmitter } = require('react-native');
+              DeviceEventEmitter.emit('openBillingModal');
+            }}
+          >
+            <Text style={styles.saveButtonText}>📋 LIHAT DETAIL BILLING &amp; INVOICE</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* ========================================================
            SECTION 2: GLOBAL PORTAL ACCESS MODE
            ======================================================== */}
         <Text style={[styles.subHeader, { marginTop: 15 }]}>KONFIGURASI PORTAL GLOBAL</Text>
@@ -360,7 +419,7 @@ export default function SystemSettingsScreen() {
             <View style={styles.cardHeaderTexts}>
               <Text style={styles.cardTitle}>Mode Akses Portal Siswa</Text>
               <Text style={styles.cardStatusLabel}>
-                STATUS AKTIF: {loginMode === 'simple' ? '⚡ SIMPLE (TABULAR)' : '🔒 LOGIN NISN'}
+                STATUS AKTIF: {loginMode === 'simple' ? '⚡ SIMPLE (TABULAR)' : '🔒 LOGIN NIS'}
               </Text>
             </View>
           </View>
@@ -368,8 +427,8 @@ export default function SystemSettingsScreen() {
           <View style={styles.switchRow}>
             <Text style={styles.switchDescription}>
               {loginMode === 'simple'
-                ? 'Siswa bebas memilih tingkat & kelas untuk langsung melihat soal. Tanpa NISN. Sangat disarankan untuk kelancaran besok lusa.'
-                : 'Siswa wajib memasukkan NISN yang terdaftar di database sebelum dapat melihat jadwal atau soal.'}
+                ? 'Siswa bebas memilih tingkat & kelas untuk langsung melihat soal. Tanpa NIS. Sangat disarankan untuk kelancaran besok lusa.'
+                : 'Siswa wajib memasukkan NIS yang terdaftar di database sebelum dapat melihat jadwal atau soal.'}
             </Text>
             <View style={styles.actionContainer}>
               {updatingMode ? (
@@ -420,6 +479,47 @@ export default function SystemSettingsScreen() {
             </View>
           </View>
         </View>
+
+        {/* 2.5. Batas Toleransi Pelanggaran Siswa */}
+        {cheatBlocking && (
+          <View style={[styles.card, { borderColor: theme.warning }]}>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardEmoji}>⚠️</Text>
+              <View style={styles.cardHeaderTexts}>
+                <Text style={styles.cardTitle}>Toleransi Pelanggaran Siswa</Text>
+                <Text style={styles.cardStatusLabel}>
+                  BATAS AKTIF: {maxViolations} KALI
+                </Text>
+              </View>
+            </View>
+
+            <Text style={styles.explanation}>
+              Siswa diperbolehkan keluar layar ujian sebanyak maksimal batas di bawah ini. Jika melewati batas ini, aplikasi siswa akan terkunci total secara otomatis.
+            </Text>
+
+            <Text style={styles.inputLabel}>BATAS MAKSIMAL KELUAR LAYAR (1 - 50)</Text>
+            <TextInput
+              style={styles.textInput}
+              value={maxViolations}
+              onChangeText={(text) => setMaxViolations(text.replace(/[^0-9]/g, ''))}
+              placeholder="Contoh: 5"
+              placeholderTextColor="#64748B"
+              keyboardType="number-pad"
+            />
+
+            <TouchableOpacity
+              style={[styles.saveButton, { backgroundColor: theme.warning }, updatingViolations && { opacity: 0.6 }]}
+              onPress={handleSaveMaxViolations}
+              disabled={updatingViolations}
+            >
+              {updatingViolations ? (
+                <ActivityIndicator color="#FFF" />
+              ) : (
+                <Text style={styles.saveButtonText}>⚡ SIMPAN BATAS TOLERANSI</Text>
+              )}
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* 3. Application Color Theme Card */}
         <Text style={[styles.subHeader, { marginTop: 15 }]}>TEMA TAMPILAN APLIKASI</Text>

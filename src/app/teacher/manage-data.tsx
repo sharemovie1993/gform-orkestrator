@@ -191,13 +191,14 @@ export default function ManageDataScreen() {
   const loadAllData = async () => {
     setLoading(true);
     try {
-      const [jList, kList, sList, gList, mList, lList] = await Promise.all([
+      const [jList, kList, sList, gList, mList, lList, sCount] = await Promise.all([
         DbService.getJurusan(),
         DbService.getKelas(),
         DbService.getSiswa(),
-        DbService.getGuru(),
+        DbService.getGuru(false),
         DbService.getMapel(),
         DbService.getLinkSoal(),
+        DbService.getSiswaCount(),
       ]);
 
       setJurusans(jList);
@@ -210,7 +211,7 @@ export default function ManageDataScreen() {
       setStats({
         jurusan: jList.length,
         kelas: kList.length,
-        siswa: sList.length,
+        siswa: sCount,
         guru: gList.length,
         mapel: mList.length,
         link_soal: lList.length,
@@ -233,7 +234,7 @@ export default function ManageDataScreen() {
           return;
         }
 
-        const gurusList = await DbService.getGuru();
+        const gurusList = await DbService.getGuru(false);
         const currentGuru = gurusList.find(g => g.id === cachedId);
 
         if (!currentGuru || currentGuru.username.toLowerCase() !== 'admin') {
@@ -394,7 +395,7 @@ export default function ManageDataScreen() {
         success = true;
 
       } else if (activeTab === 'siswa') {
-        if (!siswaNisn.trim()) errs.nisn = 'NISN tidak boleh kosong';
+        if (!siswaNisn.trim()) errs.nisn = 'NIS tidak boleh kosong';
         if (!siswaNama.trim()) errs.nama = 'Nama siswa tidak boleh kosong';
         if (!siswaKelasId) errs.kelas = 'Silakan pilih kelas';
         if (Object.keys(errs).length > 0) {
@@ -488,6 +489,9 @@ export default function ManageDataScreen() {
       }
 
       if (success) {
+        if (activeTab === 'jurusan' || activeTab === 'kelas' || activeTab === 'guru' || activeTab === 'mapel') {
+          await DbService.incrementCacheVersion();
+        }
         setIsSaving(false);
         setModalVisible(false);
         showToast('Data berhasil disimpan!', 'success');
@@ -528,6 +532,9 @@ export default function ManageDataScreen() {
       }
 
       if (success) {
+        if (activeTab === 'jurusan' || activeTab === 'kelas' || activeTab === 'guru' || activeTab === 'mapel') {
+          await DbService.incrementCacheVersion();
+        }
         showToast('Data berhasil dihapus.', 'success');
         setConfirmVisible(false);
         loadAllData();
@@ -569,27 +576,17 @@ export default function ManageDataScreen() {
     setIsBulkDeleting(true);
     setBulkDeleteConfirmVisible(false);
     const ids = Array.from(selectedIds);
-    let successCount = 0;
-    let failCount = 0;
     try {
-      for (const id of ids) {
-        try {
-          let ok = false;
-          if (activeTab === 'jurusan') ok = await DbService.deleteJurusan(id);
-          else if (activeTab === 'kelas') ok = await DbService.deleteKelas(id);
-          else if (activeTab === 'siswa') ok = await DbService.deleteSiswa(id);
-          else if (activeTab === 'guru') ok = await DbService.deleteGuru(id);
-          else if (activeTab === 'mapel') ok = await DbService.deleteMapel(id);
-          else if (activeTab === 'link_soal') ok = await DbService.deleteLinkSoal(id);
-          if (ok) successCount++; else failCount++;
-        } catch { failCount++; }
+      const ok = await DbService.deleteBulk(activeTab, ids);
+      if (ok && (activeTab === 'jurusan' || activeTab === 'kelas' || activeTab === 'guru' || activeTab === 'mapel')) {
+        await DbService.incrementCacheVersion();
       }
       setSelectedIds(new Set());
       await loadAllData();
-      if (failCount === 0) {
-        showToast(`${successCount} data berhasil dihapus.`, 'success');
+      if (ok) {
+        showToast(`${ids.length} data berhasil dihapus.`, 'success');
       } else {
-        showToast(`${successCount} berhasil, ${failCount} gagal dihapus.`, 'info');
+        showToast('Gagal menghapus data.', 'error');
       }
     } catch (e: any) {
       showToast(e.message || 'Terjadi kesalahan saat bulk delete.', 'error');
@@ -649,6 +646,12 @@ export default function ManageDataScreen() {
       throw new Error('Data yang diimpor kosong.');
     }
 
+    // Guard: pastikan tenant aktif sebelum memulai import
+    const { activeTenantId } = require('@/services/supabase');
+    if (!activeTenantId) {
+      throw new Error('Sesi tenant tidak terdeteksi. Silakan refresh halaman dan coba lagi.');
+    }
+
     // Tampilkan progress modal
     setImportProgressCurrent(0);
     setImportProgressTotal(rawList.length);
@@ -659,33 +662,51 @@ export default function ManageDataScreen() {
       setImportProgressTotal(total);
     };
 
-    let success = false;
+    let result: { imported: number; skipped: number; failed: number } | null = null;
+
     if (activeTab === 'jurusan') {
-      success = await DbService.importJurusans(rawList, onProgress);
+      result = await DbService.importJurusans(rawList, onProgress);
     } else if (activeTab === 'kelas') {
-      success = await DbService.importKelas(rawList, onProgress);
+      result = await DbService.importKelas(rawList, onProgress);
     } else if (activeTab === 'siswa') {
-      success = await DbService.importSiswa(rawList, onProgress);
+      result = await DbService.importSiswa(rawList, onProgress);
     } else if (activeTab === 'guru') {
-      success = await DbService.importGuru(rawList, onProgress);
+      result = await DbService.importGuru(rawList, onProgress);
     } else if (activeTab === 'mapel') {
-      success = await DbService.importMapel(rawList, onProgress);
+      result = await DbService.importMapel(rawList, onProgress);
     } else if (activeTab === 'link_soal') {
-      success = await DbService.importLinkSoal(rawList, onProgress);
+      result = await DbService.importLinkSoal(rawList, onProgress);
     }
 
-    if (success) {
-      // Tahan sebentar di 100% agar user melihat selesai
-      setImportProgressCurrent(rawList.length);
-      await new Promise(r => setTimeout(r, 1200));
-      setImportProgressVisible(false);
-      showToast(`${rawList.length} data berhasil diimpor.`, 'success');
-      setImportVisible(false);
-      loadAllData();
-    } else {
-      setImportProgressVisible(false);
-      throw new Error('Terjadi kegagalan saat memasukkan data ke penyimpanan.');
+    // Tahan sebentar di 100% agar user melihat selesai
+    setImportProgressCurrent(rawList.length);
+    await new Promise(r => setTimeout(r, 1200));
+    setImportProgressVisible(false);
+    setImportVisible(false);
+
+    if (result) {
+      const { imported, skipped, failed } = result;
+      if (imported > 0 && (activeTab === 'jurusan' || activeTab === 'kelas' || activeTab === 'guru' || activeTab === 'mapel')) {
+        await DbService.incrementCacheVersion();
+      }
+      if (failed > 0) {
+        showToast(
+          `Import selesai: ✅ ${imported} berhasil, ⚠️ ${skipped} dilewati (kelas tidak cocok), ❌ ${failed} gagal.`,
+          'error',
+          6000
+        );
+      } else if (skipped > 0) {
+        showToast(
+          `Import selesai: ✅ ${imported} berhasil, ⚠️ ${skipped} dilewati (nama kelas/data tidak cocok).`,
+          'info',
+          5000
+        );
+      } else {
+        showToast(`✅ ${imported} data berhasil diimpor.`, 'success');
+      }
     }
+
+    loadAllData();
   };
 
   // Helper parser for custom input (CSV & JSON Fallback for mobile)
@@ -882,7 +903,7 @@ export default function ManageDataScreen() {
       case 'kelas':
         return ['Tingkat', 'Nama Kelas', 'Jurusan', 'Jumlah Siswa', 'Status', 'Aksi'];
       case 'siswa':
-        return ['NISN', 'Nama Lengkap', 'Kelas', 'Status', 'Aksi'];
+        return ['NIS', 'Nama Lengkap', 'Kelas', 'Status', 'Aksi'];
       case 'guru':
         return ['Nama Guru', 'Username', 'PIN Pengawas', 'Status', 'Aksi'];
       case 'mapel':
@@ -1017,6 +1038,7 @@ export default function ManageDataScreen() {
             case 'jurusan':
               return (
                 <JurusanRow
+                  key={item.id}
                   item={item as Jurusan}
                   selected={selected}
                   onToggleSelect={onToggleSelect}
@@ -1027,6 +1049,7 @@ export default function ManageDataScreen() {
             case 'kelas':
               return (
                 <KelasRow
+                  key={item.id}
                   item={item as Kelas}
                   selected={selected}
                   onToggleSelect={onToggleSelect}
@@ -1038,6 +1061,7 @@ export default function ManageDataScreen() {
             case 'siswa':
               return (
                 <SiswaRow
+                  key={item.id}
                   item={item as Siswa}
                   selected={selected}
                   onToggleSelect={onToggleSelect}
@@ -1049,6 +1073,7 @@ export default function ManageDataScreen() {
               const g = item as Guru;
               return (
                 <GuruRow
+                  key={g.id}
                   item={g}
                   selected={selected}
                   onToggleSelect={onToggleSelect}
@@ -1059,6 +1084,7 @@ export default function ManageDataScreen() {
                     setTogglingGuruId(g.id);
                     try {
                       await DbService.updateGuru(g.id, g.nama_guru, g.username, g.pin_pengawas, val);
+                      await DbService.incrementCacheVersion();
                       setGurus(prev => prev.map(x => x.id === g.id ? { ...x, is_active: val } : x));
                       showToast(`${g.nama_guru} ${val ? 'diaktifkan' : 'dinonaktifkan'}`, 'success');
                     } catch (e: any) {
@@ -1073,6 +1099,7 @@ export default function ManageDataScreen() {
             case 'mapel':
               return (
                 <MapelRow
+                  key={item.id}
                   item={item as Mapel}
                   selected={selected}
                   onToggleSelect={onToggleSelect}
@@ -1083,6 +1110,7 @@ export default function ManageDataScreen() {
             case 'link_soal':
               return (
                 <LinkSoalRow
+                  key={item.id}
                   item={item as LinkSoal}
                   selected={selected}
                   onToggleSelect={onToggleSelect}

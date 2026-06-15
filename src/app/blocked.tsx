@@ -14,6 +14,7 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StorageService } from '@/services/storage';
+import { DbService, Siswa } from '@/services/supabase';
 import { useTheme } from '@/hooks/use-theme';
 
 export default function BlockedScreen() {
@@ -24,7 +25,7 @@ export default function BlockedScreen() {
   const [reason, setReason] = useState('Membuka aplikasi lain / Keluar halaman ujian');
   const [isFocused, setIsFocused] = useState(false);
 
-  // Disable hardware back button on Android
+  // Disable hardware back button on Android & Poll active status
   useEffect(() => {
     const onBackPress = () => {
       // Return true to prevent default back action
@@ -38,8 +39,38 @@ export default function BlockedScreen() {
       if (res) setReason(res);
     });
 
+    // Remote unlock polling
+    let activeInterval: any = null;
+    StorageService.getStudentSession().then((session: Siswa | null) => {
+      if (session?.id) {
+        activeInterval = setInterval(async () => {
+          try {
+            const isActive = await DbService.getSiswaActiveStatus(session.id);
+            if (isActive) {
+              console.log('[Remote Unlock] Student was unblocked remotely by teacher!');
+              clearInterval(activeInterval);
+              
+              // Perform local unblocking
+              await StorageService.setBlocked(false);
+              await StorageService.resetViolationCount();
+              
+              if (Platform.OS === 'web') {
+                alert('Ujian Anda telah dibuka kunci oleh Pengawas!');
+              } else {
+                Alert.alert('Sukses', 'Ujian Anda telah dibuka kunci oleh Pengawas!');
+              }
+              router.replace('/');
+            }
+          } catch (e) {
+            console.warn('Failed to poll active status:', e);
+          }
+        }, 3000);
+      }
+    });
+
     return () => {
       backHandler.remove();
+      if (activeInterval) clearInterval(activeInterval);
     };
   }, []);
 
@@ -55,6 +86,7 @@ export default function BlockedScreen() {
     if (isValid) {
       // Reset blocking status
       await StorageService.setBlocked(false);
+      await StorageService.resetViolationCount();
       if (Platform.OS === 'web') {
         alert('Aplikasi telah dibuka kunci. Silakan melanjutkan.');
         router.replace('/');

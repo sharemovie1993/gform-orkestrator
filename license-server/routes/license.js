@@ -233,7 +233,17 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
   const prodId = product_id || 'gform-orkestrator';
   const limit = (device_limit !== undefined && device_limit !== null) ? parseInt(device_limit, 10) : 10;
   const isUnlimited = (is_unlimited === 1 || is_unlimited === true || limit >= 9999) ? 1 : 0;
-  const newKey = generateKey(prodId);
+  
+  let productPrefix = null;
+  try {
+    const prodDb = await db.get("SELECT key_prefix FROM products WHERE id = ?", [prodId]);
+    if (prodDb && prodDb.key_prefix) {
+      productPrefix = prodDb.key_prefix;
+    }
+  } catch (e) {
+    console.error('[License Request] Failed to fetch product key prefix:', e.message);
+  }
+  const newKey = generateKey(prodId, productPrefix);
   
   const placeholderExpire = new Date();
   placeholderExpire.setFullYear(placeholderExpire.getFullYear() + 1);
@@ -250,13 +260,13 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
         return new Promise((resolve) => {
           const https = require('https');
           const options = {
-            hostname: 'xjnctgbzilrhbzsbrtpu.supabase.co',
+            hostname: 'supabaselocal.absenta.id',
             port: 443,
             path: `/rest/v1/tenants?domain_or_slug=eq.${slug}&select=id,name,domain_or_slug,license_key`,
             method: 'GET',
             headers: {
-              'apikey': 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg',
-              'Authorization': 'Bearer sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg'
+              'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE'
             }
           };
 
@@ -538,6 +548,10 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       .update(TRIPAY_MERCHANT_CODE + invoiceNumber + totalAmount)
       .digest('hex');
 
+    // Fetch product details for naming
+    const productDb = await db.get("SELECT display_name, name FROM products WHERE id = ?", [prodId]);
+    const productNameForInvoice = productDb ? (productDb.display_name || productDb.name) : "Aplikasi";
+
     const tripayPayload = {
       method: resolvedPaymentMethod,
       merchant_ref: invoiceNumber,
@@ -548,7 +562,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       order_items: [
         {
           sku: plan.id,
-          name: `${prodId === 'absenta' ? 'Absenta' : 'G-Form'} Premium ${plan.title}`,
+          name: `${productNameForInvoice} - ${plan.title}`,
           price: basePrice,
           quantity: 1
         },
@@ -671,13 +685,13 @@ router.get('/api/license/check-slug/:slug', async (req, res) => {
     const getTenantFromSupabase = (domainSlug) => {
       return new Promise((resolve) => {
         const options = {
-          hostname: 'xjnctgbzilrhbzsbrtpu.supabase.co',
+          hostname: 'supabaselocal.absenta.id',
           port: 443,
           path: `/rest/v1/tenants?domain_or_slug=eq.${domainSlug}&select=id,name,license_key`,
           method: 'GET',
           headers: {
-            'apikey': 'sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg',
-            'Authorization': 'Bearer sb_publishable_V-cqiwiR7AleBLJuILePTg_-CWhSAgg'
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJhbm9uIiwKICAgICJpc3MiOiAic3VwYWJhc2UtZGVtbyIsCiAgICAiaWF0IjogMTY0MTc2OTIwMCwKICAgICJleHAiOiAxNzk5NTM1NjAwCn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE'
           }
         };
 
@@ -898,9 +912,22 @@ router.get('/api/license/print-invoice/:invoiceNumber', async (req, res) => {
       ? formatIndonesianDate(inv.paid_at.slice(0, 10)) 
       : formatIndonesianDate(inv.created_at.slice(0, 10));
     
-    const productName = inv.product_id === 'absenta' ? 'Absenta Premium (AI Absensi)' : 'G-Form Orkestrator Premium';
-    const productDesc = inv.product_id === 'absenta' ? 'Sistem absensi sekolah berbasis AI wajah & pembatasan radius lokasi' : 'Sistem pengunci & pengaman ujian terintegrasi Google Forms';
-    const capacityStr = inv.product_id === 'absenta' ? 'Multi Device HP' : 'Unlimited HP (Tanpa Batas Siswa)';
+    // Fetch product settings dynamically from DB
+    const product = await db.get('SELECT * FROM products WHERE id = ?', [inv.product_id]);
+    
+    const productName = product ? product.display_name : (inv.product_id === 'absenta' ? 'Absenta Premium (AI Absensi)' : 'G-Form Orkestrator Premium');
+    const productDesc = product ? product.description : (inv.product_id === 'absenta' ? 'Sistem absensi sekolah berbasis AI wajah & pembatasan radius lokasi' : 'Sistem pengunci & pengaman ujian terintegrasi Google Forms');
+    
+    // Determine capacity dynamically from the license properties
+    let capacityStr = '';
+    if (license && (license.is_unlimited === 1 || license.device_limit === 0 || license.device_limit >= 9999)) {
+      capacityStr = inv.product_id === 'project-yatim' ? 'Tanpa Batas Mustahiq' : 'Unlimited HP';
+    } else if (license && license.device_limit > 0) {
+      capacityStr = inv.product_id === 'project-yatim' ? `Maks. ${license.device_limit} Mustahiq` : `Maks. ${license.device_limit} HP`;
+    } else {
+      capacityStr = product ? product.capacity_label : 'Standar';
+    }
+    
     const statusLabel = inv.status === 'paid' ? 'LUNAS' : 'BELUM BAYAR';
     const payMethodLabel = inv.payment_method || 'N/A';
     const isPaid = inv.status === 'paid';
@@ -1921,6 +1948,112 @@ router.get('/api/license/download-stats', async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Gagal mengambil statistik: ' + err.message });
+  }
+});
+
+// ── VPN TUNNEL REGISTRATION ROUTE ──
+router.post('/api/license/tunnel/request', async (req, res) => {
+  const { license_key, subdomain_slug } = req.body;
+  if (!license_key || !subdomain_slug) {
+    return res.status(400).json({ success: false, message: 'License key dan subdomain slug wajib diisi.' });
+  }
+
+  try {
+    const slugLower = subdomain_slug.trim().toLowerCase();
+    if (!/^[a-z0-9-]+$/.test(slugLower)) {
+      return res.status(400).json({ success: false, message: 'Subdomain slug hanya boleh huruf kecil, angka, dan strip (-).' });
+    }
+
+    // 1. Verifikasi lisensi aktif
+    const license = await db.get('SELECT * FROM licenses WHERE license_key = ? AND is_active = 1', [license_key.trim()]);
+    if (!license) {
+      return res.status(403).json({ success: false, message: 'Lisensi tidak ditemukan atau tidak aktif.' });
+    }
+
+    // 2. Cek apakah slug sudah terdaftar untuk license/tenant lain
+    const existingSlug = await db.get('SELECT * FROM licenses WHERE requested_slug = ? AND id != ?', [slugLower, license.id]);
+    if (existingSlug) {
+      return res.status(400).json({ success: false, message: 'Subdomain tersebut sudah digunakan oleh instansi lain.' });
+    }
+
+    // 3. Jika sudah ada IP yang terdaftar untuk key ini, gunakan IP tersebut
+    let clientIp = license.wireguard_ip;
+    if (!clientIp) {
+      // Find next available IP (start from 10.0.0.10)
+      const activeIps = await db.all('SELECT wireguard_ip FROM licenses WHERE wireguard_ip IS NOT NULL');
+      let maxOctet = 9; 
+      activeIps.forEach(row => {
+        const parts = row.wireguard_ip.split('.');
+        if (parts.length === 4) {
+          const octet = parseInt(parts[3], 10);
+          if (!isNaN(octet) && octet > maxOctet) {
+            maxOctet = octet;
+          }
+        }
+      });
+      clientIp = `10.0.0.${maxOctet + 1}`;
+    }
+
+    // 4. Generate keys
+    const { execSync } = require('child_process');
+    const privateKey = execSync('wg genkey').toString().trim();
+    const publicKey = execSync(`echo "${privateKey}" | wg pubkey`).toString().trim();
+
+    // 5. Hot-add peer & create Nginx config using the secure sudo script
+    const localPort = req.body.local_port || 5002;
+    const frontendPort = req.body.frontend_port || 5174;
+    const safeSchoolName = license.school_name.replace(/[^a-zA-Z0-9 ]/g, '');
+    const execCmd = `sudo /usr/local/bin/add-wg-peer.sh "${safeSchoolName}" "${publicKey}" "${clientIp}" "${slugLower}" "${localPort}" "${frontendPort}"`;
+    
+    console.log(`[VPN Tunnel] Running system command: ${execCmd}`);
+    execSync(execCmd);
+
+    // 5b. Ensure Client-to-Client isolation firewall rules are applied on wg0
+    try {
+      execSync('sudo iptables -C FORWARD -i wg0 -o wg0 -m iprange --src-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable', { stdio: 'ignore' });
+    } catch (checkErr) {
+      console.log('[VPN Tunnel Request] Applying firewall isolation rules on wg0...');
+      try {
+        const applyCmd = 
+          'sudo iptables -A FORWARD -i wg0 -o wg0 -m iprange --src-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable && ' +
+          'sudo iptables -A FORWARD -i wg0 -o wg0 -m iprange --dst-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable';
+        execSync(applyCmd);
+        // Persist the rule
+        execSync('if [ -d /etc/iptables ]; then sudo sh -c "iptables-save > /etc/iptables/rules.v4"; fi', { stdio: 'ignore' });
+        console.log('[VPN Tunnel Request] Firewall isolation rules applied successfully!');
+      } catch (applyErr) {
+        console.warn('[VPN Tunnel Request WARNING] Failed to apply iptables rules:', applyErr.message);
+      }
+    }
+
+    // 6. Update database settings
+    await db.run('UPDATE licenses SET wireguard_ip = ?, requested_slug = ? WHERE id = ?', [clientIp, slugLower, license.id]);
+
+    const clientConfig = `[Interface]
+PrivateKey = ${privateKey}
+Address = ${clientIp}/24
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = SP47bTGqXxN4Qqe2DewpONtYEOh2qcXPTj7dt1g1x2o=
+Endpoint = 103.129.148.127:51820
+AllowedIPs = 10.0.0.0/24
+PersistentKeepalive = 25
+`;
+
+    res.json({
+      success: true,
+      message: 'Tunnel Wireguard berhasil dibuat.',
+      data: {
+        license_key,
+        client_ip: clientIp,
+        subdomain: `${slugLower}.absenta.id`,
+        config: clientConfig
+      }
+    });
+  } catch (err) {
+    console.error('[VPN Tunnel Request Error]', err);
+    res.status(500).json({ success: false, message: 'Gagal memproses pembuatan VPN Tunnel: ' + err.message });
   }
 });
 

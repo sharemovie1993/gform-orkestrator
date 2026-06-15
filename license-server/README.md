@@ -11,6 +11,16 @@ Ini adalah backend server lisensi berbasis **Node.js, Express, dan SQLite** yang
 3. **Locking Device Fingerprint**: Mencegah kecurangan pembagian lisensi (*key-sharing*). Satu kunci lisensi terikat dengan **Device ID** unik ponsel/komputer siswa/guru dan memiliki limit kapasitas yang dapat disetel admin (misal: 1 key maksimal untuk 50 HP).
 4. **Admin Protection**: Endpoint pembuatan dan pengelolaan lisensi dilindungi oleh **Header PIN Admin** (`x-admin-secret`).
 
+### 8. Penanganan Real-Time Penolakan/Penghapusan Pengajuan QRIS (QRIS Rejection Reactivity)
+*   **Masalah**: Ketika administrator menolak (menghapus/menolak) pengajuan pending pembayaran QRIS di dashboard admin, aplikasi klien (HP siswa) tetap tertahan di layar pembayaran QRIS ("Menunggu Pembayaran") dengan status memutar terus (*diem gini terus*).
+*   **Penyebab**: Hook polling pembayaran `fetch` di klien sebelumnya hanya mengevaluasi status sukses (`data.success && data.status === 'active'`). Ketika admin menghapus data, server merespon dengan status `404` (`success: false`). Karena respon kegagalan tersebut tidak ditangani (diabaikan), loop interval polling di klien tetap berjalan terus di layar QRIS tanpa batas waktu.
+*   **Perbaikan**: Menambahkan blok cabang penanganan kesalahan (`else` block) pada hasil polling pembayaran. 
+*   **Alur Baru**: Jika server mengembalikan `success: false` (berarti pengajuan lisensi dihapus/ditolak oleh admin di database), aplikasi klien seketika itu juga akan:
+    1. Menghentikan proses interval polling pembayaran (`clearInterval`).
+    2. Menghapus kunci lisensi tertunda dari memori penyimpanan lokal (`AsyncStorage.removeItem('@license_pending_key')`).
+    3. Mereset state `pendingKey` ke string kosong.
+    4. Menampilkan kotak dialog premium **"Aktivasi Ditolak"** yang menginformasikan bahwa permintaan QRIS mereka ditolak/dihapus oleh Admin, dan mengembalikannya ke layar utama pengajuan lisensi secara otomatis.
+
 ---
 
 ## 📂 Struktur Endpoint API

@@ -9,6 +9,8 @@ import {
   StatusBar,
   RefreshControl,
   Platform,
+  Modal,
+  Linking,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,16 +32,17 @@ export default function ExamListScreen() {
   const [displayedKelasName, setDisplayedKelasName] = useState<string>(kelasName || 'Daftar Ujian');
   const [isNavigating, setIsNavigating] = useState(false);
   const [completedExams, setCompletedExams] = useState<string[]>([]);
+  const [logoutModalVisible, setLogoutModalVisible] = useState(false);
 
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchExams = async () => {
     setIsNavigating(false); // Reset lock on mount
-    const blocked = await StorageService.isBlocked();
-    if (blocked) {
-      router.replace('/blocked');
-      return;
-    }
+    // const blocked = await StorageService.isBlocked();
+    // if (blocked) {
+    //   router.replace('/blocked');
+    //   return;
+    // }
 
     // Load student session if logged in
     const student = await StorageService.getStudentSession();
@@ -66,10 +69,36 @@ export default function ExamListScreen() {
       const completed = await StorageService.getCompletedExams(studentId);
       setCompletedExams(completed);
 
-      const data = await DbService.getLinkSoal(activeKelasId);
-      // Filter only active exam links
-      const activeExams = data.filter(exam => exam.is_active !== false);
+      // Fetch only active exam links directly at the database level for optimal performance
+      const activeExams = await DbService.getLinkSoal(activeKelasId, true);
+
+      // Sort based on closest date and time (nearest/soonest first)
+      activeExams.sort((a, b) => {
+        try {
+          const aDateTime = new Date(`${a.tanggal_ujian}T${a.waktu_ujian || '00:00:00'}`);
+          const bDateTime = new Date(`${b.tanggal_ujian}T${b.waktu_ujian || '00:00:00'}`);
+          return aDateTime.getTime() - bDateTime.getTime();
+        } catch (e) {
+          return 0;
+        }
+      });
+
       setExams(activeExams);
+
+      // Fetch global settings dynamically and cache them locally (for offline robustness during exams)
+      try {
+        const maxViolationsStr = await DbService.getSetting('max_violations');
+        const maxViolationsVal = parseInt(maxViolationsStr, 10) || 5;
+        await StorageService.cacheMaxViolations(maxViolationsVal);
+
+        const cheatBlockingStr = await DbService.getSetting('cheat_blocking_enabled');
+        await StorageService.cacheCheatBlocking(cheatBlockingStr !== 'false');
+
+        const pins = await DbService.getAllGuruPins();
+        await StorageService.cachePins(pins);
+      } catch (settingsErr) {
+        console.warn('Failed to cache settings or pins in background:', settingsErr);
+      }
     } catch (e) {
       console.error('Failed to load exams:', e);
     } finally {
@@ -92,25 +121,25 @@ export default function ExamListScreen() {
     fetchExams();
   }, [kelasId]);
 
-  const handleStartExam = (exam: LinkSoal) => {
+  const handleStartExam = async (exam: LinkSoal) => {
     if (isNavigating) return;
     setIsNavigating(true);
 
     try {
-      router.push({
-        pathname: '/exam-webview',
-        params: { 
-          examId: exam.id,
-          url: encodeURIComponent(exam.google_form_link), 
-          mapelName: exam.mapel_nama || 'Ujian',
-          enableBlocking: String(exam.enable_blocking !== false)
-        },
-      });
+      // Mark exam as completed locally so it shows checkmark
+      const studentId = studentSession?.id || 'guest';
+      await StorageService.markExamAsCompleted(exam.id, studentId);
+      
+      // Refresh list states
+      const completed = await StorageService.getCompletedExams(studentId);
+      setCompletedExams(completed);
+
+      // Open Google Form link in a new browser tab / external browser
+      await Linking.openURL(exam.google_form_link);
     } catch (err) {
-      console.error(err);
+      console.error('Failed to open exam link:', err);
     } finally {
-      // Safety unlock after 2 seconds
-      setTimeout(() => setIsNavigating(false), 2000);
+      setIsNavigating(false);
     }
   };
 
@@ -227,9 +256,24 @@ export default function ExamListScreen() {
       
       {/* Header Bar */}
       <View style={styles.headerBar}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/')}>
-          <Text style={styles.backButtonText}>◀ Kembali</Text>
-        </TouchableOpacity>
+        {studentSession ? (
+          <TouchableOpacity 
+            style={[styles.backButton, { backgroundColor: theme.danger + '10' }]} 
+            onPress={() => setLogoutModalVisible(true)}
+          >
+            <Text style={[styles.backButtonText, { color: theme.danger }]}>🚪 Keluar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity 
+            style={styles.backButton} 
+            onPress={async () => {
+              await StorageService.clearSelectedClass();
+              router.replace('/');
+            }}
+          >
+            <Text style={styles.backButtonText}>◀ Kembali</Text>
+          </TouchableOpacity>
+        )}
         <Text style={styles.headerTitle}>{displayedKelasName}</Text>
         <TouchableOpacity style={styles.reloadButton} onPress={handleReload}>
           <Text style={styles.reloadButtonText}>🔄 Segarkan</Text>
@@ -242,7 +286,7 @@ export default function ExamListScreen() {
           <Text style={styles.studentAvatar}>👤</Text>
           <View style={styles.studentDetails}>
             <Text style={styles.studentNameText}>{studentSession.nama_siswa}</Text>
-            <Text style={styles.studentMetaText}>NISN: {studentSession.nisn}  •  Kelas: {studentSession.kelas_nama || 'Aktif'}</Text>
+            <Text style={styles.studentMetaText}>NIS: {studentSession.nisn}  •  Kelas: {studentSession.kelas_nama || 'Aktif'}</Text>
           </View>
           <View style={styles.studentBadge}>
             <Text style={styles.studentBadgeText}>TERVERIFIKASI</Text>
@@ -280,6 +324,68 @@ export default function ExamListScreen() {
           }
         />
       )}
+      {/* ── Logout Warning Modal ── */}
+      <Modal
+        transparent
+        visible={logoutModalVisible}
+        animationType="fade"
+        onRequestClose={() => setLogoutModalVisible(false)}
+      >
+        <View style={styles.logoutOverlay}>
+          <View style={styles.logoutCard}>
+            {/* Icon */}
+            <View style={styles.logoutIconRing}>
+              <Text style={styles.logoutIconEmoji}>🚫</Text>
+            </View>
+
+            {/* Title */}
+            <Text style={styles.logoutTitle}>Jangan Logout!</Text>
+
+            {/* Message blocks */}
+            <View style={styles.logoutMsgBlock}>
+              <Text style={styles.logoutMsgLine}>
+                💡 <Text style={styles.logoutHighlight}>Tips Penting:</Text> Jika sudah selesai ujian, cukup **tutup saja aplikasinya / close tab browser** Anda. Besok otomatis langsung masuk lagi.
+              </Text>
+            </View>
+
+            <View style={styles.logoutMsgBlock}>
+              <Text style={styles.logoutMsgLine}>
+                ✅ Tetap login = besok ujian <Text style={styles.logoutHighlight}>langsung terbuka</Text> tanpa perlu login ulang.
+              </Text>
+            </View>
+
+            <View style={[styles.logoutMsgBlock, styles.logoutMsgBlockDanger]}>
+              <Text style={styles.logoutMsgLineDanger}>
+                ⚠️ Kalau logout, kamu harus login ulang besok pagi.
+              </Text>
+              <Text style={styles.logoutMsgLineDanger}>
+                🐌 Login di pagi hari berpotensi <Text style={styles.logoutHighlightDanger}>MACET</Text> karena ribuan siswa masuk bersamaan.
+              </Text>
+            </View>
+
+            {/* Actions */}
+            <TouchableOpacity
+              style={styles.logoutStayBtn}
+              onPress={() => setLogoutModalVisible(false)}
+              activeOpacity={0.85}
+            >
+              <Text style={styles.logoutStayText}>✔ Oke, Saya Tidak Jadi Keluar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.logoutConfirmBtn}
+              onPress={async () => {
+                setLogoutModalVisible(false);
+                await StorageService.clearStudentSession();
+                router.replace('/');
+              }}
+              activeOpacity={0.75}
+            >
+              <Text style={styles.logoutConfirmText}>Tetap Keluar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -508,5 +614,116 @@ const createStyles = (theme: any) => StyleSheet.create({
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 1,
+  },
+
+  // ── Logout Warning Modal ──
+  logoutOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(0,0,0,0.82)' : 'rgba(15,23,42,0.6)',
+  },
+  logoutCard: {
+    width: '100%',
+    maxWidth: 420,
+    borderRadius: 24,
+    padding: 28,
+    alignItems: 'center',
+    backgroundColor: theme.backgroundElement,
+    borderWidth: 1,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.35)' : 'rgba(220,38,38,0.2)',
+    ...Platform.select({
+      web: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.3,
+        shadowRadius: 24,
+      },
+    }),
+  },
+  logoutIconRing: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.15)' : 'rgba(239,68,68,0.1)',
+    borderWidth: 2,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.4)' : 'rgba(239,68,68,0.25)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 18,
+  },
+  logoutIconEmoji: {
+    fontSize: 34,
+  },
+  logoutTitle: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: theme.activeTheme === 'dark' ? '#FCA5A5' : '#DC2626',
+    marginBottom: 18,
+    letterSpacing: 0.3,
+  },
+  logoutMsgBlock: {
+    width: '100%',
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(16,185,129,0.1)' : 'rgba(5,150,105,0.07)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(16,185,129,0.3)' : 'rgba(5,150,105,0.2)',
+    padding: 14,
+    marginBottom: 12,
+    gap: 6,
+  },
+  logoutMsgBlockDanger: {
+    backgroundColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.1)' : 'rgba(239,68,68,0.06)',
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.3)' : 'rgba(239,68,68,0.2)',
+    marginBottom: 22,
+  },
+  logoutMsgLine: {
+    fontSize: 13,
+    color: theme.activeTheme === 'dark' ? '#6EE7B7' : '#065F46',
+    lineHeight: 20,
+    fontWeight: '600',
+  },
+  logoutMsgLineDanger: {
+    fontSize: 13,
+    color: theme.activeTheme === 'dark' ? '#FCA5A5' : '#991B1B',
+    lineHeight: 20,
+    fontWeight: '600',
+  },
+  logoutHighlight: {
+    fontWeight: '900',
+    color: theme.activeTheme === 'dark' ? '#34D399' : '#059669',
+  },
+  logoutHighlightDanger: {
+    fontWeight: '900',
+    color: theme.activeTheme === 'dark' ? '#F87171' : '#DC2626',
+  },
+  logoutStayBtn: {
+    width: '100%',
+    backgroundColor: theme.success,
+    paddingVertical: 14,
+    borderRadius: 14,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  logoutStayText: {
+    color: '#FFF',
+    fontWeight: '800',
+    fontSize: 14,
+    letterSpacing: 0.2,
+  },
+  logoutConfirmBtn: {
+    width: '100%',
+    paddingVertical: 12,
+    borderRadius: 14,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: theme.activeTheme === 'dark' ? 'rgba(239,68,68,0.4)' : 'rgba(220,38,38,0.3)',
+    backgroundColor: 'transparent',
+  },
+  logoutConfirmText: {
+    color: theme.activeTheme === 'dark' ? '#F87171' : '#DC2626',
+    fontWeight: '600',
+    fontSize: 13,
   },
 });

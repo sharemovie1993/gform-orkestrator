@@ -9,7 +9,11 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "licensee": "node license-server/server.js"
+    "licensee": "node license-server/server.js",
+    "deploy": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy.ps1",
+    "build:apk": "npx eas-cli build --platform android --profile preview --non-interactive",
+    "update:prod": "npx eas-cli update --branch production --message \"Pembaruan sistem orkestrator\" --environment production",
+    "update:preview": "npx eas-cli update --branch preview --message \"Pembaruan sistem orkestrator\" --environment preview"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
@@ -47,6 +51,8 @@
   "devDependencies": {
     "@types/react": "~19.2.2",
     "pg": "^8.21.0",
+    "puppeteer": "^25.1.0",
+    "ssh2": "^1.17.0",
     "typescript": "~5.9.2"
   },
   "private": true

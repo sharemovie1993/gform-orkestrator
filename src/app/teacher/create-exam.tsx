@@ -16,6 +16,7 @@ import {
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DbService, Jurusan, Kelas, Guru, Mapel } from '@/services/supabase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DateTimePicker } from '@/components/admin/DateTimePicker';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -63,27 +64,84 @@ export default function CreateExamScreen() {
 
   const [loading, setLoading] = useState(false);
 
-  // Load all required master data on mount
+  // Load all required master data on mount (with caching support)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [jList, mList, gList, kList] = await Promise.all([
-          DbService.getJurusan(true),
-          DbService.getMapel(true),
-          DbService.getGuru(true),
-          DbService.getKelas(undefined, true)
-        ]);
-        setJurusans(jList);
-        setMapels(mList);
-        setGurus(gList);
-        setKelasList(kList);
+        let dbCacheVersion = '1';
+        try {
+          dbCacheVersion = await DbService.getSetting('cache_version');
+        } catch (e) {
+          console.warn('[CREATE EXAM CACHE] Failed to fetch cache_version, defaulting to 1', e);
+        }
+
+        const localCacheVersion = await AsyncStorage.getItem('@cache_version');
+        let gurusListLocal: Guru[] = [];
+        let mapelsLocal: Mapel[] = [];
+        let kelasListLocal: Kelas[] = [];
+        let loadedFromCache = false;
+
+        if (dbCacheVersion && dbCacheVersion === localCacheVersion) {
+          try {
+            const cachedGurus = await AsyncStorage.getItem('@cached_gurus');
+            const cachedMapels = await AsyncStorage.getItem('@cached_mapels');
+            const cachedKelas = await AsyncStorage.getItem('@cached_kelas');
+
+            if (cachedGurus && cachedMapels && cachedKelas) {
+              gurusListLocal = JSON.parse(cachedGurus);
+              mapelsLocal = JSON.parse(cachedMapels);
+              kelasListLocal = JSON.parse(cachedKelas);
+              loadedFromCache = true;
+              console.log('[CREATE EXAM CACHE] Successfully loaded master data from cache (version:', dbCacheVersion, ')');
+            }
+          } catch (err) {
+            console.warn('[CREATE EXAM CACHE] Failed to parse cache:', err);
+          }
+        }
+
+        if (!loadedFromCache) {
+          console.log('[CREATE EXAM CACHE] Cache miss/stale. Fetching fresh master data from Supabase...');
+          const [freshGurus, freshMapels, freshKelas, freshJurusans] = await Promise.all([
+            DbService.getGuru(true),
+            DbService.getMapel(true),
+            DbService.getKelas(undefined, true),
+            DbService.getJurusan(true),
+          ]);
+          gurusListLocal = freshGurus;
+          mapelsLocal = freshMapels;
+          kelasListLocal = freshKelas;
+          setJurusans(freshJurusans);
+
+          // Update cache
+          try {
+            await AsyncStorage.setItem('@cached_gurus', JSON.stringify(freshGurus));
+            await AsyncStorage.setItem('@cached_mapels', JSON.stringify(freshMapels));
+            await AsyncStorage.setItem('@cached_kelas', JSON.stringify(freshKelas));
+            await AsyncStorage.setItem('@cache_version', dbCacheVersion);
+            console.log('[CREATE EXAM CACHE] Fresh master data cached successfully (version:', dbCacheVersion, ')');
+          } catch (err) {
+            console.warn('[CREATE EXAM CACHE] Failed to save cache:', err);
+          }
+        } else {
+          // If loaded from cache, load jurusans dynamically (it's fast and unused, but keeps code compatible)
+          try {
+            const freshJurusans = await DbService.getJurusan(true);
+            setJurusans(freshJurusans);
+          } catch (err) {
+            console.warn('[CREATE EXAM CACHE] Failed to load jurusans:', err);
+          }
+        }
+
+        setGurus(gurusListLocal);
+        setMapels(mapelsLocal);
+        setKelasList(kelasListLocal);
         
         if (guruId) {
-          const found = gList.find(g => g.id === guruId);
+          const found = gurusListLocal.find(g => g.id === guruId);
           if (found) setSelectedGuru(found);
         }
       } catch (e) {
-        console.error(e);
+        console.error('[CREATE EXAM CACHE] Failed to fetch data:', e);
       }
     };
     fetchData();

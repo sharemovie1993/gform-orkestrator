@@ -273,4 +273,102 @@ export class StorageService {
       return [];
     }
   }
+
+  /**
+   * Cache max violations setting locally
+   */
+  static async cacheMaxViolations(count: number): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@gform_orkestrator_max_violations', String(count));
+    } catch (e) {
+      console.error('Failed to cache max violations:', e);
+    }
+  }
+
+  /**
+   * Get cached max violations setting (defaults to 5)
+   */
+  static async getCachedMaxViolations(): Promise<number> {
+    try {
+      const val = await AsyncStorage.getItem('@gform_orkestrator_max_violations');
+      return val ? parseInt(val, 10) : 5;
+    } catch (e) {
+      return 5;
+    }
+  }
+
+  /**
+   * Get current violation count for an exam session
+   */
+  static async getViolationCount(): Promise<number> {
+    try {
+      const val = await AsyncStorage.getItem('@gform_orkestrator_violation_count');
+      return val ? parseInt(val, 10) : 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Increment violation count by 1 and return the new count
+   */
+  static async incrementViolationCount(): Promise<number> {
+    try {
+      const current = await this.getViolationCount();
+      const next = current + 1;
+      await AsyncStorage.setItem('@gform_orkestrator_violation_count', String(next));
+      return next;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Reset violation count to 0
+   */
+  static async resetViolationCount(): Promise<void> {
+    try {
+      await AsyncStorage.removeItem('@gform_orkestrator_violation_count');
+    } catch (e) {
+      console.error('Failed to reset violation count:', e);
+    }
+  }
+
+  /**
+   * Save selected school domain for multi-tenant mobile clients
+   */
+  static async saveSavedDomain(domain: string): Promise<void> {
+    try {
+      await AsyncStorage.setItem('@gform_orkestrator_saved_domain', domain.trim().toLowerCase());
+    } catch (e) {
+      console.error('Failed to save domain:', e);
+    }
+  }
+
+  /**
+   * Get selected school domain
+   */
+  static async getSavedDomain(): Promise<string | null> {
+    try {
+      return await AsyncStorage.getItem('@gform_orkestrator_saved_domain');
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * Clear selected school domain (reset tenant)
+   */
+  static async clearSavedDomain(): Promise<void> {
+    try {
+      await AsyncStorage.removeItem('@gform_orkestrator_saved_domain');
+      // Bersihkan juga cache tenant dan sesi siswa/guru saat ganti sekolah
+      await AsyncStorage.removeItem('@gform_orkestrator_tenant_cache');
+      await AsyncStorage.removeItem('@gform_orkestrator_student_session');
+      await AsyncStorage.removeItem('@logged_in_guru_id');
+      await AsyncStorage.removeItem('@logged_in_guru_nama');
+    } catch (e) {
+      console.error('Failed to clear saved domain:', e);
+    }
+  }
 }

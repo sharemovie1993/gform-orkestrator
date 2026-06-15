@@ -565,6 +565,8 @@ const modalStyles = StyleSheet.create({
     maxHeight: '90%',
     borderWidth: 1,
     overflow: 'hidden',
+    flexDirection: 'column',
+    flexShrink: 1,
     ...Platform.select({
       web: {
         shadowColor: '#000',
@@ -593,7 +595,7 @@ const modalStyles = StyleSheet.create({
     fontWeight: '600',
   },
   body: {
-    flex: 1,
+    width: '100%',
   },
   bodyContent: {
     padding: 20,

@@ -41,6 +41,7 @@ export default function TeacherDashboard() {
   const [loginMode, setLoginMode] = useState<'simple' | 'login'>('simple');
   const [updatingMode, setUpdatingMode] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [blockedCount, setBlockedCount] = useState(0);
 
   // ── Filter and Pagination states ──
   const [gurusList, setGurusList] = useState<any[]>([]);
@@ -49,6 +50,10 @@ export default function TeacherDashboard() {
   const [selectedMapelFilter, setSelectedMapelFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
+
+  // Custom picker modal states for mobile
+  const [mobilePickerVisible, setMobilePickerVisible] = useState(false);
+  const [mobilePickerType, setMobilePickerType] = useState<'guru' | 'kelas' | 'mapel' | null>(null);
 
   // ── Bulk delete state ──
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -183,9 +188,11 @@ export default function TeacherDashboard() {
       }
 
       // LinkSoal is dynamic and changes continuously, so we fetch it freshly every time
-      const [list] = await Promise.all([
+      const [list, blockedList] = await Promise.all([
         DbService.getLinkSoal(),
+        DbService.getBlockedSiswa().catch(() => []),
       ]);
+      setBlockedCount(blockedList.length);
 
       const myExams = isUserAdmin
         ? list
@@ -527,6 +534,24 @@ export default function TeacherDashboard() {
                   <Text style={styles.actionButtonSub}>Pantau platform login (Web vs Android) siswa secara real-time</Text>
                 </View>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.actionButton, { marginTop: 12, borderLeftWidth: 4, borderLeftColor: '#EF4444' }]}
+                onPress={() => router.push({ pathname: '/teacher/blocked-students' as any, params: { guruId: guruIdState || guruId, guruNama: guruNamaState || guruNama } })}
+              >
+                <Text style={styles.actionButtonEmoji}>🚨</Text>
+                <View style={styles.actionButtonTexts}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                    <Text style={styles.actionButtonTitle}>Kontrol Siswa Terkunci</Text>
+                    {blockedCount > 0 && (
+                      <View style={{ backgroundColor: '#EF4444', borderRadius: 10, paddingHorizontal: 6, paddingVertical: 2 }}>
+                        <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{blockedCount} Siswa</Text>
+                      </View>
+                    )}
+                  </View>
+                  <Text style={styles.actionButtonSub}>Buka kunci siswa yang terblokir karena indikasi curang secara massal</Text>
+                </View>
+              </TouchableOpacity>
             </>
           )}
         </View>
@@ -582,12 +607,19 @@ export default function TeacherDashboard() {
                           ))}
                         </select>
                       ) : (
-                        <TextInput
-                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
-                          placeholder="Semua Guru"
-                          value={selectedGuruFilter}
-                          onChangeText={(t) => { setSelectedGuruFilter(t); setCurrentPage(1); }}
-                        />
+                        <TouchableOpacity
+                          style={[styles.filterInput, { paddingVertical: 8, paddingHorizontal: 10, minHeight: 34, justifyContent: 'center' }]}
+                          onPress={() => {
+                            setMobilePickerType('guru');
+                            setMobilePickerVisible(true);
+                          }}
+                        >
+                          <Text style={{ color: theme.text, fontSize: 11, fontWeight: '700' }} numberOfLines={1}>
+                            {selectedGuruFilter === 'all' 
+                              ? '🌐 Semua Guru' 
+                              : (gurusList.find(g => g.id === selectedGuruFilter)?.nama_guru || selectedGuruFilter)}
+                          </Text>
+                        </TouchableOpacity>
                       )}
                     </View>
 
@@ -614,12 +646,19 @@ export default function TeacherDashboard() {
                           ))}
                         </select>
                       ) : (
-                        <TextInput
-                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
-                          placeholder="Semua Kelas"
-                          value={selectedKelasFilter}
-                          onChangeText={(t) => { setSelectedKelasFilter(t); setCurrentPage(1); }}
-                        />
+                        <TouchableOpacity
+                          style={[styles.filterInput, { paddingVertical: 8, paddingHorizontal: 10, minHeight: 34, justifyContent: 'center' }]}
+                          onPress={() => {
+                            setMobilePickerType('kelas');
+                            setMobilePickerVisible(true);
+                          }}
+                        >
+                          <Text style={{ color: theme.text, fontSize: 11, fontWeight: '700' }} numberOfLines={1}>
+                            {selectedKelasFilter === 'all' 
+                              ? '🌐 Semua Kelas' 
+                              : (kelasList.find(k => k.id === selectedKelasFilter)?.nama_kelas || selectedKelasFilter)}
+                          </Text>
+                        </TouchableOpacity>
                       )}
                     </View>
 
@@ -646,12 +685,19 @@ export default function TeacherDashboard() {
                           ))}
                         </select>
                       ) : (
-                        <TextInput
-                          style={[styles.filterInput, Platform.select({ web: { outlineStyle: 'none' } as any })]}
-                          placeholder="Semua Mapel"
-                          value={selectedMapelFilter}
-                          onChangeText={(t) => { setSelectedMapelFilter(t); setCurrentPage(1); }}
-                        />
+                        <TouchableOpacity
+                          style={[styles.filterInput, { paddingVertical: 8, paddingHorizontal: 10, minHeight: 34, justifyContent: 'center' }]}
+                          onPress={() => {
+                            setMobilePickerType('mapel');
+                            setMobilePickerVisible(true);
+                          }}
+                        >
+                          <Text style={{ color: theme.text, fontSize: 11, fontWeight: '700' }} numberOfLines={1}>
+                            {selectedMapelFilter === 'all' 
+                              ? '🌐 Semua Mapel' 
+                              : (mapels.find(m => m.id === selectedMapelFilter)?.nama_mapel || selectedMapelFilter)}
+                          </Text>
+                        </TouchableOpacity>
                       )}
                     </View>
                   </View>
@@ -966,6 +1012,109 @@ export default function TeacherDashboard() {
                 }
               </TouchableOpacity>
             </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Beautiful frosted custom filter picker for Mobile */}
+      <Modal
+        visible={mobilePickerVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setMobilePickerVisible(false)}
+      >
+        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'flex-end' }}>
+          <View style={{
+            backgroundColor: theme.background,
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
+            borderWidth: 1,
+            borderColor: theme.border,
+            padding: 24,
+            maxHeight: '75%',
+            width: '100%'
+          }}>
+            {/* Header */}
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+              <Text style={{ color: theme.text, fontSize: 16, fontWeight: '900' }}>
+                {mobilePickerType === 'guru' && 'Pilih Guru Pembuat'}
+                {mobilePickerType === 'kelas' && 'Pilih Target Kelas'}
+                {mobilePickerType === 'mapel' && 'Pilih Mata Pelajaran'}
+              </Text>
+              <TouchableOpacity
+                style={{ backgroundColor: theme.backgroundElement, width: 32, height: 32, borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: theme.border }}
+                onPress={() => setMobilePickerVisible(false)}
+              >
+                <Text style={{ color: theme.textSecondary, fontWeight: 'bold' }}>✕</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* List of Options */}
+            <FlatList
+              data={
+                mobilePickerType === 'guru' 
+                  ? [{ id: 'all', nama_guru: '🌐 Semua Guru' }, ...gurusList]
+                  : mobilePickerType === 'kelas'
+                    ? [{ id: 'all', nama_kelas: '🌐 Semua Kelas' }, ...kelasList]
+                    : [{ id: 'all', nama_mapel: '🌐 Semua Mapel' }, ...mapels]
+              }
+              keyExtractor={(item) => item.id}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 20 }}
+              renderItem={({ item }) => {
+                let label = '';
+                let isSelected = false;
+
+                if (mobilePickerType === 'guru') {
+                  label = item.nama_guru;
+                  isSelected = selectedGuruFilter === item.id;
+                } else if (mobilePickerType === 'kelas') {
+                  label = item.nama_kelas;
+                  isSelected = selectedKelasFilter === item.id;
+                } else {
+                  label = item.nama_mapel;
+                  isSelected = selectedMapelFilter === item.id;
+                }
+
+                return (
+                  <TouchableOpacity
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      backgroundColor: isSelected ? 'rgba(59, 130, 246, 0.1)' : theme.backgroundElement,
+                      borderColor: isSelected ? theme.primary : theme.border,
+                      borderWidth: 1,
+                      borderRadius: 12,
+                      padding: 16,
+                      marginBottom: 10
+                    }}
+                    onPress={() => {
+                      if (mobilePickerType === 'guru') {
+                        setSelectedGuruFilter(item.id);
+                      } else if (mobilePickerType === 'kelas') {
+                        setSelectedKelasFilter(item.id);
+                      } else {
+                        setSelectedMapelFilter(item.id);
+                      }
+                      setCurrentPage(1);
+                      setMobilePickerVisible(false);
+                    }}
+                  >
+                    <Text style={{
+                      color: isSelected ? theme.primary : theme.text,
+                      fontSize: 13,
+                      fontWeight: isSelected ? '800' : '600'
+                    }}>
+                      {label}
+                    </Text>
+                    {isSelected && (
+                      <Text style={{ color: theme.primary, fontWeight: 'bold', fontSize: 14 }}>✓</Text>
+                    )}
+                  </TouchableOpacity>
+                );
+              }}
+            />
           </View>
         </View>
       </Modal>

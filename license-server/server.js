@@ -81,10 +81,42 @@ async function checkExpirations() {
   }
 }
 
+// ── AUTOMATED VPN FIREWALL SETUP (ISOLATION) ──
+function initVpnFirewall() {
+  const { exec } = require('child_process');
+  
+  // Periksa apakah aturan isolasi sudah ada di iptables
+  const checkCmd = 'sudo iptables -C FORWARD -i wg0 -o wg0 -m iprange --src-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable';
+  
+  exec(checkCmd, (err) => {
+    if (err) {
+      console.log('[FIREWALL] Menerapkan aturan isolasi Client-to-Client pada interface wg0...');
+      const applyCmd = 
+        'sudo iptables -A FORWARD -i wg0 -o wg0 -m iprange --src-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable && ' +
+        'sudo iptables -A FORWARD -i wg0 -o wg0 -m iprange --dst-range 10.0.0.10-10.0.0.254 -j REJECT --reject-with icmp-port-unreachable';
+      
+      exec(applyCmd, (applyErr) => {
+        if (applyErr) {
+          console.warn('[FIREWALL WARNING] Gagal menerapkan aturan iptables secara otomatis:', applyErr.message);
+        } else {
+          console.log('[FIREWALL] Aturan isolasi VPN berhasil diterapkan secara otomatis!');
+          // Coba simpan agar permanen
+          exec('if [ -d /etc/iptables ]; then sudo sh -c "iptables-save > /etc/iptables/rules.v4"; fi');
+        }
+      });
+    } else {
+      console.log('[FIREWALL] Aturan isolasi Client-to-Client pada wg0 sudah terpasang.');
+    }
+  });
+}
+
 // Start Server after DB init
 initDatabase().then(async () => {
   // Run checkExpirations immediately on startup
   await checkExpirations();
+  
+  // Inisialisasi otomatis firewall VPN
+  initVpnFirewall();
   
   // Set interval to run checkExpirations every hour (3600000 ms)
   setInterval(checkExpirations, 3600 * 1000);
