@@ -566,6 +566,34 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
     const productDb = await db.get("SELECT display_name, name FROM products WHERE id = ?", [prodId]);
     const productNameForInvoice = productDb ? (productDb.display_name || productDb.name) : "Aplikasi";
 
+    const appPrice = parseInt(plan.price.replace(/[^\d]/g, ''), 10) || 299000;
+    const tripayOrderItems = [
+      {
+        sku: plan.id,
+        name: `${productNameForInvoice} - ${plan.title}`,
+        price: appPrice,
+        quantity: 1
+      }
+    ];
+
+    if (vpnPlan && vpnPrice > 0) {
+      tripayOrderItems.push({
+        sku: vpnPlan.id,
+        name: `VPN Tunneling Gateway - ${vpnPlan.title}`,
+        price: vpnPrice,
+        quantity: 1
+      });
+    }
+
+    if (gatewayFee > 0) {
+      tripayOrderItems.push({
+        sku: 'admin_fee',
+        name: 'Biaya Admin Gateway',
+        price: gatewayFee,
+        quantity: 1
+      });
+    }
+
     const tripayPayload = {
       method: resolvedPaymentMethod,
       merchant_ref: invoiceNumber,
@@ -573,20 +601,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       customer_name: school_name.trim(),
       customer_email: 'billing@absenta.id',
       customer_phone: '087779937341',
-      order_items: [
-        {
-          sku: plan.id,
-          name: `${productNameForInvoice} - ${plan.title}${vpnPlan ? ' + VPN Tunnel' : ''}`,
-          price: basePrice,
-          quantity: 1
-        },
-        ...(gatewayFee > 0 ? [{
-          sku: 'admin_fee',
-          name: 'Biaya Admin Gateway',
-          price: gatewayFee,
-          quantity: 1
-        }] : [])
-      ],
+      order_items: tripayOrderItems,
       expired_time: Math.floor(Date.now() / 1000) + (24 * 3600), // 24 hours
       signature
     };
@@ -996,6 +1011,32 @@ router.get('/api/license/print-invoice/:invoiceNumber', async (req, res) => {
     const isPaid = inv.status === 'paid';
     const verifyHash = Buffer.from(`${inv.invoice_number}:${inv.id}:${inv.amount}`).toString('base64').slice(0, 16).toUpperCase();
 
+    const hasVpn = planTitle.toLowerCase().includes('+ vpn') || planTitle.toLowerCase().includes('vpn tunnel');
+    const items = [];
+    
+    if (hasVpn) {
+      const vpnPrice = 50000;
+      const appPrice = inv.amount - vpnPrice;
+      
+      items.push({
+        name: `${productName} &mdash; ${planTitle.replace(/(\+\s*VPN\s*Tunnel|\+\s*VPN)/gi, '').trim()}`,
+        desc: `${productDesc}. Termasuk dukungan teknis, pembaruan berkala, dan akses dashboard admin.`,
+        duration: planDuration,
+        capacity: capacityStr,
+        quantity: '1 Lisensi',
+        price: appPrice
+      });
+      
+      items.push({
+        name: `VPN Tunneling Gateway &mdash; Bulanan Addon`,
+        desc: `Koneksi aman untuk melintasi vpn tunnel agar port lokal dapat diakses publik secara online.`,
+        duration: `30 Hari`,
+        capacity: `1 Tunnel`,
+        quantity: `1 Addon`,
+        price: vpnPrice
+      });
+    }
+
     const invoiceHtml = renderInvoiceTemplate({
       invoiceNumber: inv.invoice_number,
       cleanSchoolName,
@@ -1010,7 +1051,8 @@ router.get('/api/license/print-invoice/:invoiceNumber', async (req, res) => {
       planDuration,
       capacityStr,
       planPrice,
-      verifyHash
+      verifyHash,
+      items: items.length > 0 ? items : null
     });
 
     res.send(invoiceHtml);
