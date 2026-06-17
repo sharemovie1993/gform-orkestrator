@@ -224,7 +224,7 @@ router.get('/api/license/payment-channels', async (req, res) => {
 
 // 4. Request license key creation with billing (Tripay QRIS / Bank Transfer)
 router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
-  const { school_name, device_limit, is_unlimited, product_id, plan_id, payment_method, requested_slug, requested_supabase_url, requested_supabase_anon_key } = req.body;
+  const { school_name, device_limit, is_unlimited, product_id, plan_id, payment_method, requested_slug, requested_supabase_url, requested_supabase_anon_key, include_vpn } = req.body;
 
   if (!school_name || device_limit === undefined || device_limit === null) {
     return res.status(400).json({ success: false, message: 'Nama Sekolah dan Limit Perangkat wajib diisi.' });
@@ -300,8 +300,8 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       } else {
         // 2. Jika tidak ada di Supabase, cek antrean di SQLite lokal
         const existingSlug = await db.get(
-          "SELECT id, school_name, status FROM licenses WHERE LOWER(requested_slug) = ?",
-          [cleanSlug]
+          "SELECT id, school_name, status FROM licenses WHERE LOWER(requested_slug) = ? AND product_id = ?",
+          [cleanSlug, prodId]
         );
         if (existingSlug) {
           if (existingSlug.status === 'expired') {
@@ -336,7 +336,19 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
     const activeGatewayRow = await db.get("SELECT value FROM system_settings WHERE key = 'active_gateway'") || { value: 'tripay' };
     const activeGateway = activeGatewayRow.value || 'tripay';
 
+    let vpnPlan = null;
+    let vpnPrice = 0;
+    if (include_vpn === 1 || include_vpn === true || include_vpn === '1') {
+      vpnPlan = await db.get("SELECT * FROM pricing_plans WHERE id = 'vpn_monthly'");
+      if (vpnPlan) {
+        vpnPrice = parseInt(vpnPlan.price.replace(/[^\d]/g, ''), 10) || 50000;
+      }
+    }
+
     let basePrice = parseInt(plan.price.replace(/[^\d]/g, ''), 10) || 299000;
+    if (vpnPrice > 0) {
+      basePrice += vpnPrice;
+    }
     const randomPrefix = Math.floor(1000 + Math.random() * 9000);
     const invoiceNumber = `INV-ORK-${randomPrefix}-${new Date().getFullYear()}`;
 
@@ -361,8 +373,8 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       ];
 
       await db.run(
-        "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?)",
-        [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery]
+        "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery, include_vpn) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?, ?)",
+        [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery, vpnPlan ? 1 : 0]
       );
 
       const insertedLicense = await db.get("SELECT id FROM licenses WHERE license_key = ?", [newKey]);
@@ -380,7 +392,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
           licenseId,
           school_name.trim(),
           prodId,
-          plan.title,
+          vpnPlan ? `${plan.title} + VPN Tunnel` : plan.title,
           basePrice,
           `MANUAL-${newKey}`,
           '/qris.png',
@@ -420,7 +432,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       const xenditPayload = {
         external_id: invoiceNumber,
         amount: basePrice,
-        description: `Lisensi Absenta CBT ${plan.title} - ${school_name.trim()}`,
+        description: `Lisensi CBT ${plan.title} - ${school_name.trim()}${vpnPlan ? ' + VPN Tunnel' : ''}`,
         customer: {
           given_names: school_name.trim(),
           email: 'billing@absenta.id',
@@ -449,8 +461,8 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
 
       if (xenditResponseData && xenditResponseData.invoice_url) {
         await db.run(
-          "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?)",
-          [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery]
+          "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery, include_vpn) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?, ?)",
+          [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery, vpnPlan ? 1 : 0]
         );
 
         const insertedLicense = await db.get("SELECT id FROM licenses WHERE license_key = ?", [newKey]);
@@ -468,7 +480,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
             licenseId,
             school_name.trim(),
             prodId,
-            plan.title,
+            vpnPlan ? `${plan.title} + VPN Tunnel` : plan.title,
             basePrice,
             xenditResponseData.id,
             xenditResponseData.invoice_url,
@@ -516,7 +528,9 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
     const TRIPAY_MERCHANT_CODE = process.env.TRIPAY_MERCHANT_CODE;
     const TRIPAY_API_URL = process.env.TRIPAY_API_URL || 'https://tripay.co.id/api-sandbox';
 
-    basePrice = parseInt(plan.price.replace(/[^\d]/g, ''), 10) || 299000;
+    if (!vpnPrice) {
+      basePrice = parseInt(plan.price.replace(/[^\d]/g, ''), 10) || 299000;
+    }
     let feeFlat = 0;
     let feePercent = 0;
     let resolvedPaymentMethod = payment_method || 'QRIS2';
@@ -562,7 +576,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
       order_items: [
         {
           sku: plan.id,
-          name: `${productNameForInvoice} - ${plan.title}`,
+          name: `${productNameForInvoice} - ${plan.title}${vpnPlan ? ' + VPN Tunnel' : ''}`,
           price: basePrice,
           quantity: 1
         },
@@ -599,8 +613,8 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
 
       // Tripay succeeded! Safe to insert data into database
       await db.run(
-        "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?)",
-        [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery]
+        "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug, requested_supabase_url, requested_supabase_anon_key, is_recovery, include_vpn) VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?, ?, ?, ?, ?, ?)",
+        [newKey, prodId, school_name.trim(), limit, isUnlimited, expiresStr, plan.id, requested_slug || null, requested_supabase_url || null, requested_supabase_anon_key || null, isRecovery, vpnPlan ? 1 : 0]
       );
 
       const insertedLicense = await db.get("SELECT id FROM licenses WHERE license_key = ?", [newKey]);
@@ -622,7 +636,7 @@ router.post('/api/license/request', licenseRequestLimiter, async (req, res) => {
           licenseId,
           school_name.trim(),
           prodId,
-          plan.title,
+          vpnPlan ? `${plan.title} + VPN Tunnel` : plan.title,
           totalAmount,
           resolvedPaymentMethod,
           tx.reference || null,
@@ -892,6 +906,55 @@ router.get('/api/license/my-invoices/:key', async (req, res) => {
   }
 });
 
+// 8b. Get all licenses & invoices history by core license key (SaaS Tenant History)
+router.get('/api/license/history-by-core-key/:coreKey', async (req, res) => {
+  const { coreKey } = req.params;
+  try {
+    // 1. Get the core license to resolve the subdomain/slug
+    const coreLicense = await db.get('SELECT requested_slug FROM licenses WHERE license_key = ?', [coreKey.trim()]);
+    if (!coreLicense || !coreLicense.requested_slug) {
+      return res.status(404).json({ success: false, message: 'Lisensi core tidak ditemukan atau belum terasosiasi dengan subdomain.' });
+    }
+
+    const slugLower = coreLicense.requested_slug.toLowerCase();
+
+    // 2. Fetch all licenses associated with this subdomain
+    const licenses = await db.all(`
+      SELECT l.id, l.product_id, l.license_key, l.school_name, l.status, l.is_active, l.created_at, l.expires_at, l.requested_slug, l.wireguard_ip, p.display_name as product_display_name
+      FROM licenses l
+      LEFT JOIN products p ON l.product_id = p.id
+      WHERE LOWER(l.requested_slug) = ?
+      ORDER BY l.id DESC
+    `, [slugLower]);
+
+    // 3. Fetch all invoices associated with these licenses
+    const licenseIds = licenses.map(l => l.id);
+    let invoices = [];
+    if (licenseIds.length > 0) {
+      const placeholders = licenseIds.map(() => '?').join(',');
+      invoices = await db.all(`
+        SELECT i.*, l.product_id, l.license_key, l.school_name, p.display_name as product_display_name
+        FROM invoices i
+        JOIN licenses l ON i.license_id = l.id
+        LEFT JOIN products p ON l.product_id = p.id
+        WHERE i.license_id IN (${placeholders})
+        ORDER BY i.id DESC
+      `, licenseIds);
+    }
+
+    res.json({
+      success: true,
+      data: {
+        licenses,
+        invoices
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Gagal memuat riwayat transaksi instansi: ' + err.message });
+  }
+});
+
 // 9. Printable invoice generator
 router.get('/api/license/print-invoice/:invoiceNumber', async (req, res) => {
   const { invoiceNumber } = req.params;
@@ -1008,11 +1071,13 @@ router.post('/api/license/tripay-callback', async (req, res) => {
       const now = new Date();
       let days = 30;
       
-      const planId = license.plan_id;
+      const planId = license.plan_id || '';
       if (planId === 'semester' || planId === 'absenta_semester') {
         days = 180;
       } else if (planId === 'annual' || planId === 'absenta_annual') {
         days = 365;
+      } else if (planId.includes('lifetime')) {
+        days = 3650; // 10 years for lifetime
       }
 
       now.setDate(now.getDate() + days);
@@ -1035,6 +1100,9 @@ router.post('/api/license/tripay-callback', async (req, res) => {
 
       await logLicenseActivity(license.license_key, license.product_id, null, req.ip, 'TRIPAY_CALLBACK_PAID');
       console.log(`[TRIPAY Webhook] Successfully activated license key: ${license.license_key} for school: ${license.school_name}. Duration: ${days} days (Expires: ${expiresStr}).`);
+      
+      // Auto-provision VPN addon if bundled
+      await activateVpnAddonIfNeeded(license, req);
 
       if (license.requested_slug) {
         if (license.is_recovery === 1) {
@@ -1271,11 +1339,13 @@ router.post('/api/license/xendit-callback', async (req, res) => {
       const now = new Date();
       let days = 30;
       
-      const planId = license.plan_id;
+      const planId = license.plan_id || '';
       if (planId === 'semester' || planId === 'absenta_semester') {
         days = 180;
       } else if (planId === 'annual' || planId === 'absenta_annual') {
         days = 365;
+      } else if (planId.includes('lifetime')) {
+        days = 3650; // 10 years for lifetime
       }
 
       now.setDate(now.getDate() + days);
@@ -1298,6 +1368,9 @@ router.post('/api/license/xendit-callback', async (req, res) => {
 
       await logLicenseActivity(license.license_key, license.product_id, null, req.ip, 'XENDIT_CALLBACK_PAID');
       console.log(`[XENDIT Webhook] Successfully activated license key: ${license.license_key} for school: ${license.school_name}. Duration: ${days} days.`);
+      
+      // Auto-provision VPN addon if bundled
+      await activateVpnAddonIfNeeded(license, req);
 
       if (license.requested_slug) {
         if (license.is_recovery === 1) {
@@ -1512,6 +1585,21 @@ router.post('/api/license/activate', activationLimiter, async (req, res) => {
       return res.status(410).json({ success: false, message: 'Masa aktif lisensi ini sudah kedaluwarsa.' });
     }
 
+    let vpnLicenseKey = null;
+    if (license.include_vpn === 1 && license.requested_slug) {
+      try {
+        const vpnLic = await db.get(
+          'SELECT license_key FROM licenses WHERE requested_slug = ? AND product_id = "vpn-tunnel" AND is_active = 1',
+          [license.requested_slug.trim().toLowerCase()]
+        );
+        if (vpnLic) {
+          vpnLicenseKey = vpnLic.license_key;
+        }
+      } catch (vpnErr) {
+        console.error('[VPN Key Fetch on Activate Error]', vpnErr);
+      }
+    }
+
     const alreadyActive = await db.get(
       'SELECT * FROM activated_devices WHERE license_id = ? AND device_id = ?',
       [license.id, device_id]
@@ -1524,7 +1612,10 @@ router.post('/api/license/activate', activationLimiter, async (req, res) => {
           product_id: license.product_id,
           school_name: license.school_name,
           device_id,
-          expires_at: license.expires_at
+          expires_at: license.expires_at,
+          include_vpn: license.include_vpn,
+          vpn_enabled: license.include_vpn,
+          vpn_license_key: vpnLicenseKey
         },
         PRIVATE_KEY,
         { algorithm: 'RS256', expiresIn: '365d' }
@@ -1537,7 +1628,9 @@ router.post('/api/license/activate', activationLimiter, async (req, res) => {
         message: 'Perangkat ini sudah terdaftar sebelumnya. Aktivasi dipulihkan.',
         token,
         school_name: license.school_name,
-        expires_at: license.expires_at
+        expires_at: license.expires_at,
+        include_vpn: license.include_vpn,
+        vpn_license_key: vpnLicenseKey
       });
     }
 
@@ -1565,7 +1658,10 @@ router.post('/api/license/activate', activationLimiter, async (req, res) => {
         product_id: license.product_id,
         school_name: license.school_name,
         device_id,
-        expires_at: license.expires_at
+        expires_at: license.expires_at,
+        include_vpn: license.include_vpn,
+        vpn_enabled: license.include_vpn,
+        vpn_license_key: vpnLicenseKey
       },
       PRIVATE_KEY,
       { algorithm: 'RS256', expiresIn: '365d' }
@@ -1578,7 +1674,9 @@ router.post('/api/license/activate', activationLimiter, async (req, res) => {
       message: 'Aktivasi lisensi berhasil dipublikasikan untuk perangkat ini.',
       token,
       school_name: license.school_name,
-      expires_at: license.expires_at
+      expires_at: license.expires_at,
+      include_vpn: license.include_vpn,
+      vpn_license_key: vpnLicenseKey
     });
 
   } catch (err) {
@@ -1970,8 +2068,8 @@ router.post('/api/license/tunnel/request', async (req, res) => {
       return res.status(403).json({ success: false, message: 'Lisensi VPN Tunneling tidak ditemukan atau tidak aktif.' });
     }
 
-    // 2. Cek apakah slug sudah terdaftar untuk license/tenant lain
-    const existingSlug = await db.get('SELECT * FROM licenses WHERE requested_slug = ? AND id != ?', [slugLower, license.id]);
+    // 2. Cek apakah slug sudah terdaftar untuk license/tenant lain dengan produk VPN Tunneling yang sama
+    const existingSlug = await db.get('SELECT * FROM licenses WHERE requested_slug = ? AND id != ? AND product_id = ?', [slugLower, license.id, license.product_id]);
     if (existingSlug) {
       return res.status(400).json({ success: false, message: 'Subdomain tersebut sudah digunakan oleh instansi lain.' });
     }
@@ -2056,6 +2154,55 @@ PersistentKeepalive = 25
     res.status(500).json({ success: false, message: 'Gagal memproses pembuatan VPN Tunnel: ' + err.message });
   }
 });
+
+// Helper function to auto-provision VPN license addon
+async function activateVpnAddonIfNeeded(license, req) {
+  if (license.include_vpn !== 1) return;
+  
+  try {
+    const slugLower = (license.requested_slug || '').trim().toLowerCase();
+    if (!slugLower) {
+      console.warn('[VPN Addon Autoprovision] License has no requested_slug. Skipping.');
+      return;
+    }
+    
+    // Check if there's already an active vpn-tunnel license for this slug
+    const existingVpn = await db.get(
+      'SELECT id FROM licenses WHERE requested_slug = ? AND product_id = "vpn-tunnel" AND is_active = 1',
+      [slugLower]
+    );
+    if (existingVpn) {
+      console.log(`[VPN Addon Autoprovision] VPN license already exists for slug '${slugLower}'. Skipping.`);
+      return;
+    }
+
+    const newVpnKey = generateKey('vpn-tunnel', 'VPN');
+    const now = new Date();
+    // VPN addon is monthly (30 days)
+    now.setDate(now.getDate() + 30);
+    const expiresStr = now.toISOString().slice(0, 10);
+
+    // Insert vpn license
+    await db.run(
+      "INSERT INTO licenses (license_key, product_id, school_name, device_limit, is_unlimited, expires_at, status, is_active, plan_id, requested_slug) VALUES (?, 'vpn-tunnel', ?, 1, 0, ?, 'active', 1, 'vpn_monthly', ?)",
+      [newVpnKey, `${license.school_name} (VPN Addon)`, expiresStr, slugLower]
+    );
+
+    const insertedVpn = await db.get("SELECT id FROM licenses WHERE license_key = ?", [newVpnKey]);
+    const vpnLicenseId = insertedVpn ? insertedVpn.id : null;
+
+    if (vpnLicenseId) {
+      await db.run(
+        "INSERT INTO subscriptions (license_id, school_name, product_id, plan_id, status, start_date, end_date) VALUES (?, ?, 'vpn-tunnel', 'vpn_monthly', 'active', datetime('now', 'localtime'), ?)",
+        [vpnLicenseId, `${license.school_name} (VPN Addon)`, expiresStr]
+      );
+      await logLicenseActivity(newVpnKey, 'vpn-tunnel', null, req.ip, 'AUTOPROVISION_VPN_ADDON_SUCCESS');
+      console.log(`[VPN Addon Autoprovision] Successfully provisioned VPN license key: ${newVpnKey} for slug: ${slugLower}`);
+    }
+  } catch (err) {
+    console.error('[VPN Addon Autoprovision Error]', err);
+  }
+}
 
 module.exports = router;
 module.exports.provisionNginxAndSsl = provisionNginxAndSsl;

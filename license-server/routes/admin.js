@@ -678,8 +678,13 @@ router.post('/api/admin/invoices/pay/:id', adminAuth, async (req, res) => {
     }
 
     const plan = await db.get("SELECT * FROM pricing_plans WHERE id = ?", [planId]) || { duration: '365 Hari' };
-    const match = plan.duration.match(/\d+/);
-    const days = match ? parseInt(match[0], 10) : 365;
+    let days = 365;
+    if (plan.duration.includes('Selama') || planId.includes('lifetime')) {
+      days = 3650; // 10 years for lifetime
+    } else {
+      const match = plan.duration.match(/\d+/);
+      days = match ? parseInt(match[0], 10) : 365;
+    }
 
     const expiresDate = new Date();
     expiresDate.setDate(expiresDate.getDate() + days);
@@ -767,8 +772,13 @@ router.post('/api/license/approve/:id', adminAuth, async (req, res) => {
     }
 
     const plan = await db.get("SELECT * FROM pricing_plans WHERE id = ?", [planId]) || { duration: '365 Hari' };
-    const match = plan.duration.match(/\d+/);
-    const days = match ? parseInt(match[0], 10) : 365;
+    let days = 365;
+    if (plan.duration.includes('Selama') || planId.includes('lifetime')) {
+      days = 3650; // 10 years for lifetime
+    } else {
+      const match = plan.duration.match(/\d+/);
+      days = match ? parseInt(match[0], 10) : 365;
+    }
 
     const expiresDate = new Date();
     expiresDate.setDate(expiresDate.getDate() + days);

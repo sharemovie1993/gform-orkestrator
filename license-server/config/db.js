@@ -271,6 +271,9 @@ async function initDatabase() {
     await db.exec("ALTER TABLE licenses ADD COLUMN is_recovery INTEGER DEFAULT 0");
   } catch (e) {}
   try {
+    await db.exec("ALTER TABLE licenses ADD COLUMN include_vpn INTEGER DEFAULT 0");
+  } catch (e) {}
+  try {
     await db.exec("ALTER TABLE invoices ADD COLUMN payment_proof TEXT");
   } catch (e) {}
 
