@@ -1,0 +1,2200 @@
+══════════════════════════════════════════════════════════════════════
+  STRESS TEST VIA BROWSER NYATA — Puppeteer Headless Chrome
+  URL Target  : https://smkn1pld.absenta.id
+  Concurrent  : 130 browser bersamaan
+  Waktu Mulai : 2026-05-28T14:07:06.969Z
+  Output Dir  : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T14-07-06-966Z
+══════════════════════════════════════════════════════════════════════
+
+🔄 Mengambil 130 sampel siswa dari Supabase...
+✅ 130 siswa akan diuji:
+   1. NISN: 2425100255 | AHMAD AJWAR SETIADI | XI TKR 1
+   2. NISN: 2425100221 | AHMAD ARIF AZKA | XI TP 2
+   3. NISN: 2526100231 | AHMAD BARKAH | X TM 2
+   4. NISN: 2526100369 | AHMAD DADIH | X TO 3
+   5. NISN: 2526100140 | AHMAD DANIAL | X TE 4
+   6. NISN: 2526100006 | AHMAD DAVIN NABIL NURZAKY | X TE 1
+   7. NISN: 2526100280 | AHMAD DILFA DANIAR | X TO 1
+   8. NISN: 2425100145 | AHMAD FAHRI SUDARNA | XI TAV 2
+   9. NISN: 2425100256 | AHMAD FAUZI | XI TKR 1
+   10. NISN: 2425100111 | AHMAD FAUZI | XI TAV 1
+   11. NISN: 2526100186 | AHMAD FAUZI | X TM 1
+   12. NISN: 2526100414 | AHMAD FAUZI | X TO 4
+   13. NISN: 2526100322 | AHMAD FAUZI ALFADLAN | X TO 2
+   14. NISN: 2425100003 | AHMAD FAUZI SOFYAN | XI TOI 1
+   15. NISN: 2526100094 | AHMAD HIBAN JAELANI | X TE 3
+   16. NISN: 2526100463 | AHMAD IDAM MUCHLIS | X TJKT 1
+   17. NISN: 2526100007 | AHMAD JENAN | X TE 1
+   18. NISN: 2425100363 | AHMAD LUTHFI MAULANA | XI TSM 2
+   19. NISN: 2425100364 | AHMAD MAULANA MUFID | XI TSM 2
+   20. NISN: 2526100008 | AHMAD NASRULLOH | X TE 1
+   21. NISN: 2526100009 | AHMAD NAZRIL PERMADI | X TE 1
+   22. NISN: 2425100037 | AHMAD NURYANA | XI TOI 2
+   23. NISN: 2425100004 | AHMAD REHAN | XI TOI 1
+   24. NISN: 2425100328 | AHMAD RIPALDI | XI TSM 1
+   25. NISN: 2526100095 | AHMAD SAEPU TAPTA JANI | X TE 3
+   26. NISN: 2526100010 | AHMAD SALDAN | X TE 1
+   27. NISN: 2526100049 | AHMAD SANUSI | X TE 2
+   28. NISN: 2425100038 | AHMAD SUBHAN | XI TOI 2
+   29. NISN: 2425100075 | AHMAD SYAIFUL HIDAYAT | XI TOI 3
+   30. NISN: 2526100323 | AHMAD TAUFIK HERLANSYA | X TO 2
+   31. NISN: 2425100291 | AHMAD TOLIB AZIS RAMADHAN | XI TKR 2
+   32. NISN: 2526100415 | AHMAD YOPI JUMAEDI | X TO 4
+   33. NISN: 2526100232 | AHMAD ZAINUL IHWAN | X TM 2
+   34. NISN: 2425100433 | AHONG TRIYANTO | XI TKJ 2
+   35. NISN: 2425100648 | AI SOPIAH | XI KUL 2
+   36. NISN: 2425100614 | AIRA TRI ARYANI | XI KUL 1
+   37. NISN: 2425100577 | AISAH WULAN MAULIDINA | XI PHT 2
+   38. NISN: 2526100689 | AJENG CAHYA AULIYA | X KUL
+   39. NISN: 2425100649 | AJENG SITI KAUKAH | XI KUL 2
+   40. NISN: 2425100112 | AKBAR AHMAD RAFIQ | XI TAV 1
+   41. NISN: 2526100644 | AKBAR FAUZI | X PHT
+   42. NISN: 2526100096 | AKBAR MAULANA | X TE 3
+   43. NISN: 2425100292 | AKBAR RIZKI MAULANA | XI TKR 2
+   44. NISN: 2526100011 | AKBARUL GOFUR | X TE 1
+   45. NISN: 2526100187 | AKHMAD LATIF | X TM 1
+   46. NISN: 2425100113 | AKMAL JUL PUTRA ELJA | XI TAV 1
+   47. NISN: 2425100005 | AKMAL LUTFIA ASHARI | XI TOI 1
+   48. NISN: 2526100553 | AL ASYA SYARKLA | X AKL 1
+   49. NISN: 2425100186 | AL FATHIR ZUNIOR | XI TP 1
+   50. NISN: 2526100370 | AL HAFIZ SHABIR SALAM | X TO 3
+   51. NISN: 2526100012 | ALBIAN SUKMA MAULANA | X TE 1
+   52. NISN: 2526100050 | ALDI AFILLAH BIFARY | X TE 2
+   53. NISN: 2425100146 | ALDI HARDIANSYAH | XI TAV 2
+   54. NISN: 2425100039 | ALDI MANSYUR | XI TOI 2
+   55. NISN: 2425100257 | ALDI PADILAH | XI TKR 1
+   56. NISN: 2425100365 | ALDI RAMDANI | XI TSM 2
+   57. NISN: 2425100006 | ALDI SAPUTRA | XI TOI 1
+   58. NISN: 2526100324 | ALDI SETIAWAN | X TO 2
+   59. NISN: 2425100542 | ALDIYANSYAH | XI PHT 1
+   60. NISN: 2425100293 | ALDO JUNIAWAN | XI TKR 2
+   61. NISN: 2526100599 | ALENA NUR AWALIZA | X AKL 2
+   62. NISN: 2425100040 | ALFATH MAULANA YUSUF | XI TOI 2
+   63. NISN: 2425100578 | ALFIAH LUTFIANTI | XI PHT 2
+   64. NISN: 2526100141 | ALFIAN BAGUS RAMADHAN | X TE 4
+   65. NISN: 2526100509 | ALFIAN FIRDAUS | X TJKT 2
+   66. NISN: 2425100007 | ALFIAN NURYAMAN | XI TOI 1
+   67. NISN: 2425100543 | ALFIN | XI PHT 1
+   68. NISN: 2526100097 | ALFIN DESTIAN | X TE 3
+   69. NISN: 2526100416 | ALGI FALGIAN | X TO 4
+   70. NISN: 2425100329 | ALI AKBAR | XI TSM 1
+   71. NISN: 2526100417 | ALI PERMANA | X TO 4
+   72. NISN: 2526100098 | ALIEF MUHAMAD ARRIADY | X TE 3
+   73. NISN: 2526100233 | ALIF MAULANA SURYADI | X TM 2
+   74. NISN: 2526100188 | ALIKHA NUR AZIZAH | X TM 1
+   75. NISN: 2526100645 | ALIN NURFAIDA | X PHT
+   76. NISN: 2425100579 | ALIP | XI PHT 2
+   77. NISN: 2526100646 | ALIPIA MAULIDIA PUTRI | X PHT
+   78. NISN: 2425100076 | ALPARIJAL | XI TOI 3
+   79. NISN: 2526100371 | ALPIN AZIZ | X TO 3
+   80. NISN: 2526100234 | ALVIAN PRAMUDYA AZHAR | X TM 2
+   81. NISN: 2425100544 | ALVIAN YUSUF | XI PHT 1
+   82. NISN: 2425100222 | ALVIN IRHAM PADILLAH | XI TP 2
+   83. NISN: 2425100580 | ALVINA EFARINA | XI PHT 2
+   84. NISN: 2425100258 | ALWIS SAEPUL ADHA | XI TKR 1
+   85. NISN: 2526100647 | ALYA RAMADANI | X PHT
+   86. NISN: 2526100690 | ALYA RENAULTFA HALAWATI | X KUL
+   87. NISN: 2526100051 | ALZIAN ILHAM PRATAMA | X TE 2
+   88. NISN: 2425100615 | AMEL AULIYA | XI KUL 1
+   89. NISN: 2425100505 | AMIRA SANIA | XI AK 2
+   90. NISN: 2425100008 | ANANG ANDRIANSYAH | XI TOI 1
+   91. NISN: 2526100325 | ANDI KURNIAWAN | X TO 2
+   92. NISN: 2526100013 | ANDIKA FARHAN PAUZI | X TE 1
+   93. NISN: 2425100366 | ANDIKA PURNAMA DANI | XI TSM 2
+   94. NISN: 2526100464 | ANDINI SAHIRA RAMADANI | X TJKT 1
+   95. NISN: 2526100052 | ANDITIKACHIE | X TE 2
+   96. NISN: 2425100147 | ANDRA RAMADHAN | XI TAV 2
+   97. NISN: 2526100554 | ANDRI VALENTINO RUKMANA | X AKL 1
+   98. NISN: 2526100691 | ANE AWALIAH | X KUL
+   99. NISN: 2526100600 | ANGELINA TIVANY | X AKL 2
+   100. NISN: 2526100014 | ANGGA PRADITA | X TE 1
+   101. NISN: 2425100148 | ANGGA SAPUTRA | XI TAV 2
+   102. NISN: 2526100510 | ANI NUROHIMAH | X TJKT 2
+   103. NISN: 2526100692 | ANIDA ALIMATUNISA | X KUL
+   104. NISN: 2526100555 | ANISA | X AKL 1
+   105. NISN: 2526100601 | ANISA FATONATUL ABROR | X AKL 2
+   106. NISN: 2425100470 | ANISA LAILA ROMADON | XI AK 1
+   107. NISN: 2526100693 | ANISA PITRI | X KUL
+   108. NISN: 2425100398 | ANNISA DWI TRI HAPSARI | XI TKJ 1
+   109. NISN: 2425100650 | ANNISA RIZKIYATI | XI KUL 2
+   110. NISN: 2425100009 | ANUGRAH FAJRI | XI TOI 1
+   111. NISN: 2526100694 | ANWAR NASRULOH | X KUL
+   112. NISN: 2526100695 | ARBAITY PUTRI HAYATI | X KUL
+   113. NISN: 2526100053 | ARDI PRATAMA | X TE 2
+   114. NISN: 2526100465 | ARDIYANTO MIRZA HENDRAWAN | X TJKT 1
+   115. NISN: 2425100259 | ARFANDHANI SYAHPUTRA | XI TKR 1
+   116. NISN: 2526100189 | ARFI AL YASIL RAMDHANI | X TM 1
+   117. NISN: 2425100260 | ARI GUNTORO | XI TKR 1
+   118. NISN: 2526100099 | ARI MUHAMAD IKBAL | X TE 3
+   119. NISN: 2425100077 | ARIF | XI TOI 3
+   120. NISN: 2425100187 | ARIF AMRUL NURHIDAYAT | XI TP 1
+   121. NISN: 2526100556 | ARIF RAHMAN | X AKL 1
+   122. NISN: 2425100078 | ARIF RAPI PADLU RAHMAN | XI TOI 3
+   123. NISN: 2526100235 | ARIP NURDIN | X TM 2
+   124. NISN: 2526100054 | ARIP RAHMAN | X TE 2
+   125. NISN: 2425100041 | ARIS MULYADI | XI TOI 2
+   126. NISN: 2425100367 | ARIS SETIAWAN | XI TSM 2
+   127. NISN: 2526100511 | ARISMA NUR JAMILAH | X TJKT 2
+   128. NISN: 2526100190 | ARNI NURHAYATI | X TM 1
+   129. NISN: 2425100114 | ARYA ERLANGGA | XI TAV 1
+   130. NISN: 2526100326 | ARYA RIZKI RAMDANI | X TO 2
+
+🚀 Meluncurkan Chromium headless...
+✅ Chromium berhasil diluncurkan
+
+──────────────────────────────────────────────────────────────────────
+  SIMULASI LOGIN 130 SISWA BERSAMAAN
+──────────────────────────────────────────────────────────────────────
+   [Siswa #1] Ditemukan 1 input field di halaman
+   [Siswa #2] Ditemukan 1 input field di halaman
+   [Siswa #3] Ditemukan 1 input field di halaman
+   ✅ [Siswa #1] AHMAD AJWAR SETIADI — Berhasil masuk & lihat ujian
+   [Siswa #4] Ditemukan 1 input field di halaman
+   ✅ [Siswa #2] AHMAD ARIF AZKA — Berhasil masuk & lihat ujian
+   [Siswa #5] Ditemukan 1 input field di halaman
+   ✅ [Siswa #3] AHMAD BARKAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #4] AHMAD DADIH — Berhasil masuk & lihat ujian
+   [Siswa #6] Ditemukan 1 input field di halaman
+   [Siswa #7] Ditemukan 1 input field di halaman
+   [Siswa #8] Ditemukan 1 input field di halaman
+   ✅ [Siswa #5] AHMAD DANIAL — Berhasil masuk & lihat ujian
+   ✅ [Siswa #6] AHMAD DAVIN NABIL NURZAKY — Berhasil masuk & lihat ujian
+   [Siswa #9] Ditemukan 1 input field di halaman
+   ✅ [Siswa #7] AHMAD DILFA DANIAR — Berhasil masuk & lihat ujian
+   ✅ [Siswa #8] AHMAD FAHRI SUDARNA — Berhasil masuk & lihat ujian
+   [Siswa #11] Ditemukan 1 input field di halaman
+   [Siswa #10] Ditemukan 1 input field di halaman
+   ✅ [Siswa #9] AHMAD FAUZI — Berhasil masuk & lihat ujian
+   [Siswa #13] Ditemukan 1 input field di halaman
+   [Siswa #14] Ditemukan 1 input field di halaman
+   ✅ [Siswa #11] AHMAD FAUZI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #10] AHMAD FAUZI — Berhasil masuk & lihat ujian
+   [Siswa #15] Ditemukan 1 input field di halaman
+   [Siswa #12] Ditemukan 1 input field di halaman
+   [Siswa #16] Ditemukan 1 input field di halaman
+   ✅ [Siswa #13] AHMAD FAUZI ALFADLAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #14] AHMAD FAUZI SOFYAN — Berhasil masuk & lihat ujian
+   [Siswa #17] Ditemukan 1 input field di halaman
+   [Siswa #18] Ditemukan 1 input field di halaman
+   ✅ [Siswa #15] AHMAD HIBAN JAELANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #16] AHMAD IDAM MUCHLIS — Berhasil masuk & lihat ujian
+   ✅ [Siswa #12] AHMAD FAUZI — Berhasil masuk & lihat ujian
+   [Siswa #19] Ditemukan 1 input field di halaman
+   ✅ [Siswa #17] AHMAD JENAN — Berhasil masuk & lihat ujian
+   [Siswa #20] Ditemukan 1 input field di halaman
+   [Siswa #21] Ditemukan 1 input field di halaman
+   [Siswa #23] Ditemukan 1 input field di halaman
+   ✅ [Siswa #20] AHMAD NASRULLOH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #21] AHMAD NAZRIL PERMADI — Berhasil masuk & lihat ujian
+   [Siswa #22] Ditemukan 1 input field di halaman
+   [Siswa #24] Ditemukan 1 input field di halaman
+   [Siswa #25] Ditemukan 1 input field di halaman
+   ✅ [Siswa #23] AHMAD REHAN — Berhasil masuk & lihat ujian
+   [Siswa #27] Ditemukan 1 input field di halaman
+   [Siswa #26] Ditemukan 1 input field di halaman
+   ✅ [Siswa #22] AHMAD NURYANA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #25] AHMAD SAEPU TAPTA JANI — Berhasil masuk & lihat ujian
+   [Siswa #28] Ditemukan 1 input field di halaman
+   [Siswa #29] Ditemukan 1 input field di halaman
+   ✅ [Siswa #26] AHMAD SALDAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #27] AHMAD SANUSI — Berhasil masuk & lihat ujian
+   [Siswa #30] Ditemukan 1 input field di halaman
+   [Siswa #31] Ditemukan 1 input field di halaman
+   ✅ [Siswa #28] AHMAD SUBHAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #29] AHMAD SYAIFUL HIDAYAT — Berhasil masuk & lihat ujian
+   [Siswa #33] Ditemukan 1 input field di halaman
+   [Siswa #32] Ditemukan 1 input field di halaman
+   ✅ [Siswa #30] AHMAD TAUFIK HERLANSYA — Berhasil masuk & lihat ujian
+   [Siswa #35] Ditemukan 1 input field di halaman
+   [Siswa #34] Ditemukan 1 input field di halaman
+   ✅ [Siswa #32] AHMAD YOPI JUMAEDI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #33] AHMAD ZAINUL IHWAN — Berhasil masuk & lihat ujian
+   [Siswa #36] Ditemukan 1 input field di halaman
+   [Siswa #37] Ditemukan 1 input field di halaman
+   [Siswa #38] Ditemukan 1 input field di halaman
+   [Siswa #39] Ditemukan 1 input field di halaman
+   [Siswa #40] Ditemukan 1 input field di halaman
+   [Siswa #41] Ditemukan 1 input field di halaman
+   ✅ [Siswa #38] AJENG CAHYA AULIYA — Berhasil masuk & lihat ujian
+   [Siswa #42] Ditemukan 1 input field di halaman
+   [Siswa #43] Ditemukan 1 input field di halaman
+   [Siswa #44] Ditemukan 1 input field di halaman
+   ✅ [Siswa #40] AKBAR AHMAD RAFIQ — Berhasil masuk & lihat ujian
+   ✅ [Siswa #41] AKBAR FAUZI — Berhasil masuk & lihat ujian
+   [Siswa #45] Ditemukan 1 input field di halaman
+   [Siswa #46] Ditemukan 1 input field di halaman
+   ✅ [Siswa #42] AKBAR MAULANA — Berhasil masuk & lihat ujian
+   [Siswa #47] Ditemukan 1 input field di halaman
+   [Siswa #49] Ditemukan 1 input field di halaman
+   ✅ [Siswa #44] AKBARUL GOFUR — Berhasil masuk & lihat ujian
+   [Siswa #48] Ditemukan 1 input field di halaman
+   [Siswa #50] Ditemukan 1 input field di halaman
+   ✅ [Siswa #45] AKHMAD LATIF — Berhasil masuk & lihat ujian
+   ✅ [Siswa #46] AKMAL JUL PUTRA ELJA — Berhasil masuk & lihat ujian
+   [Siswa #51] Ditemukan 1 input field di halaman
+   [Siswa #52] Ditemukan 1 input field di halaman
+   [Siswa #53] Ditemukan 1 input field di halaman
+   ✅ [Siswa #47] AKMAL LUTFIA ASHARI — Berhasil masuk & lihat ujian
+   [Siswa #54] Ditemukan 1 input field di halaman
+   ✅ [Siswa #49] AL FATHIR ZUNIOR — Berhasil masuk & lihat ujian
+   [Siswa #55] Ditemukan 1 input field di halaman
+   ✅ [Siswa #50] AL HAFIZ SHABIR SALAM — Berhasil masuk & lihat ujian
+   ✅ [Siswa #48] AL ASYA SYARKLA — Berhasil masuk & lihat ujian
+   [Siswa #56] Ditemukan 1 input field di halaman
+   ✅ [Siswa #51] ALBIAN SUKMA MAULANA — Berhasil masuk & lihat ujian
+   ❌ [Siswa #18] AHMAD LUTHFI MAULANA — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #52] ALDI AFILLAH BIFARY — Berhasil masuk & lihat ujian
+   [Siswa #58] Ditemukan 1 input field di halaman
+   ❌ [Siswa #19] AHMAD MAULANA MUFID — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #53] ALDI HARDIANSYAH — Berhasil masuk & lihat ujian
+   [Siswa #57] Ditemukan 1 input field di halaman
+   ✅ [Siswa #54] ALDI MANSYUR — Berhasil masuk & lihat ujian
+   [Siswa #59] Ditemukan 1 input field di halaman
+   [Siswa #60] Ditemukan 1 input field di halaman
+   ✅ [Siswa #55] ALDI PADILAH — Berhasil masuk & lihat ujian
+   [Siswa #61] Ditemukan 1 input field di halaman
+   ❌ [Siswa #24] AHMAD RIPALDI — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #58] ALDI SETIAWAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #57] ALDI SAPUTRA — Berhasil masuk & lihat ujian
+   [Siswa #62] Ditemukan 1 input field di halaman
+   [Siswa #64] Ditemukan 1 input field di halaman
+   [Siswa #63] Ditemukan 1 input field di halaman
+   [Siswa #65] Ditemukan 1 input field di halaman
+   [Siswa #66] Ditemukan 1 input field di halaman
+   [Siswa #68] Ditemukan 1 input field di halaman
+   ✅ [Siswa #61] ALENA NUR AWALIZA — Berhasil masuk & lihat ujian
+   ❌ [Siswa #31] AHMAD TOLIB AZIS RAMADHAN — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #67] Ditemukan 1 input field di halaman
+   [Siswa #71] Ditemukan 1 input field di halaman
+   [Siswa #69] Ditemukan 1 input field di halaman
+   [Siswa #70] Ditemukan 1 input field di halaman
+   [Siswa #72] Ditemukan 1 input field di halaman
+   ❌ [Siswa #34] AHONG TRIYANTO — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #35] AI SOPIAH — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #73] Ditemukan 1 input field di halaman
+   [Siswa #74] Ditemukan 1 input field di halaman
+   [Siswa #75] Ditemukan 1 input field di halaman
+   ❌ [Siswa #36] AIRA TRI ARYANI — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #62] ALFATH MAULANA YUSUF — Berhasil masuk & lihat ujian
+   ❌ [Siswa #37] AISAH WULAN MAULIDINA — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #65] ALFIAN FIRDAUS — Berhasil masuk & lihat ujian
+   ✅ [Siswa #66] ALFIAN NURYAMAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #64] ALFIAN BAGUS RAMADHAN — Berhasil masuk & lihat ujian
+   [Siswa #76] Ditemukan 1 input field di halaman
+   ❌ [Siswa #39] AJENG SITI KAUKAH — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #68] ALFIN DESTIAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #71] ALI PERMANA — Berhasil masuk & lihat ujian
+   [Siswa #77] Ditemukan 1 input field di halaman
+   ✅ [Siswa #69] ALGI FALGIAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #72] ALIEF MUHAMAD ARRIADY — Berhasil masuk & lihat ujian
+   [Siswa #79] Ditemukan 1 input field di halaman
+   ✅ [Siswa #73] ALIF MAULANA SURYADI — Berhasil masuk & lihat ujian
+   [Siswa #81] Ditemukan 1 input field di halaman
+   ✅ [Siswa #74] ALIKHA NUR AZIZAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #75] ALIN NURFAIDA — Berhasil masuk & lihat ujian
+   [Siswa #80] Ditemukan 1 input field di halaman
+   ❌ [Siswa #43] AKBAR RIZKI MAULANA — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #78] Ditemukan 1 input field di halaman
+   ✅ [Siswa #79] ALPIN AZIZ — Berhasil masuk & lihat ujian
+   ✅ [Siswa #77] ALIPIA MAULIDIA PUTRI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #80] ALVIAN PRAMUDYA AZHAR — Berhasil masuk & lihat ujian
+   [Siswa #82] Ditemukan 1 input field di halaman
+   [Siswa #84] Ditemukan 1 input field di halaman
+   [Siswa #87] Ditemukan 1 input field di halaman
+   [Siswa #89] Ditemukan 1 input field di halaman
+   [Siswa #88] Ditemukan 1 input field di halaman
+   ✅ [Siswa #78] ALPARIJAL — Berhasil masuk & lihat ujian
+   [Siswa #90] Ditemukan 1 input field di halaman
+   [Siswa #91] Ditemukan 1 input field di halaman
+   [Siswa #85] Ditemukan 1 input field di halaman
+   [Siswa #86] Ditemukan 1 input field di halaman
+   [Siswa #83] Ditemukan 1 input field di halaman
+   ❌ [Siswa #56] ALDI RAMDANI — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #95] Ditemukan 1 input field di halaman
+   [Siswa #92] Ditemukan 1 input field di halaman
+   ✅ [Siswa #87] ALZIAN ILHAM PRATAMA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #82] ALVIN IRHAM PADILLAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #86] ALYA RENAULTFA HALAWATI — Berhasil masuk & lihat ujian
+   ❌ [Siswa #59] ALDIYANSYAH — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #98] Ditemukan 1 input field di halaman
+   ✅ [Siswa #84] ALWIS SAEPUL ADHA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #85] ALYA RAMADANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #91] ANDI KURNIAWAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #90] ANANG ANDRIANSYAH — Berhasil masuk & lihat ujian
+   ❌ [Siswa #60] ALDO JUNIAWAN — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #96] Ditemukan 1 input field di halaman
+   [Siswa #94] Ditemukan 1 input field di halaman
+   [Siswa #93] Ditemukan 1 input field di halaman
+   [Siswa #97] Ditemukan 1 input field di halaman
+   ✅ [Siswa #95] ANDITIKACHIE — Berhasil masuk & lihat ujian
+   ✅ [Siswa #92] ANDIKA FARHAN PAUZI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #94] ANDINI SAHIRA RAMADANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #98] ANE AWALIAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #96] ANDRA RAMADHAN — Berhasil masuk & lihat ujian
+   [Siswa #99] Ditemukan 1 input field di halaman
+   [Siswa #100] Ditemukan 1 input field di halaman
+   ✅ [Siswa #97] ANDRI VALENTINO RUKMANA — Berhasil masuk & lihat ujian
+   [Siswa #101] Ditemukan 1 input field di halaman
+   ❌ [Siswa #63] ALFIAH LUTFIANTI — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #67] ALFIN — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #70] ALI AKBAR — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #76] ALIP — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #102] Ditemukan 1 input field di halaman
+   ❌ [Siswa #81] ALVIAN YUSUF — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #107] Ditemukan 1 input field di halaman
+   [Siswa #105] Ditemukan 1 input field di halaman
+   [Siswa #104] Ditemukan 1 input field di halaman
+   ✅ [Siswa #99] ANGELINA TIVANY — Berhasil masuk & lihat ujian
+   ✅ [Siswa #100] ANGGA PRADITA — Berhasil masuk & lihat ujian
+   [Siswa #111] Ditemukan 1 input field di halaman
+   [Siswa #114] Ditemukan 1 input field di halaman
+   [Siswa #112] Ditemukan 1 input field di halaman
+   [Siswa #108] Ditemukan 1 input field di halaman
+   [Siswa #106] Ditemukan 1 input field di halaman
+   [Siswa #113] Ditemukan 1 input field di halaman
+   ✅ [Siswa #101] ANGGA SAPUTRA — Berhasil masuk & lihat ujian
+   [Siswa #103] Ditemukan 1 input field di halaman
+   [Siswa #110] Ditemukan 1 input field di halaman
+   [Siswa #115] Ditemukan 1 input field di halaman
+   [Siswa #109] Ditemukan 1 input field di halaman
+   [Siswa #116] Ditemukan 1 input field di halaman
+   [Siswa #118] Ditemukan 1 input field di halaman
+   [Siswa #121] Ditemukan 1 input field di halaman
+   [Siswa #120] Ditemukan 1 input field di halaman
+   [Siswa #117] Ditemukan 1 input field di halaman
+   [Siswa #119] Ditemukan 1 input field di halaman
+   ✅ [Siswa #102] ANI NUROHIMAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #107] ANISA PITRI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #105] ANISA FATONATUL ABROR — Berhasil masuk & lihat ujian
+   ✅ [Siswa #104] ANISA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #111] ANWAR NASRULOH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #112] ARBAITY PUTRI HAYATI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #113] ARDI PRATAMA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #114] ARDIYANTO MIRZA HENDRAWAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #103] ANIDA ALIMATUNISA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #115] ARFANDHANI SYAHPUTRA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #116] ARFI AL YASIL RAMDHANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #118] ARI MUHAMAD IKBAL — Berhasil masuk & lihat ujian
+   ✅ [Siswa #121] ARIF RAHMAN — Berhasil masuk & lihat ujian
+   [Siswa #122] Ditemukan 1 input field di halaman
+   ✅ [Siswa #119] ARIF — Berhasil masuk & lihat ujian
+   ✅ [Siswa #117] ARI GUNTORO — Berhasil masuk & lihat ujian
+   ✅ [Siswa #120] ARIF AMRUL NURHIDAYAT — Berhasil masuk & lihat ujian
+   ✅ [Siswa #110] ANUGRAH FAJRI — Berhasil masuk & lihat ujian
+   ❌ [Siswa #88] AMEL AULIYA — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #89] AMIRA SANIA — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #83] ALVINA EFARINA — ERROR: Waiting failed: 20000ms exceeded
+   ✅ [Siswa #122] ARIF RAPI PADLU RAHMAN — Berhasil masuk & lihat ujian
+   [Siswa #123] Ditemukan 1 input field di halaman
+   [Siswa #129] Ditemukan 1 input field di halaman
+   [Siswa #125] Ditemukan 1 input field di halaman
+   [Siswa #130] Ditemukan 1 input field di halaman
+   ❌ [Siswa #93] ANDIKA PURNAMA DANI — ERROR: Waiting failed: 20000ms exceeded
+   [Siswa #124] Ditemukan 1 input field di halaman
+   [Siswa #126] Ditemukan 1 input field di halaman
+   [Siswa #128] Ditemukan 1 input field di halaman
+   ✅ [Siswa #123] ARIP NURDIN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #129] ARYA ERLANGGA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #130] ARYA RIZKI RAMDANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #125] ARIS MULYADI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #124] ARIP RAHMAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #128] ARNI NURHAYATI — Berhasil masuk & lihat ujian
+   [Siswa #127] Ditemukan 1 input field di halaman
+   ✅ [Siswa #127] ARISMA NUR JAMILAH — Berhasil masuk & lihat ujian
+   ❌ [Siswa #106] ANISA LAILA ROMADON — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #108] ANNISA DWI TRI HAPSARI — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #109] ANNISA RIZKIYATI — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #126] ARIS SETIAWAN — ERROR: Waiting failed: 20000ms exceeded
+
+✅ Semua browser telah ditutup
+
+══════════════════════════════════════════════════════════════════════
+  LAPORAN DETAIL PER SISWA
+══════════════════════════════════════════════════════════════════════
+
+[Siswa #1] ✅ AHMAD AJWAR SETIADI | XI TKR 1 | NISN: 2425100255
+  Total Waktu : 3387 ms
+  Step 1: [OK] Buka Tab Browser — 82 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 1857 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 681 ms | NISN: 2425100255
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 172 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 5 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 570 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #2] ✅ AHMAD ARIF AZKA | XI TP 2 | NISN: 2425100221
+  Total Waktu : 3484 ms
+  Step 1: [OK] Buka Tab Browser — 72 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2025 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 714 ms | NISN: 2425100221
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 148 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 5 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 497 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #3] ✅ AHMAD BARKAH | X TM 2 | NISN: 2526100231
+  Total Waktu : 3386 ms
+  Step 1: [OK] Buka Tab Browser — 80 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 1864 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 756 ms | NISN: 2526100231
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 12 ms
+  Step 5: [OK] Halaman Profile Muncul — 138 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 6 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 515 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #4] ✅ AHMAD DADIH | X TO 3 | NISN: 2526100369
+  Total Waktu : 3421 ms
+  Step 1: [OK] Buka Tab Browser — 96 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 1798 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 826 ms | NISN: 2526100369
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 8 ms
+  Step 5: [OK] Halaman Profile Muncul — 171 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 7 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 483 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #5] ✅ AHMAD DANIAL | X TE 4 | NISN: 2526100140
+  Total Waktu : 3728 ms
+  Step 1: [OK] Buka Tab Browser — 93 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2012 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 736 ms | NISN: 2526100140
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 4 ms
+  Step 5: [OK] Halaman Profile Muncul — 332 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 525 ms | Ditemukan 6 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - DDPK (Oleh: Kelvin Suharvianto, ST | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #6] ✅ AHMAD DAVIN NABIL NURZAKY | X TE 1 | NISN: 2526100006
+  Total Waktu : 3877 ms
+  Step 1: [OK] Buka Tab Browser — 97 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2328 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 767 ms | NISN: 2526100006
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 8 ms
+  Step 5: [OK] Halaman Profile Muncul — 168 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 487 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #7] ✅ AHMAD DILFA DANIAR | X TO 1 | NISN: 2526100280
+  Total Waktu : 4171 ms
+  Step 1: [OK] Buka Tab Browser — 110 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2509 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 783 ms | NISN: 2526100280
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 5 ms
+  Step 5: [OK] Halaman Profile Muncul — 194 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 545 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #8] ✅ AHMAD FAHRI SUDARNA | XI TAV 2 | NISN: 2425100145
+  Total Waktu : 3693 ms
+  Step 1: [OK] Buka Tab Browser — 133 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 1987 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 784 ms | NISN: 2425100145
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 244 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 513 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: Kelvin Suharvianto, ST | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #9] ✅ AHMAD FAUZI | XI TKR 1 | NISN: 2425100256
+  Total Waktu : 4193 ms
+  Step 1: [OK] Buka Tab Browser — 112 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2508 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 767 ms | NISN: 2425100256
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 4 ms
+  Step 5: [OK] Halaman Profile Muncul — 207 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 20 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 543 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #10] ✅ AHMAD FAUZI | XI TAV 1 | NISN: 2425100111
+  Total Waktu : 4681 ms
+  Step 1: [OK] Buka Tab Browser — 108 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3023 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 823 ms | NISN: 2425100111
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 206 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 488 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PKK (Oleh: SAEPUL ANWAR, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #11] ✅ AHMAD FAUZI | X TM 1 | NISN: 2526100186
+  Total Waktu : 3827 ms
+  Step 1: [OK] Buka Tab Browser — 127 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2098 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 764 ms | NISN: 2526100186
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 4 ms
+  Step 5: [OK] Halaman Profile Muncul — 204 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 597 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #12] ✅ AHMAD FAUZI | X TO 4 | NISN: 2526100414
+  Total Waktu : 5895 ms
+  Step 1: [OK] Buka Tab Browser — 106 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4050 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 924 ms | NISN: 2526100414
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 27 ms
+  Step 5: [OK] Halaman Profile Muncul — 186 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 535 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #13] ✅ AHMAD FAUZI ALFADLAN | X TO 2 | NISN: 2526100322
+  Total Waktu : 3709 ms
+  Step 1: [OK] Buka Tab Browser — 107 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2110 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 752 ms | NISN: 2526100322
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 5 ms
+  Step 5: [OK] Halaman Profile Muncul — 173 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 532 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #14] ✅ AHMAD FAUZI SOFYAN | XI TOI 1 | NISN: 2425100003
+  Total Waktu : 3675 ms
+  Step 1: [OK] Buka Tab Browser — 124 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2014 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 752 ms | NISN: 2425100003
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 4 ms
+  Step 5: [OK] Halaman Profile Muncul — 198 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 540 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #15] ✅ AHMAD HIBAN JAELANI | X TE 3 | NISN: 2526100094
+  Total Waktu : 3913 ms
+  Step 1: [OK] Buka Tab Browser — 106 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2110 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 790 ms | NISN: 2526100094
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 75 ms
+  Step 5: [OK] Halaman Profile Muncul — 205 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 595 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #16] ✅ AHMAD IDAM MUCHLIS | X TJKT 1 | NISN: 2526100463
+  Total Waktu : 3859 ms
+  Step 1: [OK] Buka Tab Browser — 133 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2014 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 922 ms | NISN: 2526100463
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 27 ms
+  Step 5: [OK] Halaman Profile Muncul — 181 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 539 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #17] ✅ AHMAD JENAN | X TE 1 | NISN: 2526100007
+  Total Waktu : 3857 ms
+  Step 1: [OK] Buka Tab Browser — 134 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2129 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 875 ms | NISN: 2526100007
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 189 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 26 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 479 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #18] ❌ AHMAD LUTHFI MAULANA | XI TSM 2 | NISN: 2425100363
+  Total Waktu : 23209 ms
+  Step 1: [OK] Buka Tab Browser — 122 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2126 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 899 ms | NISN: 2425100363
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #19] ❌ AHMAD MAULANA MUFID | XI TSM 2 | NISN: 2425100364
+  Total Waktu : 23220 ms
+  Step 1: [OK] Buka Tab Browser — 131 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2124 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 888 ms | NISN: 2425100364
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #20] ✅ AHMAD NASRULLOH | X TE 1 | NISN: 2526100008
+  Total Waktu : 4098 ms
+  Step 1: [OK] Buka Tab Browser — 119 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2533 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 703 ms | NISN: 2526100008
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Step 5: [OK] Halaman Profile Muncul — 207 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 474 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #21] ✅ AHMAD NAZRIL PERMADI | X TE 1 | NISN: 2526100009
+  Total Waktu : 3682 ms
+  Step 1: [OK] Buka Tab Browser — 108 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2143 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 727 ms | NISN: 2526100009
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 8 ms
+  Step 5: [OK] Halaman Profile Muncul — 156 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 9 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 504 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #22] ✅ AHMAD NURYANA | XI TOI 2 | NISN: 2425100037
+  Total Waktu : 5250 ms
+  Step 1: [OK] Buka Tab Browser — 117 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3554 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 811 ms | NISN: 2425100037
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 226 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 7 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 505 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #23] ✅ AHMAD REHAN | XI TOI 1 | NISN: 2425100004
+  Total Waktu : 3637 ms
+  Step 1: [OK] Buka Tab Browser — 110 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2060 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 728 ms | NISN: 2425100004
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 211 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 485 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #24] ❌ AHMAD RIPALDI | XI TSM 1 | NISN: 2425100328
+  Total Waktu : 23693 ms
+  Step 1: [OK] Buka Tab Browser — 121 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2556 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 813 ms | NISN: 2425100328
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #25] ✅ AHMAD SAEPU TAPTA JANI | X TE 3 | NISN: 2526100095
+  Total Waktu : 3789 ms
+  Step 1: [OK] Buka Tab Browser — 115 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2061 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 812 ms | NISN: 2526100095
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Step 5: [OK] Halaman Profile Muncul — 238 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 519 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #26] ✅ AHMAD SALDAN | X TE 1 | NISN: 2526100010
+  Total Waktu : 4208 ms
+  Step 1: [OK] Buka Tab Browser — 97 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2581 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 811 ms | NISN: 2526100010
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 8 ms
+  Step 5: [OK] Halaman Profile Muncul — 203 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 476 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #27] ✅ AHMAD SANUSI | X TE 2 | NISN: 2526100049
+  Total Waktu : 3717 ms
+  Step 1: [OK] Buka Tab Browser — 121 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2058 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 812 ms | NISN: 2526100049
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 4 ms
+  Step 5: [OK] Halaman Profile Muncul — 186 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 491 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #28] ✅ AHMAD SUBHAN | XI TOI 2 | NISN: 2425100038
+  Total Waktu : 4179 ms
+  Step 1: [OK] Buka Tab Browser — 137 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2559 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 789 ms | NISN: 2425100038
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Step 5: [OK] Halaman Profile Muncul — 163 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 495 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #29] ✅ AHMAD SYAIFUL HIDAYAT | XI TOI 3 | NISN: 2425100075
+  Total Waktu : 3697 ms
+  Step 1: [OK] Buka Tab Browser — 129 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2060 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 788 ms | NISN: 2425100075
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 154 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 532 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #30] ✅ AHMAD TAUFIK HERLANSYA | X TO 2 | NISN: 2526100323
+  Total Waktu : 4312 ms
+  Step 1: [OK] Buka Tab Browser — 150 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2553 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 753 ms | NISN: 2526100323
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 232 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 574 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #31] ❌ AHMAD TOLIB AZIS RAMADHAN | XI TKR 2 | NISN: 2425100291
+  Total Waktu : 23053 ms
+  Step 1: [OK] Buka Tab Browser — 158 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2047 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 777 ms | NISN: 2425100291
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #32] ✅ AHMAD YOPI JUMAEDI | X TO 4 | NISN: 2526100415
+  Total Waktu : 4472 ms
+  Step 1: [OK] Buka Tab Browser — 125 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2541 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 798 ms | NISN: 2526100415
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 12 ms
+  Step 5: [OK] Halaman Profile Muncul — 245 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 16 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 710 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #33] ✅ AHMAD ZAINUL IHWAN | X TM 2 | NISN: 2526100232
+  Total Waktu : 4245 ms
+  Step 1: [OK] Buka Tab Browser — 140 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2026 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 944 ms | NISN: 2526100232
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Step 5: [OK] Halaman Profile Muncul — 245 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 794 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #34] ❌ AHONG TRIYANTO | XI TKJ 2 | NISN: 2425100433
+  Total Waktu : 24076 ms
+  Step 1: [OK] Buka Tab Browser — 129 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2562 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1060 ms | NISN: 2425100433
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #35] ❌ AI SOPIAH | XI KUL 2 | NISN: 2425100648
+  Total Waktu : 23578 ms
+  Step 1: [OK] Buka Tab Browser — 107 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2007 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1141 ms | NISN: 2425100648
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #36] ❌ AIRA TRI ARYANI | XI KUL 1 | NISN: 2425100614
+  Total Waktu : 23854 ms
+  Step 1: [OK] Buka Tab Browser — 121 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2626 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1038 ms | NISN: 2425100614
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #37] ❌ AISAH WULAN MAULIDINA | XI PHT 2 | NISN: 2425100577
+  Total Waktu : 23579 ms
+  Step 1: [OK] Buka Tab Browser — 149 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2220 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1093 ms | NISN: 2425100577
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #38] ✅ AJENG CAHYA AULIYA | X KUL | NISN: 2526100689
+  Total Waktu : 4518 ms
+  Step 1: [OK] Buka Tab Browser — 154 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2548 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 896 ms | NISN: 2526100689
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 25 ms
+  Step 5: [OK] Halaman Profile Muncul — 191 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AJENG
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 16 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 647 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #39] ❌ AJENG SITI KAUKAH | XI KUL 2 | NISN: 2425100649
+  Total Waktu : 23772 ms
+  Step 1: [OK] Buka Tab Browser — 210 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2507 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 993 ms | NISN: 2425100649
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 16 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #40] ✅ AKBAR AHMAD RAFIQ | XI TAV 1 | NISN: 2425100112
+  Total Waktu : 4999 ms
+  Step 1: [OK] Buka Tab Browser — 205 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2503 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1098 ms | NISN: 2425100112
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Step 5: [OK] Halaman Profile Muncul — 370 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKBAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 762 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PKK (Oleh: SAEPUL ANWAR, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #41] ✅ AKBAR FAUZI | X PHT | NISN: 2526100644
+  Total Waktu : 4762 ms
+  Step 1: [OK] Buka Tab Browser — 276 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2089 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1000 ms | NISN: 2526100644
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 29 ms
+  Step 5: [OK] Halaman Profile Muncul — 412 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKBAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 16 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 884 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #42] ✅ AKBAR MAULANA | X TE 3 | NISN: 2526100096
+  Total Waktu : 5204 ms
+  Step 1: [OK] Buka Tab Browser — 219 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2509 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1098 ms | NISN: 2526100096
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Step 5: [OK] Halaman Profile Muncul — 359 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKBAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 18 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 937 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #43] ❌ AKBAR RIZKI MAULANA | XI TKR 2 | NISN: 2425100292
+  Total Waktu : 24121 ms
+  Step 1: [OK] Buka Tab Browser — 186 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2677 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1126 ms | NISN: 2425100292
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 21 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #44] ✅ AKBARUL GOFUR | X TE 1 | NISN: 2526100011
+  Total Waktu : 5405 ms
+  Step 1: [OK] Buka Tab Browser — 187 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2535 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1215 ms | NISN: 2526100011
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 296 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKBAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 16 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1115 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #45] ✅ AKHMAD LATIF | X TM 1 | NISN: 2526100187
+  Total Waktu : 5486 ms
+  Step 1: [OK] Buka Tab Browser — 166 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2706 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1091 ms | NISN: 2526100187
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 25 ms
+  Step 5: [OK] Halaman Profile Muncul — 385 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKHMA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 19 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1037 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #46] ✅ AKMAL JUL PUTRA ELJA | XI TAV 1 | NISN: 2425100113
+  Total Waktu : 4971 ms
+  Step 1: [OK] Buka Tab Browser — 214 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2157 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1090 ms | NISN: 2425100113
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 17 ms
+  Step 5: [OK] Halaman Profile Muncul — 393 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKMAL
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 20 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1037 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PKK (Oleh: SAEPUL ANWAR, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #47] ✅ AKMAL LUTFIA ASHARI | XI TOI 1 | NISN: 2425100005
+  Total Waktu : 6273 ms
+  Step 1: [OK] Buka Tab Browser — 235 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2959 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1327 ms | NISN: 2425100005
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 126 ms
+  Step 5: [OK] Halaman Profile Muncul — 291 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AKMAL
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 20 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1271 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #48] ✅ AL ASYA SYARKLA | X AKL 1 | NISN: 2526100553
+  Total Waktu : 6932 ms
+  Step 1: [OK] Buka Tab Browser — 238 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3240 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1402 ms | NISN: 2526100553
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Step 5: [OK] Halaman Profile Muncul — 452 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AL AS
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1507 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #49] ✅ AL FATHIR ZUNIOR | XI TP 1 | NISN: 2425100186
+  Total Waktu : 5484 ms
+  Step 1: [OK] Buka Tab Browser — 229 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2496 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1161 ms | NISN: 2425100186
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 24 ms
+  Step 5: [OK] Halaman Profile Muncul — 485 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AL FA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1047 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #50] ✅ AL HAFIZ SHABIR SALAM | X TO 3 | NISN: 2526100370
+  Total Waktu : 5904 ms
+  Step 1: [OK] Buka Tab Browser — 287 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2423 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1242 ms | NISN: 2526100370
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Step 5: [OK] Halaman Profile Muncul — 467 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AL HA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 18 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1401 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #51] ✅ ALBIAN SUKMA MAULANA | X TE 1 | NISN: 2526100012
+  Total Waktu : 6476 ms
+  Step 1: [OK] Buka Tab Browser — 209 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3017 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1684 ms | NISN: 2526100012
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 25 ms
+  Step 5: [OK] Halaman Profile Muncul — 448 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALBIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 41 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1014 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #52] ✅ ALDI AFILLAH BIFARY | X TE 2 | NISN: 2526100050
+  Total Waktu : 6331 ms
+  Step 1: [OK] Buka Tab Browser — 250 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2914 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1624 ms | NISN: 2526100050
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 36 ms
+  Step 5: [OK] Halaman Profile Muncul — 601 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 858 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #53] ✅ ALDI HARDIANSYAH | XI TAV 2 | NISN: 2425100146
+  Total Waktu : 6262 ms
+  Step 1: [OK] Buka Tab Browser — 256 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2507 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2082 ms | NISN: 2425100146
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 32 ms
+  Step 5: [OK] Halaman Profile Muncul — 470 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 866 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: Kelvin Suharvianto, ST | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #54] ✅ ALDI MANSYUR | XI TOI 2 | NISN: 2425100039
+  Total Waktu : 6010 ms
+  Step 1: [OK] Buka Tab Browser — 263 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2469 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2148 ms | NISN: 2425100039
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 8 ms
+  Step 5: [OK] Halaman Profile Muncul — 300 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 27 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 736 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #55] ✅ ALDI PADILAH | XI TKR 1 | NISN: 2425100257
+  Total Waktu : 5971 ms
+  Step 1: [OK] Buka Tab Browser — 236 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2590 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2084 ms | NISN: 2425100257
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 26 ms
+  Step 5: [OK] Halaman Profile Muncul — 342 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 637 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #56] ❌ ALDI RAMDANI | XI TSM 2 | NISN: 2425100365
+  Total Waktu : 24527 ms
+  Step 1: [OK] Buka Tab Browser — 224 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2735 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1453 ms | NISN: 2425100365
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 27 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #57] ✅ ALDI SAPUTRA | XI TOI 1 | NISN: 2425100006
+  Total Waktu : 7931 ms
+  Step 1: [OK] Buka Tab Browser — 293 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3932 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1216 ms | NISN: 2425100006
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 19 ms
+  Step 5: [OK] Halaman Profile Muncul — 712 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 18 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1694 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #58] ✅ ALDI SETIAWAN | X TO 2 | NISN: 2526100324
+  Total Waktu : 7266 ms
+  Step 1: [OK] Buka Tab Browser — 258 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3117 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1199 ms | NISN: 2526100324
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 149 ms
+  Step 5: [OK] Halaman Profile Muncul — 247 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 94 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2161 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #59] ❌ ALDIYANSYAH | XI PHT 1 | NISN: 2425100542
+  Total Waktu : 25074 ms
+  Step 1: [OK] Buka Tab Browser — 305 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3364 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1263 ms | NISN: 2425100542
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 18 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #60] ❌ ALDO JUNIAWAN | XI TKR 2 | NISN: 2425100293
+  Total Waktu : 24815 ms
+  Step 1: [OK] Buka Tab Browser — 329 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3005 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1369 ms | NISN: 2425100293
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 19 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #61] ✅ ALENA NUR AWALIZA | X AKL 2 | NISN: 2526100599
+  Total Waktu : 7709 ms
+  Step 1: [OK] Buka Tab Browser — 290 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3497 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1596 ms | NISN: 2526100599
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 26 ms
+  Step 5: [OK] Halaman Profile Muncul — 841 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALENA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 13 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1409 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #62] ✅ ALFATH MAULANA YUSUF | XI TOI 2 | NISN: 2425100040
+  Total Waktu : 10993 ms
+  Step 1: [OK] Buka Tab Browser — 2771 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3461 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1944 ms | NISN: 2425100040
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 60 ms
+  Step 5: [OK] Halaman Profile Muncul — 972 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALFAT
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 50 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1684 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #63] ❌ ALFIAH LUTFIANTI | XI PHT 2 | NISN: 2425100578
+  Total Waktu : 27706 ms
+  Step 1: [OK] Buka Tab Browser — 2269 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3488 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1712 ms | NISN: 2425100578
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 26 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #64] ✅ ALFIAN BAGUS RAMADHAN | X TE 4 | NISN: 2526100141
+  Total Waktu : 10744 ms
+  Step 1: [OK] Buka Tab Browser — 1772 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3489 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2031 ms | NISN: 2526100141
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 41 ms
+  Step 5: [OK] Halaman Profile Muncul — 1046 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALFIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2132 ms | Ditemukan 6 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - DDPK (Oleh: Kelvin Suharvianto, ST | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #65] ✅ ALFIAN FIRDAUS | X TJKT 2 | NISN: 2526100509
+  Total Waktu : 9805 ms
+  Step 1: [OK] Buka Tab Browser — 1303 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3460 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1915 ms | NISN: 2526100509
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 65 ms
+  Step 5: [OK] Halaman Profile Muncul — 966 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALFIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 41 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2014 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #66] ✅ ALFIAN NURYAMAN | XI TOI 1 | NISN: 2425100007
+  Total Waktu : 9504 ms
+  Step 1: [OK] Buka Tab Browser — 826 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3426 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1915 ms | NISN: 2425100007
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 66 ms
+  Step 5: [OK] Halaman Profile Muncul — 1231 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALFIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 26 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1975 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #67] ❌ ALFIN | XI PHT 1 | NISN: 2425100543
+  Total Waktu : 27821 ms
+  Step 1: [OK] Buka Tab Browser — 845 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4008 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2323 ms | NISN: 2425100543
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 315 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #68] ✅ ALFIN DESTIAN | X TE 3 | NISN: 2526100097
+  Total Waktu : 9353 ms
+  Step 1: [OK] Buka Tab Browser — 403 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3525 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1794 ms | NISN: 2526100097
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 34 ms
+  Step 5: [OK] Halaman Profile Muncul — 1943 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALFIN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 25 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1569 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #69] ✅ ALGI FALGIAN | X TO 4 | NISN: 2526100416
+  Total Waktu : 9790 ms
+  Step 1: [OK] Buka Tab Browser — 1318 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3610 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2603 ms | NISN: 2526100416
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 160 ms
+  Step 5: [OK] Halaman Profile Muncul — 1094 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALGI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 32 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 873 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #70] ❌ ALI AKBAR | XI TSM 1 | NISN: 2425100329
+  Total Waktu : 27611 ms
+  Step 1: [OK] Buka Tab Browser — 825 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3931 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2501 ms | NISN: 2425100329
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #71] ✅ ALI PERMANA | X TO 4 | NISN: 2526100417
+  Total Waktu : 8238 ms
+  Step 1: [OK] Buka Tab Browser — 325 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3525 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1872 ms | NISN: 2526100417
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 51 ms
+  Step 5: [OK] Halaman Profile Muncul — 987 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALI P
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 25 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1411 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #72] ✅ ALIEF MUHAMAD ARRIADY | X TE 3 | NISN: 2526100098
+  Total Waktu : 8289 ms
+  Step 1: [OK] Buka Tab Browser — 279 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3968 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2554 ms | NISN: 2526100098
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 16 ms
+  Step 5: [OK] Halaman Profile Muncul — 456 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALIEF
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 42 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 876 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #73] ✅ ALIF MAULANA SURYADI | X TM 2 | NISN: 2526100233
+  Total Waktu : 8190 ms
+  Step 1: [OK] Buka Tab Browser — 458 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3453 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 3028 ms | NISN: 2526100233
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Step 5: [OK] Halaman Profile Muncul — 362 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALIF 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 828 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #74] ✅ ALIKHA NUR AZIZAH | X TM 1 | NISN: 2526100188
+  Total Waktu : 7882 ms
+  Step 1: [OK] Buka Tab Browser — 320 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3970 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1995 ms | NISN: 2526100188
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 34 ms
+  Step 5: [OK] Halaman Profile Muncul — 378 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALIKH
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 39 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1120 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #75] ✅ ALIN NURFAIDA | X PHT | NISN: 2526100645
+  Total Waktu : 7652 ms
+  Step 1: [OK] Buka Tab Browser — 284 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3935 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2119 ms | NISN: 2526100645
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 28 ms
+  Step 5: [OK] Halaman Profile Muncul — 443 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALIN 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 13 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 796 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #76] ❌ ALIP | XI PHT 2 | NISN: 2425100579
+  Total Waktu : 26728 ms
+  Step 1: [OK] Buka Tab Browser — 281 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4497 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1710 ms | NISN: 2425100579
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 20 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #77] ✅ ALIPIA MAULIDIA PUTRI | X PHT | NISN: 2526100646
+  Total Waktu : 7884 ms
+  Step 1: [OK] Buka Tab Browser — 304 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4881 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1419 ms | NISN: 2526100646
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 29 ms
+  Step 5: [OK] Halaman Profile Muncul — 186 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALIPI
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 942 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #78] ✅ ALPARIJAL | XI TOI 3 | NISN: 2425100076
+  Total Waktu : 12741 ms
+  Step 1: [OK] Buka Tab Browser — 336 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6315 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1678 ms | NISN: 2425100076
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Step 5: [OK] Halaman Profile Muncul — 984 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALPAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 134 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 3235 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #79] ✅ ALPIN AZIZ | X TO 3 | NISN: 2526100371
+  Total Waktu : 6861 ms
+  Step 1: [OK] Buka Tab Browser — 293 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4252 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1210 ms | NISN: 2526100371
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 18 ms
+  Step 5: [OK] Halaman Profile Muncul — 136 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALPIN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 9 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 873 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #80] ✅ ALVIAN PRAMUDYA AZHAR | X TM 2 | NISN: 2526100234
+  Total Waktu : 10712 ms
+  Step 1: [OK] Buka Tab Browser — 317 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4812 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1272 ms | NISN: 2526100234
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 57 ms
+  Step 5: [OK] Halaman Profile Muncul — 729 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALVIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 3444 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #81] ❌ ALVIAN YUSUF | XI PHT 1 | NISN: 2425100544
+  Total Waktu : 25310 ms
+  Step 1: [OK] Buka Tab Browser — 801 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3484 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 957 ms | NISN: 2425100544
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 16 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #82] ✅ ALVIN IRHAM PADILLAH | XI TP 2 | NISN: 2425100222
+  Total Waktu : 13366 ms
+  Step 1: [OK] Buka Tab Browser — 5435 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3697 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2344 ms | NISN: 2425100222
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 43 ms
+  Step 5: [OK] Halaman Profile Muncul — 365 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALVIN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 29 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1401 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #83] ❌ ALVINA EFARINA | XI PHT 2 | NISN: 2425100580
+  Total Waktu : 31952 ms
+  Step 1: [OK] Buka Tab Browser — 4953 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 5870 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1083 ms | NISN: 2425100580
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 12 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #84] ✅ ALWIS SAEPUL ADHA | XI TKR 1 | NISN: 2425100258
+  Total Waktu : 12707 ms
+  Step 1: [OK] Buka Tab Browser — 4452 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4072 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2367 ms | NISN: 2425100258
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Step 5: [OK] Halaman Profile Muncul — 527 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALWIS
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 13 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1190 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #85] ✅ ALYA RAMADANI | X PHT | NISN: 2526100647
+  Total Waktu : 12188 ms
+  Step 1: [OK] Buka Tab Browser — 3952 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4904 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2014 ms | NISN: 2526100647
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 17 ms
+  Step 5: [OK] Halaman Profile Muncul — 409 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALYA 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 24 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 823 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #86] ✅ ALYA RENAULTFA HALAWATI | X KUL | NISN: 2526100690
+  Total Waktu : 11448 ms
+  Step 1: [OK] Buka Tab Browser — 3440 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4900 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1804 ms | NISN: 2526100690
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 28 ms
+  Step 5: [OK] Halaman Profile Muncul — 498 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALYA 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 34 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 711 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #87] ✅ ALZIAN ILHAM PRATAMA | X TE 2 | NISN: 2526100051
+  Total Waktu : 10754 ms
+  Step 1: [OK] Buka Tab Browser — 2952 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4097 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1977 ms | NISN: 2526100051
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 130 ms
+  Step 5: [OK] Halaman Profile Muncul — 530 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALZIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1014 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #88] ❌ AMEL AULIYA | XI KUL 1 | NISN: 2425100615
+  Total Waktu : 28699 ms
+  Step 1: [OK] Buka Tab Browser — 2504 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4161 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1981 ms | NISN: 2425100615
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 21 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #89] ❌ AMIRA SANIA | XI AK 2 | NISN: 2425100505
+  Total Waktu : 28493 ms
+  Step 1: [OK] Buka Tab Browser — 2009 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4158 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2137 ms | NISN: 2425100505
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #90] ✅ ANANG ANDRIANSYAH | XI TOI 1 | NISN: 2425100008
+  Total Waktu : 9798 ms
+  Step 1: [OK] Buka Tab Browser — 1509 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4833 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1815 ms | NISN: 2425100008
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 27 ms
+  Step 5: [OK] Halaman Profile Muncul — 499 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANANG
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 44 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 984 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #91] ✅ ANDI KURNIAWAN | X TO 2 | NISN: 2526100325
+  Total Waktu : 9252 ms
+  Step 1: [OK] Buka Tab Browser — 1009 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4842 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1990 ms | NISN: 2526100325
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 12 ms
+  Step 5: [OK] Halaman Profile Muncul — 442 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 17 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 856 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #92] ✅ ANDIKA FARHAN PAUZI | X TE 1 | NISN: 2526100013
+  Total Waktu : 10862 ms
+  Step 1: [OK] Buka Tab Browser — 1004 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6489 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1659 ms | NISN: 2526100013
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 65 ms
+  Step 5: [OK] Halaman Profile Muncul — 347 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDIK
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 139 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1052 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #93] ❌ ANDIKA PURNAMA DANI | XI TSM 2 | NISN: 2425100366
+  Total Waktu : 30339 ms
+  Step 1: [OK] Buka Tab Browser — 2696 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6110 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1465 ms | NISN: 2425100366
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 38 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #94] ✅ ANDINI SAHIRA RAMADANI | X TJKT 1 | NISN: 2526100464
+  Total Waktu : 10420 ms
+  Step 1: [OK] Buka Tab Browser — 2195 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 5117 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1893 ms | NISN: 2526100464
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 17 ms
+  Step 5: [OK] Halaman Profile Muncul — 243 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDIN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 52 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 867 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #95] ✅ ANDITIKACHIE | X TE 2 | NISN: 2526100052
+  Total Waktu : 9266 ms
+  Step 1: [OK] Buka Tab Browser — 1701 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4283 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1657 ms | NISN: 2526100052
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 65 ms
+  Step 5: [OK] Halaman Profile Muncul — 347 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDIT
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 139 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1032 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #96] ✅ ANDRA RAMADHAN | XI TAV 2 | NISN: 2425100147
+  Total Waktu : 9661 ms
+  Step 1: [OK] Buka Tab Browser — 1188 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 5065 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1909 ms | NISN: 2425100147
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 23 ms
+  Step 5: [OK] Halaman Profile Muncul — 310 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDRA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 163 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 840 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: Kelvin Suharvianto, ST | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #97] ✅ ANDRI VALENTINO RUKMANA | X AKL 1 | NISN: 2526100554
+  Total Waktu : 10517 ms
+  Step 1: [OK] Buka Tab Browser — 1243 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6391 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1359 ms | NISN: 2526100554
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Step 5: [OK] Halaman Profile Muncul — 253 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANDRI
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 10 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1132 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #98] ✅ ANE AWALIAH | X KUL | NISN: 2526100691
+  Total Waktu : 8474 ms
+  Step 1: [OK] Buka Tab Browser — 905 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4296 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1920 ms | NISN: 2526100691
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 34 ms
+  Step 5: [OK] Halaman Profile Muncul — 239 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANE A
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 13 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 981 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #99] ✅ ANGELINA TIVANY | X AKL 2 | NISN: 2526100600
+  Total Waktu : 17387 ms
+  Step 1: [OK] Buka Tab Browser — 5441 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3048 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1725 ms | NISN: 2526100600
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 117 ms
+  Step 5: [OK] Halaman Profile Muncul — 350 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANGEL
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 6280 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #100] ✅ ANGGA PRADITA | X TE 1 | NISN: 2526100014
+  Total Waktu : 17257 ms
+  Step 1: [OK] Buka Tab Browser — 5284 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2857 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2099 ms | NISN: 2526100014
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 26 ms
+  Step 5: [OK] Halaman Profile Muncul — 1915 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANGGA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 281 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 4754 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #101] ✅ ANGGA SAPUTRA | XI TAV 2 | NISN: 2425100148
+  Total Waktu : 17870 ms
+  Step 1: [OK] Buka Tab Browser — 4766 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2878 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2842 ms | NISN: 2425100148
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 111 ms
+  Step 5: [OK] Halaman Profile Muncul — 3877 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANGGA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 3320 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: Kelvin Suharvianto, ST | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #102] ✅ ANI NUROHIMAH | X TJKT 2 | NISN: 2526100510
+  Total Waktu : 18724 ms
+  Step 1: [OK] Buka Tab Browser — 7641 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 5687 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1730 ms | NISN: 2526100510
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 47 ms
+  Step 5: [OK] Halaman Profile Muncul — 1392 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANI N
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 21 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2129 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #103] ✅ ANIDA ALIMATUNISA | X KUL | NISN: 2526100692
+  Total Waktu : 20177 ms
+  Step 1: [OK] Buka Tab Browser — 7403 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 9172 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2105 ms | NISN: 2526100692
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 19 ms
+  Step 5: [OK] Halaman Profile Muncul — 551 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANIDA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 29 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 809 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #104] ✅ ANISA | X AKL 1 | NISN: 2526100555
+  Total Waktu : 18465 ms
+  Step 1: [OK] Buka Tab Browser — 6856 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6807 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2955 ms | NISN: 2526100555
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 19 ms
+  Step 5: [OK] Halaman Profile Muncul — 793 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANISA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 39 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 956 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #105] ✅ ANISA FATONATUL ABROR | X AKL 2 | NISN: 2526100601
+  Total Waktu : 17814 ms
+  Step 1: [OK] Buka Tab Browser — 6407 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6767 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2571 ms | NISN: 2526100601
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 18 ms
+  Step 5: [OK] Halaman Profile Muncul — 995 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANISA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 17 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 995 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #106] ❌ ANISA LAILA ROMADON | XI AK 1 | NISN: 2425100470
+  Total Waktu : 37195 ms
+  Step 1: [OK] Buka Tab Browser — 5910 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8626 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2608 ms | NISN: 2425100470
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #107] ✅ ANISA PITRI | X KUL | NISN: 2526100693
+  Total Waktu : 16572 ms
+  Step 1: [OK] Buka Tab Browser — 5403 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6653 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2083 ms | NISN: 2526100693
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 19 ms
+  Step 5: [OK] Halaman Profile Muncul — 923 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANISA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1409 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #108] ❌ ANNISA DWI TRI HAPSARI | XI TKJ 1 | NISN: 2425100398
+  Total Waktu : 36268 ms
+  Step 1: [OK] Buka Tab Browser — 4905 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7000 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 4316 ms | NISN: 2425100398
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 16 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #109] ❌ ANNISA RIZKIYATI | XI KUL 2 | NISN: 2425100650
+  Total Waktu : 36647 ms
+  Step 1: [OK] Buka Tab Browser — 4563 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8458 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 3573 ms | NISN: 2425100650
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 25 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #110] ✅ ANUGRAH FAJRI | XI TOI 1 | NISN: 2425100009
+  Total Waktu : 17483 ms
+  Step 1: [OK] Buka Tab Browser — 4182 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7300 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 4886 ms | NISN: 2425100009
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 37 ms
+  Step 5: [OK] Halaman Profile Muncul — 291 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANUGR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 737 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #111] ✅ ANWAR NASRULOH | X KUL | NISN: 2526100694
+  Total Waktu : 15008 ms
+  Step 1: [OK] Buka Tab Browser — 3709 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 6917 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2889 ms | NISN: 2526100694
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Step 5: [OK] Halaman Profile Muncul — 498 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ANWAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 27 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 891 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #112] ✅ ARBAITY PUTRI HAYATI | X KUL | NISN: 2526100695
+  Total Waktu : 15107 ms
+  Step 1: [OK] Buka Tab Browser — 3221 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8322 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2542 ms | NISN: 2526100695
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 31 ms
+  Step 5: [OK] Halaman Profile Muncul — 240 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARBAI
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 42 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 679 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #113] ✅ ARDI PRATAMA | X TE 2 | NISN: 2526100053
+  Total Waktu : 14965 ms
+  Step 1: [OK] Buka Tab Browser — 2725 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8321 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2650 ms | NISN: 2526100053
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 26 ms
+  Step 5: [OK] Halaman Profile Muncul — 302 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARDI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 851 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #114] ✅ ARDIYANTO MIRZA HENDRAWAN | X TJKT 1 | NISN: 2526100465
+  Total Waktu : 14657 ms
+  Step 1: [OK] Buka Tab Browser — 2239 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8282 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2655 ms | NISN: 2526100465
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Step 5: [OK] Halaman Profile Muncul — 303 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARDIY
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 28 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1062 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #115] ✅ ARFANDHANI SYAHPUTRA | XI TKR 1 | NISN: 2425100259
+  Total Waktu : 14321 ms
+  Step 1: [OK] Buka Tab Browser — 1739 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8307 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 3146 ms | NISN: 2425100259
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 22 ms
+  Step 5: [OK] Halaman Profile Muncul — 244 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARFAN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 19 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 814 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #116] ✅ ARFI AL YASIL RAMDHANI | X TM 1 | NISN: 2526100189
+  Total Waktu : 13980 ms
+  Step 1: [OK] Buka Tab Browser — 1240 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 9741 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1835 ms | NISN: 2526100189
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Step 5: [OK] Halaman Profile Muncul — 340 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARFI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 762 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #117] ✅ ARI GUNTORO | XI TKR 1 | NISN: 2425100260
+  Total Waktu : 13894 ms
+  Step 1: [OK] Buka Tab Browser — 1927 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8741 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1867 ms | NISN: 2425100260
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 30 ms
+  Step 5: [OK] Halaman Profile Muncul — 311 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARI G
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 47 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 946 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #118] ✅ ARI MUHAMAD IKBAL | X TE 3 | NISN: 2526100099
+  Total Waktu : 12996 ms
+  Step 1: [OK] Buka Tab Browser — 2373 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7636 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1884 ms | NISN: 2526100099
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 49 ms
+  Step 5: [OK] Halaman Profile Muncul — 294 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARI M
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 678 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #119] ✅ ARIF | XI TOI 3 | NISN: 2425100077
+  Total Waktu : 12722 ms
+  Step 1: [OK] Buka Tab Browser — 1957 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7753 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1826 ms | NISN: 2425100077
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 31 ms
+  Step 5: [OK] Halaman Profile Muncul — 346 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 59 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 722 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #120] ✅ ARIF AMRUL NURHIDAYAT | XI TP 1 | NISN: 2425100187
+  Total Waktu : 12412 ms
+  Step 1: [OK] Buka Tab Browser — 1444 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7539 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2073 ms | NISN: 2425100187
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 27 ms
+  Step 5: [OK] Halaman Profile Muncul — 287 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 41 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 946 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #121] ✅ ARIF RAHMAN | X AKL 1 | NISN: 2526100556
+  Total Waktu : 11542 ms
+  Step 1: [OK] Buka Tab Browser — 946 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7537 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1864 ms | NISN: 2526100556
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 35 ms
+  Step 5: [OK] Halaman Profile Muncul — 399 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 58 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 676 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #122] ✅ ARIF RAPI PADLU RAHMAN | XI TOI 3 | NISN: 2425100078
+  Total Waktu : 14413 ms
+  Step 1: [OK] Buka Tab Browser — 3763 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 7323 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1098 ms | NISN: 2425100078
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 49 ms
+  Step 5: [OK] Halaman Profile Muncul — 409 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1734 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #123] ✅ ARIP NURDIN | X TM 2 | NISN: 2526100235
+  Total Waktu : 15722 ms
+  Step 1: [OK] Buka Tab Browser — 11677 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2661 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 700 ms | NISN: 2526100235
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 11 ms
+  Step 5: [OK] Halaman Profile Muncul — 158 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIP 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 5 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 490 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #124] ✅ ARIP RAHMAN | X TE 2 | NISN: 2526100054
+  Total Waktu : 16331 ms
+  Step 1: [OK] Buka Tab Browser — 11168 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3678 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 738 ms | NISN: 2526100054
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Step 5: [OK] Halaman Profile Muncul — 181 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIP 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 526 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #125] ✅ ARIS MULYADI | XI TOI 2 | NISN: 2425100041
+  Total Waktu : 15257 ms
+  Step 1: [OK] Buka Tab Browser — 10603 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3224 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 723 ms | NISN: 2425100041
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Step 5: [OK] Halaman Profile Muncul — 153 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIS 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 504 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #126] ❌ ARIS SETIAWAN | XI TSM 2 | NISN: 2425100367
+  Total Waktu : 34627 ms
+  Step 1: [OK] Buka Tab Browser — 10174 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3673 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 737 ms | NISN: 2425100367
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #127] ✅ ARISMA NUR JAMILAH | X TJKT 2 | NISN: 2526100511
+  Total Waktu : 20964 ms
+  Step 1: [OK] Buka Tab Browser — 9676 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 9762 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 734 ms | NISN: 2526100511
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 9 ms
+  Step 5: [OK] Halaman Profile Muncul — 186 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARISM
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 7 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 575 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #128] ✅ ARNI NURHAYATI | X TM 1 | NISN: 2526100190
+  Total Waktu : 14356 ms
+  Step 1: [OK] Buka Tab Browser — 9174 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3673 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 705 ms | NISN: 2526100190
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 198 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARNI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 14 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 569 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #129] ✅ ARYA ERLANGGA | XI TAV 1 | NISN: 2425100114
+  Total Waktu : 12944 ms
+  Step 1: [OK] Buka Tab Browser — 8789 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 2810 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 684 ms | NISN: 2425100114
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 5 ms
+  Step 5: [OK] Halaman Profile Muncul — 165 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARYA 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 4 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 466 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PKK (Oleh: SAEPUL ANWAR, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #130] ✅ ARYA RIZKI RAMDANI | X TO 2 | NISN: 2526100326
+  Total Waktu : 12814 ms
+  Step 1: [OK] Buka Tab Browser — 8310 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3092 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 715 ms | NISN: 2526100326
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 5 ms
+  Step 5: [OK] Halaman Profile Muncul — 132 ms | 🔄 | S1P | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARYA 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 13 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 530 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+══════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR — PUPPETEER BROWSER TEST (NO SCREENSHOTS)
+══════════════════════════════════════════════════════════════════════
+  URL Diuji        : https://smkn1pld.absenta.id
+  Browser Concurrent: 130
+  Durasi Total      : 97.14 detik
+  ✅ Berhasil        : 104 / 130
+  ❌ Gagal           : 26 / 130
+  📉 Latency Rata2   : 12719 ms
+  🟢 Latency Tercepat: 3386 ms
+  🔴 Latency Terlambat: 37195 ms
+  📁 Output Dir      : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T14-07-06-966Z
+  📄 Laporan         : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T14-07-06-966Z\report.txt
+  KESIMPULAN        : ⚠️ ADA 26 KEGAGALAN
+══════════════════════════════════════════════════════════════════════

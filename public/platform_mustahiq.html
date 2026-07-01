@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Mustahiq Care — Absenta.id | Sistem Manajemen Lembaga Sosial & Zakat</title>
+    <meta name="description" content="Sistem Informasi Manajemen Mustahiq & Penyaluran Santunan terpadu untuk Yayasan, Baitul Mal, dan LAZ. Akuntabel, transparan, dan dilengkapi laporan SPJ instan.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090F16;
+            --card-dark: #111A24;
+            --border-dark: #1E2D3D;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --primary: #10B981; /* Emerald Green */
+            --primary-hover: #059669;
+            --secondary: #F59E0B; /* Amber */
+            --secondary-hover: #D97706;
+            --accent: #F59E0B;
+            --success: #10B981;
+            --danger: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ── HEADER & NAVBAR ── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(9, 15, 22, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-dark);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, var(--primary) 0%, #047857 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+        }
+
+        /* ── HERO SECTION ── */
+        .hero {
+            padding: 150px 5% 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.15) 0%, rgba(9, 15, 22, 0) 65%);
+        }
+
+        .hero-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #A7F3D0;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin: 0 0 20px;
+            max-width: 900px;
+            background: linear-gradient(to right, #FFF 30%, #A7F3D0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 750px;
+            margin: 0 0 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #047857 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--border-dark);
+            color: var(--text-main);
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: #334155;
+        }
+
+        /* ── FEATURES SECTION ── */
+        .features {
+            padding: 80px 5%;
+            background: rgba(17, 26, 36, 0.3);
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin: 0 0 10px;
+            color: var(--text-main);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin: 0 0 12px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ── TOPOLOGY ARCHITECTURE SECTION ── */
+        .comparison-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .comparison-header h2 {
+            font-size: 2.3rem;
+            margin: 0 0 10px;
+        }
+
+        .comparison-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .topology-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .topology-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .topology-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .topology-card.our-card {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.05);
+            background: linear-gradient(180deg, var(--card-dark) 0%, rgba(16, 185, 129, 0.02) 100%);
+        }
+
+        .topology-card h3 {
+            font-size: 1.35rem;
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topology-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0 0 20px;
+        }
+
+        .topology-svg-container {
+            width: 100%;
+            background-color: rgba(9, 15, 22, 0.6);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topo-text {
+            font-family: 'Outfit', sans-serif;
+            fill: var(--text-main);
+            font-size: 12px;
+            font-weight: 700;
+            text-anchor: middle;
+        }
+
+        .topo-subtext {
+            fill: var(--text-muted);
+            font-size: 9px;
+            text-anchor: middle;
+        }
+
+        .topo-badge {
+            font-size: 9px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+
+        @keyframes flow-dash {
+            to { stroke-dashoffset: -20; }
+        }
+
+        .topo-line-red {
+            stroke: #EF4444;
+            stroke-dasharray: 5;
+            animation: flow-dash 1.5s linear infinite;
+        }
+
+        .topo-line-green {
+            stroke: #10B981;
+            stroke-dasharray: 5;
+            animation: flow-dash 1.5s linear infinite;
+        }
+
+        .topo-line-amber {
+            stroke: #F59E0B;
+            stroke-dasharray: 5;
+            animation: flow-dash 1.5s linear infinite;
+        }
+
+        /* ── COMPARISON TABLE ── */
+        .comparison-table-wrapper {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 700px;
+        }
+
+        .comparison-table th {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 16px 20px;
+            border-bottom: 2px solid var(--border-dark);
+            color: var(--text-main);
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .param-title {
+            font-weight: 700;
+            color: var(--text-main);
+            width: 25%;
+        }
+
+        .conv-val {
+            color: #94A3B8;
+            width: 37.5%;
+        }
+
+        .our-val {
+            color: #CBD5E1;
+            width: 37.5%;
+            background-color: rgba(16, 185, 129, 0.02);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── PRICING SECTION ── */
+        .pricing {
+            padding: 80px 5% 120px;
+            background: linear-gradient(180deg, rgba(9, 15, 22, 0) 0%, rgba(16, 185, 129, 0.02) 100%);
+        }
+
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 45px 35px;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .price-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.15);
+        }
+
+        .price-card.popular::before {
+            content: 'TERPOPULER';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, #047857 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .price-card.best {
+            border-color: var(--secondary);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15);
+        }
+
+        .price-card.best::before {
+            content: 'REKOMENDASI YAYASAN BESAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: #090F16;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+            white-space: nowrap;
+        }
+
+        .price-title {
+            font-size: 1.45rem;
+            margin: 0 0 10px;
+            color: var(--text-main);
+        }
+
+        .price-amount {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price-amount span {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .price-duration {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .price-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .price-features-list li {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features-list li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .btn-price {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid var(--border-dark);
+            background: rgba(30, 41, 59, 0.3);
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-price:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .price-card.popular .btn-price {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .price-card.popular .btn-price:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+        }
+
+        .price-card.best .btn-price {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: #090F16;
+        }
+
+        .price-card.best .btn-price:hover {
+            background: var(--secondary-hover);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* ── MODAL SYSTEM ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(9, 15, 22, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-card::-webkit-scrollbar,
+        .payment-channels-list::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        .modal-card::-webkit-scrollbar-track,
+        .payment-channels-list::-webkit-scrollbar-track {
+            background: rgba(9, 15, 22, 0.2);
+            border-radius: 10px;
+        }
+
+        .modal-card::-webkit-scrollbar-thumb,
+        .payment-channels-list::-webkit-scrollbar-thumb {
+            background: #1E2D3D;
+            border-radius: 10px;
+        }
+
+        .modal-card::-webkit-scrollbar-thumb:hover,
+        .payment-channels-list::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1E2D3D;
+            border: none;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #334155;
+            color: var(--text-main);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            margin: 0 0 6px;
+            color: var(--text-main);
+        }
+
+        .modal-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0 0 15px;
+        }
+
+        /* ── FORM ELEMENTS ── */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+
+        /* ── PAYMENT METHOD SELECTOR ── */
+        .payment-channels-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-height: 160px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 5px;
+            margin-bottom: 15px;
+        }
+
+        .payment-channel-item {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .payment-channel-item:hover {
+            border-color: #334155;
+            background-color: rgba(30, 41, 59, 0.2);
+        }
+
+        .payment-channel-item.selected {
+            border-color: var(--primary);
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        .channel-logo {
+            width: 45px;
+            height: 25px;
+            object-fit: contain;
+            background: white;
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .channel-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .channel-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+
+        .channel-fee {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .fee-breakdown-box {
+            background-color: rgba(9, 15, 22, 0.6);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .fee-row.total {
+            border-top: 1px dashed var(--border-dark);
+            padding-top: 10px;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .fee-row.total span:last-child {
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, #047857 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-checkout:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ── INVOICE VIEW ── */
+        .invoice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge-status {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+            70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        .license-key-box {
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--border-dark);
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .license-key-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .license-key-text {
+            font-family: monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .qris-image {
+            width: 220px;
+            height: 220px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pay-code-box {
+            background-color: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            margin: 15px 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pay-code-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-copy {
+            background: #1E2D3D;
+            border: 1px solid var(--border-dark);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: #334155;
+            border-color: #64748B;
+        }
+
+        /* ── ACCORDION INSTRUCTIONS ── */
+        .instructions-container {
+            width: 100%;
+            text-align: left;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .instruction-item {
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .instruction-header {
+            background-color: var(--bg-dark);
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .instruction-header:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .instruction-content {
+            padding: 15px;
+            background-color: rgba(9, 15, 22, 0.4);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        .instruction-content ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instruction-content li {
+            margin-bottom: 8px;
+        }
+
+        .instruction-content li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── COMPLIANCE FOOTER ── */
+        footer {
+            background-color: #050A0F;
+            border-top: 1px solid var(--border-dark);
+            padding: 50px 5% 30px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background-color: var(--border-dark);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ── UTILITIES & SPINNERS ── */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner-large {
+            width: 40px;
+            height: 40px;
+            border-width: 4px;
+            border-top-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── HEADER & NAVBAR ── -->
+    <header>
+        <a href="landing.html" class="logo">
+            <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> 🌙 MUSTAHIQ CARE
+        </a>
+        <nav class="nav-links">
+            <a href="#features" class="nav-link">Fitur</a>
+            <a href="#pricing" class="nav-link">Harga Lisensi</a>
+            <a href="mailto:support@absenta.id" class="nav-link">Dukungan</a>
+            <a href="#pricing" class="btn-nav">Daftar Lembaga</a>
+        </nav>
+    </header>
+
+    <!-- ── HERO SECTION ── -->
+    <section class="hero">
+        <div class="hero-badge">Sistem Manajemen & Penyaluran Mustahiq #1</div>
+        <h1>Kelola Santunan Lembaga Anda dengan Aman, Akuntabel, dan Transparan</h1>
+        <p>Mustahiq Care mempermudah yayasan, Baitul Mal, dan LAZ mengelola data penerima manfaat (mustahiq), memantau pendistribusian santunan secara real-time, serta mencetak laporan SPJ pertanggungjawaban dalam satu klik.</p>
+        
+        <!-- LICENSE LOOKUP SEARCH BAR -->
+        <div style="margin-top: 10px; margin-bottom: 35px; width: 100%; max-width: 480px; display: flex; gap: 8px; background: rgba(255, 255, 255, 0.03); padding: 6px; border-radius: 30px; border: 1px solid var(--border-dark); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);">
+            <input type="text" id="licenseSearchInput" style="flex: 1; border: none; background: transparent; padding: 10px 16px; color: var(--text-main); font-size: 0.9rem; font-weight: 500; outline: none;" placeholder="Punya kunci lisensi? Cek status di sini...">
+            <button onclick="lookupLicense()" style="background: var(--primary); border: none; padding: 10px 24px; border-radius: 24px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                Cari 🔍
+            </button>
+        </div>
+
+        <div class="hero-actions">
+            <a href="#pricing" class="btn-primary">Ajukan Lisensi Baru ⚡</a>
+            <a href="#features" class="btn-secondary">Pelajari Fitur</a>
+        </div>
+    </section>
+
+    <!-- ── FEATURES SECTION ── -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Dirancang Khusus untuk Kredibilitas Penyaluran Sosial</h2>
+            <p>Menghilangkan kekacauan pencatatan manual, mencegah duplikasi bantuan, dan memberikan transparansi penuh kepada donatur Anda.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3>Manajemen Mustahiq Terpadu</h3>
+                <p>Kelola profil mustahiq lengkap dengan data KK, foto rumah, dokumen pendukung, dan data histori bantuan yang pernah mereka terima secara otomatis.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📍</span>
+                <h3>Distribusi Kelompok & Wilayah</h3>
+                <p>Kelompokkan mustahiq berdasarkan asnaf (fakir, miskin, fi sabilillah), wilayah RT/RW binaan, atau status prioritas agar penyaluran tepat sasaran.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📸</span>
+                <h3>Pencatatan Bukti Real-time</h3>
+                <p>Petugas lapangan dapat melaporkan penyaluran santunan langsung dari ponsel, lengkap dengan tanda tangan digital mustahiq dan unggahan foto penyerahan.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Ekspor SPJ & Laporan Excel</h3>
+                <p>Unduh seluruh rekapitulasi data mustahiq dan log riwayat penyaluran per periode langsung ke format Excel (SPJ) yang rapi dan siap dilaporkan ke donatur.</p>
+            </div>
+        </div>
+
+        <!-- ── ALUR KERJA & PERBANDINGAN TEKNIS ── -->
+        <div class="comparison-container">
+            <div class="comparison-header">
+                <h2>Alur Kerja & Perbandingan Operasional</h2>
+                <p>Mengapa Mustahiq Care jauh lebih efisien, terstruktur, dan akuntabel dibandingkan metode pencatatan tradisional.</p>
+            </div>
+
+            <div class="topology-grid">
+                <!-- Tradisional Excel -->
+                <div class="topology-card">
+                    <h3>❌ Pencatatan Tradisional (Excel / Buku Kas)</h3>
+                    <p>Sistem pencatatan terfragmentasi yang rawan duplikasi bantuan, lambat merekap data, dan menyulitkan petugas lapangan saat melakukan verifikasi.</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <linearGradient id="grad-red" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#EF4444"/>
+                                    <stop offset="100%" stop-color="#991B1B"/>
+                                </linearGradient>
+                                <linearGradient id="grad-node" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#1E293B"/>
+                                    <stop offset="100%" stop-color="#0F172A"/>
+                                </linearGradient>
+                                <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#EF4444"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Connections -->
+                            <path d="M 90 60 C 140 60, 160 110, 200 120" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 130 H 200" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 200 C 140 200, 160 150, 200 140" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            
+                            <path d="M 300 130 H 350" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+
+                            <!-- Lapangan -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#334155" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Petugas A</text>
+                                <text x="55" y="72" class="topo-subtext">Catatan Kertas</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#334155" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Petugas B</text>
+                                <text x="55" y="142" class="topo-subtext">Foto Whatsapp</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#334155" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Petugas C</text>
+                                <text x="55" y="212" class="topo-subtext">Ingatan / Lisan</text>
+                            </g>
+
+                            <!-- Excel Admin -->
+                            <g class="topo-node">
+                                <rect x="200" y="100" width="100" height="60" rx="10" fill="url(#grad-red)" stroke="#EF4444" stroke-width="2" />
+                                <text x="250" y="123" class="topo-text" style="font-size: 11px;">Admin &amp; Excel</text>
+                                <text x="250" y="136" class="topo-subtext" style="fill: #FECACA;">Entri Manual Ulang</text>
+                                <text x="250" y="148" class="topo-badge" style="fill: #FCA5A5; font-weight: 800;">💥 RESIKO DATA SALAH</text>
+                            </g>
+
+                            <!-- Donatur / Yayasan -->
+                            <g class="topo-node">
+                                <rect x="350" y="108" width="80" height="45" rx="8" fill="url(#grad-node)" stroke="#334155" stroke-width="1" />
+                                <text x="390" y="128" class="topo-text">Yayasan</text>
+                                <text x="390" y="140" class="topo-subtext" style="fill: #F59E0B;">⚠️ Rekap Telat</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Mustahiq Care -->
+                <div class="topology-card our-card">
+                    <h3>🛡️ Absenta.id - Mustahiq Care</h3>
+                    <p>Sistem cloud terdesentralisasi: Petugas lapangan mengunggah penyaluran secara instan, data tersinkronisasi otomatis ke Database Supabase Cloud, dan admin memonitor real-time.</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <linearGradient id="grad-green" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="100%" stop-color="#047857"/>
+                                </linearGradient>
+                                <linearGradient id="grad-amber" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#F59E0B"/>
+                                    <stop offset="100%" stop-color="#D97706"/>
+                                </linearGradient>
+                                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
+                                </marker>
+                                <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#F59E0B"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Connections -->
+                            <path d="M 90 60 H 180" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 130 C 130 120, 150 75, 180 70" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 200 C 130 190, 140 90, 180 80" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            
+                            <path d="M 290 62 C 325 70, 340 105, 350 115" fill="none" stroke-width="1.5" marker-end="url(#arrow-amber)" class="topo-line-amber" />
+
+                            <!-- Petugas HP -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#1E2D3D" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Petugas 1</text>
+                                <text x="55" y="72" class="topo-subtext">Aplikasi HP</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#1E2D3D" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Petugas 2</text>
+                                <text x="55" y="142" class="topo-subtext">Aplikasi HP</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#1E2D3D" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Petugas 3</text>
+                                <text x="55" y="212" class="topo-subtext">Aplikasi HP</text>
+                            </g>
+
+                            <!-- Supabase Database -->
+                            <g class="topo-node">
+                                <rect x="180" y="35" width="110" height="55" rx="10" fill="url(#grad-green)" stroke="#10B981" stroke-width="2" />
+                                <text x="235" y="58" class="topo-text" style="font-size: 11px;">Database Cloud</text>
+                                <text x="235" y="71" class="topo-subtext" style="fill: #A7F3D0;">Supabase Server</text>
+                                <text x="235" y="82" class="topo-badge" style="fill: #34D399; font-weight: 800;">🛡️ AMAN &amp; REALTIME</text>
+                            </g>
+
+                            <!-- Laporan SPJ Excel -->
+                            <g class="topo-node">
+                                <rect x="350" y="105" width="85" height="50" rx="8" fill="url(#grad-amber)" stroke="#F59E0B" stroke-width="1" />
+                                <text x="392" y="128" class="topo-text" style="font-size: 9px; fill:#090F16;">SPJ Excel</text>
+                                <text x="392" y="141" class="topo-subtext" style="fill: #78350F; font-weight: bold;">Sekali Klik Jadi</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek Operasional</th>
+                            <th>❌ Pengelolaan Manual / Excel Tradisional</th>
+                            <th>🌙 Platform Terpadu Mustahiq Care</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-title">Keakuratan Data Lapangan</td>
+                            <td class="conv-val">
+                                <strong>Rawan Manipulasi &amp; Lupa:</strong><br>
+                                Petugas mencatat di kertas atau mengetik pesan WhatsApp seadanya. Foto penyaluran tercampur di galeri HP pribadi.
+                            </td>
+                            <td class="our-val">
+                                <strong>Verifikasi Instan:</strong><br>
+                                Bukti penyerahan direkam real-time dari aplikasi HP, wajib mencantumkan foto mustahiq menerima santunan dan tanda tangan digital.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Risiko Bantuan Ganda (Double)</td>
+                            <td class="conv-val">
+                                <strong>Sangat Tinggi:</strong><br>
+                                Tanpa filter otomatis, satu KK mustahiq sangat mungkin menerima santunan berulang kali pada program yang sama karena luput dari pengawasan admin.
+                            </td>
+                            <td class="our-val">
+                                <strong>Pencegahan Otomatis 100%:</strong><br>
+                                Sistem mendeteksi otomatis jika mustahiq bersangkutan telah menerima bantuan dalam periode aktif program sosial tertentu.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Pembuatan SPJ Donatur</td>
+                            <td class="conv-val">
+                                <strong>Melelahkan (Berhari-hari):</strong><br>
+                                Staf administrasi harus mengumpulkan foto dari berbagai WhatsApp petugas, mencocokkan data nominal, dan mengetik ulang satu per satu ke Excel.
+                            </td>
+                            <td class="our-val">
+                                <strong>Otomasi Mutlak (5 Detik):</strong><br>
+                                Admin cukup menyaring tanggal periode dan mengeklik tombol "Ekspor", seluruh data, tabel nominal, dan tautan bukti foto SPJ ter-generate rapi ke Excel.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Hak Kepemilikan Data</td>
+                            <td class="conv-val">
+                                <strong>Tercampur / Rawan Hilang:</strong><br>
+                                File tersimpan di laptop staf tertentu. Jika laptop rusak atau staf bersangkutan mengundurkan diri, riwayat data sosial bertahun-tahun bisa lenyap.
+                            </td>
+                            <td class="our-val">
+                                <strong>Aset Digital Mandiri:</strong><br>
+                                Database tersimpan di Supabase Cloud atas nama lembaga Anda secara mandiri. Hak kontrol akses sepenuhnya berada di tangan pengurus yayasan.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="landing.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:#A7F3D0;padding:7px 16px;border-radius:10px;font-size:0.82rem;font-weight:700;text-decoration:none;margin-top:20px;">← Kembali ke Beranda Utama</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING SECTION ── -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>Pilih Paket Lisensi Selamanya (Lifetime)</h2>
+            <p>Tanpa biaya bulanan atau tahunan. Beli sekali, gunakan sistem selamanya untuk kedaulatan data lembaga sosial Anda.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Dynamic Pricing Grid (Rendered by JS) -->
+            <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+            <div class="price-card skeleton popular" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+            <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CHECKOUT MODAL ── -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeCheckout()">✕</button>
+            
+            <!-- ── FORM INPUT STEP ── -->
+            <div id="checkoutFormStep">
+                <h3 class="modal-title">🌙 Registrasi Lembaga &amp; Checkout</h3>
+                <p class="modal-subtitle">Isi data yayasan Anda untuk memproses aktivasi lisensi selamanya</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Yayasan / Lembaga</label>
+                    <input type="text" id="schoolNameInput" class="form-input" placeholder="Masukkan nama lembaga sosial Anda...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subdomain Lembaga Pilihan</label>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <input type="text" id="schoolSlugInput" class="form-input" style="flex: 1;" placeholder="contoh: yayasankita" oninput="this.value = this.value.toLowerCase().replace(/[^a-z0-9-]/g, ''); checkSlugAvailabilityDebounced();">
+                        <span style="font-weight: bold; color: var(--text-main); font-size: 0.9rem;">.absenta.id</span>
+                    </div>
+                    <p id="slugCheckStatus" style="font-size: 0.75rem; font-weight: bold; margin-top: 4px; margin-bottom: 0; display: none;"></p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Subdomain ini yang akan digunakan oleh pengurus dan petugas lapangan Anda untuk masuk sistem.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Metode Pembayaran</label>
+                    <div id="paymentChannelsLoading" style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0;">
+                        <div class="spinner" style="margin: 0 auto 10px;"></div>
+                        Memuat daftar metode pembayaran Tripay...
+                    </div>
+                    <div id="paymentChannelsContainer" class="payment-channels-list" style="display: none;">
+                        <!-- dynamic items -->
+                    </div>
+                </div>
+
+                <div class="fee-breakdown-box" id="priceSummaryBox">
+                    <div class="fee-row">
+                        <span>Paket Lisensi (<span id="summaryPlanName">Basic Lifetime</span>):</span>
+                        <span id="summaryBasePrice">Rp 999.000</span>
+                    </div>
+                    <div class="fee-row">
+                        <span>Biaya Admin Gateway:</span>
+                        <span id="summaryAdminFee">Rp 0</span>
+                    </div>
+                    <div class="fee-row total">
+                        <span>Total Pembayaran (Sekali Bayar):</span>
+                        <span id="summaryTotalPrice">Rp 999.000</span>
+                    </div>
+                </div>
+
+                <button id="btnProcessCheckout" class="btn-checkout" onclick="submitCheckoutRequest()">
+                    ⚡ PROSES PEMBAYARAN TRIPAY
+                </button>
+                <div id="checkoutErrorMsg" style="color: var(--danger); font-size: 0.85rem; font-weight: bold; margin-top: 10px; display: none; text-align: center;"></div>
+            </div>
+
+            <!-- ── INVOICE DISPLAY STEP ── -->
+            <div id="checkoutInvoiceStep" style="display: none;">
+                <div class="invoice-container">
+                    <div id="invStatusBadge" class="badge-status">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span>
+                        Menunggu Pembayaran
+                    </div>
+
+                    <h3 id="invTitle" class="modal-title">Tagihan Menunggu Pembayaran</h3>
+                    <p id="invSubtitle" class="modal-subtitle" style="margin-bottom: 15px;">Selesaikan transfer nominal persis di bawah agar lisensi aktif otomatis</p>
+
+                    <div class="license-key-box">
+                        <div class="license-key-title">KUNCI LISENSI ANDA (SIMPAN &amp; SALIN):</div>
+                        <div class="license-key-text" id="invLicenseKey">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px;" onclick="copyText('invLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 15px; text-align: left; gap: 8px; display: flex; flex-direction: column;">
+                        <div class="fee-row">
+                            <span>Nomor Invoice:</span>
+                            <span id="invNumber" style="font-weight: bold; color: var(--text-main);">INV-ORK-XXXX</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Metode Pembayaran:</span>
+                            <span id="invMethodName" style="font-weight: bold; color: var(--text-main);">QRIS</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px;">
+                            <span>TOTAL NOMINAL TRANSFER:</span>
+                            <span id="invTotalAmount" style="font-weight: 900; color: var(--accent); font-size: 1.15rem;">Rp 1.001.240</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px; font-size: 0.82rem; color: #FBBF24;">
+                            <span>BATAS WAKTU PEMBAYARAN:</span>
+                            <span id="invExpiryTime" style="font-weight: bold; color: #FBBF24;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment QRIS or VA -->
+                    <div id="qrisContainer" style="display: none; align-items: center; flex-direction: column;">
+                        <img id="qrisImageCode" class="qris-image" src="" alt="QRIS Code" onerror="document.getElementById('qrisContainer').style.display='none';">
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4;">Scan kode QRIS di atas menggunakan aplikasi e-wallet Anda (GoPay, OVO, Dana, LinkAja, ShopeePay) atau mobile banking.</p>
+                    </div>
+
+                    <div id="vaContainer" style="display: none; align-items: center; flex-direction: column; width: 100%;">
+                        <div class="pay-code-box">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: var(--text-muted);">NOMOR REKENING / KODE BAYAR:</span>
+                            <span id="invPayCode" class="pay-code-number">1234567890</span>
+                            <button class="btn-copy" onclick="copyText('invPayCode', 'Kode pembayaran tersalin!')">📋 Salin Kode</button>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4; text-align: center;">Lakukan transfer nominal persis sesuai dengan instruksi yang tertera di bawah.</p>
+                    </div>
+
+                    <div class="instructions-container" id="invInstructionsList">
+                        <!-- dynamic accordions -->
+                    </div>
+
+                    <div id="invBottomBox" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border-dark); width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            Menunggu konfirmasi pembayaran instan...
+                        </div>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SUCCESS SCREEN STEP ── -->
+            <div id="checkoutSuccessStep" style="display: none;">
+                <div class="invoice-container">
+                    <span style="font-size: 4rem; display: block; margin-bottom: 15px;">🎉</span>
+                    <h3 class="modal-title" style="color: var(--success); font-size: 1.6rem; font-weight: 800;">Lisensi Berhasil Aktif!</h3>
+                    <p class="modal-subtitle" style="margin-bottom: 25px;">Yayasan Anda telah terverifikasi penuh dan siap menggunakan aplikasi</p>
+
+                    <div class="license-key-box" style="background-color: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="license-key-title" style="color: #A7F3D0;">KUNCI LISENSI SEUMUR HIDUP:</div>
+                        <div class="license-key-text" id="successLicenseKey" style="color: var(--success);">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #A7F3D0;" onclick="copyText('successLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 18px; text-align: left; gap: 10px; display: flex; flex-direction: column; margin-bottom: 25px;">
+                        <div class="fee-row">
+                            <span>Nama Yayasan:</span>
+                            <span id="successSchoolName" style="font-weight: bold; color: var(--text-main);">Yayasan Kita</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Jenis Lisensi:</span>
+                            <span id="successDurationName" style="font-weight: bold; color: var(--text-main);">Basic Lifetime</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Status Pembayaran:</span>
+                            <span style="font-weight: 800; color: var(--success);">LUNAS (LIFETIME LICENSE)</span>
+                        </div>
+                    </div>
+
+                    <!-- PROVISIONING LOADER & STATUS -->
+                    <div id="provisioningStatusBox" style="background-color: rgba(16, 185, 129, 0.05); padding: 16px; border-radius: 10px; border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 20px; text-align: left;">
+                        <div id="provisioningLoader" style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #A7F3D0;">
+                            <div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>
+                            <span>Menyiapkan SSL Let's Encrypt & domain...</span>
+                        </div>
+                        <div id="provisioningText" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+                            Mohon tunggu sebentar, sistem sedang mengamankan subdomain lembaga Anda dengan sertifikat SSL HTTPS agar siap diakses secara aman.
+                        </div>
+                    </div>
+
+                    <a id="successAppLinkBtn" class="btn-primary" style="margin-top: 10px; width: 100%; justify-content: center; text-decoration: none; display: none; align-items: center; box-sizing: border-box;" href="#" target="_blank">🚀 BUKA PANEL LEMBAGA ANDA</a>
+                    <button class="btn-secondary" style="margin-top: 12px; width: 100%; justify-content: center; box-sizing: border-box; padding: 12px;" onclick="closeCheckout()">TUTUP / SELESAI</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── COMPLIANCE FOOTER ── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> MUSTAHIQ CARE
+            </div>
+            <div class="footer-links">
+                <a href="/privacy.html" target="_blank" class="footer-link">Kebijakan Privasi</a>
+                <a href="/terms.html" target="_blank" class="footer-link">Ketentuan Layanan</a>
+                <a href="/refund.html" target="_blank" class="footer-link">Kebijakan Refund</a>
+                <a href="/contact.html" target="_blank" class="footer-link">Hubungi Kami</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Baraya Teknologi. Hak Cipta Dilindungi.</div>
+                <div>Sistem Informasi Manajemen Mustahiq Terpercaya</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ── INLINE INTEGRATED MODULES (Overriding PRODUCT_ID) ── -->
+    <script>
+        // ── STATE OVERRIDES & GLOBALS ──
+        const API_BASE = 'https://api.absenta.id';
+        const PRODUCT_ID = 'project-yatim';
+
+        let currentPlan = 'yatim_basic_lifetime';
+        let currentPlanTitle = 'Basic Lifetime';
+        let currentBasePrice = 999000;
+
+        let selectedPaymentCode = 'QRIS2';
+        let activePaymentChannels = [];
+        let isGatewayOnline = true;
+        let systemConfig = null;
+
+        let activeCheckoutKey = '';
+        let pollingInterval = null;
+        let sslPollInterval = null;
+
+        let slugCheckTimeout = null;
+        let isSlugAvailable = true;
+
+        // Modal DOM refs
+        const checkoutModal = document.getElementById('checkoutModal');
+        const summaryPlanName = document.getElementById('summaryPlanName');
+        const summaryBasePrice = document.getElementById('summaryBasePrice');
+        const summaryAdminFee = document.getElementById('summaryAdminFee');
+        const summaryTotalPrice = document.getElementById('summaryTotalPrice');
+
+        // ── PRICING LOGIC ──
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDynamicPricing();
+        });
+
+        function loadDynamicPricing() {
+            const gridContainer = document.querySelector('.pricing-grid');
+            if (!gridContainer) return;
+
+            gridContainer.innerHTML = `
+                <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                    <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                    <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                    <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+                </div>
+                <div class="price-card skeleton popular" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                    <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                    <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                    <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+                </div>
+                <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                    <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                    <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                    <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+                </div>
+            `;
+
+            if (!document.getElementById('skeleton-style')) {
+                const style = document.createElement('style');
+                style.id = 'skeleton-style';
+                style.innerHTML = `
+                    @keyframes pulse {
+                        0% { opacity: 0.3; }
+                        50% { opacity: 0.8; }
+                        100% { opacity: 0.3; }
+                    }
+                    .skeleton-pulse {
+                        animation: pulse 1.5s infinite ease-in-out;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            fetch(`${API_BASE}/api/license/packages?product_id=${PRODUCT_ID}`)
+                .then(response => response.json())
+                .then(res => {
+                    if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+                        renderPricingCards(res.data);
+                    } else {
+                        throw new Error('Invalid packages response');
+                    }
+                })
+                .catch(err => {
+                    console.error('[Dynamic Pricing Error]:', err);
+                    renderPricingCards([
+                        { id: 'yatim_basic_lifetime', title: 'Basic Lifetime', price: 'Rp 999.000', duration: 'Lisensi Selamanya', badge: null, description: '100 Mustahiq' },
+                        { id: 'yatim_pro_lifetime', title: 'Pro Lifetime', price: 'Rp 1.999.000', duration: 'Lisensi Selamanya', badge: 'Terpopuler', description: '500 Mustahiq' },
+                        { id: 'yatim_enterprise_lifetime', title: 'Enterprise Lifetime', price: 'Rp 4.999.000', duration: 'Lisensi Selamanya', badge: 'Rekomendasi', description: 'Unlimited Mustahiq' }
+                    ]);
+                });
+        }
+
+        function renderPricingCards(plans) {
+            const gridContainer = document.querySelector('.pricing-grid');
+            if (!gridContainer) return;
+            gridContainer.innerHTML = '';
+
+            plans.forEach(plan => {
+                const numericPrice = parseInt(plan.price.replace(/[^\d]/g, ''), 10) || 0;
+                let cardClass = 'price-card';
+                let badgeHtml = '';
+
+                if (plan.badge) {
+                    badgeHtml = `<div class="ribbon-badge"></div>`; 
+                    if (plan.badge.toLowerCase().includes('populer') || plan.id.includes('pro')) {
+                        cardClass += ' popular';
+                    } else if (plan.badge.toLowerCase().includes('rekomendasi') || plan.id.includes('enterprise')) {
+                        cardClass += ' best';
+                    }
+                } else {
+                    if (plan.id.includes('pro')) cardClass += ' popular';
+                    else if (plan.id.includes('enterprise')) cardClass += ' best';
+                }
+
+                let limitText = 'Maksimal 100 Mustahiq';
+                if (plan.id.includes('pro')) limitText = 'Maksimal 500 Mustahiq';
+                else if (plan.id.includes('enterprise')) limitText = 'Unlimited Mustahiq & Petugas';
+
+                let featuresListHtml = `
+                    <li><strong>${limitText}</strong></li>
+                    <li>Sistem Manajemen Mustahiq</li>
+                    <li>Pembagian Kelompok &amp; Asnaf</li>
+                    <li>Catat Penyaluran real-time HP</li>
+                    <li>Foto &amp; Tanda Tangan Lapangan</li>
+                    <li>Ekspor SPJ &amp; Laporan Excel</li>
+                    <li>Database Supabase Aman</li>
+                    <li><strong>Lisensi Lifetime (Beli Sekali)</strong></li>
+                `;
+
+                const cardHtml = `
+                    <div class="${cardClass}">
+                        ${badgeHtml}
+                        <h3 class="price-title">${plan.title}</h3>
+                        <div class="price-amount">${plan.price}<span>/ Selamanya</span></div>
+                        <div class="price-duration">Lisensi Lifetime (Sekali Beli)</div>
+                        <ul class="price-features-list">
+                            ${featuresListHtml}
+                        </ul>
+                        <button class="btn-price" onclick="openCheckout('${plan.id}', '${plan.title}', ${numericPrice})">Dapatkan Lisensi Lifetime</button>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // ── CHECKOUT & OPEN/CLOSE FORM ──
+        function openCheckout(planId, title, price) {
+            currentPlan = planId;
+            currentPlanTitle = title;
+            currentBasePrice = price;
+
+            summaryPlanName.textContent = title;
+            summaryBasePrice.textContent = 'Rp ' + price.toLocaleString('id-ID');
+
+            document.getElementById('checkoutFormStep').style.display = 'block';
+            document.getElementById('checkoutInvoiceStep').style.display = 'none';
+            document.getElementById('checkoutSuccessStep').style.display = 'none';
+
+            checkoutModal.classList.add('active');
+
+            isSlugAvailable = true;
+            const statusEl = document.getElementById('slugCheckStatus');
+            if (statusEl) statusEl.style.display = 'none';
+            const btn = document.getElementById('btnProcessCheckout');
+            if (btn) btn.disabled = false;
+
+            loadPaymentChannels();
+        }
+
+        function closeCheckout() {
+            checkoutModal.classList.remove('active');
+            stopPollingStatus();
+            document.getElementById('checkoutFormStep').style.display = 'none';
+            document.getElementById('checkoutInvoiceStep').style.display = 'none';
+            document.getElementById('checkoutSuccessStep').style.display = 'none';
+        }
+
+        // ── REALTIME SUBDOMAIN SLUG AVAILABILITY CHECK ──
+        function checkSlugAvailabilityDebounced() {
+            const statusEl = document.getElementById('slugCheckStatus');
+            const slugInput = document.getElementById('schoolSlugInput');
+            const btn = document.getElementById('btnProcessCheckout');
+            const slug = slugInput.value.trim().toLowerCase();
+
+            if (slugCheckTimeout) clearTimeout(slugCheckTimeout);
+
+            if (!slug) {
+                statusEl.style.display = 'none';
+                if (isGatewayOnline) btn.disabled = false;
+                isSlugAvailable = true;
+                return;
+            }
+
+            statusEl.style.display = 'block';
+            statusEl.style.color = 'var(--text-muted)';
+            statusEl.textContent = '⏳ Memeriksa ketersediaan subdomain...';
+            btn.disabled = true;
+
+            slugCheckTimeout = setTimeout(() => {
+                checkSlugAvailability(slug);
+            }, 600);
+        }
+
+        function checkSlugAvailability(slug) {
+            const statusEl = document.getElementById('slugCheckStatus');
+            const btn = document.getElementById('btnProcessCheckout');
+
+            fetch(`${API_BASE}/api/license/check-slug/${slug}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        if (res.available) {
+                            statusEl.style.color = '#10B981';
+                            statusEl.textContent = '🟢 Subdomain tersedia!';
+                            isSlugAvailable = true;
+                            if (isGatewayOnline) {
+                                btn.disabled = false;
+                                btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+                            }
+                        } else if (res.is_recovery) {
+                            statusEl.style.color = '#F59E0B';
+                            statusEl.textContent = '🟡 Subdomain terdaftar (Lisensi Kedaluwarsa). Lanjutkan untuk mengaktifkan kembali.';
+                            isSlugAvailable = true;
+                            if (isGatewayOnline) {
+                                btn.disabled = false;
+                                btn.innerHTML = '🔄 AKTIFKAN LISENSI SEUMUR HIDUP';
+                            }
+                        } else if (res.status_code === 'pending_payment') {
+                            statusEl.style.color = '#F59E0B';
+                            statusEl.textContent = '⏳ Subdomain sedang dipesan (Menunggu Pembayaran)';
+                            btn.disabled = true;
+                            btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+                            isSlugAvailable = false;
+                        } else {
+                            statusEl.style.color = '#EF4444';
+                            statusEl.textContent = '🔴 Subdomain sudah digunakan oleh yayasan lain dengan lisensi aktif!';
+                            btn.disabled = true;
+                            btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+                            isSlugAvailable = false;
+                        }
+                    } else {
+                        statusEl.style.display = 'none';
+                        isSlugAvailable = true;
+                        if (isGatewayOnline) btn.disabled = false;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    statusEl.style.display = 'none';
+                    isSlugAvailable = true;
+                    if (isGatewayOnline) btn.disabled = false;
+                });
+        }
+
+        // ── PAYMENT GATEWAY LISTING & SELECTION ──
+        function loadPaymentChannels() {
+            const loading = document.getElementById('paymentChannelsLoading');
+            const container = document.getElementById('paymentChannelsContainer');
+            if (!loading || !container) return;
+
+            loading.style.display = 'block';
+            loading.textContent = '⏳ Memuat metode pembayaran...';
+            container.style.display = 'none';
+
+            fetch(`${API_BASE}/api/license/system-config`)
+                .then(res => res.json())
+                .then(configRes => {
+                    systemConfig = configRes.success ? configRes.data : null;
+                    const activeGateway = systemConfig ? systemConfig.active_gateway : 'tripay';
+
+                    if (activeGateway === 'xendit') {
+                        isGatewayOnline = true;
+                        removeGatewayOfflineBanner();
+
+                        let channels = [];
+                        if (systemConfig && systemConfig.manual_payment_enabled === '1') {
+                            channels.push({
+                                group: "Manual",
+                                code: "manual",
+                                name: "Transfer Manual & QRIS Platform",
+                                icon_url: "logo.png",
+                                fee_flat: 0,
+                                fee_percent: 0
+                            });
+                        }
+
+                        channels.push({
+                            group: "Virtual Account",
+                            code: "xendit",
+                            name: "Virtual Account / QRIS / Retail",
+                            icon_url: "logo.png",
+                            fee_flat: 0,
+                            fee_percent: 0
+                        });
+
+                        activePaymentChannels = channels;
+                        selectedPaymentCode = channels[0] ? channels[0].code : 'xendit';
+                        renderPaymentChannels();
+                    } else {
+                        // Tripay
+                        fetch(`${API_BASE}/api/license/payment-channels`)
+                            .then(res => res.json())
+                            .then(res => {
+                                if (res.success && Array.isArray(res.data)) {
+                                    let channels = [];
+
+                                    if (systemConfig && systemConfig.manual_payment_enabled === '1') {
+                                        channels.push({
+                                            group: "Manual",
+                                            code: "manual",
+                                            name: "Transfer Manual & QRIS Platform",
+                                            icon_url: "logo.png",
+                                            fee_flat: 0,
+                                            fee_percent: 0
+                                        });
+                                    }
+
+                                    channels = channels.concat(res.data);
+                                    activePaymentChannels = channels;
+
+                                    if (channels.length > 0) {
+                                        selectedPaymentCode = channels[0].code;
+                                    }
+
+                                    if (res.gateway_online === false) {
+                                        isGatewayOnline = false;
+                                        showGatewayOfflineBanner();
+                                    } else {
+                                        isGatewayOnline = true;
+                                        removeGatewayOfflineBanner();
+                                    }
+
+                                    renderPaymentChannels();
+                                } else {
+                                    throw new Error('Tripay fail response');
+                                }
+                            })
+                            .catch(err => {
+                                console.error('[Tripay Error]:', err);
+                                if (systemConfig && systemConfig.manual_payment_enabled === '1') {
+                                    isGatewayOnline = false;
+                                    activePaymentChannels = [{
+                                        group: "Manual",
+                                        code: "manual",
+                                        name: "Transfer Manual & QRIS Platform",
+                                        icon_url: "logo.png",
+                                        fee_flat: 0,
+                                        fee_percent: 0
+                                    }];
+                                    selectedPaymentCode = 'manual';
+                                    renderPaymentChannels();
+                                } else {
+                                    isGatewayOnline = false;
+                                    showGatewayOfflineBanner();
+                                }
+                            });
+                    }
+                })
+                .catch(err => {
+                    console.error('[Config Error]:', err);
+                    isGatewayOnline = false;
+                    showGatewayOfflineBanner();
+                });
+        }
+
+        function showGatewayOfflineBanner() {
+            removeGatewayOfflineBanner();
+            const isManualEnabled = systemConfig && systemConfig.manual_payment_enabled === '1';
+            const btn = document.getElementById('btnProcessCheckout');
+            if (!isManualEnabled && btn) {
+                btn.disabled = true;
+                btn.innerHTML = '🚫 LAYANAN PEMBAYARAN SEDANG GANGGUAN';
+            }
+
+            const banner = document.createElement('div');
+            banner.id = 'gatewayOfflineBanner';
+            banner.style.cssText = `
+                background: rgba(239, 68, 68, 0.12);
+                border: 1px solid rgba(239, 68, 68, 0.4);
+                border-radius: 10px;
+                padding: 14px 16px;
+                margin-top: 8px;
+                margin-bottom: 4px;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-size: 0.82rem;
+                color: #fca5a5;
+                line-height: 1.5;
+                text-align: left;
+            `;
+
+            banner.innerHTML = `
+                <span style="font-size:1.2rem; flex-shrink:0;">🔴</span>
+                <div>
+                    <strong style="display:block; color:#f87171; margin-bottom:2px;">Automated Gateway Sedang Gangguan</strong>
+                    Layanan pembayaran otomatis saat ini sedang dalam pemeliharaan.
+                    ${isManualEnabled ? 'Anda masih dapat memproses order menggunakan metode <strong>Transfer Manual & QRIS Platform</strong> di bawah.' : 'Coba lagi sesaat lagi.'}
+                </div>
+            `;
+
+            const channelsSection = document.getElementById('paymentChannelsLoading');
+            if (channelsSection) {
+                channelsSection.style.display = 'none';
+                channelsSection.parentNode.insertBefore(banner, channelsSection.nextSibling);
+            }
+        }
+
+        function removeGatewayOfflineBanner() {
+            const existing = document.getElementById('gatewayOfflineBanner');
+            if (existing) existing.remove();
+
+            const container = document.getElementById('paymentChannelsContainer');
+            if (container) container.style.display = 'grid';
+            const priceSummary = document.getElementById('priceSummaryBox');
+            if (priceSummary) priceSummary.style.display = '';
+
+            const btn = document.getElementById('btnProcessCheckout');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+            }
+        }
+
+        function renderPaymentChannels() {
+            const container = document.getElementById('paymentChannelsContainer');
+            const loading = document.getElementById('paymentChannelsLoading');
+            if (!container || !loading) return;
+
+            container.innerHTML = '';
+
+            activePaymentChannels.forEach(channel => {
+                const isSelected = channel.code === selectedPaymentCode;
+
+                const flat = parseInt(channel.fee_flat, 10) || 0;
+                const percent = parseFloat(channel.fee_percent) || 0;
+                const calculatedFee = flat + Math.round(currentBasePrice * (percent / 100));
+
+                const card = document.createElement('div');
+                card.className = `payment-channel-item ${isSelected ? 'selected' : ''}`;
+                card.onclick = () => selectPaymentChannel(channel.code);
+
+                card.innerHTML = `
+                    <img class="channel-logo" src="${channel.icon_url}" alt="${channel.name}">
+                    <div class="channel-info">
+                        <span class="channel-name">${channel.name}</span>
+                        <span class="channel-fee">+Rp ${calculatedFee.toLocaleString('id-ID')} fee</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            loading.style.display = 'none';
+            container.style.display = 'grid';
+            calculateAggregatePrice();
+        }
+
+        function selectPaymentChannel(code) {
+            selectedPaymentCode = code;
+
+            const items = document.querySelectorAll('.payment-channel-item');
+            items.forEach((item, idx) => {
+                const channel = activePaymentChannels[idx];
+                if (channel && channel.code === code) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+
+            calculateAggregatePrice();
+        }
+
+        function calculateAggregatePrice() {
+            const channel = activePaymentChannels.find(c => c.code === selectedPaymentCode);
+            if (!channel) return;
+
+            const flat = parseInt(channel.fee_flat, 10) || 0;
+            const percent = parseFloat(channel.fee_percent) || 0;
+            const fee = flat + Math.round(currentBasePrice * (percent / 100));
+            const total = currentBasePrice + fee;
+
+            if (summaryAdminFee && summaryTotalPrice) {
+                summaryAdminFee.textContent = 'Rp ' + fee.toLocaleString('id-ID');
+                summaryTotalPrice.textContent = 'Rp ' + total.toLocaleString('id-ID');
+            }
+        }
+
+        // ── SUBMIT CHECKOUT REQUEST ──
+        function submitCheckoutRequest() {
+            const schoolName = document.getElementById('schoolNameInput').value.trim();
+            const requestedSlug = document.getElementById('schoolSlugInput').value.trim();
+
+            const btn = document.getElementById('btnProcessCheckout');
+            const errorMsg = document.getElementById('checkoutErrorMsg');
+
+            if (!schoolName) {
+                alert('Silakan masukkan Nama Yayasan / Lembaga Anda.');
+                return;
+            }
+            if (!requestedSlug) {
+                alert('Silakan tentukan Subdomain Pilihan lembaga Anda.');
+                return;
+            }
+            if (!isSlugAvailable) {
+                alert('Subdomain pilihan Anda sudah digunakan lembaga lain. Silakan gunakan subdomain lain.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = `<div class="spinner"></div> Sedang memproses transaksi...`;
+            errorMsg.style.display = 'none';
+
+            fetch(`${API_BASE}/api/license/request`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    school_name: schoolName,
+                    plan_id: currentPlan,
+                    payment_method: selectedPaymentCode,
+                    product_id: PRODUCT_ID,
+                    device_limit: 99999,
+                    is_unlimited: 1,
+                    requested_slug: requestedSlug
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success && res.data) {
+                    activeCheckoutKey = res.data.license_key;
+                    renderInvoiceDetails(res.data, schoolName);
+                } else {
+                    throw new Error(res.message || 'Transaksi ditolak oleh server.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                errorMsg.textContent = '❌ Terjadi kesalahan: ' + err.message;
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+            });
+        }
+
+        // ── INVOICE RENDERING ──
+        function renderInvoiceDetails(data, schoolName) {
+            document.getElementById('checkoutFormStep').style.display = 'none';
+            document.getElementById('checkoutInvoiceStep').style.display = 'block';
+            document.getElementById('checkoutSuccessStep').style.display = 'none';
+
+            document.getElementById('invLicenseKey').textContent = data.license_key;
+            document.getElementById('invNumber').textContent = data.invoice_number;
+            document.getElementById('invTotalAmount').textContent = 'Rp ' + data.amount.toLocaleString('id-ID');
+
+            const channel = activePaymentChannels.find(c => c.code === data.payment_method) || { name: data.payment_method };
+            document.getElementById('invMethodName').textContent = channel.name;
+
+            if (data.expired_time) {
+                const expiryDate = new Date(data.expired_time * 1000);
+                const day = String(expiryDate.getDate()).padStart(2, '0');
+                const month = String(expiryDate.getMonth() + 1).padStart(2, '0');
+                const year = expiryDate.getFullYear();
+                const hours = String(expiryDate.getHours()).padStart(2, '0');
+                const minutes = String(expiryDate.getMinutes()).padStart(2, '0');
+                const seconds = String(expiryDate.getSeconds()).padStart(2, '0');
+                document.getElementById('invExpiryTime').textContent = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+            } else {
+                document.getElementById('invExpiryTime').textContent = '-';
+            }
+
+            const qrisCont = document.getElementById('qrisContainer');
+            const vaCont = document.getElementById('vaContainer');
+
+            if (data.payment_method === 'Manual' || data.payment_method === 'manual') {
+                qrisCont.style.display = 'flex';
+                vaCont.style.display = 'flex';
+                document.getElementById('qrisImageCode').src = data.qr_url || '';
+
+                let bankName = 'BANK';
+                let accNum = '';
+                let accName = '';
+
+                const rawCode = data.pay_code || '';
+                const parts1 = rawCode.split(' - ');
+                if (parts1.length >= 2) {
+                    bankName = parts1[0].trim();
+                    const parts2 = parts1[1].split(' a/n ');
+                    if (parts2.length >= 2) {
+                        accNum = parts2[0].trim();
+                        accName = parts2[1].trim();
+                    } else {
+                        accNum = parts1[1].trim();
+                    }
+                } else {
+                    accNum = rawCode;
+                }
+
+                if (!accName && Array.isArray(data.payment_instructions)) {
+                    data.payment_instructions.forEach(group => {
+                        if (Array.isArray(group.steps)) {
+                            group.steps.forEach(step => {
+                                if (step.includes('Nama Pemilik Rekening:')) {
+                                    accName = step.replace('Nama Pemilik Rekening:', '').trim();
+                                } else if (step.includes('Nama Pemilik Rekening')) {
+                                    const splitStep = step.split(':');
+                                    if (splitStep.length >= 2) {
+                                        accName = splitStep[1].trim();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+
+                vaCont.innerHTML = `
+                    <div class="pay-code-box" style="width: 100%; display: flex; flex-direction: column; gap: 8px; align-items: center; padding: 18px; background-color: var(--bg-dark); border-radius: 12px; border: 1px solid var(--border-dark); text-align: center;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">REKENING TRANSFER MANUAL:</span>
+                        <span style="font-size: 1.3rem; font-weight: 800; color: var(--accent); margin-top: 4px;">${bankName}</span>
+                        <span id="manualAccNumber" style="font-family: monospace; font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: 1px; margin: 4px 0;">${accNum}</span>
+                        <button class="btn-copy" style="padding: 6px 14px; font-size: 0.8rem; margin-bottom: 6px;" onclick="copyText('manualAccNumber', 'Nomor rekening ${bankName} berhasil disalin!')">📋 Salin Rekening</button>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">a/n <strong style="color: var(--text-main); font-weight: 700;">${accName}</strong></span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4; text-align: center; margin-top: 10px;">Lakukan transfer nominal persis sesuai dengan instruksi yang tertera di bawah.</p>
+                `;
+            } else {
+                if (data.qr_url) {
+                    qrisCont.style.display = 'flex';
+                    vaCont.style.display = 'none';
+                    document.getElementById('qrisImageCode').src = data.qr_url;
+                } else {
+                    qrisCont.style.display = 'none';
+                    vaCont.style.display = 'flex';
+
+                    vaCont.innerHTML = `
+                        <div class="pay-code-box">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: var(--text-muted);">NOMOR REKENING / KODE BAYAR:</span>
+                            <span id="invPayCode" class="pay-code-number">${data.pay_code || ''}</span>
+                            <button class="btn-copy" onclick="copyText('invPayCode', 'Kode pembayaran tersalin!')">📋 Salin Kode</button>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4; text-align: center;">Lakukan transfer nominal persis sesuai dengan instruksi yang tertera di bawah.</p>
+                    `;
+                }
+            }
+
+            const instList = document.getElementById('invInstructionsList');
+            instList.innerHTML = '';
+
+            if (Array.isArray(data.payment_instructions)) {
+                data.payment_instructions.forEach((group, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'instruction-item';
+
+                    const stepsHtml = group.steps.map(s => `<li>${s}</li>`).join('');
+                    const isManual = (data.payment_method === 'Manual' || data.payment_method === 'manual');
+                    const displayStyle = isManual ? 'block' : 'none';
+                    const arrowChar = isManual ? '▲' : '▼';
+
+                    item.innerHTML = `
+                        <div class="instruction-header" onclick="toggleAccordion(${index})">
+                            <span>👉 ${group.title}</span>
+                            <span id="accordion-arrow-${index}">${arrowChar}</span>
+                        </div>
+                        <div class="instruction-content" id="accordion-content-${index}" style="display: ${displayStyle};">
+                            <ol>${stepsHtml}</ol>
+                        </div>
+                    `;
+                    instList.appendChild(item);
+                });
+            }
+
+            const btn = document.getElementById('btnProcessCheckout');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '⚡ PROSES PEMBAYARAN SEKARANG';
+            }
+
+            const nowSec = Math.floor(Date.now() / 1000);
+            if (data.expired_time && nowSec > data.expired_time) {
+                showExpiredStep('Batas waktu transfer telah habis. Transaksi ini kedaluwarsa.');
+                return;
+            }
+
+            const badge = document.getElementById('invStatusBadge');
+            if (badge) {
+                badge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span> Menunggu Pembayaran`;
+                badge.style.backgroundColor = '';
+                badge.style.borderColor = '';
+                badge.style.color = '';
+            }
+            const title = document.getElementById('invTitle');
+            if (title) title.textContent = 'Tagihan Menunggu Pembayaran';
+            const subtitle = document.getElementById('invSubtitle');
+            if (subtitle) subtitle.textContent = 'Silakan lakukan pembayaran sesuai instruksi agar sistem mengaktifkan lisensi Anda.';
+            if (qrisCont && data.qr_url) qrisCont.style.display = 'flex';
+            if (vaCont && !data.qr_url) vaCont.style.display = 'flex';
+            if (instList) instList.style.display = 'block';
+
+            const bottomBox = document.getElementById('invBottomBox');
+            if (bottomBox) {
+                if (data.payment_method === 'Manual') {
+                    const encodedText = encodeURIComponent(
+                        `Assalamu'alaikum Admin Absenta, saya baru saja melakukan Transfer Manual untuk pendaftaran lisensi seumur hidup Mustahiq Care *${schoolName}*.\n\n` +
+                        `Berikut rincian transaksinya:\n` +
+                        `• Kunci Lisensi: *${data.license_key}*\n` +
+                        `• Invoice: *${data.invoice_number}*\n` +
+                        `• Nominal: *Rp ${data.amount.toLocaleString('id-ID')}*\n` +
+                        `• Produk: Mustahiq Care (Lifetime)\n\n` +
+                        `Mohon bantuannya untuk melakukan aktivasi lisensi. Terima kasih! [Lampiran bukti transfer]`
+                    );
+                    const waUrl = `https://wa.me/${data.whatsapp_number}?text=${encodedText}`;
+                    const hasUploaded = data.payment_proof ? true : false;
+
+                    const uploadBoxHtml = hasUploaded
+                      ? `<div style="background-color: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 12px; text-align: center; color: #10B981; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; width: 100%;">
+                            <span>✅</span> Bukti transfer berhasil diunggah!
+                         </div>`
+                      : `<div style="background-color: rgba(16, 185, 129, 0.03); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 10px; width: 100%;">
+                            <span style="font-size: 0.82rem; font-weight: 700; color: #A7F3D0;">📤 UNGGAH BUKTI BAYAR DI SINI (WAJIB):</span>
+                            <input type="file" id="receiptFileInput" accept="image/*" style="display: none;" onchange="handleReceiptUpload(this, ${JSON.stringify(data).replace(/"/g, '&quot;')}, '${schoolName.replace(/'/g, "\\'")}')">
+                            <button onclick="document.getElementById('receiptFileInput').click()" id="btnUploadReceipt" class="btn-primary" style="background: var(--primary); border: none; padding: 10px 18px; font-size: 0.82rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: bold; color: white;">
+                                <span>📁</span> Pilih Gambar Bukti
+                            </button>
+                            <div id="uploadReceiptStatus" style="font-size: 0.73rem; color: var(--text-muted);">Format: JPG, PNG. Ukuran maks 5MB.</div>
+                         </div>`;
+
+                    bottomBox.innerHTML = `
+                        ${uploadBoxHtml}
+                        <a href="${waUrl}" target="_blank" class="btn-primary" style="display:flex; align-items:center; justify-content:center; gap:8px; background-color:#10B981; border:none; text-decoration:none; padding: 14px; font-weight:bold; color:white; border-radius:12px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <span>📱</span> Konfirmasi Transfer via WhatsApp
+                        </a>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Kembali / Batalkan</button>
+                    `;
+                } else if (data.payment_method === 'Xendit') {
+                    bottomBox.innerHTML = `
+                        <a href="${data.qr_url}" target="_blank" class="btn-primary" style="display:flex; align-items:center; justify-content:center; gap:8px; background-color:#3B82F6; border:none; text-decoration:none; padding: 14px; font-weight:bold; color:white; border-radius:12px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <span>💳</span> Buka Tautan Invoice Xendit
+                        </a>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px;">
+                            <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            Menunggu konfirmasi kelunasan Xendit...
+                        </div>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                    `;
+                } else {
+                    bottomBox.innerHTML = `
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            Menunggu konfirmasi pembayaran instan...
+                        </div>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                    `;
+                }
+            }
+
+            startPollingStatus(data.license_key, schoolName);
+        }
+
+        function toggleAccordion(index) {
+            const content = document.getElementById(`accordion-content-${index}`);
+            const arrow = document.getElementById(`accordion-arrow-${index}`);
+
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                arrow.textContent = '▼';
+            } else {
+                content.style.display = 'block';
+                arrow.textContent = '▲';
+            }
+        }
+
+        function cancelCheckoutProcess() {
+            if (confirm('Apakah Anda yakin ingin membatalkan transaksi yang sedang diproses ini?')) {
+                closeCheckout();
+            }
+        }
+
+        function copyText(elementId, msg) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert(msg);
+            }).catch(err => {
+                console.error('Failed to copy', err);
+            });
+        }
+
+        function handleReceiptUpload(input, data, schoolName) {
+            const file = input.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran berkas gambar terlalu besar! Maksimal 5MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                const btn = document.getElementById('btnUploadReceipt');
+                const status = document.getElementById('uploadReceiptStatus');
+
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerHTML = `<span style="display:inline-block; width:12px; height:12px; border-radius:50%; border:2px solid #fff; border-top-color:transparent; animation:spin 0.8s linear infinite;"></span> Mengunggah...`;
+                }
+
+                fetch(`${API_BASE}/api/license/upload-receipt`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        license_key: data.license_key,
+                        image: base64Image
+                    })
+                })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        alert('Bukti transfer berhasil diunggah! Mohon tunggu persetujuan manual dari administrator.');
+                        data.payment_proof = res.data.payment_proof;
+                        renderInvoiceDetails(data, schoolName);
+                    } else {
+                        throw new Error(res.message || 'Gagal mengunggah berkas.');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Gagal mengunggah bukti bayar: ' + err.message);
+                    if (btn) {
+                        btn.disabled = false;
+                        btn.innerHTML = `<span>📁</span> Pilih Gambar Bukti`;
+                    }
+                    if (status) status.textContent = '❌ Upload gagal. Silakan coba lagi.';
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ── POLLING STATUS & SYSTEM PROVISIONING ──
+        function startPollingStatus(key, schoolName) {
+            stopPollingStatus();
+
+            pollingInterval = setInterval(() => {
+                fetch(`${API_BASE}/api/license/check/${key}?device_id=DUMMY-CHECK`)
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.success && res.data) {
+                            if (res.data.status === 'active') {
+                                showSuccessStep(key, schoolName, res.data.requested_slug);
+                            } else if (res.data.status === 'expired') {
+                                showExpiredStep(res.data.message || res.message);
+                            }
+                        }
+                    })
+                    .catch(err => console.log('Polling error:', err));
+            }, 4000);
+        }
+
+        function stopPollingStatus() {
+            if (pollingInterval) {
+                clearInterval(pollingInterval);
+                pollingInterval = null;
+            }
+            if (sslPollInterval) {
+                clearInterval(sslPollInterval);
+                sslPollInterval = null;
+            }
+        }
+
+        function showExpiredStep(message) {
+            stopPollingStatus();
+
+            const badge = document.getElementById('invStatusBadge');
+            if (badge) {
+                badge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--danger);"></span> Tagihan Kedaluwarsa`;
+                badge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                badge.style.color = 'var(--danger)';
+            }
+
+            const title = document.getElementById('invTitle');
+            if (title) title.textContent = 'Tagihan Telah Kedaluwarsa';
+
+            const subtitle = document.getElementById('invSubtitle');
+            if (subtitle) subtitle.textContent = message || 'Batas waktu transfer telah habis. Silakan buat pengajuan lisensi baru.';
+
+            const qrisCont = document.getElementById('qrisContainer');
+            const vaCont = document.getElementById('vaContainer');
+            const instList = document.getElementById('invInstructionsList');
+            if (qrisCont) qrisCont.style.display = 'none';
+            if (vaCont) vaCont.style.display = 'none';
+            if (instList) instList.style.display = 'none';
+
+            const bottomBox = document.getElementById('invBottomBox');
+            if (bottomBox) {
+                bottomBox.innerHTML = `
+                    <div style="font-size: 0.85rem; color: var(--danger); font-weight: bold; text-align: center; margin-bottom: 10px;">
+                        ❌ Pembayaran Gagal / Kedaluwarsa
+                    </div>
+                    <button class="btn-primary" style="background-color: var(--primary); padding: 12px; font-size: 0.9rem; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white;" onclick="closeCheckout()">Tutup Jendela</button>
+                `;
+            }
+        }
+
+        function showSuccessStep(key, schoolName, requestedSlug) {
+            stopPollingStatus();
+
+            document.getElementById('checkoutFormStep').style.display = 'none';
+            document.getElementById('checkoutInvoiceStep').style.display = 'none';
+            document.getElementById('checkoutSuccessStep').style.display = 'block';
+
+            document.getElementById('successLicenseKey').textContent = key;
+            document.getElementById('successSchoolName').textContent = schoolName;
+            document.getElementById('successDurationName').textContent = currentPlanTitle;
+
+            const slug = (requestedSlug || document.getElementById('schoolSlugInput').value || '').trim().toLowerCase();
+            const provisioningStatusBox = document.getElementById('provisioningStatusBox');
+            const provisioningLoader = document.getElementById('provisioningLoader');
+            const provisioningText = document.getElementById('provisioningText');
+            const successAppLinkBtn = document.getElementById('successAppLinkBtn');
+
+            if (slug) {
+                const appUrl = `https://${slug}.absenta.id`;
+                if (successAppLinkBtn) {
+                    successAppLinkBtn.href = appUrl;
+                    successAppLinkBtn.textContent = `🚀 BUKA PORTAL: ${slug.toUpperCase()}.ABSENTA.ID`;
+                }
+
+                provisioningStatusBox.style.display = 'none';
+                successAppLinkBtn.style.display = 'none';
+
+                fetch(`${API_BASE}/api/license/provision-status/${slug}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.success && (res.ssl_active || res.ssl_ready)) {
+                            provisioningStatusBox.style.display = 'none';
+                            successAppLinkBtn.style.display = 'inline-flex';
+                        } else {
+                            provisioningStatusBox.style.display = 'block';
+                            provisioningLoader.innerHTML = `<div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div><span>Menyiapkan SSL Let's Encrypt & domain...</span>`;
+                            provisioningLoader.style.color = '#A7F3D0';
+                            provisioningText.innerHTML = `Mohon tunggu sebentar, sistem sedang mengamankan subdomain lembaga Anda dengan sertifikat SSL HTTPS agar siap diakses secara aman.`;
+                            successAppLinkBtn.style.display = 'none';
+
+                            let attempts = 0;
+                            sslPollInterval = setInterval(() => {
+                                attempts++;
+                                fetch(`${API_BASE}/api/license/provision-status/${slug}`)
+                                    .then(r => r.json())
+                                    .then(r => {
+                                        if (r.success && (r.ssl_active || r.ssl_ready)) {
+                                            clearInterval(sslPollInterval);
+                                            sslPollInterval = null;
+                                            provisioningLoader.innerHTML = `✅ <span style="font-weight: bold; color: var(--success);">SSL Aktif & Portal Siap!</span>`;
+                                            provisioningLoader.style.color = 'var(--success)';
+                                            provisioningText.innerHTML = `Konfigurasi subdomain dan SSL HTTPS Let's Encrypt selesai. Akun admin utama telah siap. Klik tombol di bawah untuk membuka portal lembaga Anda!`;
+                                            successAppLinkBtn.style.display = 'inline-flex';
+                                        } else if (attempts >= 15) {
+                                            clearInterval(sslPollInterval);
+                                            sslPollInterval = null;
+                                            provisioningLoader.innerHTML = `⚠️ <span style="font-weight: bold; color: #FBBF24;">Menyelesaikan Konfigurasi...</span>`;
+                                            provisioningLoader.style.color = '#FBBF24';
+                                            provisioningText.innerHTML = `Server memerlukan waktu lebih lama untuk memproses SSL. Anda tetap dapat mencoba membuka portal. Jika muncul peringatan keamanan browser, silakan segarkan halaman dalam 1 menit.`;
+                                            successAppLinkBtn.style.display = 'inline-flex';
+                                        }
+                                    })
+                                    .catch(err => console.log('SSL polling error:', err));
+                            }, 4000);
+                        }
+                    })
+                    .catch(err => {
+                        console.log('Initial SSL check error:', err);
+                        provisioningStatusBox.style.display = 'none';
+                        successAppLinkBtn.style.display = 'inline-flex';
+                    });
+            } else {
+                provisioningStatusBox.style.display = 'none';
+                successAppLinkBtn.style.display = 'inline-flex';
+            }
+        }
+
+        // ── SEARCH LICENSE LOOKUP ──
+        function lookupLicense() {
+            const keyInput = document.getElementById('licenseSearchInput');
+            const key = keyInput ? keyInput.value.trim() : '';
+
+            if (!key) {
+                alert('Silakan masukkan Kunci Lisensi Anda terlebih dahulu.');
+                return;
+            }
+
+            keyInput.disabled = true;
+
+            fetch(`${API_BASE}/api/license/my-invoices/${key}`)
+                .then(res => res.json())
+                .then(res => {
+                    keyInput.disabled = false;
+
+                    if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+                        const inv = res.data[0];
+
+                        let parsedInstructions = [];
+                        if (inv.payment_instructions) {
+                            try {
+                                parsedInstructions = typeof inv.payment_instructions === 'string'
+                                    ? JSON.parse(inv.payment_instructions)
+                                    : inv.payment_instructions;
+                            } catch (e) {
+                                console.error('Failed to parse instructions:', e);
+                            }
+                        }
+
+                        const dataForRender = {
+                            license_key: key,
+                            invoice_number: inv.invoice_number,
+                            amount: inv.amount,
+                            payment_method: inv.payment_method.replace(' VA', 'VA').replace('QRIS', 'QRIS2'),
+                            qr_url: inv.qr_url,
+                            pay_code: inv.pay_code,
+                            payment_instructions: parsedInstructions,
+                            expired_time: inv.expired_time
+                        };
+
+                        if (inv.status === 'paid') {
+                            showSuccessStep(key, inv.school_name, inv.requested_slug);
+                            checkoutModal.classList.add('active');
+                        } else {
+                            renderInvoiceDetails(dataForRender, inv.school_name);
+                            checkoutModal.classList.add('active');
+                        }
+                    } else {
+                        alert('Kunci Lisensi tidak ditemukan atau belum memiliki riwayat invoice.');
+                    }
+                })
+                .catch(err => {
+                    keyInput.disabled = false;
+                    console.error(err);
+                    alert('Gagal menghubungi server. Silakan coba beberapa saat lagi.');
+                });
+        }
+    </script>
+</body>
+</html>

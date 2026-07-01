@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Ujian CBT — Absenta.id | Orkestrator Ujian Google Forms</title>
+    <meta name="description" content="Platform Ujian Absenta: solusi CBT berbasis Google Forms dengan kios mode Android. Ujian aman, anti-kecurangan, tanpa biaya per perangkat.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/platform_ujian.css?v=2.0">
+
+</head>
+<body>
+
+    <!-- ── HEADER & NAVBAR ── -->
+    <header>
+        <a href="landing.html" class="logo">
+            <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> PLATFORM UJIAN
+        </a>
+        <nav class="nav-links">
+            <a href="#features" class="nav-link">Fitur</a>
+            <a href="#deployment-model" class="nav-link">Solusi</a>
+            <a href="#pricing" class="nav-link">Harga Paket</a>
+            <a href="mailto:support@absenta.id" class="nav-link">Dukungan</a>
+            <a href="#pricing" class="btn-nav">Daftar Sekolah</a>
+        </nav>
+    </header>
+
+    <!-- ── HERO SECTION ── -->
+    <section class="hero">
+        <div class="hero-badge">Sistem Proteksi Ujian CBT #1</div>
+        <h1>Amankan Ujian Sekolah Anda Tanpa Celah Kecurangan</h1>
+        <p>Absenta.id mengunci penuh smartphone siswa secara total, mengintegrasikan Google Forms secara instan, dan dilengkapi alur pembayaran retail, VA, atau QRIS terintegrasi.</p>
+        
+        <!-- LICENSE LOOKUP SEARCH BAR -->
+        <div style="margin-top: 30px; margin-bottom: 25px; max-width: 480px; margin-left: auto; margin-right: auto; display: flex; gap: 8px; background: rgba(255, 255, 255, 0.05); padding: 6px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);">
+            <input type="text" id="licenseSearchInput" style="flex: 1; border: none; background: transparent; padding: 10px 16px; color: var(--text-main); font-size: 0.9rem; font-weight: 500; outline: none;" placeholder="Punya kunci lisensi? Cek status tagihan di sini...">
+            <button onclick="lookupLicense()" style="background: var(--primary); border: none; padding: 10px 24px; border-radius: 24px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                Cari 🔍
+            </button>
+        </div>
+
+        <div class="hero-actions">
+            <a href="#pricing" class="btn-primary">Ajukan Lisensi Baru ⚡</a>
+            <a href="#features" class="btn-secondary">Pelajari Fitur</a>
+        </div>
+    </section>
+
+    <!-- ── FEATURES SECTION ── -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Didesain Khusus Demi Integritas Ujian</h2>
+            <p>Mencegah segala bentuk celah kecurangan siswa demi hasil penilaian sekolah yang objektif dan kredibel.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🛡️</span>
+                <h3>Lock Kios Mode</h3>
+                <p>Mencegah siswa membuka tab browser lain, keluar dari layar ujian, split-screen, multitasking, screenshot, atau screen-record.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📝</span>
+                <h3>Integrasi Google Form</h3>
+                <p>Cukup gunakan tautan soal Google Forms sekolah yang sudah Anda buat, masukkan ke panel proktor, dan soal siap dikerjakan dengan aman.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Tripay Auto-Activation</h3>
+                <p>Alur checkout otomatis di mana status lisensi sekolah Anda langsung aktif dalam 5 detik setelah pembayaran VA, QRIS, atau kasir ritel dideteksi.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Branding Subdomain</h3>
+                <p>Setiap sekolah mendapatkan subdomain pribadi terdedikasi (contoh: <code>smk.absenta.id</code>) lengkap dengan pengaturan branding sekolah Anda sendiri.</p>
+            </div>
+        </div>
+
+        <!-- ── PERBANDINGAN FITUR (BATTLE GRID) ── -->
+        <div class="comparison-container">
+            <div class="comparison-header">
+                <h2>Alur Kerja &amp; Perbandingan Teknis</h2>
+                <p>Mengapa Absenta.id jauh lebih unggul, hemat, dan disukai guru/kurikulum dibanding CBT Konvensional (LMS Biasa).</p>
+            </div>
+
+            <!-- ── TOPOLOGY ARCHITECTURE DIAGRAMS ── -->
+            <div class="topology-grid">
+                <!-- LMS Konvensional -->
+                <div class="topology-card">
+                    <h3>🌐 Arsitektur CBT Konvensional (LMS)</h3>
+                    <p>Sistem sentralisasi database tunggal yang rawan crash saat jam sibuk ujian serentak karena semua data tertumpuk di server pusat.</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <linearGradient id="grad-red" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#EF4444"/>
+                                    <stop offset="100%" stop-color="#991B1B"/>
+                                </linearGradient>
+                                <linearGradient id="grad-node" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#334155"/>
+                                    <stop offset="100%" stop-color="#1E293B"/>
+                                </linearGradient>
+                                <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#EF4444"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Paths / Connections -->
+                            <path d="M 90 60 C 140 60, 160 110, 200 120" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 130 H 200" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 200 C 140 200, 160 150, 200 140" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            
+                            <path d="M 300 115 C 320 95, 330 80, 350 70" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+                            <path d="M 390 85 V 175" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+                            <path d="M 350 195 C 320 190, 310 170, 290 155" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+
+                            <!-- Siswa Nodes -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Siswa 1</text>
+                                <text x="55" y="72" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Siswa 2</text>
+                                <text x="55" y="142" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Siswa 3</text>
+                                <text x="55" y="212" class="topo-subtext">HP / Laptop</text>
+                            </g>
+
+                            <!-- Server LMS Node (Bottleneck) -->
+                            <g class="topo-node">
+                                <rect x="200" y="100" width="100" height="60" rx="10" fill="url(#grad-red)" stroke="#EF4444" stroke-width="2" filter="url(#glow-red)" />
+                                <text x="250" y="125" class="topo-text" style="font-size: 11px;">Server LMS</text>
+                                <text x="250" y="138" class="topo-subtext" style="fill: #FECACA;">Pusat Tunggal</text>
+                                <text x="250" y="150" class="topo-badge" style="fill: #FCA5A5; font-weight: 800;">💥 BOTTLENECK</text>
+                            </g>
+
+                            <!-- Admin/Kurikulum -->
+                            <g class="topo-node">
+                                <rect x="350" y="40" width="80" height="45" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="390" y="60" class="topo-text">Kurikulum</text>
+                                <text x="390" y="73" class="topo-subtext" style="fill: #F59E0B;">⚠️ Sibuk Rekap</text>
+                            </g>
+
+                            <!-- Guru -->
+                            <g class="topo-node">
+                                <rect x="350" y="175" width="80" height="45" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="390" y="195" class="topo-text">Guru Mapel</text>
+                                <text x="390" y="208" class="topo-subtext">Setor &amp; Menunggu</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- G-Form Orkestrator -->
+                <div class="topology-card our-card">
+                    <h3>🛡️ Absenta.id - Orkestrator Ujian</h3>
+                    <p>Sistem terdesentralisasi: portal memuat roster &amp; jadwal dari Database Sekolah (Supabase Cloud), sedangkan pengisian soal langsung ditangani server Google (anti-down).</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <linearGradient id="grad-green" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="100%" stop-color="#047857"/>
+                                </linearGradient>
+                                <linearGradient id="grad-blue" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#3B82F6"/>
+                                    <stop offset="100%" stop-color="#1D4ED8"/>
+                                </linearGradient>
+                                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
+                                </marker>
+                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#3B82F6"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Paths / Connections -->
+                            <!-- Google submissions -->
+                            <path d="M 90 60 H 180" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 130 C 130 120, 150 75, 180 70" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 200 C 130 190, 140 90, 180 80" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            
+                            <!-- Database roster & schedule loading -->
+                            <path d="M 90 65 C 130 75, 140 175, 180 180" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+                            <path d="M 90 135 C 130 145, 150 185, 180 190" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+                            <path d="M 90 205 H 180" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+
+                            <!-- Google Forms to Google Drive result stream -->
+                            <path d="M 290 62 C 325 70, 340 105, 350 115" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+
+                            <!-- Siswa Nodes -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Siswa 1</text>
+                                <text x="55" y="72" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Siswa 2</text>
+                                <text x="55" y="142" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Siswa 3</text>
+                                <text x="55" y="212" class="topo-subtext">HP / Laptop</text>
+                            </g>
+
+                            <!-- Google Cloud engine -->
+                            <g class="topo-node">
+                                <rect x="180" y="35" width="110" height="55" rx="10" fill="url(#grad-green)" stroke="#10B981" stroke-width="2" filter="url(#glow-green)" />
+                                <text x="235" y="58" class="topo-text" style="font-size: 11px;">Server Google</text>
+                                <text x="235" y="71" class="topo-subtext" style="fill: #A7F3D0;">Forms Database</text>
+                                <text x="235" y="82" class="topo-badge" style="fill: #34D399; font-weight: 800;">🛡️ ANTI CRASH</text>
+                            </g>
+
+                            <!-- Database Sekolah (Supabase Cloud) -->
+                            <g class="topo-node">
+                                <rect x="180" y="170" width="110" height="55" rx="10" fill="url(#grad-blue)" stroke="#3B82F6" stroke-width="2" filter="url(#glow-blue)" />
+                                <text x="235" y="193" class="topo-text" style="font-size: 10px;">Database Sekolah</text>
+                                <text x="235" y="206" class="topo-subtext" style="fill: #93C5FD;">Supabase Cloud</text>
+                                <text x="235" y="217" class="topo-badge" style="fill: #60A5FA; font-weight: 800;">⚡ DATA TERISOLASI</text>
+                            </g>
+
+                            <!-- Decentralized Google Drive Guru -->
+                            <g class="topo-node">
+                                <rect x="350" y="105" width="85" height="50" rx="8" fill="url(#grad-node)" stroke="#10B981" stroke-width="1" />
+                                <text x="392" y="128" class="topo-text" style="font-size: 9px;">Google Drive</text>
+                                <text x="392" y="141" class="topo-subtext" style="fill: #34D399; font-weight: bold;">Rekap Otomatis</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter Fitur</th>
+                            <th>🌐 CBT Konvensional (LMS Lain)</th>
+                            <th>🛡️ Absenta.id - Orkestrator Ujian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-title">Alur Pembuatan Soal &amp; Nilai</td>
+                            <td class="conv-val">
+                                <strong>Sentralisasi Kaku (Beban Kurikulum):</strong><br>
+                                Guru menyetor file Word/Excel &rarr; Kurikulum input manual satu per satu ke LMS &rarr; Hasil nilai disetor kembali dari Admin ke Guru.
+                            </td>
+                            <td class="our-val">
+                                <strong>Desentralisasi Mandiri (Hemat Waktu 95%):</strong><br>
+                                Guru membuat soal langsung di Google Forms. Portal Ujian memuat roster siswa dari Database Sekolah (Supabase Cloud), dan jawaban masuk langsung ke Google Drive Guru secara instan.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Risiko Server Down / Lag</td>
+                            <td class="conv-val">
+                                <strong>Sangat Tinggi (Jam Puncak):</strong><br>
+                                Menggunakan shared cloud server. Ratusan ribu siswa klik "Kirim" bersamaan rawan membuat server lag atau crash (Error 503).
+                            </td>
+                            <td class="our-val">
+                                <strong>Hampir 0% (Infrastruktur Google):</strong><br>
+                                Server lisensi &amp; database sekolah hanya memproses query ringan (data login &amp; jadwal). Pengiriman jawaban sepenuhnya ditangani oleh kapasitas Google.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Kurva Belajar Guru</td>
+                            <td class="conv-val">
+                                <strong>Tinggi &amp; Rumit:</strong><br>
+                                Guru wajib mempelajari editor bank soal sistem baru. Rumus matematika, simbol fisika, atau tabel sering rusak saat dipindahkan.
+                            </td>
+                            <td class="our-val">
+                                <strong>Sangat Rendah (Tanpa Belajar):</strong><br>
+                                Guru tetap 100% menggunakan Google Forms yang sudah biasa mereka pakai. Cukup salin tautan soal dalam 5 detik.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Kepemilikan Data Jawaban</td>
+                            <td class="conv-val">
+                                <strong>Pihak Ketiga:</strong><br>
+                                Data nilai dan soal disimpan di server database pihak ketiga, bukan di bawah kontrol langsung sekolah.
+                            </td>
+                            <td class="our-val">
+                                <strong>Milik Sekolah (Kedaulatan Data):</strong><br>
+                                Soal dan database nilai tersimpan aman di akun Google Drive / Spreadsheet milik guru atau instansi sekolah masing-masing.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Batasan Jumlah Siswa</td>
+                            <td class="conv-val">
+                                <strong>Dibatasi Ketat:</strong><br>
+                                Jumlah siswa dibatasi sesuai paket (Maksimal 1.000 atau 1.500 siswa). Sekolah harus membayar lebih mahal jika jumlah siswa bertambah.
+                            </td>
+                            <td class="our-val">
+                                <strong>Tanpa Batas (Unlimited):</strong><br>
+                                Bebas daftarkan siswa dan perangkat sebanyak apa pun tanpa biaya tambahan per kepala.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="landing.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#A5B4FC;padding:7px 16px;border-radius:10px;font-size:0.82rem;font-weight:700;text-decoration:none;">← Beranda Absenta</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── DEPLOYMENT MODEL SECTION ── -->
+    <section id="deployment-model" class="deployment-section">
+        <div class="section-header" style="margin-bottom: 56px;">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.25); color:#A5B4FC; padding:6px 18px; border-radius:20px; font-size:0.8rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;">⚡ Pilih Model Deployment</div>
+            <h2 style="font-size:2.6rem; margin:0 0 14px; background:linear-gradient(to right, #F8FAFC 20%, #A5B4FC 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Cloud SaaS atau On-Premise<br>— Kami Siapkan Keduanya</h2>
+            <p style="color:#94A3B8; font-size:1.05rem; max-width:620px; margin:0 auto;">Satu platform, dua jalur distribusi. Pilih yang paling sesuai dengan infrastruktur dan kebijakan data sekolah Anda.</p>
+        </div>
+
+        <!-- ── DUA KARTU DEPLOYMENT ── -->
+        <div class="deployment-cards">
+
+            <!-- CLOUD / SaaS -->
+            <div class="deployment-card cloud">
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <div class="deployment-badge saas">☁️ Cloud SaaS</div>
+                        <h3 style="margin-top:14px;">Langsung Pakai,<br>Tanpa Ribet</h3>
+                    </div>
+                    <div class="deployment-icon-wrap cloud">☁️</div>
+                </div>
+
+                <p class="desc">Tidak perlu server, tidak perlu tim IT. Cukup daftar, bayar, dan sistem langsung siap digunakan oleh seluruh sekolah Anda melalui browser manapun.</p>
+
+                <ul class="deployment-features">
+                    <li><span class="check blue">✦</span> Tidak perlu instalasi — langsung aktif dalam hitungan menit</li>
+                    <li><span class="check blue">✦</span> Akses via browser dari perangkat apapun</li>
+                    <li><span class="check blue">✦</span> Update fitur otomatis tanpa tindakan IT</li>
+                    <li><span class="check blue">✦</span> Subdomain sekolah pribadi (contoh: <code style="background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem;">smk.absenta.id</code>)</li>
+                    <li><span class="check blue">✦</span> Infrastruktur dikelola penuh oleh tim Absenta</li>
+                    <li><span class="check blue">✦</span> Cocok untuk semua sekolah tanpa staff IT</li>
+                </ul>
+
+                <div style="background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.15); border-radius:14px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <div style="font-size:0.75rem; color:#60A5FA; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px;">Model Harga</div>
+                        <div style="font-size:1.1rem; font-weight:800; color:#F8FAFC;">Berlangganan Bulanan / Tahunan</div>
+                    </div>
+                    <div style="font-size:0.8rem; color:#94A3B8;">Mulai dari <strong style="color:#60A5FA;">Rp 299.000</strong> / bulan</div>
+                </div>
+
+                <a href="cloud.html" class="deployment-cta saas">Pelajari Panduan Cloud SaaS ⚡</a>
+            </div>
+
+            <!-- ON-PREMISE -->
+            <div class="deployment-card onpremise">
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <div class="deployment-badge onp">🖥️ On-Premise</div>
+                        <h3 style="margin-top:14px;">Kontrol Penuh,<br>Data di Tangan Anda</h3>
+                    </div>
+                    <div class="deployment-icon-wrap onpremise">🖥️</div>
+                </div>
+
+                <p class="desc">Untuk sekolah atau lembaga yang ingin menginstal sistem di server mereka sendiri. Data sensitif siswa tidak pernah meninggalkan jaringan internal Anda.</p>
+
+                <ul class="deployment-features">
+                    <li><span class="check purple">✦</span> Data 100% tersimpan di server sekolah sendiri</li>
+                    <li><span class="check purple">✦</span> Berjalan tanpa koneksi internet (intranet lokal)</li>
+                    <li><span class="check purple">✦</span> Kustomisasi bebas sesuai kebijakan IT sekolah</li>
+                    <li><span class="check purple">✦</span> Cocok untuk pesantren, madrasah, sekolah BUMN/TNI</li>
+                    <li><span class="check purple">✦</span> Kontrol penuh atas update dan konfigurasi sistem</li>
+                    <li><span class="check purple">✦</span> Lisensi hardware-locked per server</li>
+                </ul>
+
+                <div style="background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.15); border-radius:14px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <div style="font-size:0.75rem; color:#A78BFA; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px;">Model Harga</div>
+                        <div style="font-size:1.1rem; font-weight:800; color:#F8FAFC;">Lisensi Sekali Beli + Perpanjangan</div>
+                    </div>
+                    <div style="font-size:0.8rem; color:#94A3B8;">Hubungi tim kami untuk penawaran</div>
+                </div>
+
+                <a href="onpremise.html" class="deployment-cta onp">Baca Panduan Teknis On-Premise →</a>
+            </div>
+        </div>
+
+        <!-- ── TABEL PERBANDINGAN CEPAT ── -->
+        <div class="deploy-compare-wrap">
+            <table class="deploy-compare-table">
+                <thead>
+                    <tr>
+                        <th style="width:40%;">Aspek</th>
+                        <th class="th-saas" style="width:30%;">☁️ Cloud SaaS</th>
+                        <th class="th-onp" style="width:30%;">🖥️ On-Premise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Instalasi server</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Tidak perlu</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">⚙️ Perlu setup</span></td>
+                    </tr>
+                    <tr>
+                        <td>Koneksi internet</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Wajib</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">✓ Opsional</span></td>
+                    </tr>
+                    <tr>
+                        <td>Data tersimpan di</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">☁️ Server Absenta</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🏫 Server Sekolah</span></td>
+                    </tr>
+                    <tr>
+                        <td>Update sistem</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Otomatis</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🔧 Manual (IT)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cocok untuk</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">🏫 Semua sekolah</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🔒 IT mandiri</span></td>
+                    </tr>
+                    <tr>
+                        <td>Model pembayaran</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">📅 Berlangganan</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🏷️ Lisensi tetap</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── CONSULT BANNER ── -->
+        <div class="consult-banner">
+            <div class="left">
+                <h4>🤔 Tidak yakin mana yang tepat untuk sekolah Anda?</h4>
+                <p>Tim teknis kami siap membantu menentukan pilihan terbaik sesuai infrastruktur dan kebijakan data sekolah Anda — gratis, tanpa kewajiban.</p>
+            </div>
+            <a href="mailto:support@absenta.id" class="btn-consult">Konsultasi Gratis →</a>
+        </div>
+    </section>
+
+    <!-- ── PRICING SECTION ── -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>Pilih Paket Lisensi Sekolah</h2>
+            <p>Dapatkan lisensi resmi Orkestrator Ujian yang aktif instan. Dukungan akses perangkat (HP) tanpa batas untuk siswa sekolah Anda.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Dynamic Pricing Grid (Rendered by js/pricing.js) -->
+            <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+            <div class="price-card skeleton popular" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+            <div class="price-card skeleton" style="min-height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                <div class="skeleton-pulse" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="width: 120px; height: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="skeleton-pulse" style="width: 80px; height: 14px; background: rgba(255,255,255,0.03); border-radius: 4px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CHECKOUT MODAL ── -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeCheckout()">✕</button>
+            
+            <div id="checkoutFormStep">
+                <h3 class="modal-title">⚡ Registrasi &amp; Checkout</h3>
+                <p class="modal-subtitle">Silakan isi formulir sekolah untuk mengajukan lisensi baru</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Sekolah / Lembaga</label>
+                    <input type="text" id="schoolNameInput" class="form-input" placeholder="Masukkan nama sekolah lengkap...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subdomain Sekolah Pilihan</label>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <input type="text" id="schoolSlugInput" class="form-input" style="flex: 1;" placeholder="contoh: smkn2bdg" oninput="this.value = this.value.toLowerCase().replace(/[^a-z0-9-]/g, ''); checkSlugAvailabilityDebounced();">
+                        <span style="font-weight: bold; color: var(--text-color); font-size: 0.9rem;">.absenta.id</span>
+                    </div>
+                    <p id="slugCheckStatus" style="font-size: 0.75rem; font-weight: bold; margin-top: 4px; margin-bottom: 0; display: none;"></p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Subdomain ini yang akan diakses oleh siswa dan pengawas sekolah Anda.</p>
+                </div>
+
+                <div class="form-group" style="display: flex; align-items: center; gap: 8px; margin-top: 15px; margin-bottom: 15px;">
+                    <input type="checkbox" id="advancedDbCheckbox" onchange="toggleAdvancedDbSettings()" style="width: 16px; height: 16px; cursor: pointer;">
+                    <label for="advancedDbCheckbox" style="font-size: 0.85rem; font-weight: bold; color: var(--text-color); cursor: pointer; user-select: none;">
+                        Gunakan Database Supabase Sendiri (Lanjutan / Private Project)
+                    </label>
+                </div>
+
+                <div id="advancedDbSettingsContainer" style="display: none; border-left: 2px solid var(--primary); padding-left: 12px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Supabase URL Sekolah</label>
+                        <input type="url" id="schoolSupabaseUrlInput" class="form-input" placeholder="https://xxx.supabase.co">
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Isi dengan URL Supabase Project mandiri sekolah Anda.</p>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label class="form-label">Supabase Anon Key Sekolah</label>
+                        <input type="text" id="schoolSupabaseKeyInput" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Isi dengan Anon Key (Public API Key) Supabase Project sekolah Anda.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Metode Pembayaran</label>
+                    <div id="paymentChannelsLoading" style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0;">
+                        <div class="spinner" style="margin: 0 auto 10px;"></div>
+                        Memuat daftar metode pembayaran Tripay...
+                    </div>
+                    <div id="paymentChannelsContainer" class="payment-channels-list" style="display: none;">
+                        <!-- dynamic items -->
+                    </div>
+                </div>
+
+                <div class="fee-breakdown-box" id="priceSummaryBox">
+                    <div class="fee-row">
+                        <span>Paket Lisensi (<span id="summaryPlanName">Bulanan</span>):</span>
+                        <span id="summaryBasePrice">Rp 299.000</span>
+                    </div>
+                    <div class="fee-row">
+                        <span>Biaya Admin Gateway:</span>
+                        <span id="summaryAdminFee">Rp 0</span>
+                    </div>
+                    <div class="fee-row total">
+                        <span>Total Pembayaran:</span>
+                        <span id="summaryTotalPrice">Rp 299.000</span>
+                    </div>
+                </div>
+
+                <button id="btnProcessCheckout" class="btn-checkout" onclick="submitCheckoutRequest()">
+                    ⚡ PROSES PEMBAYARAN TRIPAY
+                </button>
+                <div id="checkoutErrorMsg" style="color: var(--danger); font-size: 0.85rem; font-weight: bold; margin-top: 10px; display: none; text-align: center;"></div>
+            </div>
+
+            <!-- ── INVOICE DISPLAY STEP ── -->
+            <div id="checkoutInvoiceStep" style="display: none;">
+                <div class="invoice-container">
+                    <div id="invStatusBadge" class="badge-status">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span>
+                        Menunggu Pembayaran
+                    </div>
+
+                    <h3 id="invTitle" class="modal-title">Tagihan Menunggu Pembayaran</h3>
+                    <p id="invSubtitle" class="modal-subtitle" style="margin-bottom: 15px;">Silakan selesaikan transfer untuk mengaktifkan lisensi sekolah Anda</p>
+
+                    <div class="license-key-box">
+                        <div class="license-key-title">KUNCI LISENSI ANDA (SIMPAN &amp; SALIN):</div>
+                        <div class="license-key-text" id="invLicenseKey">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px;" onclick="copyText('invLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 15px; text-align: left; gap: 8px; display: flex; flex-direction: column;">
+                        <div class="fee-row">
+                            <span>Nomor Invoice:</span>
+                            <span id="invNumber" style="font-weight: bold; color: var(--text-main);">INV-ORK-XXXX</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Metode Pembayaran:</span>
+                            <span id="invMethodName" style="font-weight: bold; color: var(--text-main);">QRIS</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px;">
+                            <span>TOTAL NOMINAL TRANSFER:</span>
+                            <span id="invTotalAmount" style="font-weight: 900; color: var(--accent); font-size: 1.15rem;">Rp 301.240</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px; font-size: 0.82rem; color: #FBBF24;">
+                            <span>BATAS WAKTU PEMBAYARAN:</span>
+                            <span id="invExpiryTime" style="font-weight: bold; color: #FBBF24;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Box Context (QRIS vs VA) -->
+                    <div id="qrisContainer" style="display: none; align-items: center; flex-direction: column;">
+                        <img id="qrisImageCode" class="qris-image" src="" alt="QRIS Code" onerror="document.getElementById('qrisContainer').style.display='none';">
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4;">Arahkan kamera e-wallet (OVO, GoPay, Dana, ShopeePay, LinkAja) atau mobile banking Anda ke kode QRIS di atas untuk membayar.</p>
+                    </div>
+
+                    <div id="vaContainer" style="display: none; align-items: center; flex-direction: column; width: 100%;">
+                        <div class="pay-code-box">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: var(--text-muted);">NOMOR REKENING / KODE BAYAR:</span>
+                            <span id="invPayCode" class="pay-code-number">1234567890</span>
+                            <button class="btn-copy" onclick="copyText('invPayCode', 'Kode pembayaran tersalin!')">📋 Salin Kode</button>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4; text-align: center;">Lakukan transfer nominal persis sesuai dengan instruksi yang tertera di bawah.</p>
+                    </div>
+
+                    <div class="instructions-container" id="invInstructionsList">
+                        <!-- dynamic accordions -->
+                    </div>
+
+                    <div id="invBottomBox" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border-dark); width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            Menunggu konfirmasi pembayaran instan...
+                        </div>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SUCCESS SCREEN STEP ── -->
+            <div id="checkoutSuccessStep" style="display: none;">
+                <div class="invoice-container">
+                    <span style="font-size: 4rem; display: block; margin-bottom: 15px; animation: scaleUp 0.3s ease;">🎉</span>
+                    <h3 class="modal-title" style="color: var(--success); font-size: 1.6rem; font-weight: 800;">Lisensi Berhasil Aktif!</h3>
+                    <p class="modal-subtitle" style="margin-bottom: 25px;">Sekolah Anda telah terverifikasi penuh dan siap menggunakan aplikasi</p>
+
+                    <div class="license-key-box" style="background-color: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="license-key-title" style="color: #A7F3D0;">KUNCI LISENSI AKTIF:</div>
+                        <div class="license-key-text" id="successLicenseKey" style="color: var(--success);">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #A7F3D0;" onclick="copyText('successLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 18px; text-align: left; gap: 10px; display: flex; flex-direction: column; margin-bottom: 25px;">
+                        <div class="fee-row">
+                            <span>Nama Sekolah:</span>
+                            <span id="successSchoolName" style="font-weight: bold; color: var(--text-main);">SMK Baru</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Masa Langganan:</span>
+                            <span id="successDurationName" style="font-weight: bold; color: var(--text-main);">Bulanan</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Status Lisensi:</span>
+                            <span style="font-weight: 800; color: var(--success);">AKTIF (APPROVED)</span>
+                        </div>
+                    </div>
+
+                    <!-- PROVISIONING LOADER & STATUS -->
+                    <div id="provisioningStatusBox" style="background-color: rgba(59, 130, 246, 0.05); padding: 16px; border-radius: 10px; border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 20px; text-align: left;">
+                        <div id="provisioningLoader" style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #93C5FD;">
+                            <div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>
+                            <span>Menyiapkan SSL Let's Encrypt & domain...</span>
+                        </div>
+                        <div id="provisioningText" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+                            Mohon tunggu sebentar, sistem sedang mengamankan subdomain sekolah Anda dengan sertifikat SSL HTTPS agar siap diakses secara aman.
+                        </div>
+                    </div>
+
+                    <a id="successAppLinkBtn" class="btn-primary" style="margin-top: 10px; width: 100%; justify-content: center; text-decoration: none; display: none; align-items: center; box-sizing: border-box;" href="#" target="_blank">🚀 BUKA PORTAL SEKOLAH ANDA</a>
+                    <button class="btn-secondary" style="margin-top: 12px; width: 100%; justify-content: center; box-sizing: border-box; padding: 12px;" onclick="closeCheckout()">TUTUP / SELESAI</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── COMPLIANCE FOOTER ── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> ORKESTRATOR UJIAN
+            </div>
+            <div class="footer-links">
+                <a href="/privacy.html" target="_blank" class="footer-link">Kebijakan Privasi</a>
+                <a href="/terms.html" target="_blank" class="footer-link">Ketentuan Layanan</a>
+                <a href="/refund.html" target="_blank" class="footer-link">Kebijakan Refund</a>
+                <a href="/contact.html" target="_blank" class="footer-link">Hubungi Kami</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Baraya Teknologi. Hak Cipta Dilindungi.</div>
+                <div>Sistem Proteksi Ujian Sekolah Terpercaya</div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- ── INTERACTIVE JAVASCRIPT (modular) ── -->
+    <script src="js/state.js?v=2.0"></script>
+    <script src="js/gateway.js?v=2.0"></script>
+    <script src="js/checkout.js?v=2.0"></script>
+    <script src="js/pricing.js?v=2.0"></script>
+    <script src="js/invoice.js?v=2.0"></script>
+    <script src="js/polling.js?v=2.0"></script>
+    <script src="js/lookup.js?v=2.0"></script>
+</body>
+</html>

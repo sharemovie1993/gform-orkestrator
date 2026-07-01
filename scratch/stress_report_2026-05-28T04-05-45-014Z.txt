@@ -1,0 +1,203 @@
+════════════════════════════════════════════════════════════════════════
+  LAPORAN STRESS TEST BIDIRECTIONAL - FULL 2 ARAH
+  Proyek     : GForm Orkestrator | Tenant: SMKN 1 PLD
+  Waktu Mulai: 2026-05-28T04:05:45.016Z
+  Target     : 1400 pengguna, 150 konkuren simultan
+════════════════════════════════════════════════════════════════════════
+
+🔄 [PERSIAPAN] Mengambil 20 sampel NISN siswa aktif dari Supabase...
+✅ [PERSIAPAN] Berhasil mengambil 20 sampel siswa.
+
+   Daftar siswa sampel yang digunakan:
+   1. NISN: 2526100002  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ABDUL RAHMAN
+   2. NISN: 2526100003  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ABEEL DIVA SARI
+   3. NISN: 2526100004  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ABIL IBRAHIM
+   4. NISN: 2526100005  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ADJI SEPTIYA PUTRA
+   5. NISN: 2526100006  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AHMAD DAVIN NABIL NURZAKY
+   6. NISN: 2526100007  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AHMAD JENAN
+   7. NISN: 2526100008  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AHMAD NASRULLOH
+   8. NISN: 2526100009  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AHMAD NAZRIL PERMADI
+   9. NISN: 2526100010  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AHMAD SALDAN
+   10. NISN: 2526100011  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: AKBARUL GOFUR
+   11. NISN: 2526100012  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ALBIAN SUKMA MAULANA
+   12. NISN: 2526100013  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ANDIKA FARHAN PAUZI
+   13. NISN: 2526100014  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ANGGA PRADITA
+   14. NISN: 2526100015  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ARYAPUTRA PERMANA
+   15. NISN: 2526100016  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ASEP MAULANA
+   16. NISN: 2526100017  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: ASEP MUHAMMAD WILDAN
+   17. NISN: 2526100018  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: BAYU ALPIN NUGRAHA
+   18. NISN: 2526100019  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: DADAN NAWALUDIN
+   19. NISN: 2526100020  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: DAGUSTAN MAQI
+   20. NISN: 2526100021  |  Kelas ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc  |  Nama: DEDEN ZULIAN
+
+========================================================================
+🚀 [STAGE] STAGE 1 — Nginx VPS Web Server (Akses Landing Page)
+   Total Request : 1400  |  Concurrency : 150 simultan
+========================================================================
+   ⏳ Progress : 280/1400 (20%)
+   ⏳ Progress : 560/1400 (40%)
+   ⏳ Progress : 840/1400 (60%)
+   ⏳ Progress : 1120/1400 (80%)
+   ⏳ Progress : 1400/1400 (100%)
+
+📋 [HASIL] STAGE 1 — Nginx VPS Web Server (Akses Landing Page)
+   ✅ Sukses (2xx)        : 1400 / 1400  (100.0%)
+   ❌ Gagal / Timeout     : 0 / 1400  (0.0%)
+   ⏱️  Total Waktu         : 0.77 detik
+   ⚡ Throughput (RPS)    : 1818.18 Request / Detik
+   📉 Latency Rata-rata   : 77.6 ms
+   🟢 Latency Tercepat    : 13 ms
+   🔴 Latency Terlambat   : 484 ms
+
+🔍 [VALIDASI RESPONSE] Contoh Response Nyata dari VPS:
+
+   --- Sampel Response #1 (Nginx VPS) ---
+   HTTP Status  : 200
+   Latency      : 448 ms
+   Ukuran Body  : 1415 bytes
+   Cuplikan Body: <!DOCTYPE html> <html lang="en">   <head>     <meta charset="utf-8" />     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />     <meta name="view...
+
+   --- Sampel Response #2 (Nginx VPS) ---
+   HTTP Status  : 200
+   Latency      : 416 ms
+   Ukuran Body  : 1415 bytes
+   Cuplikan Body: <!DOCTYPE html> <html lang="en">   <head>     <meta charset="utf-8" />     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />     <meta name="view...
+
+   --- Sampel Response #3 (Nginx VPS) ---
+   HTTP Status  : 200
+   Latency      : 411 ms
+   Ukuran Body  : 1415 bytes
+   Cuplikan Body: <!DOCTYPE html> <html lang="en">   <head>     <meta charset="utf-8" />     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />     <meta name="view...
+
+========================================================================
+🚀 [STAGE 2+3] Flow Penuh 2 Arah: Login NISN → Parse → Load Daftar Ujian
+   Total Request : 1400  |  Concurrency : 150 simultan
+========================================================================
+   ⏳ Progress : 280/1400 (20%)
+   ⏳ Progress : 560/1400 (40%)
+   ⏳ Progress : 840/1400 (60%)
+   ⏳ Progress : 1120/1400 (80%)
+   ⏳ Progress : 1400/1400 (100%)
+
+📋 [HASIL FLOW 2 ARAH]
+   ✅ Login NISN Sukses        : 1400 / 1400  (100.0%)
+   ✅ Load Daftar Ujian Sukses : 1400 / 1400  (100.0%)
+   ✅ Full Flow Sukses (2/2)   : 1400 / 1400  (100.0%)
+   ❌ Ada Kegagalan            : 0 / 1400
+   ⏱️  Total Waktu Flow        : 3.62 detik
+   ⚡ Throughput               : 386.74 Sesi Siswa / Detik
+   📉 Latency Gabungan Rata2  : 366.6 ms (Login + Ujian)
+   🟢 Latency Gabungan Tercep.: 240 ms
+   🔴 Latency Gabungan Terlam.: 1050 ms
+
+========================================================================
+🔍 [BUKTI INTEGRITAS] Sampel Response Nyata yang Diterima & Divalidasi
+========================================================================
+
+   ┌─ Siswa #1 ──────────────────────────────────────────────
+   │  NISN         : 2526100010
+   │  Nama Siswa   : AHMAD SALDAN
+   │  Kelas        : X TE 1 (ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc)
+   │
+   │  [REQUEST 1 — Login NISN]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 466 ms
+   │  Record Didapat: 1 data siswa
+   │
+   │  [REQUEST 2 — Daftar Ujian (kelas_id dari Response Login)]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 215 ms
+   │  Jumlah Ujian : 4 ujian ditemukan
+   │  Ujian Pertama: PROJEK IPAS | Guru: ERWIN BEGASI BUDI SAMPURNO, S.T. | Tgl: 2026-06-04
+   │  Link Ujian   : https://forms.gle/CfxNTW5qRGMdfKje6...
+   │  Total Waktu  : 681 ms (Login + Load Ujian)
+   └──────────────────────────────────────────────────────────
+
+   ┌─ Siswa #2 ──────────────────────────────────────────────
+   │  NISN         : 2526100005
+   │  Nama Siswa   : ADJI SEPTIYA PUTRA
+   │  Kelas        : X TE 1 (ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc)
+   │
+   │  [REQUEST 1 — Login NISN]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 449 ms
+   │  Record Didapat: 1 data siswa
+   │
+   │  [REQUEST 2 — Daftar Ujian (kelas_id dari Response Login)]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 218 ms
+   │  Jumlah Ujian : 4 ujian ditemukan
+   │  Ujian Pertama: PROJEK IPAS | Guru: ERWIN BEGASI BUDI SAMPURNO, S.T. | Tgl: 2026-06-04
+   │  Link Ujian   : https://forms.gle/CfxNTW5qRGMdfKje6...
+   │  Total Waktu  : 667 ms (Login + Load Ujian)
+   └──────────────────────────────────────────────────────────
+
+   ┌─ Siswa #3 ──────────────────────────────────────────────
+   │  NISN         : 2526100013
+   │  Nama Siswa   : ANDIKA FARHAN PAUZI
+   │  Kelas        : X TE 1 (ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc)
+   │
+   │  [REQUEST 1 — Login NISN]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 462 ms
+   │  Record Didapat: 1 data siswa
+   │
+   │  [REQUEST 2 — Daftar Ujian (kelas_id dari Response Login)]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 208 ms
+   │  Jumlah Ujian : 4 ujian ditemukan
+   │  Ujian Pertama: PROJEK IPAS | Guru: ERWIN BEGASI BUDI SAMPURNO, S.T. | Tgl: 2026-06-04
+   │  Link Ujian   : https://forms.gle/CfxNTW5qRGMdfKje6...
+   │  Total Waktu  : 670 ms (Login + Load Ujian)
+   └──────────────────────────────────────────────────────────
+
+   ┌─ Siswa #4 ──────────────────────────────────────────────
+   │  NISN         : 2526100009
+   │  Nama Siswa   : AHMAD NAZRIL PERMADI
+   │  Kelas        : X TE 1 (ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc)
+   │
+   │  [REQUEST 1 — Login NISN]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 463 ms
+   │  Record Didapat: 1 data siswa
+   │
+   │  [REQUEST 2 — Daftar Ujian (kelas_id dari Response Login)]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 206 ms
+   │  Jumlah Ujian : 4 ujian ditemukan
+   │  Ujian Pertama: PROJEK IPAS | Guru: ERWIN BEGASI BUDI SAMPURNO, S.T. | Tgl: 2026-06-04
+   │  Link Ujian   : https://forms.gle/CfxNTW5qRGMdfKje6...
+   │  Total Waktu  : 669 ms (Login + Load Ujian)
+   └──────────────────────────────────────────────────────────
+
+   ┌─ Siswa #5 ──────────────────────────────────────────────
+   │  NISN         : 2526100007
+   │  Nama Siswa   : AHMAD JENAN
+   │  Kelas        : X TE 1 (ID: 68b6f173-d196-4f53-909f-8e1e26eb7adc)
+   │
+   │  [REQUEST 1 — Login NISN]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 451 ms
+   │  Record Didapat: 1 data siswa
+   │
+   │  [REQUEST 2 — Daftar Ujian (kelas_id dari Response Login)]
+   │  HTTP Status  : 200 ✅
+   │  Latency      : 218 ms
+   │  Jumlah Ujian : 4 ujian ditemukan
+   │  Ujian Pertama: PROJEK IPAS | Guru: ERWIN BEGASI BUDI SAMPURNO, S.T. | Tgl: 2026-06-04
+   │  Link Ujian   : https://forms.gle/CfxNTW5qRGMdfKje6...
+   │  Total Waktu  : 669 ms (Login + Load Ujian)
+   └──────────────────────────────────────────────────────────
+
+════════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR STRESS TEST
+════════════════════════════════════════════════════════════════════════
+  Waktu Selesai    : 2026-05-28T04:05:50.072Z
+  Total Sesi Diuji : 1400 sesi (mewakili 1400 siswa)
+  Concurrency      : 150 siswa simultan
+  Total Request    : 2800 request HTTP (2 per sesi)
+  Stage 1 VPS      : 1400/1400 sukses (1818.18 RPS)
+  Stage 2+3 Flow   : 1400/1400 sukses full flow
+  Kegagalan Total  : 0
+  Kesimpulan       : ✅ SEMUA LULUS — SISTEM SIAP UJIAN SENIN
+════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,1368 @@
+══════════════════════════════════════════════════════════════════════
+  STRESS TEST VIA PROTOKOL (DIRECT API) — HTTP Keep-Alive
+  URL Target  : https://supabaselocal.absenta.id
+  Concurrent  : 100 koneksi bersamaan
+  Waktu Mulai : 2026-05-28T15:19:05.117Z
+  Output Dir  : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-19-05-114Z
+══════════════════════════════════════════════════════════════════════
+
+🔄 Mengambil 100 sampel siswa dari Supabase Cloud...
+✅ 100 data siswa terunduh.
+   1. NISN: 2425100255 | AHMAD AJWAR SETIADI | XI TKR 1
+   2. NISN: 2425100221 | AHMAD ARIF AZKA | XI TP 2
+   3. NISN: 2526100231 | AHMAD BARKAH | X TM 2
+   4. NISN: 2526100369 | AHMAD DADIH | X TO 3
+   5. NISN: 2526100140 | AHMAD DANIAL | X TE 4
+   6. NISN: 2526100006 | AHMAD DAVIN NABIL NURZAKY | X TE 1
+   7. NISN: 2526100280 | AHMAD DILFA DANIAR | X TO 1
+   8. NISN: 2425100145 | AHMAD FAHRI SUDARNA | XI TAV 2
+   9. NISN: 2526100186 | AHMAD FAUZI | X TM 1
+   10. NISN: 2425100111 | AHMAD FAUZI | XI TAV 1
+   11. NISN: 2425100256 | AHMAD FAUZI | XI TKR 1
+   12. NISN: 2526100414 | AHMAD FAUZI | X TO 4
+   13. NISN: 2526100322 | AHMAD FAUZI ALFADLAN | X TO 2
+   14. NISN: 2425100003 | AHMAD FAUZI SOFYAN | XI TOI 1
+   15. NISN: 2526100094 | AHMAD HIBAN JAELANI | X TE 3
+   16. NISN: 2526100463 | AHMAD IDAM MUCHLIS | X TJKT 1
+   17. NISN: 2526100007 | AHMAD JENAN | X TE 1
+   18. NISN: 2425100363 | AHMAD LUTHFI MAULANA | XI TSM 2
+   19. NISN: 2425100364 | AHMAD MAULANA MUFID | XI TSM 2
+   20. NISN: 2526100008 | AHMAD NASRULLOH | X TE 1
+   21. NISN: 2526100009 | AHMAD NAZRIL PERMADI | X TE 1
+   22. NISN: 2425100037 | AHMAD NURYANA | XI TOI 2
+   23. NISN: 2425100004 | AHMAD REHAN | XI TOI 1
+   24. NISN: 2425100328 | AHMAD RIPALDI | XI TSM 1
+   25. NISN: 2526100095 | AHMAD SAEPU TAPTA JANI | X TE 3
+   26. NISN: 2526100010 | AHMAD SALDAN | X TE 1
+   27. NISN: 2526100049 | AHMAD SANUSI | X TE 2
+   28. NISN: 2425100038 | AHMAD SUBHAN | XI TOI 2
+   29. NISN: 2425100075 | AHMAD SYAIFUL HIDAYAT | XI TOI 3
+   30. NISN: 2526100323 | AHMAD TAUFIK HERLANSYA | X TO 2
+   31. NISN: 2425100291 | AHMAD TOLIB AZIS RAMADHAN | XI TKR 2
+   32. NISN: 2526100415 | AHMAD YOPI JUMAEDI | X TO 4
+   33. NISN: 2526100232 | AHMAD ZAINUL IHWAN | X TM 2
+   34. NISN: 2425100433 | AHONG TRIYANTO | XI TKJ 2
+   35. NISN: 2425100648 | AI SOPIAH | XI KUL 2
+   36. NISN: 2425100614 | AIRA TRI ARYANI | XI KUL 1
+   37. NISN: 2425100577 | AISAH WULAN MAULIDINA | XI PHT 2
+   38. NISN: 2526100689 | AJENG CAHYA AULIYA | X KUL
+   39. NISN: 2425100649 | AJENG SITI KAUKAH | XI KUL 2
+   40. NISN: 2425100112 | AKBAR AHMAD RAFIQ | XI TAV 1
+   41. NISN: 2526100644 | AKBAR FAUZI | X PHT
+   42. NISN: 2526100096 | AKBAR MAULANA | X TE 3
+   43. NISN: 2425100292 | AKBAR RIZKI MAULANA | XI TKR 2
+   44. NISN: 2526100011 | AKBARUL GOFUR | X TE 1
+   45. NISN: 2526100187 | AKHMAD LATIF | X TM 1
+   46. NISN: 2425100113 | AKMAL JUL PUTRA ELJA | XI TAV 1
+   47. NISN: 2425100005 | AKMAL LUTFIA ASHARI | XI TOI 1
+   48. NISN: 2526100553 | AL ASYA SYARKLA | X AKL 1
+   49. NISN: 2425100186 | AL FATHIR ZUNIOR | XI TP 1
+   50. NISN: 2526100370 | AL HAFIZ SHABIR SALAM | X TO 3
+   51. NISN: 2526100012 | ALBIAN SUKMA MAULANA | X TE 1
+   52. NISN: 2526100050 | ALDI AFILLAH BIFARY | X TE 2
+   53. NISN: 2425100146 | ALDI HARDIANSYAH | XI TAV 2
+   54. NISN: 2425100039 | ALDI MANSYUR | XI TOI 2
+   55. NISN: 2425100257 | ALDI PADILAH | XI TKR 1
+   56. NISN: 2425100365 | ALDI RAMDANI | XI TSM 2
+   57. NISN: 2425100006 | ALDI SAPUTRA | XI TOI 1
+   58. NISN: 2526100324 | ALDI SETIAWAN | X TO 2
+   59. NISN: 2425100542 | ALDIYANSYAH | XI PHT 1
+   60. NISN: 2425100293 | ALDO JUNIAWAN | XI TKR 2
+   61. NISN: 2526100599 | ALENA NUR AWALIZA | X AKL 2
+   62. NISN: 2425100040 | ALFATH MAULANA YUSUF | XI TOI 2
+   63. NISN: 2425100578 | ALFIAH LUTFIANTI | XI PHT 2
+   64. NISN: 2526100141 | ALFIAN BAGUS RAMADHAN | X TE 4
+   65. NISN: 2526100509 | ALFIAN FIRDAUS | X TJKT 2
+   66. NISN: 2425100007 | ALFIAN NURYAMAN | XI TOI 1
+   67. NISN: 2425100543 | ALFIN | XI PHT 1
+   68. NISN: 2526100097 | ALFIN DESTIAN | X TE 3
+   69. NISN: 2526100416 | ALGI FALGIAN | X TO 4
+   70. NISN: 2425100329 | ALI AKBAR | XI TSM 1
+   71. NISN: 2526100417 | ALI PERMANA | X TO 4
+   72. NISN: 2526100098 | ALIEF MUHAMAD ARRIADY | X TE 3
+   73. NISN: 2526100233 | ALIF MAULANA SURYADI | X TM 2
+   74. NISN: 2526100188 | ALIKHA NUR AZIZAH | X TM 1
+   75. NISN: 2526100645 | ALIN NURFAIDA | X PHT
+   76. NISN: 2425100579 | ALIP | XI PHT 2
+   77. NISN: 2526100646 | ALIPIA MAULIDIA PUTRI | X PHT
+   78. NISN: 2425100076 | ALPARIJAL | XI TOI 3
+   79. NISN: 2526100371 | ALPIN AZIZ | X TO 3
+   80. NISN: 2526100234 | ALVIAN PRAMUDYA AZHAR | X TM 2
+   81. NISN: 2425100544 | ALVIAN YUSUF | XI PHT 1
+   82. NISN: 2425100222 | ALVIN IRHAM PADILLAH | XI TP 2
+   83. NISN: 2425100580 | ALVINA EFARINA | XI PHT 2
+   84. NISN: 2425100258 | ALWIS SAEPUL ADHA | XI TKR 1
+   85. NISN: 2526100647 | ALYA RAMADANI | X PHT
+   86. NISN: 2526100690 | ALYA RENAULTFA HALAWATI | X KUL
+   87. NISN: 2526100051 | ALZIAN ILHAM PRATAMA | X TE 2
+   88. NISN: 2425100615 | AMEL AULIYA | XI KUL 1
+   89. NISN: 2425100505 | AMIRA SANIA | XI AK 2
+   90. NISN: 2425100008 | ANANG ANDRIANSYAH | XI TOI 1
+   91. NISN: 2526100325 | ANDI KURNIAWAN | X TO 2
+   92. NISN: 2526100013 | ANDIKA FARHAN PAUZI | X TE 1
+   93. NISN: 2425100366 | ANDIKA PURNAMA DANI | XI TSM 2
+   94. NISN: 2526100464 | ANDINI SAHIRA RAMADANI | X TJKT 1
+   95. NISN: 2526100052 | ANDITIKACHIE | X TE 2
+   96. NISN: 2425100147 | ANDRA RAMADHAN | XI TAV 2
+   97. NISN: 2526100554 | ANDRI VALENTINO RUKMANA | X AKL 1
+   98. NISN: 2526100691 | ANE AWALIAH | X KUL
+   99. NISN: 2526100600 | ANGELINA TIVANY | X AKL 2
+   100. NISN: 2526100014 | ANGGA PRADITA | X TE 1
+
+🚀 Memulai simulasi transaksi paralel protocol-based...
+──────────────────────────────────────────────────────────────────────
+  SIMULASI LOGIN & AMBIL SOAL 100 SISWA BERSAMAAN
+──────────────────────────────────────────────────────────────────────
+   ❌ [Siswa #19] AHMAD MAULANA MUFID — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #12] AHMAD FAUZI — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #36] AIRA TRI ARYANI — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #10] AHMAD FAUZI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #2] AHMAD ARIF AZKA — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #18] AHMAD LUTHFI MAULANA — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #3] AHMAD BARKAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #20] AHMAD NASRULLOH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #9] AHMAD FAUZI — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #60] ALDO JUNIAWAN — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #1] AHMAD AJWAR SETIADI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #40] AKBAR AHMAD RAFIQ — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #31] AHMAD TOLIB AZIS RAMADHAN — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #34] AHONG TRIYANTO — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #7] AHMAD DILFA DANIAR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #4] AHMAD DADIH — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #63] ALFIAH LUTFIANTI — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #17] AHMAD JENAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #5] AHMAD DANIAL — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #93] ANDIKA PURNAMA DANI — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #59] ALDIYANSYAH — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #83] ALVINA EFARINA — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #88] AMEL AULIYA — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #42] AKBAR MAULANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #22] AHMAD NURYANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #64] ALFIAN BAGUS RAMADHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #15] AHMAD HIBAN JAELANI — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #76] ALIP — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #67] ALFIN — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #38] AJENG CAHYA AULIYA — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #35] AI SOPIAH — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #81] ALVIAN YUSUF — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #98] ANE AWALIAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #8] AHMAD FAHRI SUDARNA — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #24] AHMAD RIPALDI — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #54] ALDI MANSYUR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #32] AHMAD YOPI JUMAEDI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #85] ALYA RAMADANI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #86] ALYA RENAULTFA HALAWATI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #55] ALDI PADILAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #14] AHMAD FAUZI SOFYAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #75] ALIN NURFAIDA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #62] ALFATH MAULANA YUSUF — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #16] AHMAD IDAM MUCHLIS — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #70] ALI AKBAR — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #43] AKBAR RIZKI MAULANA — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #45] AKHMAD LATIF — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #89] AMIRA SANIA — ERROR: Siswa tidak ditemukan di database lokal
+   ❌ [Siswa #39] AJENG SITI KAUKAH — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #6] AHMAD DAVIN NABIL NURZAKY — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #56] ALDI RAMDANI — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #44] AKBARUL GOFUR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #79] ALPIN AZIZ — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #28] AHMAD SUBHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #71] ALI PERMANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #23] AHMAD REHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #49] AL FATHIR ZUNIOR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #27] AHMAD SANUSI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #25] AHMAD SAEPU TAPTA JANI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #77] ALIPIA MAULIDIA PUTRI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #26] AHMAD SALDAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #61] ALENA NUR AWALIZA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #58] ALDI SETIAWAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #92] ANDIKA FARHAN PAUZI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #96] ANDRA RAMADHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #66] ALFIAN NURYAMAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #29] AHMAD SYAIFUL HIDAYAT — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #30] AHMAD TAUFIK HERLANSYA — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #37] AISAH WULAN MAULIDINA — ERROR: Siswa tidak ditemukan di database lokal
+   ✅ [Siswa #74] ALIKHA NUR AZIZAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #82] ALVIN IRHAM PADILLAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #65] ALFIAN FIRDAUS — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #80] ALVIAN PRAMUDYA AZHAR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #21] AHMAD NAZRIL PERMADI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #51] ALBIAN SUKMA MAULANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #41] AKBAR FAUZI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #48] AL ASYA SYARKLA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #13] AHMAD FAUZI ALFADLAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #99] ANGELINA TIVANY — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #97] ANDRI VALENTINO RUKMANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #90] ANANG ANDRIANSYAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #73] ALIF MAULANA SURYADI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #47] AKMAL LUTFIA ASHARI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #95] ANDITIKACHIE — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #11] AHMAD FAUZI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #94] ANDINI SAHIRA RAMADANI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #78] ALPARIJAL — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #100] ANGGA PRADITA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #46] AKMAL JUL PUTRA ELJA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #91] ANDI KURNIAWAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #57] ALDI SAPUTRA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #87] ALZIAN ILHAM PRATAMA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #52] ALDI AFILLAH BIFARY — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #50] AL HAFIZ SHABIR SALAM — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #33] AHMAD ZAINUL IHWAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #72] ALIEF MUHAMAD ARRIADY — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #53] ALDI HARDIANSYAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #69] ALGI FALGIAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #68] ALFIN DESTIAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #84] ALWIS SAEPUL ADHA — Berhasil login & ambil daftar ujian
+
+✅ Semua koneksi stress test selesai.
+
+══════════════════════════════════════════════════════════════════════
+  LAPORAN DETAIL PER SISWA
+══════════════════════════════════════════════════════════════════════
+
+[Siswa #1] ✅ AHMAD AJWAR SETIADI | XI TKR 1 | NISN: 2425100255
+  Total Waktu : 1141 ms
+  Step 1: [OK] Get Tenant Info — 86 ms
+  Step 2: [OK] Cek NISN Lokal — 44 ms | NISN: 2425100255
+  Step 3: [OK] Tulis Log Login — 65 ms
+  Step 4: [OK] Get Daftar Guru — 197 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 749 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: DANI SETIAWAN, S.E.)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+
+[Siswa #2] ✅ AHMAD ARIF AZKA | XI TP 2 | NISN: 2425100221
+  Total Waktu : 798 ms
+  Step 1: [OK] Get Tenant Info — 83 ms
+  Step 2: [OK] Cek NISN Lokal — 47 ms | NISN: 2425100221
+  Step 3: [OK] Tulis Log Login — 61 ms
+  Step 4: [OK] Get Daftar Guru — 217 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 390 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T.)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T.)
+
+[Siswa #3] ✅ AHMAD BARKAH | X TM 2 | NISN: 2526100231
+  Total Waktu : 866 ms
+  Step 1: [OK] Get Tenant Info — 85 ms
+  Step 2: [OK] Cek NISN Lokal — 48 ms | NISN: 2526100231
+  Step 3: [OK] Tulis Log Login — 67 ms
+  Step 4: [OK] Get Daftar Guru — 154 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 512 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #4] ✅ AHMAD DADIH | X TO 3 | NISN: 2526100369
+  Total Waktu : 1301 ms
+  Step 1: [OK] Get Tenant Info — 81 ms
+  Step 2: [OK] Cek NISN Lokal — 52 ms | NISN: 2526100369
+  Step 3: [OK] Tulis Log Login — 155 ms
+  Step 4: [OK] Get Daftar Guru — 171 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 842 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #5] ✅ AHMAD DANIAL | X TE 4 | NISN: 2526100140
+  Total Waktu : 1569 ms
+  Step 1: [OK] Get Tenant Info — 79 ms
+  Step 2: [OK] Cek NISN Lokal — 66 ms | NISN: 2526100140
+  Step 3: [OK] Tulis Log Login — 603 ms
+  Step 4: [OK] Get Daftar Guru — 729 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 92 ms | Ditemukan 6 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - DDPK (Oleh: Kelvin Suharvianto, ST)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #6] ✅ AHMAD DAVIN NABIL NURZAKY | X TE 1 | NISN: 2526100006
+  Total Waktu : 2680 ms
+  Step 1: [OK] Get Tenant Info — 90 ms
+  Step 2: [OK] Cek NISN Lokal — 47 ms | NISN: 2526100006
+  Step 3: [OK] Tulis Log Login — 119 ms
+  Step 4: [OK] Get Daftar Guru — 1476 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 948 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #7] ✅ AHMAD DILFA DANIAR | X TO 1 | NISN: 2526100280
+  Total Waktu : 1253 ms
+  Step 1: [OK] Get Tenant Info — 84 ms
+  Step 2: [OK] Cek NISN Lokal — 70 ms | NISN: 2526100280
+  Step 3: [OK] Tulis Log Login — 316 ms
+  Step 4: [OK] Get Daftar Guru — 486 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 297 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #8] ✅ AHMAD FAHRI SUDARNA | XI TAV 2 | NISN: 2425100145
+  Total Waktu : 2252 ms
+  Step 1: [OK] Get Tenant Info — 89 ms
+  Step 2: [OK] Cek NISN Lokal — 80 ms | NISN: 2425100145
+  Step 3: [OK] Tulis Log Login — 762 ms
+  Step 4: [OK] Get Daftar Guru — 556 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 765 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #9] ✅ AHMAD FAUZI | X TM 1 | NISN: 2526100186
+  Total Waktu : 968 ms
+  Step 1: [OK] Get Tenant Info — 76 ms
+  Step 2: [OK] Cek NISN Lokal — 70 ms | NISN: 2526100186
+  Step 3: [OK] Tulis Log Login — 96 ms
+  Step 4: [OK] Get Daftar Guru — 146 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 579 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #10] ✅ AHMAD FAUZI | XI TAV 1 | NISN: 2425100111
+  Total Waktu : 551 ms
+  Step 1: [OK] Get Tenant Info — 100 ms
+  Step 2: [OK] Cek NISN Lokal — 65 ms | NISN: 2425100111
+  Step 3: [OK] Tulis Log Login — 110 ms
+  Step 4: [OK] Get Daftar Guru — 143 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 133 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - PKK (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #11] ✅ AHMAD FAUZI | XI TKR 1 | NISN: 2425100256
+  Total Waktu : 3783 ms
+  Step 1: [OK] Get Tenant Info — 92 ms
+  Step 2: [OK] Cek NISN Lokal — 3195 ms | NISN: 2425100256
+  Step 3: [OK] Tulis Log Login — 196 ms
+  Step 4: [OK] Get Daftar Guru — 126 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 174 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: DANI SETIAWAN, S.E.)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+
+[Siswa #12] ✅ AHMAD FAUZI | X TO 4 | NISN: 2526100414
+  Total Waktu : 472 ms
+  Step 1: [OK] Get Tenant Info — 88 ms
+  Step 2: [OK] Cek NISN Lokal — 65 ms | NISN: 2526100414
+  Step 3: [OK] Tulis Log Login — 88 ms
+  Step 4: [OK] Get Daftar Guru — 150 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 81 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #13] ✅ AHMAD FAUZI ALFADLAN | X TO 2 | NISN: 2526100322
+  Total Waktu : 3667 ms
+  Step 1: [OK] Get Tenant Info — 104 ms
+  Step 2: [OK] Cek NISN Lokal — 96 ms | NISN: 2526100322
+  Step 3: [OK] Tulis Log Login — 153 ms
+  Step 4: [OK] Get Daftar Guru — 3193 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 120 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #14] ✅ AHMAD FAUZI SOFYAN | XI TOI 1 | NISN: 2425100003
+  Total Waktu : 2363 ms
+  Step 1: [OK] Get Tenant Info — 108 ms
+  Step 2: [OK] Cek NISN Lokal — 538 ms | NISN: 2425100003
+  Step 3: [OK] Tulis Log Login — 664 ms
+  Step 4: [OK] Get Daftar Guru — 962 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 91 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #15] ✅ AHMAD HIBAN JAELANI | X TE 3 | NISN: 2526100094
+  Total Waktu : 1758 ms
+  Step 1: [OK] Get Tenant Info — 108 ms
+  Step 2: [OK] Cek NISN Lokal — 73 ms | NISN: 2526100094
+  Step 3: [OK] Tulis Log Login — 102 ms
+  Step 4: [OK] Get Daftar Guru — 116 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1359 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #16] ✅ AHMAD IDAM MUCHLIS | X TJKT 1 | NISN: 2526100463
+  Total Waktu : 2474 ms
+  Step 1: [OK] Get Tenant Info — 124 ms
+  Step 2: [OK] Cek NISN Lokal — 130 ms | NISN: 2526100463
+  Step 3: [OK] Tulis Log Login — 721 ms
+  Step 4: [OK] Get Daftar Guru — 149 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1349 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #17] ✅ AHMAD JENAN | X TE 1 | NISN: 2526100007
+  Total Waktu : 1369 ms
+  Step 1: [OK] Get Tenant Info — 134 ms
+  Step 2: [OK] Cek NISN Lokal — 88 ms | NISN: 2526100007
+  Step 3: [OK] Tulis Log Login — 153 ms
+  Step 4: [OK] Get Daftar Guru — 295 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 699 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #18] ❌ AHMAD LUTHFI MAULANA | XI TSM 2 | NISN: 2425100363
+  Total Waktu : 672 ms
+  Step 1: [OK] Get Tenant Info — 353 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #19] ❌ AHMAD MAULANA MUFID | XI TSM 2 | NISN: 2425100364
+  Total Waktu : 325 ms
+  Step 1: [OK] Get Tenant Info — 129 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #20] ✅ AHMAD NASRULLOH | X TE 1 | NISN: 2526100008
+  Total Waktu : 801 ms
+  Step 1: [OK] Get Tenant Info — 284 ms
+  Step 2: [OK] Cek NISN Lokal — 114 ms | NISN: 2526100008
+  Step 3: [OK] Tulis Log Login — 134 ms
+  Step 4: [OK] Get Daftar Guru — 154 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 115 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #21] ✅ AHMAD NAZRIL PERMADI | X TE 1 | NISN: 2526100009
+  Total Waktu : 3469 ms
+  Step 1: [OK] Get Tenant Info — 152 ms
+  Step 2: [OK] Cek NISN Lokal — 829 ms | NISN: 2526100009
+  Step 3: [OK] Tulis Log Login — 2232 ms
+  Step 4: [OK] Get Daftar Guru — 148 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 108 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #22] ✅ AHMAD NURYANA | XI TOI 2 | NISN: 2425100037
+  Total Waktu : 1627 ms
+  Step 1: [OK] Get Tenant Info — 141 ms
+  Step 2: [OK] Cek NISN Lokal — 169 ms | NISN: 2425100037
+  Step 3: [OK] Tulis Log Login — 230 ms
+  Step 4: [OK] Get Daftar Guru — 196 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 891 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #23] ✅ AHMAD REHAN | XI TOI 1 | NISN: 2425100004
+  Total Waktu : 2840 ms
+  Step 1: [OK] Get Tenant Info — 1985 ms
+  Step 2: [OK] Cek NISN Lokal — 93 ms | NISN: 2425100004
+  Step 3: [OK] Tulis Log Login — 457 ms
+  Step 4: [OK] Get Daftar Guru — 228 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 77 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #24] ❌ AHMAD RIPALDI | XI TSM 1 | NISN: 2425100328
+  Total Waktu : 2091 ms
+  Step 1: [OK] Get Tenant Info — 1290 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #25] ✅ AHMAD SAEPU TAPTA JANI | X TE 3 | NISN: 2526100095
+  Total Waktu : 2917 ms
+  Step 1: [OK] Get Tenant Info — 887 ms
+  Step 2: [OK] Cek NISN Lokal — 230 ms | NISN: 2526100095
+  Step 3: [OK] Tulis Log Login — 550 ms
+  Step 4: [OK] Get Daftar Guru — 1133 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 117 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #26] ✅ AHMAD SALDAN | X TE 1 | NISN: 2526100010
+  Total Waktu : 2999 ms
+  Step 1: [OK] Get Tenant Info — 239 ms
+  Step 2: [OK] Cek NISN Lokal — 114 ms | NISN: 2526100010
+  Step 3: [OK] Tulis Log Login — 2144 ms
+  Step 4: [OK] Get Daftar Guru — 99 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 402 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #27] ✅ AHMAD SANUSI | X TE 2 | NISN: 2526100049
+  Total Waktu : 2878 ms
+  Step 1: [OK] Get Tenant Info — 299 ms
+  Step 2: [OK] Cek NISN Lokal — 108 ms | NISN: 2526100049
+  Step 3: [OK] Tulis Log Login — 152 ms
+  Step 4: [OK] Get Daftar Guru — 642 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1677 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #28] ✅ AHMAD SUBHAN | XI TOI 2 | NISN: 2425100038
+  Total Waktu : 2603 ms
+  Step 1: [OK] Get Tenant Info — 160 ms
+  Step 2: [OK] Cek NISN Lokal — 291 ms | NISN: 2425100038
+  Step 3: [OK] Tulis Log Login — 1645 ms
+  Step 4: [OK] Get Daftar Guru — 395 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 112 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #29] ✅ AHMAD SYAIFUL HIDAYAT | XI TOI 3 | NISN: 2425100075
+  Total Waktu : 3156 ms
+  Step 1: [OK] Get Tenant Info — 1286 ms
+  Step 2: [OK] Cek NISN Lokal — 110 ms | NISN: 2425100075
+  Step 3: [OK] Tulis Log Login — 111 ms
+  Step 4: [OK] Get Daftar Guru — 1347 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 301 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - MPP (Oleh: Aceng Nurmawan, S.T.)
+
+[Siswa #30] ✅ AHMAD TAUFIK HERLANSYA | X TO 2 | NISN: 2526100323
+  Total Waktu : 3210 ms
+  Step 1: [OK] Get Tenant Info — 142 ms
+  Step 2: [OK] Cek NISN Lokal — 360 ms | NISN: 2526100323
+  Step 3: [OK] Tulis Log Login — 2419 ms
+  Step 4: [OK] Get Daftar Guru — 160 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 129 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #31] ❌ AHMAD TOLIB AZIS RAMADHAN | XI TKR 2 | NISN: 2425100291
+  Total Waktu : 900 ms
+  Step 1: [OK] Get Tenant Info — 710 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #32] ✅ AHMAD YOPI JUMAEDI | X TO 4 | NISN: 2526100415
+  Total Waktu : 2069 ms
+  Step 1: [OK] Get Tenant Info — 205 ms
+  Step 2: [OK] Cek NISN Lokal — 68 ms | NISN: 2526100415
+  Step 3: [OK] Tulis Log Login — 72 ms
+  Step 4: [OK] Get Daftar Guru — 137 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1587 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #33] ✅ AHMAD ZAINUL IHWAN | X TM 2 | NISN: 2526100232
+  Total Waktu : 3850 ms
+  Step 1: [OK] Get Tenant Info — 2176 ms
+  Step 2: [OK] Cek NISN Lokal — 473 ms | NISN: 2526100232
+  Step 3: [OK] Tulis Log Login — 711 ms
+  Step 4: [OK] Get Daftar Guru — 330 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 160 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #34] ❌ AHONG TRIYANTO | XI TKJ 2 | NISN: 2425100433
+  Total Waktu : 939 ms
+  Step 1: [OK] Get Tenant Info — 772 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #35] ❌ AI SOPIAH | XI KUL 2 | NISN: 2425100648
+  Total Waktu : 1632 ms
+  Step 1: [OK] Get Tenant Info — 163 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #36] ❌ AIRA TRI ARYANI | XI KUL 1 | NISN: 2425100614
+  Total Waktu : 286 ms
+  Step 1: [OK] Get Tenant Info — 124 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #37] ❌ AISAH WULAN MAULIDINA | XI PHT 2 | NISN: 2425100577
+  Total Waktu : 3148 ms
+  Step 1: [OK] Get Tenant Info — 751 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #38] ✅ AJENG CAHYA AULIYA | X KUL | NISN: 2526100689
+  Total Waktu : 1584 ms
+  Step 1: [OK] Get Tenant Info — 132 ms
+  Step 2: [OK] Cek NISN Lokal — 138 ms | NISN: 2526100689
+  Step 3: [OK] Tulis Log Login — 221 ms
+  Step 4: [OK] Get Daftar Guru — 926 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 166 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #39] ❌ AJENG SITI KAUKAH | XI KUL 2 | NISN: 2425100649
+  Total Waktu : 2322 ms
+  Step 1: [OK] Get Tenant Info — 2091 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #40] ✅ AKBAR AHMAD RAFIQ | XI TAV 1 | NISN: 2425100112
+  Total Waktu : 770 ms
+  Step 1: [OK] Get Tenant Info — 230 ms
+  Step 2: [OK] Cek NISN Lokal — 115 ms | NISN: 2425100112
+  Step 3: [OK] Tulis Log Login — 143 ms
+  Step 4: [OK] Get Daftar Guru — 193 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 89 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - PKK (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #41] ✅ AKBAR FAUZI | X PHT | NISN: 2526100644
+  Total Waktu : 3269 ms
+  Step 1: [OK] Get Tenant Info — 131 ms
+  Step 2: [OK] Cek NISN Lokal — 145 ms | NISN: 2526100644
+  Step 3: [OK] Tulis Log Login — 603 ms
+  Step 4: [OK] Get Daftar Guru — 2303 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 87 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #42] ✅ AKBAR MAULANA | X TE 3 | NISN: 2526100096
+  Total Waktu : 1406 ms
+  Step 1: [OK] Get Tenant Info — 138 ms
+  Step 2: [OK] Cek NISN Lokal — 952 ms | NISN: 2526100096
+  Step 3: [OK] Tulis Log Login — 91 ms
+  Step 4: [OK] Get Daftar Guru — 136 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 89 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #43] ❌ AKBAR RIZKI MAULANA | XI TKR 2 | NISN: 2425100292
+  Total Waktu : 2237 ms
+  Step 1: [OK] Get Tenant Info — 1988 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #44] ✅ AKBARUL GOFUR | X TE 1 | NISN: 2526100011
+  Total Waktu : 2323 ms
+  Step 1: [OK] Get Tenant Info — 146 ms
+  Step 2: [OK] Cek NISN Lokal — 215 ms | NISN: 2526100011
+  Step 3: [OK] Tulis Log Login — 430 ms
+  Step 4: [OK] Get Daftar Guru — 297 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1235 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #45] ✅ AKHMAD LATIF | X TM 1 | NISN: 2526100187
+  Total Waktu : 2229 ms
+  Step 1: [OK] Get Tenant Info — 143 ms
+  Step 2: [OK] Cek NISN Lokal — 175 ms | NISN: 2526100187
+  Step 3: [OK] Tulis Log Login — 368 ms
+  Step 4: [OK] Get Daftar Guru — 1445 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 97 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #46] ✅ AKMAL JUL PUTRA ELJA | XI TAV 1 | NISN: 2425100113
+  Total Waktu : 3505 ms
+  Step 1: [OK] Get Tenant Info — 295 ms
+  Step 2: [OK] Cek NISN Lokal — 1157 ms | NISN: 2425100113
+  Step 3: [OK] Tulis Log Login — 1565 ms
+  Step 4: [OK] Get Daftar Guru — 191 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 296 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - PKK (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #47] ✅ AKMAL LUTFIA ASHARI | XI TOI 1 | NISN: 2425100005
+  Total Waktu : 3385 ms
+  Step 1: [OK] Get Tenant Info — 139 ms
+  Step 2: [OK] Cek NISN Lokal — 895 ms | NISN: 2425100005
+  Step 3: [OK] Tulis Log Login — 1275 ms
+  Step 4: [OK] Get Daftar Guru — 974 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 102 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #48] ✅ AL ASYA SYARKLA | X AKL 1 | NISN: 2526100553
+  Total Waktu : 3316 ms
+  Step 1: [OK] Get Tenant Info — 2158 ms
+  Step 2: [OK] Cek NISN Lokal — 158 ms | NISN: 2526100553
+  Step 3: [OK] Tulis Log Login — 500 ms
+  Step 4: [OK] Get Daftar Guru — 364 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 136 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #49] ✅ AL FATHIR ZUNIOR | XI TP 1 | NISN: 2425100186
+  Total Waktu : 2593 ms
+  Step 1: [OK] Get Tenant Info — 491 ms
+  Step 2: [OK] Cek NISN Lokal — 560 ms | NISN: 2425100186
+  Step 3: [OK] Tulis Log Login — 1012 ms
+  Step 4: [OK] Get Daftar Guru — 381 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 149 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T.)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+
+[Siswa #50] ✅ AL HAFIZ SHABIR SALAM | X TO 3 | NISN: 2526100370
+  Total Waktu : 3654 ms
+  Step 1: [OK] Get Tenant Info — 1541 ms
+  Step 2: [OK] Cek NISN Lokal — 1649 ms | NISN: 2526100370
+  Step 3: [OK] Tulis Log Login — 137 ms
+  Step 4: [OK] Get Daftar Guru — 170 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 157 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #51] ✅ ALBIAN SUKMA MAULANA | X TE 1 | NISN: 2526100012
+  Total Waktu : 3168 ms
+  Step 1: [OK] Get Tenant Info — 2235 ms
+  Step 2: [OK] Cek NISN Lokal — 540 ms | NISN: 2526100012
+  Step 3: [OK] Tulis Log Login — 168 ms
+  Step 4: [OK] Get Daftar Guru — 137 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 88 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #52] ✅ ALDI AFILLAH BIFARY | X TE 2 | NISN: 2526100050
+  Total Waktu : 3584 ms
+  Step 1: [OK] Get Tenant Info — 646 ms
+  Step 2: [OK] Cek NISN Lokal — 95 ms | NISN: 2526100050
+  Step 3: [OK] Tulis Log Login — 2221 ms
+  Step 4: [OK] Get Daftar Guru — 425 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 197 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #53] ✅ ALDI HARDIANSYAH | XI TAV 2 | NISN: 2425100146
+  Total Waktu : 3700 ms
+  Step 1: [OK] Get Tenant Info — 1083 ms
+  Step 2: [OK] Cek NISN Lokal — 1915 ms | NISN: 2425100146
+  Step 3: [OK] Tulis Log Login — 393 ms
+  Step 4: [OK] Get Daftar Guru — 180 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 129 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #54] ✅ ALDI MANSYUR | XI TOI 2 | NISN: 2425100039
+  Total Waktu : 1846 ms
+  Step 1: [OK] Get Tenant Info — 764 ms
+  Step 2: [OK] Cek NISN Lokal — 95 ms | NISN: 2425100039
+  Step 3: [OK] Tulis Log Login — 103 ms
+  Step 4: [OK] Get Daftar Guru — 118 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 766 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #55] ✅ ALDI PADILAH | XI TKR 1 | NISN: 2425100257
+  Total Waktu : 1926 ms
+  Step 1: [OK] Get Tenant Info — 139 ms
+  Step 2: [OK] Cek NISN Lokal — 112 ms | NISN: 2425100257
+  Step 3: [OK] Tulis Log Login — 668 ms
+  Step 4: [OK] Get Daftar Guru — 874 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 132 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: DANI SETIAWAN, S.E.)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+
+[Siswa #56] ❌ ALDI RAMDANI | XI TSM 2 | NISN: 2425100365
+  Total Waktu : 2175 ms
+  Step 1: [OK] Get Tenant Info — 706 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #57] ✅ ALDI SAPUTRA | XI TOI 1 | NISN: 2425100006
+  Total Waktu : 3482 ms
+  Step 1: [OK] Get Tenant Info — 1233 ms
+  Step 2: [OK] Cek NISN Lokal — 1326 ms | NISN: 2425100006
+  Step 3: [OK] Tulis Log Login — 122 ms
+  Step 4: [OK] Get Daftar Guru — 412 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 389 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #58] ✅ ALDI SETIAWAN | X TO 2 | NISN: 2526100324
+  Total Waktu : 2809 ms
+  Step 1: [OK] Get Tenant Info — 124 ms
+  Step 2: [OK] Cek NISN Lokal — 1137 ms | NISN: 2526100324
+  Step 3: [OK] Tulis Log Login — 977 ms
+  Step 4: [OK] Get Daftar Guru — 371 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 200 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #59] ❌ ALDIYANSYAH | XI PHT 1 | NISN: 2425100542
+  Total Waktu : 1118 ms
+  Step 1: [OK] Get Tenant Info — 118 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #60] ❌ ALDO JUNIAWAN | XI TKR 2 | NISN: 2425100293
+  Total Waktu : 491 ms
+  Step 1: [OK] Get Tenant Info — 160 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #61] ✅ ALENA NUR AWALIZA | X AKL 2 | NISN: 2526100599
+  Total Waktu : 2774 ms
+  Step 1: [OK] Get Tenant Info — 1096 ms
+  Step 2: [OK] Cek NISN Lokal — 122 ms | NISN: 2526100599
+  Step 3: [OK] Tulis Log Login — 506 ms
+  Step 4: [OK] Get Daftar Guru — 951 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 99 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #62] ✅ ALFATH MAULANA YUSUF | XI TOI 2 | NISN: 2425100040
+  Total Waktu : 1916 ms
+  Step 1: [OK] Get Tenant Info — 149 ms
+  Step 2: [OK] Cek NISN Lokal — 441 ms | NISN: 2425100040
+  Step 3: [OK] Tulis Log Login — 129 ms
+  Step 4: [OK] Get Daftar Guru — 175 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1022 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #63] ❌ ALFIAH LUTFIANTI | XI PHT 2 | NISN: 2425100578
+  Total Waktu : 783 ms
+  Step 1: [OK] Get Tenant Info — 199 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #64] ✅ ALFIAN BAGUS RAMADHAN | X TE 4 | NISN: 2526100141
+  Total Waktu : 1255 ms
+  Step 1: [OK] Get Tenant Info — 104 ms
+  Step 2: [OK] Cek NISN Lokal — 104 ms | NISN: 2526100141
+  Step 3: [OK] Tulis Log Login — 199 ms
+  Step 4: [OK] Get Daftar Guru — 756 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 92 ms | Ditemukan 6 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - DDPK (Oleh: Kelvin Suharvianto, ST)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #65] ✅ ALFIAN FIRDAUS | X TJKT 2 | NISN: 2526100509
+  Total Waktu : 2911 ms
+  Step 1: [OK] Get Tenant Info — 993 ms
+  Step 2: [OK] Cek NISN Lokal — 1189 ms | NISN: 2526100509
+  Step 3: [OK] Tulis Log Login — 411 ms
+  Step 4: [OK] Get Daftar Guru — 119 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 199 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #66] ✅ ALFIAN NURYAMAN | XI TOI 1 | NISN: 2425100007
+  Total Waktu : 2778 ms
+  Step 1: [OK] Get Tenant Info — 414 ms
+  Step 2: [OK] Cek NISN Lokal — 90 ms | NISN: 2425100007
+  Step 3: [OK] Tulis Log Login — 1222 ms
+  Step 4: [OK] Get Daftar Guru — 181 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 871 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #67] ❌ ALFIN | XI PHT 1 | NISN: 2425100543
+  Total Waktu : 1256 ms
+  Step 1: [OK] Get Tenant Info — 444 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #68] ✅ ALFIN DESTIAN | X TE 3 | NISN: 2526100097
+  Total Waktu : 3568 ms
+  Step 1: [OK] Get Tenant Info — 2608 ms
+  Step 2: [OK] Cek NISN Lokal — 239 ms | NISN: 2526100097
+  Step 3: [OK] Tulis Log Login — 409 ms
+  Step 4: [OK] Get Daftar Guru — 195 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 117 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #69] ✅ ALGI FALGIAN | X TO 4 | NISN: 2526100416
+  Total Waktu : 3544 ms
+  Step 1: [OK] Get Tenant Info — 2902 ms
+  Step 2: [OK] Cek NISN Lokal — 145 ms | NISN: 2526100416
+  Step 3: [OK] Tulis Log Login — 132 ms
+  Step 4: [OK] Get Daftar Guru — 238 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 127 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #70] ❌ ALI AKBAR | XI TSM 1 | NISN: 2425100329
+  Total Waktu : 1930 ms
+  Step 1: [OK] Get Tenant Info — 790 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #71] ✅ ALI PERMANA | X TO 4 | NISN: 2526100417
+  Total Waktu : 2357 ms
+  Step 1: [OK] Get Tenant Info — 164 ms
+  Step 2: [OK] Cek NISN Lokal — 663 ms | NISN: 2526100417
+  Step 3: [OK] Tulis Log Login — 97 ms
+  Step 4: [OK] Get Daftar Guru — 1106 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 327 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #72] ✅ ALIEF MUHAMAD ARRIADY | X TE 3 | NISN: 2526100098
+  Total Waktu : 3506 ms
+  Step 1: [OK] Get Tenant Info — 1025 ms
+  Step 2: [OK] Cek NISN Lokal — 1442 ms | NISN: 2526100098
+  Step 3: [OK] Tulis Log Login — 471 ms
+  Step 4: [OK] Get Daftar Guru — 371 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 197 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #73] ✅ ALIF MAULANA SURYADI | X TM 2 | NISN: 2526100233
+  Total Waktu : 3129 ms
+  Step 1: [OK] Get Tenant Info — 792 ms
+  Step 2: [OK] Cek NISN Lokal — 1004 ms | NISN: 2526100233
+  Step 3: [OK] Tulis Log Login — 221 ms
+  Step 4: [OK] Get Daftar Guru — 1051 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 61 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #74] ✅ ALIKHA NUR AZIZAH | X TM 1 | NISN: 2526100188
+  Total Waktu : 2781 ms
+  Step 1: [OK] Get Tenant Info — 695 ms
+  Step 2: [OK] Cek NISN Lokal — 202 ms | NISN: 2526100188
+  Step 3: [OK] Tulis Log Login — 109 ms
+  Step 4: [OK] Get Daftar Guru — 283 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1492 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #75] ✅ ALIN NURFAIDA | X PHT | NISN: 2526100645
+  Total Waktu : 1763 ms
+  Step 1: [OK] Get Tenant Info — 166 ms
+  Step 2: [OK] Cek NISN Lokal — 723 ms | NISN: 2526100645
+  Step 3: [OK] Tulis Log Login — 653 ms
+  Step 4: [OK] Get Daftar Guru — 170 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 51 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #76] ❌ ALIP | XI PHT 2 | NISN: 2425100579
+  Total Waktu : 1156 ms
+  Step 1: [OK] Get Tenant Info — 224 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #77] ✅ ALIPIA MAULIDIA PUTRI | X PHT | NISN: 2526100646
+  Total Waktu : 2426 ms
+  Step 1: [OK] Get Tenant Info — 376 ms
+  Step 2: [OK] Cek NISN Lokal — 1453 ms | NISN: 2526100646
+  Step 3: [OK] Tulis Log Login — 107 ms
+  Step 4: [OK] Get Daftar Guru — 386 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 104 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #78] ✅ ALPARIJAL | XI TOI 3 | NISN: 2425100076
+  Total Waktu : 3142 ms
+  Step 1: [OK] Get Tenant Info — 96 ms
+  Step 2: [OK] Cek NISN Lokal — 883 ms | NISN: 2425100076
+  Step 3: [OK] Tulis Log Login — 983 ms
+  Step 4: [OK] Get Daftar Guru — 93 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1087 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - MPP (Oleh: Aceng Nurmawan, S.T.)
+
+[Siswa #79] ✅ ALPIN AZIZ | X TO 3 | NISN: 2526100371
+  Total Waktu : 1993 ms
+  Step 1: [OK] Get Tenant Info — 125 ms
+  Step 2: [OK] Cek NISN Lokal — 112 ms | NISN: 2526100371
+  Step 3: [OK] Tulis Log Login — 198 ms
+  Step 4: [OK] Get Daftar Guru — 229 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1328 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #80] ✅ ALVIAN PRAMUDYA AZHAR | X TM 2 | NISN: 2526100234
+  Total Waktu : 2844 ms
+  Step 1: [OK] Get Tenant Info — 209 ms
+  Step 2: [OK] Cek NISN Lokal — 60 ms | NISN: 2526100234
+  Step 3: [OK] Tulis Log Login — 1926 ms
+  Step 4: [OK] Get Daftar Guru — 109 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 540 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #81] ❌ ALVIAN YUSUF | XI PHT 1 | NISN: 2425100544
+  Total Waktu : 1189 ms
+  Step 1: [OK] Get Tenant Info — 235 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #82] ✅ ALVIN IRHAM PADILLAH | XI TP 2 | NISN: 2425100222
+  Total Waktu : 2709 ms
+  Step 1: [OK] Get Tenant Info — 1071 ms
+  Step 2: [OK] Cek NISN Lokal — 463 ms | NISN: 2425100222
+  Step 3: [OK] Tulis Log Login — 587 ms
+  Step 4: [OK] Get Daftar Guru — 356 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 232 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T.)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T.)
+
+[Siswa #83] ❌ ALVINA EFARINA | XI PHT 2 | NISN: 2425100580
+  Total Waktu : 968 ms
+  Step 1: [OK] Get Tenant Info — 82 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #84] ✅ ALWIS SAEPUL ADHA | XI TKR 1 | NISN: 2425100258
+  Total Waktu : 3454 ms
+  Step 1: [OK] Get Tenant Info — 541 ms
+  Step 2: [OK] Cek NISN Lokal — 2308 ms | NISN: 2425100258
+  Step 3: [OK] Tulis Log Login — 309 ms
+  Step 4: [OK] Get Daftar Guru — 257 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 39 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: DANI SETIAWAN, S.E.)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+
+[Siswa #85] ✅ ALYA RAMADANI | X PHT | NISN: 2526100647
+  Total Waktu : 1542 ms
+  Step 1: [OK] Get Tenant Info — 64 ms
+  Step 2: [OK] Cek NISN Lokal — 933 ms | NISN: 2526100647
+  Step 3: [OK] Tulis Log Login — 79 ms
+  Step 4: [OK] Get Daftar Guru — 341 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 125 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #86] ✅ ALYA RENAULTFA HALAWATI | X KUL | NISN: 2526100690
+  Total Waktu : 1607 ms
+  Step 1: [OK] Get Tenant Info — 119 ms
+  Step 2: [OK] Cek NISN Lokal — 621 ms | NISN: 2526100690
+  Step 3: [OK] Tulis Log Login — 369 ms
+  Step 4: [OK] Get Daftar Guru — 289 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 209 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #87] ✅ ALZIAN ILHAM PRATAMA | X TE 2 | NISN: 2526100051
+  Total Waktu : 3209 ms
+  Step 1: [OK] Get Tenant Info — 748 ms
+  Step 2: [OK] Cek NISN Lokal — 65 ms | NISN: 2526100051
+  Step 3: [OK] Tulis Log Login — 1616 ms
+  Step 4: [OK] Get Daftar Guru — 647 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 133 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #88] ❌ AMEL AULIYA | XI KUL 1 | NISN: 2425100615
+  Total Waktu : 923 ms
+  Step 1: [OK] Get Tenant Info — 850 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #89] ❌ AMIRA SANIA | XI AK 2 | NISN: 2425100505
+  Total Waktu : 1789 ms
+  Step 1: [OK] Get Tenant Info — 1548 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #90] ✅ ANANG ANDRIANSYAH | XI TOI 1 | NISN: 2425100008
+  Total Waktu : 2902 ms
+  Step 1: [OK] Get Tenant Info — 143 ms
+  Step 2: [OK] Cek NISN Lokal — 120 ms | NISN: 2425100008
+  Step 3: [OK] Tulis Log Login — 1929 ms
+  Step 4: [OK] Get Daftar Guru — 627 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 83 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #91] ✅ ANDI KURNIAWAN | X TO 2 | NISN: 2526100325
+  Total Waktu : 3096 ms
+  Step 1: [OK] Get Tenant Info — 2059 ms
+  Step 2: [OK] Cek NISN Lokal — 98 ms | NISN: 2526100325
+  Step 3: [OK] Tulis Log Login — 702 ms
+  Step 4: [OK] Get Daftar Guru — 154 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 82 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #92] ✅ ANDIKA FARHAN PAUZI | X TE 1 | NISN: 2526100013
+  Total Waktu : 2473 ms
+  Step 1: [OK] Get Tenant Info — 580 ms
+  Step 2: [OK] Cek NISN Lokal — 439 ms | NISN: 2526100013
+  Step 3: [OK] Tulis Log Login — 1253 ms
+  Step 4: [OK] Get Daftar Guru — 128 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 73 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #93] ❌ ANDIKA PURNAMA DANI | XI TSM 2 | NISN: 2425100366
+  Total Waktu : 720 ms
+  Step 1: [OK] Get Tenant Info — 420 ms
+  Error       : Siswa tidak ditemukan di database lokal
+
+[Siswa #94] ✅ ANDINI SAHIRA RAMADANI | X TJKT 1 | NISN: 2526100464
+  Total Waktu : 2955 ms
+  Step 1: [OK] Get Tenant Info — 1916 ms
+  Step 2: [OK] Cek NISN Lokal — 169 ms | NISN: 2526100464
+  Step 3: [OK] Tulis Log Login — 79 ms
+  Step 4: [OK] Get Daftar Guru — 655 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 136 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #95] ✅ ANDITIKACHIE | X TE 2 | NISN: 2526100052
+  Total Waktu : 2922 ms
+  Step 1: [OK] Get Tenant Info — 1972 ms
+  Step 2: [OK] Cek NISN Lokal — 253 ms | NISN: 2526100052
+  Step 3: [OK] Tulis Log Login — 307 ms
+  Step 4: [OK] Get Daftar Guru — 284 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 106 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #96] ✅ ANDRA RAMADHAN | XI TAV 2 | NISN: 2425100147
+  Total Waktu : 2441 ms
+  Step 1: [OK] Get Tenant Info — 363 ms
+  Step 2: [OK] Cek NISN Lokal — 90 ms | NISN: 2425100147
+  Step 3: [OK] Tulis Log Login — 538 ms
+  Step 4: [OK] Get Daftar Guru — 322 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1128 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #97] ✅ ANDRI VALENTINO RUKMANA | X AKL 1 | NISN: 2526100554
+  Total Waktu : 2825 ms
+  Step 1: [OK] Get Tenant Info — 994 ms
+  Step 2: [OK] Cek NISN Lokal — 384 ms | NISN: 2526100554
+  Step 3: [OK] Tulis Log Login — 1120 ms
+  Step 4: [OK] Get Daftar Guru — 132 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 195 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #98] ✅ ANE AWALIAH | X KUL | NISN: 2526100691
+  Total Waktu : 1321 ms
+  Step 1: [OK] Get Tenant Info — 751 ms
+  Step 2: [OK] Cek NISN Lokal — 99 ms | NISN: 2526100691
+  Step 3: [OK] Tulis Log Login — 64 ms
+  Step 4: [OK] Get Daftar Guru — 154 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 252 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #99] ✅ ANGELINA TIVANY | X AKL 2 | NISN: 2526100600
+  Total Waktu : 2810 ms
+  Step 1: [OK] Get Tenant Info — 104 ms
+  Step 2: [OK] Cek NISN Lokal — 1822 ms | NISN: 2526100600
+  Step 3: [OK] Tulis Log Login — 172 ms
+  Step 4: [OK] Get Daftar Guru — 549 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 163 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #100] ✅ ANGGA PRADITA | X TE 1 | NISN: 2526100014
+  Total Waktu : 2923 ms
+  Step 1: [OK] Get Tenant Info — 894 ms
+  Step 2: [OK] Cek NISN Lokal — 76 ms | NISN: 2526100014
+  Step 3: [OK] Tulis Log Login — 1140 ms
+  Step 4: [OK] Get Daftar Guru — 149 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 664 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+══════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR — PUPPETEER BROWSER TEST (NO SCREENSHOTS)
+══════════════════════════════════════════════════════════════════════
+  URL Diuji        : https://supabaselocal.absenta.id
+  Browser Concurrent: 100
+  Durasi Total      : 4.30 detik
+  ✅ Berhasil        : 78 / 100
+  ❌ Gagal           : 22 / 100
+  📉 Latency Rata2   : 2212 ms
+  🟢 Latency Tercepat: 286 ms
+  🔴 Latency Terlambat: 3850 ms
+  📁 Output Dir      : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-19-05-114Z
+  📄 Laporan         : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-19-05-114Z\report.txt
+  KESIMPULAN        : ⚠️ ADA 22 KEGAGALAN
+══════════════════════════════════════════════════════════════════════

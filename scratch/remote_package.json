@@ -1,0 +1,7 @@
+{
+  "name": "remote-test",
+  "version": "1.0.0",
+  "dependencies": {
+    "puppeteer": "^25.1.0"
+  }
+}

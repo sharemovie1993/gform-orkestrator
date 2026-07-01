@@ -1,0 +1,2130 @@
+══════════════════════════════════════════════════════════════════════
+  STRESS TEST VIA PROTOKOL (DIRECT API) — HTTP Keep-Alive
+  URL Target  : https://supabaselocal.absenta.id
+  Concurrent  : 200 koneksi bersamaan
+  Waktu Mulai : 2026-05-28T15:27:11.416Z
+  Output Dir  : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-27-11-413Z
+══════════════════════════════════════════════════════════════════════
+
+🔄 Mengambil 200 sampel siswa dari Supabase Cloud...
+✅ 200 data siswa terunduh.
+   1. NISN: 2526100322 | AHMAD FAUZI ALFADLAN | X TO 2
+   2. NISN: 2425100003 | AHMAD FAUZI SOFYAN | XI TOI 1
+   3. NISN: 2526100094 | AHMAD HIBAN JAELANI | X TE 3
+   4. NISN: 2526100463 | AHMAD IDAM MUCHLIS | X TJKT 1
+   5. NISN: 2526100007 | AHMAD JENAN | X TE 1
+   6. NISN: 2526100008 | AHMAD NASRULLOH | X TE 1
+   7. NISN: 2526100009 | AHMAD NAZRIL PERMADI | X TE 1
+   8. NISN: 2425100037 | AHMAD NURYANA | XI TOI 2
+   9. NISN: 2425100004 | AHMAD REHAN | XI TOI 1
+   10. NISN: 2526100095 | AHMAD SAEPU TAPTA JANI | X TE 3
+   11. NISN: 2526100010 | AHMAD SALDAN | X TE 1
+   12. NISN: 2526100049 | AHMAD SANUSI | X TE 2
+   13. NISN: 2425100038 | AHMAD SUBHAN | XI TOI 2
+   14. NISN: 2425100075 | AHMAD SYAIFUL HIDAYAT | XI TOI 3
+   15. NISN: 2526100323 | AHMAD TAUFIK HERLANSYA | X TO 2
+   16. NISN: 2526100415 | AHMAD YOPI JUMAEDI | X TO 4
+   17. NISN: 2526100232 | AHMAD ZAINUL IHWAN | X TM 2
+   18. NISN: 2526100689 | AJENG CAHYA AULIYA | X KUL
+   19. NISN: 2425100112 | AKBAR AHMAD RAFIQ | XI TAV 1
+   20. NISN: 2526100644 | AKBAR FAUZI | X PHT
+   21. NISN: 2526100096 | AKBAR MAULANA | X TE 3
+   22. NISN: 2526100011 | AKBARUL GOFUR | X TE 1
+   23. NISN: 2526100187 | AKHMAD LATIF | X TM 1
+   24. NISN: 2425100113 | AKMAL JUL PUTRA ELJA | XI TAV 1
+   25. NISN: 2425100005 | AKMAL LUTFIA ASHARI | XI TOI 1
+   26. NISN: 2526100553 | AL ASYA SYARKLA | X AKL 1
+   27. NISN: 2526100012 | ALBIAN SUKMA MAULANA | X TE 1
+   28. NISN: 2526100050 | ALDI AFILLAH BIFARY | X TE 2
+   29. NISN: 2425100146 | ALDI HARDIANSYAH | XI TAV 2
+   30. NISN: 2425100039 | ALDI MANSYUR | XI TOI 2
+   31. NISN: 2425100257 | ALDI PADILAH | XI TKR 1
+   32. NISN: 2425100006 | ALDI SAPUTRA | XI TOI 1
+   33. NISN: 2526100324 | ALDI SETIAWAN | X TO 2
+   34. NISN: 2526100599 | ALENA NUR AWALIZA | X AKL 2
+   35. NISN: 2425100186 | AL FATHIR ZUNIOR | XI TP 1
+   36. NISN: 2425100040 | ALFATH MAULANA YUSUF | XI TOI 2
+   37. NISN: 2526100141 | ALFIAN BAGUS RAMADHAN | X TE 4
+   38. NISN: 2526100509 | ALFIAN FIRDAUS | X TJKT 2
+   39. NISN: 2425100007 | ALFIAN NURYAMAN | XI TOI 1
+   40. NISN: 2526100097 | ALFIN DESTIAN | X TE 3
+   41. NISN: 2526100416 | ALGI FALGIAN | X TO 4
+   42. NISN: 2526100370 | AL HAFIZ SHABIR SALAM | X TO 3
+   43. NISN: 2526100098 | ALIEF MUHAMAD ARRIADY | X TE 3
+   44. NISN: 2526100233 | ALIF MAULANA SURYADI | X TM 2
+   45. NISN: 2526100188 | ALIKHA NUR AZIZAH | X TM 1
+   46. NISN: 2526100645 | ALIN NURFAIDA | X PHT
+   47. NISN: 2526100417 | ALI PERMANA | X TO 4
+   48. NISN: 2526100646 | ALIPIA MAULIDIA PUTRI | X PHT
+   49. NISN: 2425100076 | ALPARIJAL | XI TOI 3
+   50. NISN: 2526100371 | ALPIN AZIZ | X TO 3
+   51. NISN: 2526100234 | ALVIAN PRAMUDYA AZHAR | X TM 2
+   52. NISN: 2425100222 | ALVIN IRHAM PADILLAH | XI TP 2
+   53. NISN: 2425100258 | ALWIS SAEPUL ADHA | XI TKR 1
+   54. NISN: 2526100647 | ALYA RAMADANI | X PHT
+   55. NISN: 2526100690 | ALYA RENAULTFA HALAWATI | X KUL
+   56. NISN: 2526100051 | ALZIAN ILHAM PRATAMA | X TE 2
+   57. NISN: 2425100008 | ANANG ANDRIANSYAH | XI TOI 1
+   58. NISN: 2526100013 | ANDIKA FARHAN PAUZI | X TE 1
+   59. NISN: 2526100325 | ANDI KURNIAWAN | X TO 2
+   60. NISN: 2526100464 | ANDINI SAHIRA RAMADANI | X TJKT 1
+   61. NISN: 2526100052 | ANDITIKACHIE | X TE 2
+   62. NISN: 2425100147 | ANDRA RAMADHAN | XI TAV 2
+   63. NISN: 2526100554 | ANDRI VALENTINO RUKMANA | X AKL 1
+   64. NISN: 2526100691 | ANE AWALIAH | X KUL
+   65. NISN: 2526100600 | ANGELINA TIVANY | X AKL 2
+   66. NISN: 2526100014 | ANGGA PRADITA | X TE 1
+   67. NISN: 2425100148 | ANGGA SAPUTRA | XI TAV 2
+   68. NISN: 2526100692 | ANIDA ALIMATUNISA | X KUL
+   69. NISN: 2526100510 | ANI NUROHIMAH | X TJKT 2
+   70. NISN: 2526100555 | ANISA | X AKL 1
+   71. NISN: 2526100601 | ANISA FATONATUL ABROR | X AKL 2
+   72. NISN: 2526100693 | ANISA PITRI | X KUL
+   73. NISN: 2425100009 | ANUGRAH FAJRI | XI TOI 1
+   74. NISN: 2526100694 | ANWAR NASRULOH | X KUL
+   75. NISN: 2526100695 | ARBAITY PUTRI HAYATI | X KUL
+   76. NISN: 2526100053 | ARDI PRATAMA | X TE 2
+   77. NISN: 2526100465 | ARDIYANTO MIRZA HENDRAWAN | X TJKT 1
+   78. NISN: 2425100259 | ARFANDHANI SYAHPUTRA | XI TKR 1
+   79. NISN: 2526100189 | ARFI AL YASIL RAMDHANI | X TM 1
+   80. NISN: 2425100077 | ARIF | XI TOI 3
+   81. NISN: 2425100187 | ARIF AMRUL NURHIDAYAT | XI TP 1
+   82. NISN: 2526100556 | ARIF RAHMAN | X AKL 1
+   83. NISN: 2425100078 | ARIF RAPI PADLU RAHMAN | XI TOI 3
+   84. NISN: 2425100260 | ARI GUNTORO | XI TKR 1
+   85. NISN: 2526100099 | ARI MUHAMAD IKBAL | X TE 3
+   86. NISN: 2526100235 | ARIP NURDIN | X TM 2
+   87. NISN: 2526100054 | ARIP RAHMAN | X TE 2
+   88. NISN: 2526100511 | ARISMA NUR JAMILAH | X TJKT 2
+   89. NISN: 2425100041 | ARIS MULYADI | XI TOI 2
+   90. NISN: 2526100190 | ARNI NURHAYATI | X TM 1
+   91. NISN: 2425100114 | ARYA ERLANGGA | XI TAV 1
+   92. NISN: 2526100015 | ARYAPUTRA PERMANA | X TE 1
+   93. NISN: 2526100326 | ARYA RIZKI RAMDANI | X TO 2
+   94. NISN: 2425100223 | ASEP GIMAN MADANI | XI TP 2
+   95. NISN: 2526100016 | ASEP MAULANA | X TE 1
+   96. NISN: 2425100149 | ASEP MUGNI | XI TAV 2
+   97. NISN: 2526100017 | ASEP MUHAMMAD WILDAN | X TE 1
+   98. NISN: 2526100236 | ASEP SAEPUL ROHMAN | X TM 2
+   99. NISN: 2526100372 | ASEP SAMSUL BARWIS PADILAH | X TO 3
+   100. NISN: 2526100602 | ASEP WAHYUDIN AGUSTIAN | X AKL 2
+   101. NISN: 2526100648 | ASHILLA PUTRI RIZKY | X PHT
+   102. NISN: 2526100466 | ASIPA NUR APRILIA | X TJKT 1
+   103. NISN: 2425100188 | ASROF KHOERUDIN | XI TP 1
+   104. NISN: 2526100557 | AUDI MAULIDA | X AKL 1
+   105. NISN: 2526100649 | AULIA ANATASYA | X PHT
+   106. NISN: 2526100696 | AULIA SITI RAHMAWATI | X KUL
+   107. NISN: 2526100650 | AYI NURHAYATI | X PHT
+   108. NISN: 2526100100 | AZHAR ISMAIL | X TE 3
+   109. NISN: 2526100055 | AZKA ZAKIATUNISA | X TE 2
+   110. NISN: 2526100418 | AZRIL EKA NUGRAHA | X TO 4
+   111. NISN: 2526100191 | AZRIL ILHAM ABDURROZAK | X TM 1
+   112. NISN: 2526100056 | AZRIL MUNAZAR | X TE 2
+   113. NISN: 2526100281 | BAYU ABDUL SALAM | X TO 1
+   114. NISN: 2526100018 | BAYU ALPIN NUGRAHA | X TE 1
+   115. NISN: 2425100010 | BAYU NATA | XI TOI 1
+   116. NISN: 2425100042 | BERIN IMDAD IKARA | XI TOI 2
+   117. NISN: 2526100237 | BILAL MAULANA | X TM 2
+   118. NISN: 2526100142 | BINTANG GALUH NANDIA | X TE 4
+   119. NISN: 2526100651 | BINTANG RAHMA DEWI SAPUTRA | X PHT
+   120. NISN: 2526100697 | CAHAYA SUCI RAMADHANI | X KUL
+   121. NISN: 2526100192 | CAHYADI RAHMAN | X TM 1
+   122. NISN: 2526100327 | CANDRA MAHESA | X TO 2
+   123. NISN: 2425100261 | CANDRA NIKOLAS PRASETIYO | XI TKR 1
+   124. NISN: 2425100224 | CARLO VELIANO BEKAK | XI TP 2
+   125. NISN: 2526100652 | CASHERA SYIFA RAMZAH | X PHT
+   126. NISN: 2425100150 | CENG HILMAN | XI TAV 2
+   127. NISN: 2526100467 | CEP AHMAD NAWAWI | X TJKT 1
+   128. NISN: 2425100189 | CHANDRA MOCHAMAD DIKRI | XI TP 1
+   129. NISN: 2425100225 | CHICKO MUHAMMAD ZAYN | XI TP 2
+   130. NISN: 2526100558 | CICIH MUNACIH | X AKL 1
+   131. NISN: 2526100603 | CICI NURHAYATI | X AKL 2
+   132. NISN: 2526100604 | CINDY FATIKA SARI | X AKL 2
+   133. NISN: 2526100653 | CINTIA DANURIS | X PHT
+   134. NISN: 2526100019 | DADAN NAWALUDIN | X TE 1
+   135. NISN: 2526100559 | DAFA NURROHMAH | X AKL 1
+   136. NISN: 2526100282 | DAFFA RATMENDRA | X TO 1
+   137. NISN: 2526100020 | DAGUSTAN MAQI | X TE 1
+   138. NISN: 2526100512 | DAIFANY NABILA | X TJKT 2
+   139. NISN: 2425100190 | DAIL RAMADHAN | XI TP 1
+   140. NISN: 2425100115 | DANI HARJANI | XI TAV 1
+   141. NISN: 2425100226 | DAPI MULTAJAM | XI TP 2
+   142. NISN: 2526100605 | DARA | X AKL 2
+   143. NISN: 2425100191 | DARDA | XI TP 1
+   144. NISN: 2526100101 | DARPIN | X TE 3
+   145. NISN: 2526100560 | DARU BADARUDIN | X AKL 1
+   146. NISN: 2526100606 | DEA | X AKL 2
+   147. NISN: 2526100468 | DEDE ABDUL FAIZ | X TJKT 1
+   148. NISN: 2526100283 | DEDE ARIS | X TO 1
+   149. NISN: 2526100238 | DEDE FAHRI AL FAJRI | X TM 2
+   150. NISN: 2425100116 | DEDE HAMDANI | XI TAV 1
+   151. NISN: 2526100143 | DEDE HANIPAH | X TE 4
+   152. NISN: 2526100513 | DEDE ILMAH | X TJKT 2
+   153. NISN: 2425100262 | DEDE IRWAN | XI TKR 1
+   154. NISN: 2425100043 | DEDE MUHAMAD RIZKI | XI TOI 2
+   155. NISN: 2526100057 | DEDEN ALVIN SAMSUDIN | X TE 2
+   156. NISN: 2526100328 | DEDE NURJAMAN | X TO 2
+   157. NISN: 2526100021 | DEDEN ZULIAN | X TE 1
+   158. NISN: 2425100117 | DEDE RADITIANSYAH | XI TAV 1
+   159. NISN: 2425100227 | DEDE SOPIAN | XI TP 2
+   160. NISN: 2425100151 | DEDE TAMIM | XI TAV 2
+   161. NISN: 2526100022 | DEIMEIAN WIDYATAMA | X TE 1
+   162. NISN: 2526100561 | DELIA NURLAILA | X AKL 1
+   163. NISN: 2425100192 | DENI HARYADI | XI TP 1
+   164. NISN: 2526100193 | DENI ILHAM | X TM 1
+   165. NISN: 2526100469 | DENISSA TIFANI WAHIDYA | X TJKT 1
+   166. NISN: 2425100152 | DENNIS APRILLIAN RIZKY | XI TAV 2
+   167. NISN: 2526100514 | DERA YULINDA PUTRI | X TJKT 2
+   168. NISN: 2526100239 | DERI NURFADILLAH | X TM 2
+   169. NISN: 2526100329 | DERI SJR | X TO 2
+   170. NISN: 2425100153 | DERIYAN | XI TAV 2
+   171. NISN: 2526100607 | DESI NURAENI | X AKL 2
+   172. NISN: 2526100470 | DETRIANA AHMAD ZAINAL ASYIQIN | X TJKT 1
+   173. NISN: 2526100330 | DEVIN KURNIAWAN | X TO 2
+   174. NISN: 2526100515 | DEWI HERNIAWATI | X TJKT 2
+   175. NISN: 2526100562 | DEWI RAHMAH NURHAJAH | X AKL 1
+   176. NISN: 2526100373 | DIAN NURDIANSAH | X TO 3
+   177. NISN: 2526100194 | DICKY FIRMANSYAH | X TM 1
+   178. NISN: 2425100228 | DICKY MAULANA AKBAR | XI TP 2
+   179. NISN: 2425100118 | DIKA MAULANA | XI TAV 1
+   180. NISN: 2526100374 | DIKA MUBAROK | X TO 3
+   181. NISN: 2526100419 | DIKA MUSTIKA SAPUTRA | X TO 4
+   182. NISN: 2425100044 | DIKI FIRDAUS | XI TOI 2
+   183. NISN: 2526100023 | DIKI OPRIANA | X TE 1
+   184. NISN: 2526100608 | DILAH HOERUNISA | X AKL 2
+   185. NISN: 2425100011 | DIMAS ARDIANSYAH | XI TOI 1
+   186. NISN: 2526100058 | DIMAS NURIJAL UMAMI | X TE 2
+   187. NISN: 2526100240 | DIMAS SA'BANA | X TM 2
+   188. NISN: 2526100563 | DINA ERFIANA | X AKL 1
+   189. NISN: 2425100263 | DINAR FAHAZ GUMELAR | XI TKR 1
+   190. NISN: 2526100102 | DINAR RAMADANI | X TE 3
+   191. NISN: 2526100654 | DINDA DEWI SUCI | X PHT
+   192. NISN: 2526100609 | DIRA | X AKL 2
+   193. NISN: 2526100195 | DIRAR ANWAR MULYANA | X TM 1
+   194. NISN: 2526100241 | DIRGA PRIANGGANI SETIA AKBAR | X TM 2
+   195. NISN: 2425100079 | DITMAR ADITTIA | XI TOI 3
+   196. NISN: 2526100196 | DONI KURNIAWAN | X TM 1
+   197. NISN: 2425100080 | EDI MAULANA | XI TOI 3
+   198. NISN: 2526100331 | EFAN RIFALDO | X TO 2
+   199. NISN: 2526100564 | EKA NURLAELA | X AKL 1
+   200. NISN: 2526100471 | ELAN JAELANI | X TJKT 1
+
+🚀 Memulai simulasi transaksi paralel protocol-based...
+──────────────────────────────────────────────────────────────────────
+  SIMULASI LOGIN & AMBIL SOAL 200 SISWA BERSAMAAN
+──────────────────────────────────────────────────────────────────────
+   ✅ [Siswa #1] AHMAD FAUZI ALFADLAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #2] AHMAD FAUZI SOFYAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #5] AHMAD JENAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #3] AHMAD HIBAN JAELANI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #7] AHMAD NAZRIL PERMADI — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #92] ARYAPUTRA PERMANA — ERROR: socket hang up
+   ❌ [Siswa #106] AULIA SITI RAHMAWATI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #105] AULIA ANATASYA — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #95] ASEP MAULANA — ERROR: socket hang up
+   ❌ [Siswa #112] AZRIL MUNAZAR — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #6] AHMAD NASRULLOH — ERROR: socket hang up
+   ❌ [Siswa #38] ALFIAN FIRDAUS — ERROR: socket hang up
+   ❌ [Siswa #115] BAYU NATA — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #30] ALDI MANSYUR — ERROR: socket hang up
+   ❌ [Siswa #120] CAHAYA SUCI RAMADHANI — ERROR: read ECONNRESET
+   ❌ [Siswa #46] ALIN NURFAIDA — ERROR: socket hang up
+   ❌ [Siswa #121] CAHYADI RAHMAN — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #62] ANDRA RAMADHAN — ERROR: socket hang up
+   ❌ [Siswa #94] ASEP GIMAN MADANI — ERROR: socket hang up
+   ❌ [Siswa #126] CENG HILMAN — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #127] CEP AHMAD NAWAWI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ✅ [Siswa #15] AHMAD TAUFIK HERLANSYA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #31] ALDI PADILAH — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #132] CINDY FATIKA SARI — ERROR: socket hang up
+   ❌ [Siswa #14] AHMAD SYAIFUL HIDAYAT — ERROR: socket hang up
+   ❌ [Siswa #53] ALWIS SAEPUL ADHA — ERROR: socket hang up
+   ❌ [Siswa #29] ALDI HARDIANSYAH — ERROR: socket hang up
+   ❌ [Siswa #139] DAIL RAMADHAN — ERROR: read ECONNRESET
+   ❌ [Siswa #138] DAIFANY NABILA — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #140] DANI HARJANI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #86] ARIP NURDIN — ERROR: socket hang up
+   ❌ [Siswa #27] ALBIAN SUKMA MAULANA — ERROR: socket hang up
+   ❌ [Siswa #147] DEDE ABDUL FAIZ — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #144] DARPIN — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #149] DEDE FAHRI AL FAJRI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #148] DEDE ARIS — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ✅ [Siswa #11] AHMAD SALDAN — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #48] ALIPIA MAULIDIA PUTRI — ERROR: socket hang up
+   ❌ [Siswa #19] AKBAR AHMAD RAFIQ — ERROR: socket hang up
+   ❌ [Siswa #82] ARIF RAHMAN — ERROR: socket hang up
+   ❌ [Siswa #66] ANGGA PRADITA — ERROR: socket hang up
+   ❌ [Siswa #47] ALI PERMANA — ERROR: socket hang up
+   ❌ [Siswa #10] AHMAD SAEPU TAPTA JANI — ERROR: socket hang up
+   ❌ [Siswa #151] DEDE HANIPAH — ERROR: read ECONNRESET
+   ❌ [Siswa #20] AKBAR FAUZI — ERROR: socket hang up
+   ❌ [Siswa #163] DENI HARYADI — ERROR: read ECONNRESET
+   ❌ [Siswa #165] DENISSA TIFANI WAHIDYA — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #101] ASHILLA PUTRI RIZKY — ERROR: socket hang up
+   ❌ [Siswa #91] ARYA ERLANGGA — ERROR: socket hang up
+   ❌ [Siswa #169] DERI SJR — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #171] DESI NURAENI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #167] DERA YULINDA PUTRI — ERROR: socket hang up
+   ❌ [Siswa #36] ALFATH MAULANA YUSUF — ERROR: socket hang up
+   ❌ [Siswa #108] AZHAR ISMAIL — ERROR: read ECONNRESET
+   ❌ [Siswa #87] ARIP RAHMAN — ERROR: socket hang up
+   ❌ [Siswa #150] DEDE HAMDANI — ERROR: socket hang up
+   ❌ [Siswa #97] ASEP MUHAMMAD WILDAN — ERROR: socket hang up
+   ❌ [Siswa #135] DAFA NURROHMAH — ERROR: read ECONNRESET
+   ❌ [Siswa #182] DIKI FIRDAUS — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #93] ARYA RIZKI RAMDANI — ERROR: socket hang up
+   ❌ [Siswa #34] ALENA NUR AWALIZA — ERROR: socket hang up
+   ❌ [Siswa #78] ARFANDHANI SYAHPUTRA — ERROR: socket hang up
+   ❌ [Siswa #134] DADAN NAWALUDIN — ERROR: read ECONNRESET
+   ❌ [Siswa #162] DELIA NURLAILA — ERROR: socket hang up
+   ✅ [Siswa #8] AHMAD NURYANA — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #176] DIAN NURDIANSAH — ERROR: socket hang up
+   ❌ [Siswa #180] DIKA MUBAROK — ERROR: socket hang up
+   ❌ [Siswa #79] ARFI AL YASIL RAMDHANI — ERROR: socket hang up
+   ❌ [Siswa #161] DEIMEIAN WIDYATAMA — ERROR: socket hang up
+   ❌ [Siswa #190] DINAR RAMADANI — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #192] DIRA — ERROR: Client network socket disconnected before secure TLS connection was established
+   ❌ [Siswa #191] DINDA DEWI SUCI — ERROR: HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+   ❌ [Siswa #16] AHMAD YOPI JUMAEDI — ERROR: socket hang up
+   ❌ [Siswa #75] ARBAITY PUTRI HAYATI — ERROR: socket hang up
+   ❌ [Siswa #188] DINA ERFIANA — ERROR: socket hang up
+   ❌ [Siswa #54] ALYA RAMADANI — ERROR: socket hang up
+   ❌ [Siswa #130] CICIH MUNACIH — ERROR: read ECONNRESET
+   ❌ [Siswa #23] AKHMAD LATIF — ERROR: socket hang up
+   ❌ [Siswa #26] AL ASYA SYARKLA — ERROR: socket hang up
+   ✅ [Siswa #118] BINTANG GALUH NANDIA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #89] ARIS MULYADI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #55] ALYA RENAULTFA HALAWATI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #56] ALZIAN ILHAM PRATAMA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #12] AHMAD SANUSI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #21] AKBAR MAULANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #197] EDI MAULANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #110] AZRIL EKA NUGRAHA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #133] CINTIA DANURIS — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #69] ANI NUROHIMAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #77] ARDIYANTO MIRZA HENDRAWAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #104] AUDI MAULIDA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #4] AHMAD IDAM MUCHLIS — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #119] BINTANG RAHMA DEWI SAPUTRA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #9] AHMAD REHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #13] AHMAD SUBHAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #199] EKA NURLAELA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #42] AL HAFIZ SHABIR SALAM — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #116] BERIN IMDAD IKARA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #43] ALIEF MUHAMAD ARRIADY — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #96] ASEP MUGNI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #25] AKMAL LUTFIA ASHARI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #159] DEDE SOPIAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #117] BILAL MAULANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #51] ALVIAN PRAMUDYA AZHAR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #193] DIRAR ANWAR MULYANA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #40] ALFIN DESTIAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #164] DENI ILHAM — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #64] ANE AWALIAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #102] ASIPA NUR APRILIA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #184] DILAH HOERUNISA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #60] ANDINI SAHIRA RAMADANI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #71] ANISA FATONATUL ABROR — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #72] ANISA PITRI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #131] CICI NURHAYATI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #109] AZKA ZAKIATUNISA — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #99] ASEP SAMSUL BARWIS PADILAH — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #170] DERIYAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #49] ALPARIJAL — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #124] CARLO VELIANO BEKAK — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #44] ALIF MAULANA SURYADI — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #113] BAYU ABDUL SALAM — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #160] DEDE TAMIM — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #59] ANDI KURNIAWAN — Berhasil login & ambil daftar ujian
+   ✅ [Siswa #145] DARU BADARUDIN — Berhasil login & ambil daftar ujian
+   ❌ [Siswa #122] CANDRA MAHESA — ERROR: Timeout (15s)
+   ❌ [Siswa #157] DEDEN ZULIAN — ERROR: Timeout (15s)
+   ❌ [Siswa #83] ARIF RAPI PADLU RAHMAN — ERROR: Timeout (15s)
+   ❌ [Siswa #185] DIMAS ARDIANSYAH — ERROR: Timeout (15s)
+   ❌ [Siswa #186] DIMAS NURIJAL UMAMI — ERROR: Timeout (15s)
+   ❌ [Siswa #17] AHMAD ZAINUL IHWAN — ERROR: Timeout (15s)
+   ❌ [Siswa #58] ANDIKA FARHAN PAUZI — ERROR: Timeout (15s)
+   ❌ [Siswa #50] ALPIN AZIZ — ERROR: Timeout (15s)
+   ❌ [Siswa #63] ANDRI VALENTINO RUKMANA — ERROR: Timeout (15s)
+   ❌ [Siswa #52] ALVIN IRHAM PADILLAH — ERROR: Timeout (15s)
+   ❌ [Siswa #45] ALIKHA NUR AZIZAH — ERROR: Timeout (15s)
+   ❌ [Siswa #166] DENNIS APRILLIAN RIZKY — ERROR: Timeout (15s)
+   ❌ [Siswa #155] DEDEN ALVIN SAMSUDIN — ERROR: Timeout (15s)
+   ❌ [Siswa #22] AKBARUL GOFUR — ERROR: Timeout (15s)
+   ❌ [Siswa #154] DEDE MUHAMAD RIZKI — ERROR: Timeout (15s)
+   ❌ [Siswa #175] DEWI RAHMAH NURHAJAH — ERROR: Timeout (15s)
+   ❌ [Siswa #158] DEDE RADITIANSYAH — ERROR: Timeout (15s)
+   ❌ [Siswa #73] ANUGRAH FAJRI — ERROR: Timeout (15s)
+   ❌ [Siswa #74] ANWAR NASRULOH — ERROR: Timeout (15s)
+   ❌ [Siswa #114] BAYU ALPIN NUGRAHA — ERROR: Timeout (15s)
+   ❌ [Siswa #24] AKMAL JUL PUTRA ELJA — ERROR: Timeout (15s)
+   ❌ [Siswa #67] ANGGA SAPUTRA — ERROR: Timeout (15s)
+   ❌ [Siswa #68] ANIDA ALIMATUNISA — ERROR: Timeout (15s)
+   ❌ [Siswa #57] ANANG ANDRIANSYAH — ERROR: Timeout (15s)
+   ❌ [Siswa #196] DONI KURNIAWAN — ERROR: Timeout (15s)
+   ❌ [Siswa #143] DARDA — ERROR: Timeout (15s)
+   ❌ [Siswa #174] DEWI HERNIAWATI — ERROR: Timeout (15s)
+   ❌ [Siswa #178] DICKY MAULANA AKBAR — ERROR: Timeout (15s)
+   ❌ [Siswa #33] ALDI SETIAWAN — ERROR: Timeout (15s)
+   ❌ [Siswa #136] DAFFA RATMENDRA — ERROR: Timeout (15s)
+   ❌ [Siswa #183] DIKI OPRIANA — ERROR: Timeout (15s)
+   ❌ [Siswa #189] DINAR FAHAZ GUMELAR — ERROR: Timeout (15s)
+   ❌ [Siswa #90] ARNI NURHAYATI — ERROR: Timeout (15s)
+   ❌ [Siswa #194] DIRGA PRIANGGANI SETIA AKBAR — ERROR: Timeout (15s)
+   ❌ [Siswa #103] ASROF KHOERUDIN — ERROR: Timeout (15s)
+   ❌ [Siswa #98] ASEP SAEPUL ROHMAN — ERROR: Timeout (15s)
+   ❌ [Siswa #125] CASHERA SYIFA RAMZAH — ERROR: Timeout (15s)
+   ❌ [Siswa #39] ALFIAN NURYAMAN — ERROR: Timeout (15s)
+   ❌ [Siswa #168] DERI NURFADILLAH — ERROR: Timeout (15s)
+   ❌ [Siswa #76] ARDI PRATAMA — ERROR: Timeout (15s)
+   ❌ [Siswa #37] ALFIAN BAGUS RAMADHAN — ERROR: Timeout (15s)
+   ❌ [Siswa #35] AL FATHIR ZUNIOR — ERROR: Timeout (15s)
+   ❌ [Siswa #111] AZRIL ILHAM ABDURROZAK — ERROR: Timeout (15s)
+   ❌ [Siswa #142] DARA — ERROR: Timeout (15s)
+   ❌ [Siswa #81] ARIF AMRUL NURHIDAYAT — ERROR: Timeout (15s)
+   ❌ [Siswa #61] ANDITIKACHIE — ERROR: Timeout (15s)
+   ❌ [Siswa #137] DAGUSTAN MAQI — ERROR: Timeout (15s)
+   ❌ [Siswa #177] DICKY FIRMANSYAH — ERROR: Timeout (15s)
+   ❌ [Siswa #65] ANGELINA TIVANY — ERROR: Timeout (15s)
+   ❌ [Siswa #181] DIKA MUSTIKA SAPUTRA — ERROR: Timeout (15s)
+   ❌ [Siswa #100] ASEP WAHYUDIN AGUSTIAN — ERROR: Timeout (15s)
+   ❌ [Siswa #80] ARIF — ERROR: Timeout (15s)
+   ❌ [Siswa #18] AJENG CAHYA AULIYA — ERROR: Timeout (15s)
+   ❌ [Siswa #141] DAPI MULTAJAM — ERROR: Timeout (15s)
+   ❌ [Siswa #28] ALDI AFILLAH BIFARY — ERROR: Timeout (15s)
+   ❌ [Siswa #172] DETRIANA AHMAD ZAINAL ASYIQIN — ERROR: Timeout (15s)
+   ❌ [Siswa #128] CHANDRA MOCHAMAD DIKRI — ERROR: Timeout (15s)
+   ❌ [Siswa #173] DEVIN KURNIAWAN — ERROR: Timeout (15s)
+   ❌ [Siswa #84] ARI GUNTORO — ERROR: Timeout (15s)
+   ❌ [Siswa #200] ELAN JAELANI — ERROR: Timeout (15s)
+   ❌ [Siswa #153] DEDE IRWAN — ERROR: Timeout (15s)
+   ❌ [Siswa #32] ALDI SAPUTRA — ERROR: Timeout (15s)
+   ❌ [Siswa #195] DITMAR ADITTIA — ERROR: Timeout (15s)
+   ❌ [Siswa #88] ARISMA NUR JAMILAH — ERROR: Timeout (15s)
+   ❌ [Siswa #179] DIKA MAULANA — ERROR: Timeout (15s)
+   ❌ [Siswa #129] CHICKO MUHAMMAD ZAYN — ERROR: Timeout (15s)
+   ❌ [Siswa #146] DEA — ERROR: Timeout (15s)
+   ❌ [Siswa #123] CANDRA NIKOLAS PRASETIYO — ERROR: Timeout (15s)
+   ❌ [Siswa #70] ANISA — ERROR: Timeout (15s)
+   ❌ [Siswa #85] ARI MUHAMAD IKBAL — ERROR: Timeout (15s)
+   ❌ [Siswa #107] AYI NURHAYATI — ERROR: Timeout (15s)
+   ❌ [Siswa #41] ALGI FALGIAN — ERROR: Timeout (15s)
+   ❌ [Siswa #187] DIMAS SA'BANA — ERROR: Timeout (15s)
+   ❌ [Siswa #152] DEDE ILMAH — ERROR: Timeout (15s)
+   ❌ [Siswa #198] EFAN RIFALDO — ERROR: Timeout (15s)
+   ❌ [Siswa #156] DEDE NURJAMAN — ERROR: Timeout (15s)
+
+✅ Semua koneksi stress test selesai.
+
+══════════════════════════════════════════════════════════════════════
+  LAPORAN DETAIL PER SISWA
+══════════════════════════════════════════════════════════════════════
+
+[Siswa #1] ✅ AHMAD FAUZI ALFADLAN | X TO 2 | NISN: 2526100322
+  Total Waktu : 336 ms
+  Step 1: [OK] Get Tenant Info — 42 ms
+  Step 2: [OK] Cek NISN Lokal — 44 ms | NISN: 2526100322
+  Step 3: [OK] Tulis Log Login — 44 ms
+  Step 4: [OK] Get Daftar Guru — 73 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 133 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #2] ✅ AHMAD FAUZI SOFYAN | XI TOI 1 | NISN: 2425100003
+  Total Waktu : 525 ms
+  Step 1: [OK] Get Tenant Info — 71 ms
+  Step 2: [OK] Cek NISN Lokal — 38 ms | NISN: 2425100003
+  Step 3: [OK] Tulis Log Login — 60 ms
+  Step 4: [OK] Get Daftar Guru — 125 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 231 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #3] ✅ AHMAD HIBAN JAELANI | X TE 3 | NISN: 2526100094
+  Total Waktu : 789 ms
+  Step 1: [OK] Get Tenant Info — 73 ms
+  Step 2: [OK] Cek NISN Lokal — 40 ms | NISN: 2526100094
+  Step 3: [OK] Tulis Log Login — 75 ms
+  Step 4: [OK] Get Daftar Guru — 177 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 424 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #4] ✅ AHMAD IDAM MUCHLIS | X TJKT 1 | NISN: 2526100463
+  Total Waktu : 3413 ms
+  Step 1: [OK] Get Tenant Info — 71 ms
+  Step 2: [OK] Cek NISN Lokal — 41 ms | NISN: 2526100463
+  Step 3: [OK] Tulis Log Login — 89 ms
+  Step 4: [OK] Get Daftar Guru — 170 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 3042 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #5] ✅ AHMAD JENAN | X TE 1 | NISN: 2526100007
+  Total Waktu : 666 ms
+  Step 1: [OK] Get Tenant Info — 66 ms
+  Step 2: [OK] Cek NISN Lokal — 37 ms | NISN: 2526100007
+  Step 3: [OK] Tulis Log Login — 86 ms
+  Step 4: [OK] Get Daftar Guru — 210 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 266 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #6] ❌ AHMAD NASRULLOH | X TE 1 | NISN: 2526100008
+  Total Waktu : 1123 ms
+  Step 1: [OK] Get Tenant Info — 66 ms
+  Step 2: [OK] Cek NISN Lokal — 58 ms | NISN: 2526100008
+  Step 3: [OK] Tulis Log Login — 93 ms
+  Step 4: [OK] Get Daftar Guru — 902 ms
+  Error       : socket hang up
+
+[Siswa #7] ✅ AHMAD NAZRIL PERMADI | X TE 1 | NISN: 2526100009
+  Total Waktu : 836 ms
+  Step 1: [OK] Get Tenant Info — 65 ms
+  Step 2: [OK] Cek NISN Lokal — 55 ms | NISN: 2526100009
+  Step 3: [OK] Tulis Log Login — 100 ms
+  Step 4: [OK] Get Daftar Guru — 164 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 452 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #8] ✅ AHMAD NURYANA | XI TOI 2 | NISN: 2425100037
+  Total Waktu : 1806 ms
+  Step 1: [OK] Get Tenant Info — 65 ms
+  Step 2: [OK] Cek NISN Lokal — 46 ms | NISN: 2425100037
+  Step 3: [OK] Tulis Log Login — 88 ms
+  Step 4: [OK] Get Daftar Guru — 1479 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 128 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #9] ✅ AHMAD REHAN | XI TOI 1 | NISN: 2425100004
+  Total Waktu : 3456 ms
+  Step 1: [OK] Get Tenant Info — 62 ms
+  Step 2: [OK] Cek NISN Lokal — 78 ms | NISN: 2425100004
+  Step 3: [OK] Tulis Log Login — 102 ms
+  Step 4: [OK] Get Daftar Guru — 2127 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1087 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #10] ❌ AHMAD SAEPU TAPTA JANI | X TE 3 | NISN: 2526100095
+  Total Waktu : 1533 ms
+  Step 1: [OK] Get Tenant Info — 70 ms
+  Step 2: [OK] Cek NISN Lokal — 90 ms | NISN: 2526100095
+  Step 3: [OK] Tulis Log Login — 153 ms
+  Step 4: [OK] Get Daftar Guru — 1214 ms
+  Error       : socket hang up
+
+[Siswa #11] ✅ AHMAD SALDAN | X TE 1 | NISN: 2526100010
+  Total Waktu : 1439 ms
+  Step 1: [OK] Get Tenant Info — 79 ms
+  Step 2: [OK] Cek NISN Lokal — 146 ms | NISN: 2526100010
+  Step 3: [OK] Tulis Log Login — 267 ms
+  Step 4: [OK] Get Daftar Guru — 298 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 649 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - DDPK (Oleh: Aceng Nurmawan, S.T.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #12] ✅ AHMAD SANUSI | X TE 2 | NISN: 2526100049
+  Total Waktu : 2653 ms
+  Step 1: [OK] Get Tenant Info — 72 ms
+  Step 2: [OK] Cek NISN Lokal — 51 ms | NISN: 2526100049
+  Step 3: [OK] Tulis Log Login — 138 ms
+  Step 4: [OK] Get Daftar Guru — 2060 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 331 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #13] ✅ AHMAD SUBHAN | XI TOI 2 | NISN: 2425100038
+  Total Waktu : 3461 ms
+  Step 1: [OK] Get Tenant Info — 95 ms
+  Step 2: [OK] Cek NISN Lokal — 131 ms | NISN: 2425100038
+  Step 3: [OK] Tulis Log Login — 1937 ms
+  Step 4: [OK] Get Daftar Guru — 660 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 638 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #14] ❌ AHMAD SYAIFUL HIDAYAT | XI TOI 3 | NISN: 2425100075
+  Total Waktu : 1183 ms
+  Step 1: [OK] Get Tenant Info — 87 ms
+  Step 2: [OK] Cek NISN Lokal — 76 ms | NISN: 2425100075
+  Step 3: [OK] Tulis Log Login — 1008 ms
+  Error       : socket hang up
+
+[Siswa #15] ✅ AHMAD TAUFIK HERLANSYA | X TO 2 | NISN: 2526100323
+  Total Waktu : 1159 ms
+  Step 1: [OK] Get Tenant Info — 110 ms
+  Step 2: [OK] Cek NISN Lokal — 97 ms | NISN: 2526100323
+  Step 3: [OK] Tulis Log Login — 139 ms
+  Step 4: [OK] Get Daftar Guru — 201 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 612 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #16] ❌ AHMAD YOPI JUMAEDI | X TO 4 | NISN: 2526100415
+  Total Waktu : 1813 ms
+  Step 1: [OK] Get Tenant Info — 198 ms
+  Step 2: [OK] Cek NISN Lokal — 244 ms | NISN: 2526100415
+  Step 3: [OK] Tulis Log Login — 599 ms
+  Step 4: [OK] Get Daftar Guru — 761 ms
+  Error       : socket hang up
+
+[Siswa #17] ❌ AHMAD ZAINUL IHWAN | X TM 2 | NISN: 2526100232
+  Total Waktu : 17946 ms
+  Step 1: [OK] Get Tenant Info — 89 ms
+  Step 2: [OK] Cek NISN Lokal — 101 ms | NISN: 2526100232
+  Step 3: [OK] Tulis Log Login — 2750 ms
+  Error       : Timeout (15s)
+
+[Siswa #18] ❌ AJENG CAHYA AULIYA | X KUL | NISN: 2526100689
+  Total Waktu : 18660 ms
+  Step 1: [OK] Get Tenant Info — 99 ms
+  Step 2: [OK] Cek NISN Lokal — 81 ms | NISN: 2526100689
+  Step 3: [OK] Tulis Log Login — 3222 ms
+  Step 4: [OK] Get Daftar Guru — 254 ms
+  Error       : Timeout (15s)
+
+[Siswa #19] ❌ AKBAR AHMAD RAFIQ | XI TAV 1 | NISN: 2425100112
+  Total Waktu : 1367 ms
+  Step 1: [OK] Get Tenant Info — 237 ms
+  Step 2: [OK] Cek NISN Lokal — 368 ms | NISN: 2425100112
+  Step 3: [OK] Tulis Log Login — 160 ms
+  Step 4: [OK] Get Daftar Guru — 602 ms
+  Error       : socket hang up
+
+[Siswa #20] ❌ AKBAR FAUZI | X PHT | NISN: 2526100644
+  Total Waktu : 1443 ms
+  Step 1: [OK] Get Tenant Info — 232 ms
+  Step 2: [OK] Cek NISN Lokal — 355 ms | NISN: 2526100644
+  Step 3: [OK] Tulis Log Login — 846 ms
+  Error       : socket hang up
+
+[Siswa #21] ✅ AKBAR MAULANA | X TE 3 | NISN: 2526100096
+  Total Waktu : 2932 ms
+  Step 1: [OK] Get Tenant Info — 200 ms
+  Step 2: [OK] Cek NISN Lokal — 373 ms | NISN: 2526100096
+  Step 3: [OK] Tulis Log Login — 780 ms
+  Step 4: [OK] Get Daftar Guru — 1082 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 497 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #22] ❌ AKBARUL GOFUR | X TE 1 | NISN: 2526100011
+  Total Waktu : 18087 ms
+  Step 1: [OK] Get Tenant Info — 172 ms
+  Step 2: [OK] Cek NISN Lokal — 129 ms | NISN: 2526100011
+  Step 3: [OK] Tulis Log Login — 2771 ms
+  Error       : Timeout (15s)
+
+[Siswa #23] ❌ AKHMAD LATIF | X TM 1 | NISN: 2526100187
+  Total Waktu : 1816 ms
+  Step 1: [OK] Get Tenant Info — 243 ms
+  Step 2: [OK] Cek NISN Lokal — 486 ms | NISN: 2526100187
+  Step 3: [OK] Tulis Log Login — 936 ms
+  Step 4: [OK] Get Daftar Guru — 141 ms
+  Error       : socket hang up
+
+[Siswa #24] ❌ AKMAL JUL PUTRA ELJA | XI TAV 1 | NISN: 2425100113
+  Total Waktu : 18148 ms
+  Step 1: [OK] Get Tenant Info — 2534 ms
+  Step 2: [OK] Cek NISN Lokal — 602 ms | NISN: 2425100113
+  Error       : Timeout (15s)
+
+[Siswa #25] ✅ AKMAL LUTFIA ASHARI | XI TOI 1 | NISN: 2425100005
+  Total Waktu : 3562 ms
+  Step 1: [OK] Get Tenant Info — 109 ms
+  Step 2: [OK] Cek NISN Lokal — 1792 ms | NISN: 2425100005
+  Step 3: [OK] Tulis Log Login — 117 ms
+  Step 4: [OK] Get Daftar Guru — 1066 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 478 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+
+[Siswa #26] ❌ AL ASYA SYARKLA | X AKL 1 | NISN: 2526100553
+  Total Waktu : 1813 ms
+  Step 1: [OK] Get Tenant Info — 163 ms
+  Step 2: [OK] Cek NISN Lokal — 364 ms | NISN: 2526100553
+  Step 3: [OK] Tulis Log Login — 1281 ms
+  Error       : socket hang up
+
+[Siswa #27] ❌ ALBIAN SUKMA MAULANA | X TE 1 | NISN: 2526100012
+  Total Waktu : 1222 ms
+  Step 1: [OK] Get Tenant Info — 424 ms
+  Step 2: [OK] Cek NISN Lokal — 213 ms | NISN: 2526100012
+  Step 3: [OK] Tulis Log Login — 579 ms
+  Error       : socket hang up
+
+[Siswa #28] ❌ ALDI AFILLAH BIFARY | X TE 2 | NISN: 2526100050
+  Total Waktu : 18594 ms
+  Step 1: [OK] Get Tenant Info — 116 ms
+  Step 2: [OK] Cek NISN Lokal — 1229 ms | NISN: 2526100050
+  Step 3: [OK] Tulis Log Login — 1980 ms
+  Step 4: [OK] Get Daftar Guru — 256 ms
+  Error       : Timeout (15s)
+
+[Siswa #29] ❌ ALDI HARDIANSYAH | XI TAV 2 | NISN: 2425100146
+  Total Waktu : 1064 ms
+  Step 1: [OK] Get Tenant Info — 1056 ms
+  Error       : socket hang up
+
+[Siswa #30] ❌ ALDI MANSYUR | XI TOI 2 | NISN: 2425100039
+  Total Waktu : 906 ms
+  Step 1: [OK] Get Tenant Info — 194 ms
+  Step 2: [OK] Cek NISN Lokal — 284 ms | NISN: 2425100039
+  Step 3: [OK] Tulis Log Login — 422 ms
+  Error       : socket hang up
+
+[Siswa #31] ✅ ALDI PADILAH | XI TKR 1 | NISN: 2425100257
+  Total Waktu : 1004 ms
+  Step 1: [OK] Get Tenant Info — 185 ms
+  Step 2: [OK] Cek NISN Lokal — 85 ms | NISN: 2425100257
+  Step 3: [OK] Tulis Log Login — 270 ms
+  Step 4: [OK] Get Daftar Guru — 193 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 271 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: DANI SETIAWAN, S.E.)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+
+[Siswa #32] ❌ ALDI SAPUTRA | XI TOI 1 | NISN: 2425100006
+  Total Waktu : 18696 ms
+  Step 1: [OK] Get Tenant Info — 138 ms
+  Step 2: [OK] Cek NISN Lokal — 2512 ms | NISN: 2425100006
+  Step 3: [OK] Tulis Log Login — 1041 ms
+  Error       : Timeout (15s)
+
+[Siswa #33] ❌ ALDI SETIAWAN | X TO 2 | NISN: 2526100324
+  Total Waktu : 18182 ms
+  Step 1: [OK] Get Tenant Info — 392 ms
+  Step 2: [OK] Cek NISN Lokal — 1734 ms | NISN: 2526100324
+  Step 3: [OK] Tulis Log Login — 149 ms
+  Step 4: [OK] Get Daftar Guru — 903 ms
+  Error       : Timeout (15s)
+
+[Siswa #34] ❌ ALENA NUR AWALIZA | X AKL 2 | NISN: 2526100599
+  Total Waktu : 1535 ms
+  Step 1: [OK] Get Tenant Info — 567 ms
+  Step 2: [OK] Cek NISN Lokal — 962 ms | NISN: 2526100599
+  Error       : socket hang up
+
+[Siswa #35] ❌ AL FATHIR ZUNIOR | XI TP 1 | NISN: 2425100186
+  Total Waktu : 18307 ms
+  Step 1: [OK] Get Tenant Info — 2714 ms
+  Step 2: [OK] Cek NISN Lokal — 581 ms | NISN: 2425100186
+  Error       : Timeout (15s)
+
+[Siswa #36] ❌ ALFATH MAULANA YUSUF | XI TOI 2 | NISN: 2425100040
+  Total Waktu : 1415 ms
+  Step 1: [OK] Get Tenant Info — 145 ms
+  Step 2: [OK] Cek NISN Lokal — 273 ms | NISN: 2425100040
+  Step 3: [OK] Tulis Log Login — 988 ms
+  Error       : socket hang up
+
+[Siswa #37] ❌ ALFIAN BAGUS RAMADHAN | X TE 4 | NISN: 2526100141
+  Total Waktu : 18287 ms
+  Step 1: [OK] Get Tenant Info — 2597 ms
+  Step 2: [OK] Cek NISN Lokal — 677 ms | NISN: 2526100141
+  Error       : Timeout (15s)
+
+[Siswa #38] ❌ ALFIAN FIRDAUS | X TJKT 2 | NISN: 2526100509
+  Total Waktu : 808 ms
+  Step 1: [OK] Get Tenant Info — 801 ms
+  Error       : socket hang up
+
+[Siswa #39] ❌ ALFIAN NURYAMAN | XI TOI 1 | NISN: 2425100007
+  Total Waktu : 18221 ms
+  Step 1: [OK] Get Tenant Info — 169 ms
+  Step 2: [OK] Cek NISN Lokal — 1249 ms | NISN: 2425100007
+  Step 3: [OK] Tulis Log Login — 731 ms
+  Step 4: [OK] Get Daftar Guru — 1069 ms
+  Error       : Timeout (15s)
+
+[Siswa #40] ✅ ALFIN DESTIAN | X TE 3 | NISN: 2526100097
+  Total Waktu : 3468 ms
+  Step 1: [OK] Get Tenant Info — 282 ms
+  Step 2: [OK] Cek NISN Lokal — 435 ms | NISN: 2526100097
+  Step 3: [OK] Tulis Log Login — 1533 ms
+  Step 4: [OK] Get Daftar Guru — 646 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 572 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #41] ❌ ALGI FALGIAN | X TO 4 | NISN: 2526100416
+  Total Waktu : 18812 ms
+  Step 1: [OK] Get Tenant Info — 2191 ms
+  Step 2: [OK] Cek NISN Lokal — 694 ms | NISN: 2526100416
+  Step 3: [OK] Tulis Log Login — 926 ms
+  Error       : Timeout (15s)
+
+[Siswa #42] ✅ AL HAFIZ SHABIR SALAM | X TO 3 | NISN: 2526100370
+  Total Waktu : 3208 ms
+  Step 1: [OK] Get Tenant Info — 96 ms
+  Step 2: [OK] Cek NISN Lokal — 1502 ms | NISN: 2526100370
+  Step 3: [OK] Tulis Log Login — 309 ms
+  Step 4: [OK] Get Daftar Guru — 677 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 624 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #43] ✅ ALIEF MUHAMAD ARRIADY | X TE 3 | NISN: 2526100098
+  Total Waktu : 3294 ms
+  Step 1: [OK] Get Tenant Info — 1598 ms
+  Step 2: [OK] Cek NISN Lokal — 150 ms | NISN: 2526100098
+  Step 3: [OK] Tulis Log Login — 298 ms
+  Step 4: [OK] Get Daftar Guru — 588 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 660 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #44] ✅ ALIF MAULANA SURYADI | X TM 2 | NISN: 2526100233
+  Total Waktu : 3827 ms
+  Step 1: [OK] Get Tenant Info — 286 ms
+  Step 2: [OK] Cek NISN Lokal — 229 ms | NISN: 2526100233
+  Step 3: [OK] Tulis Log Login — 2457 ms
+  Step 4: [OK] Get Daftar Guru — 752 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 103 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #45] ❌ ALIKHA NUR AZIZAH | X TM 1 | NISN: 2526100188
+  Total Waktu : 17795 ms
+  Step 1: [OK] Get Tenant Info — 2792 ms
+  Error       : Timeout (15s)
+
+[Siswa #46] ❌ ALIN NURFAIDA | X PHT | NISN: 2526100645
+  Total Waktu : 770 ms
+  Step 1: [OK] Get Tenant Info — 765 ms
+  Error       : socket hang up
+
+[Siswa #47] ❌ ALI PERMANA | X TO 4 | NISN: 2526100417
+  Total Waktu : 1130 ms
+  Step 1: [OK] Get Tenant Info — 247 ms
+  Step 2: [OK] Cek NISN Lokal — 877 ms | NISN: 2526100417
+  Error       : socket hang up
+
+[Siswa #48] ❌ ALIPIA MAULIDIA PUTRI | X PHT | NISN: 2526100646
+  Total Waktu : 1072 ms
+  Step 1: [OK] Get Tenant Info — 132 ms
+  Step 2: [OK] Cek NISN Lokal — 258 ms | NISN: 2526100646
+  Step 3: [OK] Tulis Log Login — 126 ms
+  Step 4: [OK] Get Daftar Guru — 548 ms
+  Error       : socket hang up
+
+[Siswa #49] ✅ ALPARIJAL | XI TOI 3 | NISN: 2425100076
+  Total Waktu : 3680 ms
+  Step 1: [OK] Get Tenant Info — 111 ms
+  Step 2: [OK] Cek NISN Lokal — 2401 ms | NISN: 2425100076
+  Step 3: [OK] Tulis Log Login — 606 ms
+  Step 4: [OK] Get Daftar Guru — 480 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 82 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - MPP (Oleh: Aceng Nurmawan, S.T.)
+
+[Siswa #50] ❌ ALPIN AZIZ | X TO 3 | NISN: 2526100371
+  Total Waktu : 17680 ms
+  Step 1: [OK] Get Tenant Info — 2669 ms
+  Error       : Timeout (15s)
+
+[Siswa #51] ✅ ALVIAN PRAMUDYA AZHAR | X TM 2 | NISN: 2526100234
+  Total Waktu : 3340 ms
+  Step 1: [OK] Get Tenant Info — 528 ms
+  Step 2: [OK] Cek NISN Lokal — 2009 ms | NISN: 2526100234
+  Step 3: [OK] Tulis Log Login — 583 ms
+  Step 4: [OK] Get Daftar Guru — 154 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 65 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #52] ❌ ALVIN IRHAM PADILLAH | XI TP 2 | NISN: 2425100222
+  Total Waktu : 17720 ms
+  Step 1: [OK] Get Tenant Info — 2708 ms
+  Error       : Timeout (15s)
+
+[Siswa #53] ❌ ALWIS SAEPUL ADHA | XI TKR 1 | NISN: 2425100258
+  Total Waktu : 816 ms
+  Step 1: [OK] Get Tenant Info — 186 ms
+  Step 2: [OK] Cek NISN Lokal — 335 ms | NISN: 2425100258
+  Step 3: [OK] Tulis Log Login — 294 ms
+  Error       : socket hang up
+
+[Siswa #54] ❌ ALYA RAMADANI | X PHT | NISN: 2526100647
+  Total Waktu : 1468 ms
+  Step 1: [OK] Get Tenant Info — 143 ms
+  Step 2: [OK] Cek NISN Lokal — 102 ms | NISN: 2526100647
+  Step 3: [OK] Tulis Log Login — 1214 ms
+  Error       : socket hang up
+
+[Siswa #55] ✅ ALYA RENAULTFA HALAWATI | X KUL | NISN: 2526100690
+  Total Waktu : 1998 ms
+  Step 1: [OK] Get Tenant Info — 178 ms
+  Step 2: [OK] Cek NISN Lokal — 1252 ms | NISN: 2526100690
+  Step 3: [OK] Tulis Log Login — 425 ms
+  Step 4: [OK] Get Daftar Guru — 88 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 55 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #56] ✅ ALZIAN ILHAM PRATAMA | X TE 2 | NISN: 2526100051
+  Total Waktu : 1991 ms
+  Step 1: [OK] Get Tenant Info — 266 ms
+  Step 2: [OK] Cek NISN Lokal — 1223 ms | NISN: 2526100051
+  Step 3: [OK] Tulis Log Login — 195 ms
+  Step 4: [OK] Get Daftar Guru — 108 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 199 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #57] ❌ ANANG ANDRIANSYAH | XI TOI 1 | NISN: 2425100008
+  Total Waktu : 17899 ms
+  Step 1: [OK] Get Tenant Info — 218 ms
+  Step 2: [OK] Cek NISN Lokal — 1108 ms | NISN: 2425100008
+  Step 3: [OK] Tulis Log Login — 1561 ms
+  Error       : Timeout (15s)
+
+[Siswa #58] ❌ ANDIKA FARHAN PAUZI | X TE 1 | NISN: 2526100013
+  Total Waktu : 17599 ms
+  Step 1: [OK] Get Tenant Info — 1509 ms
+  Step 2: [OK] Cek NISN Lokal — 135 ms | NISN: 2526100013
+  Step 3: [OK] Tulis Log Login — 941 ms
+  Error       : Timeout (15s)
+
+[Siswa #59] ✅ ANDI KURNIAWAN | X TO 2 | NISN: 2526100325
+  Total Waktu : 10975 ms
+  Step 1: [OK] Get Tenant Info — 2942 ms
+  Step 2: [OK] Cek NISN Lokal — 630 ms | NISN: 2526100325
+  Step 3: [OK] Tulis Log Login — 7303 ms
+  Step 4: [OK] Get Daftar Guru — 57 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 43 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #60] ✅ ANDINI SAHIRA RAMADANI | X TJKT 1 | NISN: 2526100464
+  Total Waktu : 3452 ms
+  Step 1: [OK] Get Tenant Info — 1259 ms
+  Step 2: [OK] Cek NISN Lokal — 160 ms | NISN: 2526100464
+  Step 3: [OK] Tulis Log Login — 160 ms
+  Step 4: [OK] Get Daftar Guru — 1035 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 837 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #61] ❌ ANDITIKACHIE | X TE 2 | NISN: 2526100052
+  Total Waktu : 18164 ms
+  Step 1: [OK] Get Tenant Info — 2436 ms
+  Step 2: [OK] Cek NISN Lokal — 597 ms | NISN: 2526100052
+  Step 3: [OK] Tulis Log Login — 118 ms
+  Error       : Timeout (15s)
+
+[Siswa #62] ❌ ANDRA RAMADHAN | XI TAV 2 | NISN: 2425100147
+  Total Waktu : 632 ms
+  Step 1: [OK] Get Tenant Info — 622 ms
+  Error       : socket hang up
+
+[Siswa #63] ❌ ANDRI VALENTINO RUKMANA | X AKL 1 | NISN: 2526100554
+  Total Waktu : 17551 ms
+  Step 1: [OK] Get Tenant Info — 1815 ms
+  Step 2: [OK] Cek NISN Lokal — 728 ms | NISN: 2526100554
+  Error       : Timeout (15s)
+
+[Siswa #64] ✅ ANE AWALIAH | X KUL | NISN: 2526100691
+  Total Waktu : 3237 ms
+  Step 1: [OK] Get Tenant Info — 139 ms
+  Step 2: [OK] Cek NISN Lokal — 1268 ms | NISN: 2526100691
+  Step 3: [OK] Tulis Log Login — 111 ms
+  Step 4: [OK] Get Daftar Guru — 1126 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 593 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #65] ❌ ANGELINA TIVANY | X AKL 2 | NISN: 2526100600
+  Total Waktu : 18133 ms
+  Step 1: [OK] Get Tenant Info — 2137 ms
+  Step 2: [OK] Cek NISN Lokal — 599 ms | NISN: 2526100600
+  Step 3: [OK] Tulis Log Login — 388 ms
+  Error       : Timeout (15s)
+
+[Siswa #66] ❌ ANGGA PRADITA | X TE 1 | NISN: 2526100014
+  Total Waktu : 925 ms
+  Step 1: [OK] Get Tenant Info — 922 ms
+  Error       : socket hang up
+
+[Siswa #67] ❌ ANGGA SAPUTRA | XI TAV 2 | NISN: 2425100148
+  Total Waktu : 17713 ms
+  Step 1: [OK] Get Tenant Info — 1661 ms
+  Step 2: [OK] Cek NISN Lokal — 370 ms | NISN: 2425100148
+  Step 3: [OK] Tulis Log Login — 672 ms
+  Error       : Timeout (15s)
+
+[Siswa #68] ❌ ANIDA ALIMATUNISA | X KUL | NISN: 2526100692
+  Total Waktu : 17709 ms
+  Step 1: [OK] Get Tenant Info — 198 ms
+  Step 2: [OK] Cek NISN Lokal — 1815 ms | NISN: 2526100692
+  Step 3: [OK] Tulis Log Login — 696 ms
+  Error       : Timeout (15s)
+
+[Siswa #69] ✅ ANI NUROHIMAH | X TJKT 2 | NISN: 2526100510
+  Total Waktu : 2685 ms
+  Step 1: [OK] Get Tenant Info — 969 ms
+  Step 2: [OK] Cek NISN Lokal — 711 ms | NISN: 2526100510
+  Step 3: [OK] Tulis Log Login — 177 ms
+  Step 4: [OK] Get Daftar Guru — 238 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 590 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #70] ❌ ANISA | X AKL 1 | NISN: 2526100555
+  Total Waktu : 18469 ms
+  Step 1: [OK] Get Tenant Info — 2110 ms
+  Step 2: [OK] Cek NISN Lokal — 519 ms | NISN: 2526100555
+  Step 3: [OK] Tulis Log Login — 832 ms
+  Error       : Timeout (15s)
+
+[Siswa #71] ✅ ANISA FATONATUL ABROR | X AKL 2 | NISN: 2526100601
+  Total Waktu : 3360 ms
+  Step 1: [OK] Get Tenant Info — 1853 ms
+  Step 2: [OK] Cek NISN Lokal — 605 ms | NISN: 2526100601
+  Step 3: [OK] Tulis Log Login — 709 ms
+  Step 4: [OK] Get Daftar Guru — 76 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 117 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #72] ✅ ANISA PITRI | X KUL | NISN: 2526100693
+  Total Waktu : 3365 ms
+  Step 1: [OK] Get Tenant Info — 1892 ms
+  Step 2: [OK] Cek NISN Lokal — 731 ms | NISN: 2526100693
+  Step 3: [OK] Tulis Log Login — 551 ms
+  Step 4: [OK] Get Daftar Guru — 129 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 62 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: Annisa Ropiatusholihah, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #73] ❌ ANUGRAH FAJRI | XI TOI 1 | NISN: 2425100009
+  Total Waktu : 17627 ms
+  Step 1: [OK] Get Tenant Info — 1797 ms
+  Step 2: [OK] Cek NISN Lokal — 90 ms | NISN: 2425100009
+  Step 3: [OK] Tulis Log Login — 96 ms
+  Step 4: [OK] Get Daftar Guru — 630 ms
+  Error       : Timeout (15s)
+
+[Siswa #74] ❌ ANWAR NASRULOH | X KUL | NISN: 2526100694
+  Total Waktu : 17630 ms
+  Step 1: [OK] Get Tenant Info — 1458 ms
+  Step 2: [OK] Cek NISN Lokal — 62 ms | NISN: 2526100694
+  Step 3: [OK] Tulis Log Login — 403 ms
+  Step 4: [OK] Get Daftar Guru — 695 ms
+  Error       : Timeout (15s)
+
+[Siswa #75] ❌ ARBAITY PUTRI HAYATI | X KUL | NISN: 2526100695
+  Total Waktu : 1221 ms
+  Step 1: [OK] Get Tenant Info — 1212 ms
+  Error       : socket hang up
+
+[Siswa #76] ❌ ARDI PRATAMA | X TE 2 | NISN: 2526100053
+  Total Waktu : 17890 ms
+  Step 1: [OK] Get Tenant Info — 2203 ms
+  Step 2: [OK] Cek NISN Lokal — 673 ms | NISN: 2526100053
+  Error       : Timeout (15s)
+
+[Siswa #77] ✅ ARDIYANTO MIRZA HENDRAWAN | X TJKT 1 | NISN: 2526100465
+  Total Waktu : 2605 ms
+  Step 1: [OK] Get Tenant Info — 795 ms
+  Step 2: [OK] Cek NISN Lokal — 670 ms | NISN: 2526100465
+  Step 3: [OK] Tulis Log Login — 218 ms
+  Step 4: [OK] Get Daftar Guru — 254 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 668 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #78] ❌ ARFANDHANI SYAHPUTRA | XI TKR 1 | NISN: 2425100259
+  Total Waktu : 1098 ms
+  Step 1: [OK] Get Tenant Info — 188 ms
+  Step 2: [OK] Cek NISN Lokal — 499 ms | NISN: 2425100259
+  Step 3: [OK] Tulis Log Login — 77 ms
+  Step 4: [OK] Get Daftar Guru — 333 ms
+  Error       : socket hang up
+
+[Siswa #79] ❌ ARFI AL YASIL RAMDHANI | X TM 1 | NISN: 2526100189
+  Total Waktu : 1129 ms
+  Step 1: [OK] Get Tenant Info — 1114 ms
+  Error       : socket hang up
+
+[Siswa #80] ❌ ARIF | XI TOI 3 | NISN: 2425100077
+  Total Waktu : 18041 ms
+  Step 1: [OK] Get Tenant Info — 318 ms
+  Step 2: [OK] Cek NISN Lokal — 2404 ms | NISN: 2425100077
+  Step 3: [OK] Tulis Log Login — 304 ms
+  Error       : Timeout (15s)
+
+[Siswa #81] ❌ ARIF AMRUL NURHIDAYAT | XI TP 1 | NISN: 2425100187
+  Total Waktu : 17871 ms
+  Step 1: [OK] Get Tenant Info — 1266 ms
+  Step 2: [OK] Cek NISN Lokal — 571 ms | NISN: 2425100187
+  Step 3: [OK] Tulis Log Login — 298 ms
+  Step 4: [OK] Get Daftar Guru — 734 ms
+  Error       : Timeout (15s)
+
+[Siswa #82] ❌ ARIF RAHMAN | X AKL 1 | NISN: 2526100556
+  Total Waktu : 770 ms
+  Step 1: [OK] Get Tenant Info — 769 ms
+  Error       : socket hang up
+
+[Siswa #83] ❌ ARIF RAPI PADLU RAHMAN | XI TOI 3 | NISN: 2425100078
+  Total Waktu : 17222 ms
+  Step 1: [OK] Get Tenant Info — 1931 ms
+  Step 2: [OK] Cek NISN Lokal — 289 ms | NISN: 2425100078
+  Error       : Timeout (15s)
+
+[Siswa #84] ❌ ARI GUNTORO | XI TKR 1 | NISN: 2425100260
+  Total Waktu : 18095 ms
+  Step 1: [OK] Get Tenant Info — 2222 ms
+  Step 2: [OK] Cek NISN Lokal — 864 ms | NISN: 2425100260
+  Error       : Timeout (15s)
+
+[Siswa #85] ❌ ARI MUHAMAD IKBAL | X TE 3 | NISN: 2526100099
+  Total Waktu : 18323 ms
+  Step 1: [OK] Get Tenant Info — 2136 ms
+  Step 2: [OK] Cek NISN Lokal — 657 ms | NISN: 2526100099
+  Step 3: [OK] Tulis Log Login — 340 ms
+  Step 4: [OK] Get Daftar Guru — 183 ms
+  Error       : Timeout (15s)
+
+[Siswa #86] ❌ ARIP NURDIN | X TM 2 | NISN: 2526100235
+  Total Waktu : 624 ms
+  Step 1: [OK] Get Tenant Info — 608 ms
+  Error       : socket hang up
+
+[Siswa #87] ❌ ARIP RAHMAN | X TE 2 | NISN: 2526100054
+  Total Waktu : 953 ms
+  Step 1: [OK] Get Tenant Info — 884 ms
+  Step 2: [OK] Cek NISN Lokal — 65 ms | NISN: 2526100054
+  Error       : socket hang up
+
+[Siswa #88] ❌ ARISMA NUR JAMILAH | X TJKT 2 | NISN: 2526100511
+  Total Waktu : 18198 ms
+  Step 1: [OK] Get Tenant Info — 2230 ms
+  Step 2: [OK] Cek NISN Lokal — 960 ms | NISN: 2526100511
+  Error       : Timeout (15s)
+
+[Siswa #89] ✅ ARIS MULYADI | XI TOI 2 | NISN: 2425100041
+  Total Waktu : 1639 ms
+  Step 1: [OK] Get Tenant Info — 414 ms
+  Step 2: [OK] Cek NISN Lokal — 561 ms | NISN: 2425100041
+  Step 3: [OK] Tulis Log Login — 121 ms
+  Step 4: [OK] Get Daftar Guru — 301 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 242 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #90] ❌ ARNI NURHAYATI | X TM 1 | NISN: 2526100190
+  Total Waktu : 17663 ms
+  Step 1: [OK] Get Tenant Info — 2648 ms
+  Error       : Timeout (15s)
+
+[Siswa #91] ❌ ARYA ERLANGGA | XI TAV 1 | NISN: 2425100114
+  Total Waktu : 815 ms
+  Step 1: [OK] Get Tenant Info — 807 ms
+  Error       : socket hang up
+
+[Siswa #92] ❌ ARYAPUTRA PERMANA | X TE 1 | NISN: 2526100015
+  Total Waktu : 159 ms
+  Step 1: [OK] Get Tenant Info — 153 ms
+  Error       : socket hang up
+
+[Siswa #93] ❌ ARYA RIZKI RAMDANI | X TO 2 | NISN: 2526100326
+  Total Waktu : 907 ms
+  Step 1: [OK] Get Tenant Info — 905 ms
+  Error       : socket hang up
+
+[Siswa #94] ❌ ASEP GIMAN MADANI | XI TP 2 | NISN: 2425100223
+  Total Waktu : 347 ms
+  Step 1: [OK] Get Tenant Info — 340 ms
+  Error       : socket hang up
+
+[Siswa #95] ❌ ASEP MAULANA | X TE 1 | NISN: 2526100016
+  Total Waktu : 191 ms
+  Step 1: [OK] Get Tenant Info — 187 ms
+  Error       : socket hang up
+
+[Siswa #96] ✅ ASEP MUGNI | XI TAV 2 | NISN: 2425100149
+  Total Waktu : 2812 ms
+  Step 1: [OK] Get Tenant Info — 204 ms
+  Step 2: [OK] Cek NISN Lokal — 1128 ms | NISN: 2425100149
+  Step 3: [OK] Tulis Log Login — 419 ms
+  Step 4: [OK] Get Daftar Guru — 535 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 526 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #97] ❌ ASEP MUHAMMAD WILDAN | X TE 1 | NISN: 2526100017
+  Total Waktu : 864 ms
+  Step 1: [OK] Get Tenant Info — 560 ms
+  Step 2: [OK] Cek NISN Lokal — 292 ms | NISN: 2526100017
+  Error       : socket hang up
+
+[Siswa #98] ❌ ASEP SAEPUL ROHMAN | X TM 2 | NISN: 2526100236
+  Total Waktu : 17585 ms
+  Step 1: [OK] Get Tenant Info — 1922 ms
+  Step 2: [OK] Cek NISN Lokal — 661 ms | NISN: 2526100236
+  Error       : Timeout (15s)
+
+[Siswa #99] ✅ ASEP SAMSUL BARWIS PADILAH | X TO 3 | NISN: 2526100372
+  Total Waktu : 3119 ms
+  Step 1: [OK] Get Tenant Info — 545 ms
+  Step 2: [OK] Cek NISN Lokal — 83 ms | NISN: 2526100372
+  Step 3: [OK] Tulis Log Login — 1866 ms
+  Step 4: [OK] Get Daftar Guru — 527 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 97 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #100] ❌ ASEP WAHYUDIN AGUSTIAN | X AKL 2 | NISN: 2526100602
+  Total Waktu : 17819 ms
+  Step 1: [OK] Get Tenant Info — 681 ms
+  Step 2: [OK] Cek NISN Lokal — 1449 ms | NISN: 2526100602
+  Step 3: [OK] Tulis Log Login — 590 ms
+  Step 4: [OK] Get Daftar Guru — 96 ms
+  Error       : Timeout (15s)
+
+[Siswa #101] ❌ ASHILLA PUTRI RIZKY | X PHT | NISN: 2526100648
+  Total Waktu : 713 ms
+  Step 1: [OK] Get Tenant Info — 701 ms
+  Error       : socket hang up
+
+[Siswa #102] ✅ ASIPA NUR APRILIA | X TJKT 1 | NISN: 2526100466
+  Total Waktu : 2928 ms
+  Step 1: [OK] Get Tenant Info — 147 ms
+  Step 2: [OK] Cek NISN Lokal — 399 ms | NISN: 2526100466
+  Step 3: [OK] Tulis Log Login — 1686 ms
+  Step 4: [OK] Get Daftar Guru — 640 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 56 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #103] ❌ ASROF KHOERUDIN | XI TP 1 | NISN: 2425100188
+  Total Waktu : 17532 ms
+  Step 1: [OK] Get Tenant Info — 1412 ms
+  Step 2: [OK] Cek NISN Lokal — 1113 ms | NISN: 2425100188
+  Error       : Timeout (15s)
+
+[Siswa #104] ✅ AUDI MAULIDA | X AKL 1 | NISN: 2526100557
+  Total Waktu : 2338 ms
+  Step 1: [OK] Get Tenant Info — 343 ms
+  Step 2: [OK] Cek NISN Lokal — 86 ms | NISN: 2526100557
+  Step 3: [OK] Tulis Log Login — 633 ms
+  Step 4: [OK] Get Daftar Guru — 161 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1115 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #105] ❌ AULIA ANATASYA | X PHT | NISN: 2526100649
+  Total Waktu : 42 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #106] ❌ AULIA SITI RAHMAWATI | X KUL | NISN: 2526100696
+  Total Waktu : 25 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #107] ❌ AYI NURHAYATI | X PHT | NISN: 2526100650
+  Total Waktu : 18146 ms
+  Step 1: [OK] Get Tenant Info — 2278 ms
+  Step 2: [OK] Cek NISN Lokal — 716 ms | NISN: 2526100650
+  Step 3: [OK] Tulis Log Login — 137 ms
+  Error       : Timeout (15s)
+
+[Siswa #108] ❌ AZHAR ISMAIL | X TE 3 | NISN: 2526100100
+  Total Waktu : 727 ms
+  Step 1: [OK] Get Tenant Info — 452 ms
+  Step 2: [OK] Cek NISN Lokal — 254 ms | NISN: 2526100100
+  Error       : read ECONNRESET
+
+[Siswa #109] ✅ AZKA ZAKIATUNISA | X TE 2 | NISN: 2526100055
+  Total Waktu : 3015 ms
+  Step 1: [OK] Get Tenant Info — 220 ms
+  Step 2: [OK] Cek NISN Lokal — 138 ms | NISN: 2526100055
+  Step 3: [OK] Tulis Log Login — 628 ms
+  Step 4: [OK] Get Daftar Guru — 959 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1070 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #110] ✅ AZRIL EKA NUGRAHA | X TO 4 | NISN: 2526100418
+  Total Waktu : 2100 ms
+  Step 1: [OK] Get Tenant Info — 285 ms
+  Step 2: [OK] Cek NISN Lokal — 1019 ms | NISN: 2526100418
+  Step 3: [OK] Tulis Log Login — 76 ms
+  Step 4: [OK] Get Daftar Guru — 202 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 518 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #111] ❌ AZRIL ILHAM ABDURROZAK | X TM 1 | NISN: 2526100191
+  Total Waktu : 17559 ms
+  Step 1: [OK] Get Tenant Info — 1308 ms
+  Step 2: [OK] Cek NISN Lokal — 170 ms | NISN: 2526100191
+  Step 3: [OK] Tulis Log Login — 376 ms
+  Step 4: [OK] Get Daftar Guru — 695 ms
+  Error       : Timeout (15s)
+
+[Siswa #112] ❌ AZRIL MUNAZAR | X TE 2 | NISN: 2526100056
+  Total Waktu : 45 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #113] ✅ BAYU ABDUL SALAM | X TO 1 | NISN: 2526100281
+  Total Waktu : 3157 ms
+  Step 1: [OK] Get Tenant Info — 1442 ms
+  Step 2: [OK] Cek NISN Lokal — 100 ms | NISN: 2526100281
+  Step 3: [OK] Tulis Log Login — 465 ms
+  Step 4: [OK] Get Daftar Guru — 1090 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 60 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - MTK (Oleh: AHMAD HERI KHOLILURROHMAN, M.Pd.)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #114] ❌ BAYU ALPIN NUGRAHA | X TE 1 | NISN: 2526100018
+  Total Waktu : 17233 ms
+  Step 1: [OK] Get Tenant Info — 844 ms
+  Step 2: [OK] Cek NISN Lokal — 278 ms | NISN: 2526100018
+  Step 3: [OK] Tulis Log Login — 378 ms
+  Step 4: [OK] Get Daftar Guru — 730 ms
+  Error       : Timeout (15s)
+
+[Siswa #115] ❌ BAYU NATA | XI TOI 1 | NISN: 2425100010
+  Total Waktu : 41 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #116] ✅ BERIN IMDAD IKARA | XI TOI 2 | NISN: 2425100042
+  Total Waktu : 2537 ms
+  Step 1: [OK] Get Tenant Info — 825 ms
+  Step 2: [OK] Cek NISN Lokal — 255 ms | NISN: 2425100042
+  Step 3: [OK] Tulis Log Login — 112 ms
+  Step 4: [OK] Get Daftar Guru — 634 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 711 ms | Ditemukan 2 ujian
+  Daftar Ujian Lokal:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+
+[Siswa #117] ✅ BILAL MAULANA | X TM 2 | NISN: 2526100237
+  Total Waktu : 2668 ms
+  Step 1: [OK] Get Tenant Info — 282 ms
+  Step 2: [OK] Cek NISN Lokal — 81 ms | NISN: 2526100237
+  Step 3: [OK] Tulis Log Login — 153 ms
+  Step 4: [OK] Get Daftar Guru — 1864 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 288 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #118] ✅ BINTANG GALUH NANDIA | X TE 4 | NISN: 2526100142
+  Total Waktu : 1263 ms
+  Step 1: [OK] Get Tenant Info — 615 ms
+  Step 2: [OK] Cek NISN Lokal — 323 ms | NISN: 2526100142
+  Step 3: [OK] Tulis Log Login — 128 ms
+  Step 4: [OK] Get Daftar Guru — 84 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 112 ms | Ditemukan 6 ujian
+  Daftar Ujian Lokal:
+    - IF (Oleh: Asep Sofyan, S.Kom.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - DDPK (Oleh: Kelvin Suharvianto, ST)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #119] ✅ BINTANG RAHMA DEWI SAPUTRA | X PHT | NISN: 2526100651
+  Total Waktu : 2315 ms
+  Step 1: [OK] Get Tenant Info — 277 ms
+  Step 2: [OK] Cek NISN Lokal — 591 ms | NISN: 2526100651
+  Step 3: [OK] Tulis Log Login — 462 ms
+  Step 4: [OK] Get Daftar Guru — 261 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 724 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #120] ❌ CAHAYA SUCI RAMADHANI | X KUL | NISN: 2526100697
+  Total Waktu : 21 ms
+  Error       : read ECONNRESET
+
+[Siswa #121] ❌ CAHYADI RAHMAN | X TM 1 | NISN: 2526100192
+  Total Waktu : 22 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #122] ❌ CANDRA MAHESA | X TO 2 | NISN: 2526100327
+  Total Waktu : 16830 ms
+  Step 1: [OK] Get Tenant Info — 77 ms
+  Step 2: [OK] Cek NISN Lokal — 1002 ms | NISN: 2526100327
+  Step 3: [OK] Tulis Log Login — 745 ms
+  Error       : Timeout (15s)
+
+[Siswa #123] ❌ CANDRA NIKOLAS PRASETIYO | XI TKR 1 | NISN: 2425100261
+  Total Waktu : 17912 ms
+  Step 1: [OK] Get Tenant Info — 236 ms
+  Step 2: [OK] Cek NISN Lokal — 644 ms | NISN: 2425100261
+  Step 3: [OK] Tulis Log Login — 1082 ms
+  Step 4: [OK] Get Daftar Guru — 948 ms
+  Error       : Timeout (15s)
+
+[Siswa #124] ✅ CARLO VELIANO BEKAK | XI TP 2 | NISN: 2425100224
+  Total Waktu : 3017 ms
+  Step 1: [OK] Get Tenant Info — 744 ms
+  Step 2: [OK] Cek NISN Lokal — 127 ms | NISN: 2425100224
+  Step 3: [OK] Tulis Log Login — 1209 ms
+  Step 4: [OK] Get Daftar Guru — 550 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 387 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T.)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T.)
+
+[Siswa #125] ❌ CASHERA SYIFA RAMZAH | X PHT | NISN: 2526100652
+  Total Waktu : 17344 ms
+  Step 1: [OK] Get Tenant Info — 655 ms
+  Step 2: [OK] Cek NISN Lokal — 604 ms | NISN: 2526100652
+  Step 3: [OK] Tulis Log Login — 1083 ms
+  Error       : Timeout (15s)
+
+[Siswa #126] ❌ CENG HILMAN | XI TAV 2 | NISN: 2425100150
+  Total Waktu : 29 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #127] ❌ CEP AHMAD NAWAWI | X TJKT 1 | NISN: 2526100467
+  Total Waktu : 27 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #128] ❌ CHANDRA MOCHAMAD DIKRI | XI TP 1 | NISN: 2425100189
+  Total Waktu : 17622 ms
+  Step 1: [OK] Get Tenant Info — 1891 ms
+  Step 2: [OK] Cek NISN Lokal — 717 ms | NISN: 2425100189
+  Error       : Timeout (15s)
+
+[Siswa #129] ❌ CHICKO MUHAMMAD ZAYN | XI TP 2 | NISN: 2425100225
+  Total Waktu : 17834 ms
+  Step 1: [OK] Get Tenant Info — 158 ms
+  Step 2: [OK] Cek NISN Lokal — 1914 ms | NISN: 2425100225
+  Step 3: [OK] Tulis Log Login — 748 ms
+  Error       : Timeout (15s)
+
+[Siswa #130] ❌ CICIH MUNACIH | X AKL 1 | NISN: 2526100558
+  Total Waktu : 711 ms
+  Step 1: [OK] Get Tenant Info — 702 ms
+  Error       : read ECONNRESET
+
+[Siswa #131] ✅ CICI NURHAYATI | X AKL 2 | NISN: 2526100603
+  Total Waktu : 2781 ms
+  Step 1: [OK] Get Tenant Info — 158 ms
+  Step 2: [OK] Cek NISN Lokal — 1584 ms | NISN: 2526100603
+  Step 3: [OK] Tulis Log Login — 581 ms
+  Step 4: [OK] Get Daftar Guru — 276 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 182 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #132] ❌ CINDY FATIKA SARI | X AKL 2 | NISN: 2526100604
+  Total Waktu : 4 ms
+  Error       : socket hang up
+
+[Siswa #133] ✅ CINTIA DANURIS | X PHT | NISN: 2526100653
+  Total Waktu : 2001 ms
+  Step 1: [OK] Get Tenant Info — 218 ms
+  Step 2: [OK] Cek NISN Lokal — 138 ms | NISN: 2526100653
+  Step 3: [OK] Tulis Log Login — 124 ms
+  Step 4: [OK] Get Daftar Guru — 172 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 1348 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - SEJARAH (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd.)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #134] ❌ DADAN NAWALUDIN | X TE 1 | NISN: 2526100019
+  Total Waktu : 543 ms
+  Step 1: [OK] Get Tenant Info — 529 ms
+  Error       : read ECONNRESET
+
+[Siswa #135] ❌ DAFA NURROHMAH | X AKL 1 | NISN: 2526100559
+  Total Waktu : 484 ms
+  Step 1: [OK] Get Tenant Info — 472 ms
+  Error       : read ECONNRESET
+
+[Siswa #136] ❌ DAFFA RATMENDRA | X TO 1 | NISN: 2526100282
+  Total Waktu : 17155 ms
+  Step 1: [OK] Get Tenant Info — 1319 ms
+  Step 2: [OK] Cek NISN Lokal — 236 ms | NISN: 2526100282
+  Step 3: [OK] Tulis Log Login — 598 ms
+  Error       : Timeout (15s)
+
+[Siswa #137] ❌ DAGUSTAN MAQI | X TE 1 | NISN: 2526100020
+  Total Waktu : 17404 ms
+  Step 1: [OK] Get Tenant Info — 1902 ms
+  Step 2: [OK] Cek NISN Lokal — 494 ms | NISN: 2526100020
+  Error       : Timeout (15s)
+
+[Siswa #138] ❌ DAIFANY NABILA | X TJKT 2 | NISN: 2526100512
+  Total Waktu : 43 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #139] ❌ DAIL RAMADHAN | XI TP 1 | NISN: 2425100190
+  Total Waktu : 28 ms
+  Error       : read ECONNRESET
+
+[Siswa #140] ❌ DANI HARJANI | XI TAV 1 | NISN: 2425100115
+  Total Waktu : 22 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #141] ❌ DAPI MULTAJAM | XI TP 2 | NISN: 2425100226
+  Total Waktu : 17464 ms
+  Step 1: [OK] Get Tenant Info — 1576 ms
+  Step 2: [OK] Cek NISN Lokal — 874 ms | NISN: 2425100226
+  Error       : Timeout (15s)
+
+[Siswa #142] ❌ DARA | X AKL 2 | NISN: 2526100605
+  Total Waktu : 17254 ms
+  Step 1: [OK] Get Tenant Info — 116 ms
+  Step 2: [OK] Cek NISN Lokal — 121 ms | NISN: 2526100605
+  Step 3: [OK] Tulis Log Login — 1390 ms
+  Step 4: [OK] Get Daftar Guru — 621 ms
+  Error       : Timeout (15s)
+
+[Siswa #143] ❌ DARDA | XI TP 1 | NISN: 2425100191
+  Total Waktu : 17067 ms
+  Step 1: [OK] Get Tenant Info — 430 ms
+  Step 2: [OK] Cek NISN Lokal — 1623 ms | NISN: 2425100191
+  Error       : Timeout (15s)
+
+[Siswa #144] ❌ DARPIN | X TE 3 | NISN: 2526100101
+  Total Waktu : 48 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #145] ✅ DARU BADARUDIN | X AKL 1 | NISN: 2526100560
+  Total Waktu : 10893 ms
+  Step 1: [OK] Get Tenant Info — 1625 ms
+  Step 2: [OK] Cek NISN Lokal — 7097 ms | NISN: 2526100560
+  Step 3: [OK] Tulis Log Login — 1058 ms
+  Step 4: [OK] Get Daftar Guru — 1074 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 38 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #146] ❌ DEA | X AKL 2 | NISN: 2526100606
+  Total Waktu : 17678 ms
+  Step 1: [OK] Get Tenant Info — 1253 ms
+  Step 2: [OK] Cek NISN Lokal — 390 ms | NISN: 2526100606
+  Step 3: [OK] Tulis Log Login — 1026 ms
+  Error       : Timeout (15s)
+
+[Siswa #147] ❌ DEDE ABDUL FAIZ | X TJKT 1 | NISN: 2526100468
+  Total Waktu : 24 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #148] ❌ DEDE ARIS | X TO 1 | NISN: 2526100283
+  Total Waktu : 36 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #149] ❌ DEDE FAHRI AL FAJRI | X TM 2 | NISN: 2526100238
+  Total Waktu : 22 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #150] ❌ DEDE HAMDANI | XI TAV 1 | NISN: 2425100116
+  Total Waktu : 330 ms
+  Step 1: [OK] Get Tenant Info — 322 ms
+  Error       : socket hang up
+
+[Siswa #151] ❌ DEDE HANIPAH | X TE 4 | NISN: 2526100143
+  Total Waktu : 130 ms
+  Step 1: [OK] Get Tenant Info — 112 ms
+  Error       : read ECONNRESET
+
+[Siswa #152] ❌ DEDE ILMAH | X TJKT 2 | NISN: 2526100513
+  Total Waktu : 17724 ms
+  Step 1: [OK] Get Tenant Info — 770 ms
+  Step 2: [OK] Cek NISN Lokal — 51 ms | NISN: 2526100513
+  Step 3: [OK] Tulis Log Login — 1127 ms
+  Step 4: [OK] Get Daftar Guru — 767 ms
+  Error       : Timeout (15s)
+
+[Siswa #153] ❌ DEDE IRWAN | XI TKR 1 | NISN: 2425100262
+  Total Waktu : 17455 ms
+  Step 1: [OK] Get Tenant Info — 104 ms
+  Step 2: [OK] Cek NISN Lokal — 1740 ms | NISN: 2425100262
+  Step 3: [OK] Tulis Log Login — 476 ms
+  Step 4: [OK] Get Daftar Guru — 121 ms
+  Error       : Timeout (15s)
+
+[Siswa #154] ❌ DEDE MUHAMAD RIZKI | XI TOI 2 | NISN: 2425100043
+  Total Waktu : 16780 ms
+  Step 1: [OK] Get Tenant Info — 1770 ms
+  Error       : Timeout (15s)
+
+[Siswa #155] ❌ DEDEN ALVIN SAMSUDIN | X TE 2 | NISN: 2526100057
+  Total Waktu : 16758 ms
+  Step 1: [OK] Get Tenant Info — 1742 ms
+  Error       : Timeout (15s)
+
+[Siswa #156] ❌ DEDE NURJAMAN | X TO 2 | NISN: 2526100328
+  Total Waktu : 17693 ms
+  Step 1: [OK] Get Tenant Info — 1545 ms
+  Step 2: [OK] Cek NISN Lokal — 1068 ms | NISN: 2526100328
+  Step 3: [OK] Tulis Log Login — 78 ms
+  Error       : Timeout (15s)
+
+[Siswa #157] ❌ DEDEN ZULIAN | X TE 1 | NISN: 2526100021
+  Total Waktu : 16481 ms
+  Step 1: [OK] Get Tenant Info — 1477 ms
+  Error       : Timeout (15s)
+
+[Siswa #158] ❌ DEDE RADITIANSYAH | XI TAV 1 | NISN: 2425100117
+  Total Waktu : 16761 ms
+  Step 1: [OK] Get Tenant Info — 825 ms
+  Step 2: [OK] Cek NISN Lokal — 63 ms | NISN: 2425100117
+  Step 3: [OK] Tulis Log Login — 867 ms
+  Error       : Timeout (15s)
+
+[Siswa #159] ✅ DEDE SOPIAN | XI TP 2 | NISN: 2425100227
+  Total Waktu : 2233 ms
+  Step 1: [OK] Get Tenant Info — 777 ms
+  Step 2: [OK] Cek NISN Lokal — 616 ms | NISN: 2425100227
+  Step 3: [OK] Tulis Log Login — 688 ms
+  Step 4: [OK] Get Daftar Guru — 94 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 58 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T.)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T.)
+
+[Siswa #160] ✅ DEDE TAMIM | XI TAV 2 | NISN: 2425100151
+  Total Waktu : 2748 ms
+  Step 1: [OK] Get Tenant Info — 1596 ms
+  Step 2: [OK] Cek NISN Lokal — 969 ms | NISN: 2425100151
+  Step 3: [OK] Tulis Log Login — 72 ms
+  Step 4: [OK] Get Daftar Guru — 63 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 48 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #161] ❌ DEIMEIAN WIDYATAMA | X TE 1 | NISN: 2526100022
+  Total Waktu : 307 ms
+  Step 1: [OK] Get Tenant Info — 292 ms
+  Error       : socket hang up
+
+[Siswa #162] ❌ DELIA NURLAILA | X AKL 1 | NISN: 2526100561
+  Total Waktu : 265 ms
+  Step 1: [OK] Get Tenant Info — 137 ms
+  Step 2: [OK] Cek NISN Lokal — 126 ms | NISN: 2526100561
+  Error       : socket hang up
+
+[Siswa #163] ❌ DENI HARYADI | XI TP 1 | NISN: 2425100192
+  Total Waktu : 25 ms
+  Error       : read ECONNRESET
+
+[Siswa #164] ✅ DENI ILHAM | X TM 1 | NISN: 2526100193
+  Total Waktu : 2233 ms
+  Step 1: [OK] Get Tenant Info — 845 ms
+  Step 2: [OK] Cek NISN Lokal — 155 ms | NISN: 2526100193
+  Step 3: [OK] Tulis Log Login — 158 ms
+  Step 4: [OK] Get Daftar Guru — 790 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 284 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #165] ❌ DENISSA TIFANI WAHIDYA | X TJKT 1 | NISN: 2526100469
+  Total Waktu : 23 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #166] ❌ DENNIS APRILLIAN RIZKY | XI TAV 2 | NISN: 2425100152
+  Total Waktu : 16611 ms
+  Step 1: [OK] Get Tenant Info — 1608 ms
+  Error       : Timeout (15s)
+
+[Siswa #167] ❌ DERA YULINDA PUTRI | X TJKT 2 | NISN: 2526100514
+  Total Waktu : 103 ms
+  Step 1: [OK] Get Tenant Info — 92 ms
+  Error       : socket hang up
+
+[Siswa #168] ❌ DERI NURFADILLAH | X TM 2 | NISN: 2526100239
+  Total Waktu : 16958 ms
+  Step 1: [OK] Get Tenant Info — 595 ms
+  Step 2: [OK] Cek NISN Lokal — 93 ms | NISN: 2526100239
+  Step 3: [OK] Tulis Log Login — 607 ms
+  Step 4: [OK] Get Daftar Guru — 653 ms
+  Error       : Timeout (15s)
+
+[Siswa #169] ❌ DERI SJR | X TO 2 | NISN: 2526100329
+  Total Waktu : 44 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #170] ✅ DERIYAN | XI TAV 2 | NISN: 2425100153
+  Total Waktu : 2428 ms
+  Step 1: [OK] Get Tenant Info — 974 ms
+  Step 2: [OK] Cek NISN Lokal — 225 ms | NISN: 2425100153
+  Step 3: [OK] Tulis Log Login — 687 ms
+  Step 4: [OK] Get Daftar Guru — 402 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 140 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I.)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - PKK (Oleh: Kelvin Suharvianto, ST)
+
+[Siswa #171] ❌ DESI NURAENI | X AKL 2 | NISN: 2526100607
+  Total Waktu : 22 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #172] ❌ DETRIANA AHMAD ZAINAL ASYIQIN | X TJKT 1 | NISN: 2526100470
+  Total Waktu : 17170 ms
+  Step 1: [OK] Get Tenant Info — 1695 ms
+  Step 2: [OK] Cek NISN Lokal — 470 ms | NISN: 2526100470
+  Error       : Timeout (15s)
+
+[Siswa #173] ❌ DEVIN KURNIAWAN | X TO 2 | NISN: 2526100330
+  Total Waktu : 17191 ms
+  Step 1: [OK] Get Tenant Info — 1767 ms
+  Step 2: [OK] Cek NISN Lokal — 412 ms | NISN: 2526100330
+  Error       : Timeout (15s)
+
+[Siswa #174] ❌ DEWI HERNIAWATI | X TJKT 2 | NISN: 2526100515
+  Total Waktu : 16754 ms
+  Step 1: [OK] Get Tenant Info — 876 ms
+  Step 2: [OK] Cek NISN Lokal — 171 ms | NISN: 2526100515
+  Step 3: [OK] Tulis Log Login — 700 ms
+  Error       : Timeout (15s)
+
+[Siswa #175] ❌ DEWI RAHMAH NURHAJAH | X AKL 1 | NISN: 2526100562
+  Total Waktu : 16574 ms
+  Step 1: [OK] Get Tenant Info — 764 ms
+  Step 2: [OK] Cek NISN Lokal — 808 ms | NISN: 2526100562
+  Error       : Timeout (15s)
+
+[Siswa #176] ❌ DIAN NURDIANSAH | X TO 3 | NISN: 2526100373
+  Total Waktu : 131 ms
+  Step 1: [OK] Get Tenant Info — 123 ms
+  Error       : socket hang up
+
+[Siswa #177] ❌ DICKY FIRMANSYAH | X TM 1 | NISN: 2526100194
+  Total Waktu : 17001 ms
+  Step 1: [OK] Get Tenant Info — 1498 ms
+  Step 2: [OK] Cek NISN Lokal — 496 ms | NISN: 2526100194
+  Error       : Timeout (15s)
+
+[Siswa #178] ❌ DICKY MAULANA AKBAR | XI TP 2 | NISN: 2425100228
+  Total Waktu : 16721 ms
+  Step 1: [OK] Get Tenant Info — 243 ms
+  Step 2: [OK] Cek NISN Lokal — 138 ms | NISN: 2425100228
+  Step 3: [OK] Tulis Log Login — 497 ms
+  Step 4: [OK] Get Daftar Guru — 838 ms
+  Error       : Timeout (15s)
+
+[Siswa #179] ❌ DIKA MAULANA | XI TAV 1 | NISN: 2425100118
+  Total Waktu : 17304 ms
+  Step 1: [OK] Get Tenant Info — 933 ms
+  Step 2: [OK] Cek NISN Lokal — 471 ms | NISN: 2425100118
+  Step 3: [OK] Tulis Log Login — 790 ms
+  Step 4: [OK] Get Daftar Guru — 101 ms
+  Error       : Timeout (15s)
+
+[Siswa #180] ❌ DIKA MUBAROK | X TO 3 | NISN: 2526100374
+  Total Waktu : 116 ms
+  Step 1: [OK] Get Tenant Info — 101 ms
+  Error       : socket hang up
+
+[Siswa #181] ❌ DIKA MUSTIKA SAPUTRA | X TO 4 | NISN: 2526100419
+  Total Waktu : 16979 ms
+  Step 1: [OK] Get Tenant Info — 747 ms
+  Step 2: [OK] Cek NISN Lokal — 391 ms | NISN: 2526100419
+  Step 3: [OK] Tulis Log Login — 693 ms
+  Step 4: [OK] Get Daftar Guru — 141 ms
+  Error       : Timeout (15s)
+
+[Siswa #182] ❌ DIKI FIRDAUS | XI TOI 2 | NISN: 2425100044
+  Total Waktu : 22 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #183] ❌ DIKI OPRIANA | X TE 1 | NISN: 2526100023
+  Total Waktu : 16700 ms
+  Step 1: [OK] Get Tenant Info — 133 ms
+  Step 2: [OK] Cek NISN Lokal — 975 ms | NISN: 2526100023
+  Step 3: [OK] Tulis Log Login — 584 ms
+  Error       : Timeout (15s)
+
+[Siswa #184] ✅ DILAH HOERUNISA | X AKL 2 | NISN: 2526100608
+  Total Waktu : 2141 ms
+  Step 1: [OK] Get Tenant Info — 141 ms
+  Step 2: [OK] Cek NISN Lokal — 246 ms | NISN: 2526100608
+  Step 3: [OK] Tulis Log Login — 141 ms
+  Step 4: [OK] Get Daftar Guru — 681 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 932 ms | Ditemukan 4 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - DDPK (Oleh: DENI SOPIAN ISKANDAR, S.E.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #185] ❌ DIMAS ARDIANSYAH | XI TOI 1 | NISN: 2425100011
+  Total Waktu : 16247 ms
+  Step 1: [OK] Get Tenant Info — 151 ms
+  Step 2: [OK] Cek NISN Lokal — 1086 ms | NISN: 2425100011
+  Error       : Timeout (15s)
+
+[Siswa #186] ❌ DIMAS NURIJAL UMAMI | X TE 2 | NISN: 2526100058
+  Total Waktu : 16255 ms
+  Step 1: [OK] Get Tenant Info — 1246 ms
+  Error       : Timeout (15s)
+
+[Siswa #187] ❌ DIMAS SA'BANA | X TM 2 | NISN: 2526100240
+  Total Waktu : 17368 ms
+  Step 1: [OK] Get Tenant Info — 1371 ms
+  Step 2: [OK] Cek NISN Lokal — 889 ms | NISN: 2526100240
+  Step 3: [OK] Tulis Log Login — 107 ms
+  Error       : Timeout (15s)
+
+[Siswa #188] ❌ DINA ERFIANA | X AKL 1 | NISN: 2526100563
+  Total Waktu : 128 ms
+  Step 1: [OK] Get Tenant Info — 115 ms
+  Error       : socket hang up
+
+[Siswa #189] ❌ DINAR FAHAZ GUMELAR | XI TKR 1 | NISN: 2425100263
+  Total Waktu : 16640 ms
+  Step 1: [OK] Get Tenant Info — 1639 ms
+  Error       : Timeout (15s)
+
+[Siswa #190] ❌ DINAR RAMADANI | X TE 3 | NISN: 2526100102
+  Total Waktu : 24 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #191] ❌ DINDA DEWI SUCI | X PHT | NISN: 2526100654
+  Total Waktu : 36 ms
+  Error       : HTTP 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+
+
+[Siswa #192] ❌ DIRA | X AKL 2 | NISN: 2526100609
+  Total Waktu : 23 ms
+  Error       : Client network socket disconnected before secure TLS connection was established
+
+[Siswa #193] ✅ DIRAR ANWAR MULYANA | X TM 1 | NISN: 2526100195
+  Total Waktu : 1927 ms
+  Step 1: [OK] Get Tenant Info — 334 ms
+  Step 2: [OK] Cek NISN Lokal — 365 ms | NISN: 2526100195
+  Step 3: [OK] Tulis Log Login — 74 ms
+  Step 4: [OK] Get Daftar Guru — 786 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 368 ms | Ditemukan 5 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: Kusnadi, S.Sy.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr.)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #194] ❌ DIRGA PRIANGGANI SETIA AKBAR | X TM 2 | NISN: 2526100241
+  Total Waktu : 16621 ms
+  Step 1: [OK] Get Tenant Info — 1610 ms
+  Error       : Timeout (15s)
+
+[Siswa #195] ❌ DITMAR ADITTIA | XI TOI 3 | NISN: 2425100079
+  Total Waktu : 17129 ms
+  Step 1: [OK] Get Tenant Info — 1428 ms
+  Step 2: [OK] Cek NISN Lokal — 690 ms | NISN: 2425100079
+  Error       : Timeout (15s)
+
+[Siswa #196] ❌ DONI KURNIAWAN | X TM 1 | NISN: 2526100196
+  Total Waktu : 16508 ms
+  Step 1: [OK] Get Tenant Info — 163 ms
+  Step 2: [OK] Cek NISN Lokal — 131 ms | NISN: 2526100196
+  Step 3: [OK] Tulis Log Login — 51 ms
+  Step 4: [OK] Get Daftar Guru — 1159 ms
+  Error       : Timeout (15s)
+
+[Siswa #197] ✅ EDI MAULANA | XI TOI 3 | NISN: 2425100080
+  Total Waktu : 1201 ms
+  Step 1: [OK] Get Tenant Info — 283 ms
+  Step 2: [OK] Cek NISN Lokal — 108 ms | NISN: 2425100080
+  Step 3: [OK] Tulis Log Login — 116 ms
+  Step 4: [OK] Get Daftar Guru — 176 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 518 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd.)
+    - MPP (Oleh: Aceng Nurmawan, S.T.)
+
+[Siswa #198] ❌ EFAN RIFALDO | X TO 2 | NISN: 2526100331
+  Total Waktu : 17274 ms
+  Step 1: [OK] Get Tenant Info — 621 ms
+  Step 2: [OK] Cek NISN Lokal — 95 ms | NISN: 2526100331
+  Step 3: [OK] Tulis Log Login — 452 ms
+  Step 4: [OK] Get Daftar Guru — 1101 ms
+  Error       : Timeout (15s)
+
+[Siswa #199] ✅ EKA NURLAELA | X AKL 1 | NISN: 2526100564
+  Total Waktu : 1611 ms
+  Step 1: [OK] Get Tenant Info — 318 ms
+  Step 2: [OK] Cek NISN Lokal — 74 ms | NISN: 2526100564
+  Step 3: [OK] Tulis Log Login — 298 ms
+  Step 4: [OK] Get Daftar Guru — 239 ms
+  Step 5: [OK] Daftar Ujian Terbuka — 682 ms | Ditemukan 3 ujian
+  Daftar Ujian Lokal:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd.)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd.)
+    - B.ING (Oleh: SITI PATIMAH, S.Pd.)
+
+[Siswa #200] ❌ ELAN JAELANI | X TJKT 1 | NISN: 2526100471
+  Total Waktu : 16953 ms
+  Step 1: [OK] Get Tenant Info — 1329 ms
+  Step 2: [OK] Cek NISN Lokal — 551 ms | NISN: 2526100471
+  Step 3: [OK] Tulis Log Login — 68 ms
+  Error       : Timeout (15s)
+
+══════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR — PUPPETEER BROWSER TEST (NO SCREENSHOTS)
+══════════════════════════════════════════════════════════════════════
+  URL Diuji        : https://supabaselocal.absenta.id
+  Browser Concurrent: 200
+  Durasi Total      : 19.25 detik
+  ✅ Berhasil        : 54 / 200
+  ❌ Gagal           : 146 / 200
+  📉 Latency Rata2   : 7595 ms
+  🟢 Latency Tercepat: 4 ms
+  🔴 Latency Terlambat: 18812 ms
+  📁 Output Dir      : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-27-11-413Z
+  📄 Laporan         : C:\Users\Public\gform-orkestrator\protocol_2026-05-28T15-27-11-413Z\report.txt
+  KESIMPULAN        : ⚠️ ADA 146 KEGAGALAN
+══════════════════════════════════════════════════════════════════════

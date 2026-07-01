@@ -1,0 +1,1165 @@
+══════════════════════════════════════════════════════════════════════
+  STRESS TEST VIA BROWSER NYATA — Puppeteer Headless Chrome
+  URL Target  : https://smkn1pld.absenta.id
+  Concurrent  : 130 browser bersamaan
+  Waktu Mulai : 2026-05-28T09:37:34.208Z
+  Output Dir  : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T09-37-34-205Z
+══════════════════════════════════════════════════════════════════════
+
+🔄 Mengambil 130 sampel siswa dari Supabase...
+✅ 130 siswa akan diuji:
+   1. NISN: 2425100255 | AHMAD AJWAR SETIADI | XI TKR 1
+   2. NISN: 2425100221 | AHMAD ARIF AZKA | XI TP 2
+   3. NISN: 2526100231 | AHMAD BARKAH | X TM 2
+   4. NISN: 2526100369 | AHMAD DADIH | X TO 3
+   5. NISN: 2526100140 | AHMAD DANIAL | X TE 4
+   6. NISN: 2526100006 | AHMAD DAVIN NABIL NURZAKY | X TE 1
+   7. NISN: 2526100280 | AHMAD DILFA DANIAR | X TO 1
+   8. NISN: 2425100145 | AHMAD FAHRI SUDARNA | XI TAV 2
+   9. NISN: 2425100256 | AHMAD FAUZI | XI TKR 1
+   10. NISN: 2425100111 | AHMAD FAUZI | XI TAV 1
+   11. NISN: 2526100186 | AHMAD FAUZI | X TM 1
+   12. NISN: 2526100414 | AHMAD FAUZI | X TO 4
+   13. NISN: 2526100322 | AHMAD FAUZI ALFADLAN | X TO 2
+   14. NISN: 2425100003 | AHMAD FAUZI SOFYAN | XI TOI 1
+   15. NISN: 2526100094 | AHMAD HIBAN JAELANI | X TE 3
+   16. NISN: 2526100463 | AHMAD IDAM MUCHLIS | X TJKT 1
+   17. NISN: 2526100007 | AHMAD JENAN | X TE 1
+   18. NISN: 2425100363 | AHMAD LUTHFI MAULANA | XI TSM 2
+   19. NISN: 2425100364 | AHMAD MAULANA MUFID | XI TSM 2
+   20. NISN: 2526100008 | AHMAD NASRULLOH | X TE 1
+   21. NISN: 2526100009 | AHMAD NAZRIL PERMADI | X TE 1
+   22. NISN: 2425100037 | AHMAD NURYANA | XI TOI 2
+   23. NISN: 2425100004 | AHMAD REHAN | XI TOI 1
+   24. NISN: 2425100328 | AHMAD RIPALDI | XI TSM 1
+   25. NISN: 2526100095 | AHMAD SAEPU TAPTA JANI | X TE 3
+   26. NISN: 2526100010 | AHMAD SALDAN | X TE 1
+   27. NISN: 2526100049 | AHMAD SANUSI | X TE 2
+   28. NISN: 2425100038 | AHMAD SUBHAN | XI TOI 2
+   29. NISN: 2425100075 | AHMAD SYAIFUL HIDAYAT | XI TOI 3
+   30. NISN: 2526100323 | AHMAD TAUFIK HERLANSYA | X TO 2
+   31. NISN: 2425100291 | AHMAD TOLIB AZIS RAMADHAN | XI TKR 2
+   32. NISN: 2526100415 | AHMAD YOPI JUMAEDI | X TO 4
+   33. NISN: 2526100232 | AHMAD ZAINUL IHWAN | X TM 2
+   34. NISN: 2425100433 | AHONG TRIYANTO | XI TKJ 2
+   35. NISN: 2425100648 | AI SOPIAH | XI KUL 2
+   36. NISN: 2425100614 | AIRA TRI ARYANI | XI KUL 1
+   37. NISN: 2425100577 | AISAH WULAN MAULIDINA | XI PHT 2
+   38. NISN: 2526100689 | AJENG CAHYA AULIYA | X KUL
+   39. NISN: 2425100649 | AJENG SITI KAUKAH | XI KUL 2
+   40. NISN: 2425100112 | AKBAR AHMAD RAFIQ | XI TAV 1
+   41. NISN: 2526100644 | AKBAR FAUZI | X PHT
+   42. NISN: 2526100096 | AKBAR MAULANA | X TE 3
+   43. NISN: 2425100292 | AKBAR RIZKI MAULANA | XI TKR 2
+   44. NISN: 2526100011 | AKBARUL GOFUR | X TE 1
+   45. NISN: 2526100187 | AKHMAD LATIF | X TM 1
+   46. NISN: 2425100113 | AKMAL JUL PUTRA ELJA | XI TAV 1
+   47. NISN: 2425100005 | AKMAL LUTFIA ASHARI | XI TOI 1
+   48. NISN: 2526100553 | AL ASYA SYARKLA | X AKL 1
+   49. NISN: 2425100186 | AL FATHIR ZUNIOR | XI TP 1
+   50. NISN: 2526100370 | AL HAFIZ SHABIR SALAM | X TO 3
+   51. NISN: 2526100012 | ALBIAN SUKMA MAULANA | X TE 1
+   52. NISN: 2526100050 | ALDI AFILLAH BIFARY | X TE 2
+   53. NISN: 2425100146 | ALDI HARDIANSYAH | XI TAV 2
+   54. NISN: 2425100039 | ALDI MANSYUR | XI TOI 2
+   55. NISN: 2425100257 | ALDI PADILAH | XI TKR 1
+   56. NISN: 2425100365 | ALDI RAMDANI | XI TSM 2
+   57. NISN: 2425100006 | ALDI SAPUTRA | XI TOI 1
+   58. NISN: 2526100324 | ALDI SETIAWAN | X TO 2
+   59. NISN: 2425100542 | ALDIYANSYAH | XI PHT 1
+   60. NISN: 2425100293 | ALDO JUNIAWAN | XI TKR 2
+   61. NISN: 2526100599 | ALENA NUR AWALIZA | X AKL 2
+   62. NISN: 2425100040 | ALFATH MAULANA YUSUF | XI TOI 2
+   63. NISN: 2425100578 | ALFIAH LUTFIANTI | XI PHT 2
+   64. NISN: 2526100141 | ALFIAN BAGUS RAMADHAN | X TE 4
+   65. NISN: 2526100509 | ALFIAN FIRDAUS | X TJKT 2
+   66. NISN: 2425100007 | ALFIAN NURYAMAN | XI TOI 1
+   67. NISN: 2425100543 | ALFIN | XI PHT 1
+   68. NISN: 2526100097 | ALFIN DESTIAN | X TE 3
+   69. NISN: 2526100416 | ALGI FALGIAN | X TO 4
+   70. NISN: 2425100329 | ALI AKBAR | XI TSM 1
+   71. NISN: 2526100417 | ALI PERMANA | X TO 4
+   72. NISN: 2526100098 | ALIEF MUHAMAD ARRIADY | X TE 3
+   73. NISN: 2526100233 | ALIF MAULANA SURYADI | X TM 2
+   74. NISN: 2526100188 | ALIKHA NUR AZIZAH | X TM 1
+   75. NISN: 2526100645 | ALIN NURFAIDA | X PHT
+   76. NISN: 2425100579 | ALIP | XI PHT 2
+   77. NISN: 2526100646 | ALIPIA MAULIDIA PUTRI | X PHT
+   78. NISN: 2425100076 | ALPARIJAL | XI TOI 3
+   79. NISN: 2526100371 | ALPIN AZIZ | X TO 3
+   80. NISN: 2526100234 | ALVIAN PRAMUDYA AZHAR | X TM 2
+   81. NISN: 2425100544 | ALVIAN YUSUF | XI PHT 1
+   82. NISN: 2425100222 | ALVIN IRHAM PADILLAH | XI TP 2
+   83. NISN: 2425100580 | ALVINA EFARINA | XI PHT 2
+   84. NISN: 2425100258 | ALWIS SAEPUL ADHA | XI TKR 1
+   85. NISN: 2526100647 | ALYA RAMADANI | X PHT
+   86. NISN: 2526100690 | ALYA RENAULTFA HALAWATI | X KUL
+   87. NISN: 2526100051 | ALZIAN ILHAM PRATAMA | X TE 2
+   88. NISN: 2425100615 | AMEL AULIYA | XI KUL 1
+   89. NISN: 2425100505 | AMIRA SANIA | XI AK 2
+   90. NISN: 2425100008 | ANANG ANDRIANSYAH | XI TOI 1
+   91. NISN: 2526100325 | ANDI KURNIAWAN | X TO 2
+   92. NISN: 2526100013 | ANDIKA FARHAN PAUZI | X TE 1
+   93. NISN: 2425100366 | ANDIKA PURNAMA DANI | XI TSM 2
+   94. NISN: 2526100464 | ANDINI SAHIRA RAMADANI | X TJKT 1
+   95. NISN: 2526100052 | ANDITIKACHIE | X TE 2
+   96. NISN: 2425100147 | ANDRA RAMADHAN | XI TAV 2
+   97. NISN: 2526100554 | ANDRI VALENTINO RUKMANA | X AKL 1
+   98. NISN: 2526100691 | ANE AWALIAH | X KUL
+   99. NISN: 2526100600 | ANGELINA TIVANY | X AKL 2
+   100. NISN: 2526100014 | ANGGA PRADITA | X TE 1
+   101. NISN: 2425100148 | ANGGA SAPUTRA | XI TAV 2
+   102. NISN: 2526100510 | ANI NUROHIMAH | X TJKT 2
+   103. NISN: 2526100692 | ANIDA ALIMATUNISA | X KUL
+   104. NISN: 2526100555 | ANISA | X AKL 1
+   105. NISN: 2526100601 | ANISA FATONATUL ABROR | X AKL 2
+   106. NISN: 2425100470 | ANISA LAILA ROMADON | XI AK 1
+   107. NISN: 2526100693 | ANISA PITRI | X KUL
+   108. NISN: 2425100398 | ANNISA DWI TRI HAPSARI | XI TKJ 1
+   109. NISN: 2425100650 | ANNISA RIZKIYATI | XI KUL 2
+   110. NISN: 2425100009 | ANUGRAH FAJRI | XI TOI 1
+   111. NISN: 2526100694 | ANWAR NASRULOH | X KUL
+   112. NISN: 2526100695 | ARBAITY PUTRI HAYATI | X KUL
+   113. NISN: 2526100053 | ARDI PRATAMA | X TE 2
+   114. NISN: 2526100465 | ARDIYANTO MIRZA HENDRAWAN | X TJKT 1
+   115. NISN: 2425100259 | ARFANDHANI SYAHPUTRA | XI TKR 1
+   116. NISN: 2526100189 | ARFI AL YASIL RAMDHANI | X TM 1
+   117. NISN: 2425100260 | ARI GUNTORO | XI TKR 1
+   118. NISN: 2526100099 | ARI MUHAMAD IKBAL | X TE 3
+   119. NISN: 2425100077 | ARIF | XI TOI 3
+   120. NISN: 2425100187 | ARIF AMRUL NURHIDAYAT | XI TP 1
+   121. NISN: 2526100556 | ARIF RAHMAN | X AKL 1
+   122. NISN: 2425100078 | ARIF RAPI PADLU RAHMAN | XI TOI 3
+   123. NISN: 2526100235 | ARIP NURDIN | X TM 2
+   124. NISN: 2526100054 | ARIP RAHMAN | X TE 2
+   125. NISN: 2425100041 | ARIS MULYADI | XI TOI 2
+   126. NISN: 2425100367 | ARIS SETIAWAN | XI TSM 2
+   127. NISN: 2526100511 | ARISMA NUR JAMILAH | X TJKT 2
+   128. NISN: 2526100190 | ARNI NURHAYATI | X TM 1
+   129. NISN: 2425100114 | ARYA ERLANGGA | XI TAV 1
+   130. NISN: 2526100326 | ARYA RIZKI RAMDANI | X TO 2
+
+🚀 Meluncurkan Chromium headless...
+✅ Chromium berhasil diluncurkan
+
+──────────────────────────────────────────────────────────────────────
+  SIMULASI LOGIN 130 SISWA BERSAMAAN
+──────────────────────────────────────────────────────────────────────
+   [Siswa #1] Ditemukan 1 input field di halaman
+   [Siswa #7] Ditemukan 1 input field di halaman
+   ✅ [Siswa #1] AHMAD AJWAR SETIADI — Berhasil masuk & lihat ujian
+   [Siswa #4] Ditemukan 1 input field di halaman
+   ✅ [Siswa #7] AHMAD DILFA DANIAR — Berhasil masuk & lihat ujian
+   ✅ [Siswa #4] AHMAD DADIH — Berhasil masuk & lihat ujian
+   [Siswa #20] Ditemukan 1 input field di halaman
+   [Siswa #5] Ditemukan 1 input field di halaman
+   ✅ [Siswa #20] AHMAD NASRULLOH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #5] AHMAD DANIAL — Berhasil masuk & lihat ujian
+   [Siswa #14] Ditemukan 1 input field di halaman
+   [Siswa #9] Ditemukan 1 input field di halaman
+   ❌ [Siswa #2] AHMAD ARIF AZKA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #3] AHMAD BARKAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #6] AHMAD DAVIN NABIL NURZAKY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #8] AHMAD FAHRI SUDARNA — ERROR: Navigation timeout of 30000 ms exceeded
+   [Siswa #16] Ditemukan 1 input field di halaman
+   ❌ [Siswa #10] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #14] AHMAD FAUZI SOFYAN — Berhasil masuk & lihat ujian
+   ❌ [Siswa #11] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #12] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #13] AHMAD FAUZI ALFADLAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #15] AHMAD HIBAN JAELANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #9] AHMAD FAUZI — Berhasil masuk & lihat ujian
+   ❌ [Siswa #17] AHMAD JENAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #18] AHMAD LUTHFI MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #19] AHMAD MAULANA MUFID — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #16] AHMAD IDAM MUCHLIS — Berhasil masuk & lihat ujian
+   ❌ [Siswa #21] AHMAD NAZRIL PERMADI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #22] AHMAD NURYANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #23] AHMAD REHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #24] AHMAD RIPALDI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #25] AHMAD SAEPU TAPTA JANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #26] AHMAD SALDAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #27] AHMAD SANUSI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #28] AHMAD SUBHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #29] AHMAD SYAIFUL HIDAYAT — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #30] AHMAD TAUFIK HERLANSYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #31] AHMAD TOLIB AZIS RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #32] AHMAD YOPI JUMAEDI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #33] AHMAD ZAINUL IHWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #34] AHONG TRIYANTO — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #35] AI SOPIAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #36] AIRA TRI ARYANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #37] AISAH WULAN MAULIDINA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #38] AJENG CAHYA AULIYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #39] AJENG SITI KAUKAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #40] AKBAR AHMAD RAFIQ — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #41] AKBAR FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #42] AKBAR MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #43] AKBAR RIZKI MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #44] AKBARUL GOFUR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #45] AKHMAD LATIF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #46] AKMAL JUL PUTRA ELJA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #47] AKMAL LUTFIA ASHARI — ERROR: Navigation timeout of 30000 ms exceeded
+   [Siswa #56] Ditemukan 1 input field di halaman
+   ❌ [Siswa #48] AL ASYA SYARKLA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #49] AL FATHIR ZUNIOR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #50] AL HAFIZ SHABIR SALAM — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #51] ALBIAN SUKMA MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #52] ALDI AFILLAH BIFARY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #53] ALDI HARDIANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #54] ALDI MANSYUR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #57] ALDI SAPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #55] ALDI PADILAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #56] ALDI RAMDANI — Berhasil masuk & lihat ujian
+   ❌ [Siswa #58] ALDI SETIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #59] ALDIYANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #60] ALDO JUNIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #61] ALENA NUR AWALIZA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #62] ALFATH MAULANA YUSUF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #63] ALFIAH LUTFIANTI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #64] ALFIAN BAGUS RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #65] ALFIAN FIRDAUS — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #66] ALFIAN NURYAMAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #67] ALFIN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #68] ALFIN DESTIAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #69] ALGI FALGIAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #70] ALI AKBAR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #71] ALI PERMANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #72] ALIEF MUHAMAD ARRIADY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #73] ALIF MAULANA SURYADI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #74] ALIKHA NUR AZIZAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #75] ALIN NURFAIDA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #76] ALIP — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #77] ALIPIA MAULIDIA PUTRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #78] ALPARIJAL — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #79] ALPIN AZIZ — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #81] ALVIAN YUSUF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #80] ALVIAN PRAMUDYA AZHAR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #82] ALVIN IRHAM PADILLAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #83] ALVINA EFARINA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #84] ALWIS SAEPUL ADHA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #85] ALYA RAMADANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #86] ALYA RENAULTFA HALAWATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #87] ALZIAN ILHAM PRATAMA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #88] AMEL AULIYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #89] AMIRA SANIA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #90] ANANG ANDRIANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #91] ANDI KURNIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #92] ANDIKA FARHAN PAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #93] ANDIKA PURNAMA DANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #94] ANDINI SAHIRA RAMADANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #95] ANDITIKACHIE — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #96] ANDRA RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #97] ANDRI VALENTINO RUKMANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #98] ANE AWALIAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #99] ANGELINA TIVANY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #100] ANGGA PRADITA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #101] ANGGA SAPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #102] ANI NUROHIMAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #103] ANIDA ALIMATUNISA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #104] ANISA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #105] ANISA FATONATUL ABROR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #106] ANISA LAILA ROMADON — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #107] ANISA PITRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #108] ANNISA DWI TRI HAPSARI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #109] ANNISA RIZKIYATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #110] ANUGRAH FAJRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #111] ANWAR NASRULOH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #112] ARBAITY PUTRI HAYATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #113] ARDI PRATAMA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #114] ARDIYANTO MIRZA HENDRAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #115] ARFANDHANI SYAHPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #116] ARFI AL YASIL RAMDHANI — ERROR: Navigation timeout of 30000 ms exceeded
+   [Siswa #118] Ditemukan 1 input field di halaman
+   ❌ [Siswa #117] ARI GUNTORO — ERROR: Navigation timeout of 30000 ms exceeded
+   [Siswa #119] Ditemukan 1 input field di halaman
+   [Siswa #129] Ditemukan 1 input field di halaman
+   [Siswa #130] Ditemukan 1 input field di halaman
+   [Siswa #122] Ditemukan 1 input field di halaman
+   [Siswa #127] Ditemukan 1 input field di halaman
+   [Siswa #121] Ditemukan 1 input field di halaman
+   [Siswa #120] Ditemukan 1 input field di halaman
+   [Siswa #125] Ditemukan 1 input field di halaman
+   [Siswa #128] Ditemukan 1 input field di halaman
+   [Siswa #126] Ditemukan 1 input field di halaman
+   [Siswa #124] Ditemukan 1 input field di halaman
+   ❌ [Siswa #123] ARIP NURDIN — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #118] ARI MUHAMAD IKBAL — Berhasil masuk & lihat ujian
+   ✅ [Siswa #119] ARIF — Berhasil masuk & lihat ujian
+   ✅ [Siswa #130] ARYA RIZKI RAMDANI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #129] ARYA ERLANGGA — Berhasil masuk & lihat ujian
+   ✅ [Siswa #127] ARISMA NUR JAMILAH — Berhasil masuk & lihat ujian
+   ✅ [Siswa #121] ARIF RAHMAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #122] ARIF RAPI PADLU RAHMAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #120] ARIF AMRUL NURHIDAYAT — Berhasil masuk & lihat ujian
+   ✅ [Siswa #128] ARNI NURHAYATI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #125] ARIS MULYADI — Berhasil masuk & lihat ujian
+   ✅ [Siswa #126] ARIS SETIAWAN — Berhasil masuk & lihat ujian
+   ✅ [Siswa #124] ARIP RAHMAN — Berhasil masuk & lihat ujian
+
+✅ Semua browser telah ditutup
+
+══════════════════════════════════════════════════════════════════════
+  LAPORAN DETAIL PER SISWA
+══════════════════════════════════════════════════════════════════════
+
+[Siswa #1] ✅ AHMAD AJWAR SETIADI | XI TKR 1 | NISN: 2425100255
+  Total Waktu : 7473 ms
+  Step 1: [OK] Buka Tab Browser — 93 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 3773 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 744 ms | NISN: 2425100255
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 5 ms
+  Step 5: [OK] Halaman Profile Muncul — 716 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD AJWAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 4 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2125 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #2] ❌ AHMAD ARIF AZKA | XI TP 2 | NISN: 2425100221
+  Total Waktu : 30158 ms
+  Step 1: [OK] Buka Tab Browser — 79 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #3] ❌ AHMAD BARKAH | X TM 2 | NISN: 2526100231
+  Total Waktu : 30122 ms
+  Step 1: [OK] Buka Tab Browser — 70 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #4] ✅ AHMAD DADIH | X TO 3 | NISN: 2526100369
+  Total Waktu : 11980 ms
+  Step 1: [OK] Buka Tab Browser — 74 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 8144 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 751 ms | NISN: 2526100369
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 11 ms
+  Step 5: [OK] Halaman Profile Muncul — 635 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD DADIH
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2341 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #5] ✅ AHMAD DANIAL | X TE 4 | NISN: 2526100140
+  Total Waktu : 25404 ms
+  Step 1: [OK] Buka Tab Browser — 82 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 19975 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 858 ms | NISN: 2526100140
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 7 ms
+  Step 5: [OK] Halaman Profile Muncul — 1121 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD DANIA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 3328 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - DDPK (Oleh: Kelvin Suharvianto, ST | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #6] ❌ AHMAD DAVIN NABIL NURZAKY | X TE 1 | NISN: 2526100006
+  Total Waktu : 30192 ms
+  Step 1: [OK] Buka Tab Browser — 94 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #7] ✅ AHMAD DILFA DANIAR | X TO 1 | NISN: 2526100280
+  Total Waktu : 7981 ms
+  Step 1: [OK] Buka Tab Browser — 93 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 4311 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 799 ms | NISN: 2526100280
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 6 ms
+  Step 5: [OK] Halaman Profile Muncul — 559 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD DILFA
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2195 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #8] ❌ AHMAD FAHRI SUDARNA | XI TAV 2 | NISN: 2425100145
+  Total Waktu : 30139 ms
+  Step 1: [OK] Buka Tab Browser — 94 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #9] ✅ AHMAD FAUZI | XI TKR 1 | NISN: 2425100256
+  Total Waktu : 33703 ms
+  Step 1: [OK] Buka Tab Browser — 95 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 25760 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1730 ms | NISN: 2425100256
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 48 ms
+  Step 5: [OK] Halaman Profile Muncul — 1240 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD FAUZI
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 27 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 4755 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #10] ❌ AHMAD FAUZI | XI TAV 1 | NISN: 2425100111
+  Total Waktu : 30203 ms
+  Step 1: [OK] Buka Tab Browser — 78 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #11] ❌ AHMAD FAUZI | X TM 1 | NISN: 2526100186
+  Total Waktu : 30231 ms
+  Step 1: [OK] Buka Tab Browser — 90 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #12] ❌ AHMAD FAUZI | X TO 4 | NISN: 2526100414
+  Total Waktu : 30180 ms
+  Step 1: [OK] Buka Tab Browser — 111 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #13] ❌ AHMAD FAUZI ALFADLAN | X TO 2 | NISN: 2526100322
+  Total Waktu : 30187 ms
+  Step 1: [OK] Buka Tab Browser — 102 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #14] ✅ AHMAD FAUZI SOFYAN | XI TOI 1 | NISN: 2425100003
+  Total Waktu : 28292 ms
+  Step 1: [OK] Buka Tab Browser — 154 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 22101 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1257 ms | NISN: 2425100003
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 92 ms
+  Step 5: [OK] Halaman Profile Muncul — 1317 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD FAUZI
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 17 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 3306 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #15] ❌ AHMAD HIBAN JAELANI | X TE 3 | NISN: 2526100094
+  Total Waktu : 30176 ms
+  Step 1: [OK] Buka Tab Browser — 82 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #16] ✅ AHMAD IDAM MUCHLIS | X TJKT 1 | NISN: 2526100463
+  Total Waktu : 31998 ms
+  Step 1: [OK] Buka Tab Browser — 79 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 25598 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2532 ms | NISN: 2526100463
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 32 ms
+  Step 5: [OK] Halaman Profile Muncul — 1106 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD IDAM 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 22 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2581 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #17] ❌ AHMAD JENAN | X TE 1 | NISN: 2526100007
+  Total Waktu : 30191 ms
+  Step 1: [OK] Buka Tab Browser — 113 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #18] ❌ AHMAD LUTHFI MAULANA | XI TSM 2 | NISN: 2425100363
+  Total Waktu : 30179 ms
+  Step 1: [OK] Buka Tab Browser — 102 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #19] ❌ AHMAD MAULANA MUFID | XI TSM 2 | NISN: 2425100364
+  Total Waktu : 30182 ms
+  Step 1: [OK] Buka Tab Browser — 110 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #20] ✅ AHMAD NASRULLOH | X TE 1 | NISN: 2526100008
+  Total Waktu : 17166 ms
+  Step 1: [OK] Buka Tab Browser — 89 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 10614 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1353 ms | NISN: 2526100008
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 21 ms
+  Step 5: [OK] Halaman Profile Muncul — 1007 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD NASRU
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 4017 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Aceng Nurmawan, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #21] ❌ AHMAD NAZRIL PERMADI | X TE 1 | NISN: 2526100009
+  Total Waktu : 30151 ms
+  Step 1: [OK] Buka Tab Browser — 106 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #22] ❌ AHMAD NURYANA | XI TOI 2 | NISN: 2425100037
+  Total Waktu : 30152 ms
+  Step 1: [OK] Buka Tab Browser — 109 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #23] ❌ AHMAD REHAN | XI TOI 1 | NISN: 2425100004
+  Total Waktu : 30174 ms
+  Step 1: [OK] Buka Tab Browser — 121 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #24] ❌ AHMAD RIPALDI | XI TSM 1 | NISN: 2425100328
+  Total Waktu : 30176 ms
+  Step 1: [OK] Buka Tab Browser — 90 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #25] ❌ AHMAD SAEPU TAPTA JANI | X TE 3 | NISN: 2526100095
+  Total Waktu : 30179 ms
+  Step 1: [OK] Buka Tab Browser — 105 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #26] ❌ AHMAD SALDAN | X TE 1 | NISN: 2526100010
+  Total Waktu : 30246 ms
+  Step 1: [OK] Buka Tab Browser — 92 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #27] ❌ AHMAD SANUSI | X TE 2 | NISN: 2526100049
+  Total Waktu : 30208 ms
+  Step 1: [OK] Buka Tab Browser — 99 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #28] ❌ AHMAD SUBHAN | XI TOI 2 | NISN: 2425100038
+  Total Waktu : 30153 ms
+  Step 1: [OK] Buka Tab Browser — 92 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #29] ❌ AHMAD SYAIFUL HIDAYAT | XI TOI 3 | NISN: 2425100075
+  Total Waktu : 30184 ms
+  Step 1: [OK] Buka Tab Browser — 95 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #30] ❌ AHMAD TAUFIK HERLANSYA | X TO 2 | NISN: 2526100323
+  Total Waktu : 30189 ms
+  Step 1: [OK] Buka Tab Browser — 107 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #31] ❌ AHMAD TOLIB AZIS RAMADHAN | XI TKR 2 | NISN: 2425100291
+  Total Waktu : 30167 ms
+  Step 1: [OK] Buka Tab Browser — 90 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #32] ❌ AHMAD YOPI JUMAEDI | X TO 4 | NISN: 2526100415
+  Total Waktu : 30152 ms
+  Step 1: [OK] Buka Tab Browser — 95 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #33] ❌ AHMAD ZAINUL IHWAN | X TM 2 | NISN: 2526100232
+  Total Waktu : 30176 ms
+  Step 1: [OK] Buka Tab Browser — 107 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #34] ❌ AHONG TRIYANTO | XI TKJ 2 | NISN: 2425100433
+  Total Waktu : 30141 ms
+  Step 1: [OK] Buka Tab Browser — 88 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #35] ❌ AI SOPIAH | XI KUL 2 | NISN: 2425100648
+  Total Waktu : 30163 ms
+  Step 1: [OK] Buka Tab Browser — 98 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #36] ❌ AIRA TRI ARYANI | XI KUL 1 | NISN: 2425100614
+  Total Waktu : 30199 ms
+  Step 1: [OK] Buka Tab Browser — 103 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #37] ❌ AISAH WULAN MAULIDINA | XI PHT 2 | NISN: 2425100577
+  Total Waktu : 30182 ms
+  Step 1: [OK] Buka Tab Browser — 108 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #38] ❌ AJENG CAHYA AULIYA | X KUL | NISN: 2526100689
+  Total Waktu : 30134 ms
+  Step 1: [OK] Buka Tab Browser — 101 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #39] ❌ AJENG SITI KAUKAH | XI KUL 2 | NISN: 2425100649
+  Total Waktu : 30149 ms
+  Step 1: [OK] Buka Tab Browser — 95 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #40] ❌ AKBAR AHMAD RAFIQ | XI TAV 1 | NISN: 2425100112
+  Total Waktu : 30211 ms
+  Step 1: [OK] Buka Tab Browser — 135 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #41] ❌ AKBAR FAUZI | X PHT | NISN: 2526100644
+  Total Waktu : 30192 ms
+  Step 1: [OK] Buka Tab Browser — 105 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #42] ❌ AKBAR MAULANA | X TE 3 | NISN: 2526100096
+  Total Waktu : 30254 ms
+  Step 1: [OK] Buka Tab Browser — 122 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #43] ❌ AKBAR RIZKI MAULANA | XI TKR 2 | NISN: 2425100292
+  Total Waktu : 30190 ms
+  Step 1: [OK] Buka Tab Browser — 120 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #44] ❌ AKBARUL GOFUR | X TE 1 | NISN: 2526100011
+  Total Waktu : 30200 ms
+  Step 1: [OK] Buka Tab Browser — 103 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #45] ❌ AKHMAD LATIF | X TM 1 | NISN: 2526100187
+  Total Waktu : 30177 ms
+  Step 1: [OK] Buka Tab Browser — 100 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #46] ❌ AKMAL JUL PUTRA ELJA | XI TAV 1 | NISN: 2425100113
+  Total Waktu : 30189 ms
+  Step 1: [OK] Buka Tab Browser — 118 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #47] ❌ AKMAL LUTFIA ASHARI | XI TOI 1 | NISN: 2425100005
+  Total Waktu : 30178 ms
+  Step 1: [OK] Buka Tab Browser — 101 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #48] ❌ AL ASYA SYARKLA | X AKL 1 | NISN: 2526100553
+  Total Waktu : 30193 ms
+  Step 1: [OK] Buka Tab Browser — 98 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #49] ❌ AL FATHIR ZUNIOR | XI TP 1 | NISN: 2425100186
+  Total Waktu : 30175 ms
+  Step 1: [OK] Buka Tab Browser — 98 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #50] ❌ AL HAFIZ SHABIR SALAM | X TO 3 | NISN: 2526100370
+  Total Waktu : 30180 ms
+  Step 1: [OK] Buka Tab Browser — 95 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #51] ❌ ALBIAN SUKMA MAULANA | X TE 1 | NISN: 2526100012
+  Total Waktu : 30174 ms
+  Step 1: [OK] Buka Tab Browser — 101 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #52] ❌ ALDI AFILLAH BIFARY | X TE 2 | NISN: 2526100050
+  Total Waktu : 30175 ms
+  Step 1: [OK] Buka Tab Browser — 90 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #53] ❌ ALDI HARDIANSYAH | XI TAV 2 | NISN: 2425100146
+  Total Waktu : 30210 ms
+  Step 1: [OK] Buka Tab Browser — 115 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #54] ❌ ALDI MANSYUR | XI TOI 2 | NISN: 2425100039
+  Total Waktu : 31334 ms
+  Step 1: [OK] Buka Tab Browser — 1257 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #55] ❌ ALDI PADILAH | XI TKR 1 | NISN: 2425100257
+  Total Waktu : 31279 ms
+  Step 1: [OK] Buka Tab Browser — 1209 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #56] ✅ ALDI RAMDANI | XI TSM 2 | NISN: 2425100365
+  Total Waktu : 30933 ms
+  Step 1: [OK] Buka Tab Browser — 470 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 24451 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2279 ms | NISN: 2425100365
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 36 ms
+  Step 5: [OK] Halaman Profile Muncul — 1081 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ALDI RAMDAN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 28 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2542 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #57] ❌ ALDI SAPUTRA | XI TOI 1 | NISN: 2425100006
+  Total Waktu : 30209 ms
+  Step 1: [OK] Buka Tab Browser — 125 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #58] ❌ ALDI SETIAWAN | X TO 2 | NISN: 2526100324
+  Total Waktu : 30267 ms
+  Step 1: [OK] Buka Tab Browser — 195 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #59] ❌ ALDIYANSYAH | XI PHT 1 | NISN: 2425100542
+  Total Waktu : 30230 ms
+  Step 1: [OK] Buka Tab Browser — 164 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #60] ❌ ALDO JUNIAWAN | XI TKR 2 | NISN: 2425100293
+  Total Waktu : 30282 ms
+  Step 1: [OK] Buka Tab Browser — 197 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #61] ❌ ALENA NUR AWALIZA | X AKL 2 | NISN: 2526100599
+  Total Waktu : 30220 ms
+  Step 1: [OK] Buka Tab Browser — 155 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #62] ❌ ALFATH MAULANA YUSUF | XI TOI 2 | NISN: 2425100040
+  Total Waktu : 30281 ms
+  Step 1: [OK] Buka Tab Browser — 238 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #63] ❌ ALFIAH LUTFIANTI | XI PHT 2 | NISN: 2425100578
+  Total Waktu : 30275 ms
+  Step 1: [OK] Buka Tab Browser — 211 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #64] ❌ ALFIAN BAGUS RAMADHAN | X TE 4 | NISN: 2526100141
+  Total Waktu : 30282 ms
+  Step 1: [OK] Buka Tab Browser — 205 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #65] ❌ ALFIAN FIRDAUS | X TJKT 2 | NISN: 2526100509
+  Total Waktu : 30307 ms
+  Step 1: [OK] Buka Tab Browser — 234 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #66] ❌ ALFIAN NURYAMAN | XI TOI 1 | NISN: 2425100007
+  Total Waktu : 30342 ms
+  Step 1: [OK] Buka Tab Browser — 285 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #67] ❌ ALFIN | XI PHT 1 | NISN: 2425100543
+  Total Waktu : 30321 ms
+  Step 1: [OK] Buka Tab Browser — 255 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #68] ❌ ALFIN DESTIAN | X TE 3 | NISN: 2526100097
+  Total Waktu : 30295 ms
+  Step 1: [OK] Buka Tab Browser — 240 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #69] ❌ ALGI FALGIAN | X TO 4 | NISN: 2526100416
+  Total Waktu : 30328 ms
+  Step 1: [OK] Buka Tab Browser — 274 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #70] ❌ ALI AKBAR | XI TSM 1 | NISN: 2425100329
+  Total Waktu : 30410 ms
+  Step 1: [OK] Buka Tab Browser — 340 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #71] ❌ ALI PERMANA | X TO 4 | NISN: 2526100417
+  Total Waktu : 30371 ms
+  Step 1: [OK] Buka Tab Browser — 308 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #72] ❌ ALIEF MUHAMAD ARRIADY | X TE 3 | NISN: 2526100098
+  Total Waktu : 30331 ms
+  Step 1: [OK] Buka Tab Browser — 269 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #73] ❌ ALIF MAULANA SURYADI | X TM 2 | NISN: 2526100233
+  Total Waktu : 30343 ms
+  Step 1: [OK] Buka Tab Browser — 282 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #74] ❌ ALIKHA NUR AZIZAH | X TM 1 | NISN: 2526100188
+  Total Waktu : 30307 ms
+  Step 1: [OK] Buka Tab Browser — 254 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #75] ❌ ALIN NURFAIDA | X PHT | NISN: 2526100645
+  Total Waktu : 30358 ms
+  Step 1: [OK] Buka Tab Browser — 303 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #76] ❌ ALIP | XI PHT 2 | NISN: 2425100579
+  Total Waktu : 30319 ms
+  Step 1: [OK] Buka Tab Browser — 247 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #77] ❌ ALIPIA MAULIDIA PUTRI | X PHT | NISN: 2526100646
+  Total Waktu : 30353 ms
+  Step 1: [OK] Buka Tab Browser — 294 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #78] ❌ ALPARIJAL | XI TOI 3 | NISN: 2425100076
+  Total Waktu : 30360 ms
+  Step 1: [OK] Buka Tab Browser — 287 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #79] ❌ ALPIN AZIZ | X TO 3 | NISN: 2526100371
+  Total Waktu : 30356 ms
+  Step 1: [OK] Buka Tab Browser — 297 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #80] ❌ ALVIAN PRAMUDYA AZHAR | X TM 2 | NISN: 2526100234
+  Total Waktu : 32039 ms
+  Step 1: [OK] Buka Tab Browser — 1941 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #81] ❌ ALVIAN YUSUF | XI PHT 1 | NISN: 2425100544
+  Total Waktu : 31527 ms
+  Step 1: [OK] Buka Tab Browser — 1447 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #82] ❌ ALVIN IRHAM PADILLAH | XI TP 2 | NISN: 2425100222
+  Total Waktu : 31062 ms
+  Step 1: [OK] Buka Tab Browser — 951 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #83] ❌ ALVINA EFARINA | XI PHT 2 | NISN: 2425100580
+  Total Waktu : 30609 ms
+  Step 1: [OK] Buka Tab Browser — 463 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #84] ❌ ALWIS SAEPUL ADHA | XI TKR 1 | NISN: 2425100258
+  Total Waktu : 30312 ms
+  Step 1: [OK] Buka Tab Browser — 267 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #85] ❌ ALYA RAMADANI | X PHT | NISN: 2526100647
+  Total Waktu : 30343 ms
+  Step 1: [OK] Buka Tab Browser — 261 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #86] ❌ ALYA RENAULTFA HALAWATI | X KUL | NISN: 2526100690
+  Total Waktu : 30396 ms
+  Step 1: [OK] Buka Tab Browser — 339 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #87] ❌ ALZIAN ILHAM PRATAMA | X TE 2 | NISN: 2526100051
+  Total Waktu : 30375 ms
+  Step 1: [OK] Buka Tab Browser — 311 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #88] ❌ AMEL AULIYA | XI KUL 1 | NISN: 2425100615
+  Total Waktu : 30274 ms
+  Step 1: [OK] Buka Tab Browser — 227 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #89] ❌ AMIRA SANIA | XI AK 2 | NISN: 2425100505
+  Total Waktu : 30338 ms
+  Step 1: [OK] Buka Tab Browser — 299 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #90] ❌ ANANG ANDRIANSYAH | XI TOI 1 | NISN: 2425100008
+  Total Waktu : 30303 ms
+  Step 1: [OK] Buka Tab Browser — 264 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #91] ❌ ANDI KURNIAWAN | X TO 2 | NISN: 2526100325
+  Total Waktu : 30327 ms
+  Step 1: [OK] Buka Tab Browser — 263 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #92] ❌ ANDIKA FARHAN PAUZI | X TE 1 | NISN: 2526100013
+  Total Waktu : 30284 ms
+  Step 1: [OK] Buka Tab Browser — 232 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #93] ❌ ANDIKA PURNAMA DANI | XI TSM 2 | NISN: 2425100366
+  Total Waktu : 30297 ms
+  Step 1: [OK] Buka Tab Browser — 240 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #94] ❌ ANDINI SAHIRA RAMADANI | X TJKT 1 | NISN: 2526100464
+  Total Waktu : 30279 ms
+  Step 1: [OK] Buka Tab Browser — 214 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #95] ❌ ANDITIKACHIE | X TE 2 | NISN: 2526100052
+  Total Waktu : 30295 ms
+  Step 1: [OK] Buka Tab Browser — 256 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #96] ❌ ANDRA RAMADHAN | XI TAV 2 | NISN: 2425100147
+  Total Waktu : 30318 ms
+  Step 1: [OK] Buka Tab Browser — 271 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #97] ❌ ANDRI VALENTINO RUKMANA | X AKL 1 | NISN: 2526100554
+  Total Waktu : 30310 ms
+  Step 1: [OK] Buka Tab Browser — 249 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #98] ❌ ANE AWALIAH | X KUL | NISN: 2526100691
+  Total Waktu : 30215 ms
+  Step 1: [OK] Buka Tab Browser — 177 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #99] ❌ ANGELINA TIVANY | X AKL 2 | NISN: 2526100600
+  Total Waktu : 30293 ms
+  Step 1: [OK] Buka Tab Browser — 246 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #100] ❌ ANGGA PRADITA | X TE 1 | NISN: 2526100014
+  Total Waktu : 30306 ms
+  Step 1: [OK] Buka Tab Browser — 269 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #101] ❌ ANGGA SAPUTRA | XI TAV 2 | NISN: 2425100148
+  Total Waktu : 30371 ms
+  Step 1: [OK] Buka Tab Browser — 321 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #102] ❌ ANI NUROHIMAH | X TJKT 2 | NISN: 2526100510
+  Total Waktu : 30391 ms
+  Step 1: [OK] Buka Tab Browser — 341 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #103] ❌ ANIDA ALIMATUNISA | X KUL | NISN: 2526100692
+  Total Waktu : 30353 ms
+  Step 1: [OK] Buka Tab Browser — 286 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #104] ❌ ANISA | X AKL 1 | NISN: 2526100555
+  Total Waktu : 30321 ms
+  Step 1: [OK] Buka Tab Browser — 287 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #105] ❌ ANISA FATONATUL ABROR | X AKL 2 | NISN: 2526100601
+  Total Waktu : 30325 ms
+  Step 1: [OK] Buka Tab Browser — 288 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #106] ❌ ANISA LAILA ROMADON | XI AK 1 | NISN: 2425100470
+  Total Waktu : 30331 ms
+  Step 1: [OK] Buka Tab Browser — 290 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #107] ❌ ANISA PITRI | X KUL | NISN: 2526100693
+  Total Waktu : 30329 ms
+  Step 1: [OK] Buka Tab Browser — 275 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #108] ❌ ANNISA DWI TRI HAPSARI | XI TKJ 1 | NISN: 2425100398
+  Total Waktu : 30321 ms
+  Step 1: [OK] Buka Tab Browser — 278 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #109] ❌ ANNISA RIZKIYATI | XI KUL 2 | NISN: 2425100650
+  Total Waktu : 30304 ms
+  Step 1: [OK] Buka Tab Browser — 258 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #110] ❌ ANUGRAH FAJRI | XI TOI 1 | NISN: 2425100009
+  Total Waktu : 30309 ms
+  Step 1: [OK] Buka Tab Browser — 268 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #111] ❌ ANWAR NASRULOH | X KUL | NISN: 2526100694
+  Total Waktu : 30373 ms
+  Step 1: [OK] Buka Tab Browser — 257 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #112] ❌ ARBAITY PUTRI HAYATI | X KUL | NISN: 2526100695
+  Total Waktu : 30315 ms
+  Step 1: [OK] Buka Tab Browser — 264 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #113] ❌ ARDI PRATAMA | X TE 2 | NISN: 2526100053
+  Total Waktu : 30324 ms
+  Step 1: [OK] Buka Tab Browser — 284 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #114] ❌ ARDIYANTO MIRZA HENDRAWAN | X TJKT 1 | NISN: 2526100465
+  Total Waktu : 30292 ms
+  Step 1: [OK] Buka Tab Browser — 204 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #115] ❌ ARFANDHANI SYAHPUTRA | XI TKR 1 | NISN: 2425100259
+  Total Waktu : 30355 ms
+  Step 1: [OK] Buka Tab Browser — 287 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #116] ❌ ARFI AL YASIL RAMDHANI | X TM 1 | NISN: 2526100189
+  Total Waktu : 30381 ms
+  Step 1: [OK] Buka Tab Browser — 328 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #117] ❌ ARI GUNTORO | XI TKR 1 | NISN: 2425100260
+  Total Waktu : 30369 ms
+  Step 1: [OK] Buka Tab Browser — 329 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #118] ✅ ARI MUHAMAD IKBAL | X TE 3 | NISN: 2526100099
+  Total Waktu : 32823 ms
+  Step 1: [OK] Buka Tab Browser — 352 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 29268 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 824 ms | NISN: 2526100099
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 857 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARI MUHAMAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 19 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1458 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #119] ✅ ARIF | XI TOI 3 | NISN: 2425100077
+  Total Waktu : 32524 ms
+  Step 1: [OK] Buka Tab Browser — 248 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 27780 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2549 ms | NISN: 2425100077
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 12 ms
+  Step 5: [OK] Halaman Profile Muncul — 592 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF | NIS 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 97 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1217 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #120] ✅ ARIF AMRUL NURHIDAYAT | XI TP 1 | NISN: 2425100187
+  Total Waktu : 33064 ms
+  Step 1: [OK] Buka Tab Browser — 339 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 29891 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 946 ms | NISN: 2425100187
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 15 ms
+  Step 5: [OK] Halaman Profile Muncul — 474 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF AMRUL 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 11 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1342 ms | Ditemukan 5 ujian
+  Daftar Ujian Bukti Nyata:
+    - KK TP (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PKK (Oleh: YAYAT SUDRAJAT, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: MAHMUDIN, A.Md.,S.Tr.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #121] ✅ ARIF RAHMAN | X AKL 1 | NISN: 2526100556
+  Total Waktu : 32404 ms
+  Step 1: [OK] Buka Tab Browser — 273 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 29036 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1248 ms | NISN: 2526100556
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 682 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF RAHMAN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 25 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1091 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #122] ✅ ARIF RAPI PADLU RAHMAN | XI TOI 3 | NISN: 2425100078
+  Total Waktu : 31924 ms
+  Step 1: [OK] Buka Tab Browser — 232 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 28581 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1175 ms | NISN: 2425100078
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 17 ms
+  Step 5: [OK] Halaman Profile Muncul — 626 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIF RAPI P
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 19 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1226 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MPP (Oleh: Aceng Nurmawan, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+
+[Siswa #123] ❌ ARIP NURDIN | X TM 2 | NISN: 2526100235
+  Total Waktu : 30234 ms
+  Step 1: [OK] Buka Tab Browser — 185 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #124] ✅ ARIP RAHMAN | X TE 2 | NISN: 2526100054
+  Total Waktu : 32008 ms
+  Step 1: [OK] Buka Tab Browser — 186 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 29322 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1002 ms | NISN: 2526100054
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 403 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIP RAHMAN
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 8 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1056 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ERWIN BEGASI BUDI SAMPURNO, S.T. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #125] ✅ ARIS MULYADI | XI TOI 2 | NISN: 2425100041
+  Total Waktu : 30619 ms
+  Step 1: [OK] Buka Tab Browser — 266 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 27252 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1247 ms | NISN: 2425100041
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 16 ms
+  Step 5: [OK] Halaman Profile Muncul — 463 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIS MULYAD
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 31 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1300 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: TATANG HERMAWAN, S.Tr.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #126] ✅ ARIS SETIAWAN | XI TSM 2 | NISN: 2425100367
+  Total Waktu : 30180 ms
+  Step 1: [OK] Buka Tab Browser — 213 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 27327 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 892 ms | NISN: 2425100367
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 21 ms
+  Step 5: [OK] Halaman Profile Muncul — 421 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARIS SETIAW
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 35 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1242 ms | Ditemukan 2 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #127] ✅ ARISMA NUR JAMILAH | X TJKT 2 | NISN: 2526100511
+  Total Waktu : 29274 ms
+  Step 1: [OK] Buka Tab Browser — 228 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 26092 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1283 ms | NISN: 2526100511
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 14 ms
+  Step 5: [OK] Halaman Profile Muncul — 494 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARISMA NUR 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 12 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1126 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - IF (Oleh: Asep Sofyan, S.Kom. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #128] ✅ ARNI NURHAYATI | X TM 1 | NISN: 2526100190
+  Total Waktu : 29088 ms
+  Step 1: [OK] Buka Tab Browser — 240 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 26227 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 952 ms | NISN: 2526100190
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 524 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARNI NURHAY
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 15 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1093 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: Kusnadi, S.Sy. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: ASIDAH, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - DDPK (Oleh: Arie Satrya Hamzah, S.Pd., Gr. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #129] ✅ ARYA ERLANGGA | XI TAV 1 | NISN: 2425100114
+  Total Waktu : 28004 ms
+  Step 1: [OK] Buka Tab Browser — 187 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 24671 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1235 ms | NISN: 2425100114
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 13 ms
+  Step 5: [OK] Halaman Profile Muncul — 543 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARYA ERLANG
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 17 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1297 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PAI (Oleh: A. HIMAL MAULA, S.Pd.I. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - KK TAV (Oleh: SAEPUL ANWAR, S.T. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PKK (Oleh: SAEPUL ANWAR, S.T. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - P.Pancasila (Oleh: YULI ANISA FATRIA, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+
+[Siswa #130] ✅ ARYA RIZKI RAMDANI | X TO 2 | NISN: 2526100326
+  Total Waktu : 27461 ms
+  Step 1: [OK] Buka Tab Browser — 209 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 24170 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1300 ms | NISN: 2526100326
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 17 ms
+  Step 5: [OK] Halaman Profile Muncul — 513 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | ARYA RIZKI 
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 18 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 1199 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - DDPK (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Jumat, 5 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PROJEK IPAS (Oleh: GINA LUSIANA WULANDARI, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+══════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR — PUPPETEER BROWSER TEST (NO SCREENSHOTS)
+══════════════════════════════════════════════════════════════════════
+  URL Diuji        : https://smkn1pld.absenta.id
+  Browser Concurrent: 130
+  Durasi Total      : 93.52 detik
+  ✅ Berhasil        : 21 / 130
+  ❌ Gagal           : 109 / 130
+  📉 Latency Rata2   : 29759 ms
+  🟢 Latency Tercepat: 7473 ms
+  🔴 Latency Terlambat: 33703 ms
+  📁 Output Dir      : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T09-37-34-205Z
+  📄 Laporan         : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T09-37-34-205Z\report.txt
+  KESIMPULAN        : ⚠️ ADA 109 KEGAGALAN
+══════════════════════════════════════════════════════════════════════

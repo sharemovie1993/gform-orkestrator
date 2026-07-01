@@ -1,0 +1,986 @@
+══════════════════════════════════════════════════════════════════════
+  STRESS TEST VIA BROWSER NYATA — Puppeteer Headless Chrome
+  URL Target  : https://smkn1pld.absenta.id
+  Concurrent  : 130 browser bersamaan
+  Waktu Mulai : 2026-05-28T06:12:57.138Z
+  Output Dir  : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T06-12-57-089Z
+══════════════════════════════════════════════════════════════════════
+
+🔄 Mengambil 130 sampel siswa dari Supabase...
+✅ 130 siswa akan diuji:
+   1. NISN: 2425100255 | AHMAD AJWAR SETIADI | XI TKR 1
+   2. NISN: 2425100221 | AHMAD ARIF AZKA | XI TP 2
+   3. NISN: 2526100231 | AHMAD BARKAH | X TM 2
+   4. NISN: 2526100369 | AHMAD DADIH | X TO 3
+   5. NISN: 2526100140 | AHMAD DANIAL | X TE 4
+   6. NISN: 2526100006 | AHMAD DAVIN NABIL NURZAKY | X TE 1
+   7. NISN: 2526100280 | AHMAD DILFA DANIAR | X TO 1
+   8. NISN: 2425100145 | AHMAD FAHRI SUDARNA | XI TAV 2
+   9. NISN: 2425100256 | AHMAD FAUZI | XI TKR 1
+   10. NISN: 2425100111 | AHMAD FAUZI | XI TAV 1
+   11. NISN: 2526100186 | AHMAD FAUZI | X TM 1
+   12. NISN: 2526100414 | AHMAD FAUZI | X TO 4
+   13. NISN: 2526100322 | AHMAD FAUZI ALFADLAN | X TO 2
+   14. NISN: 2425100003 | AHMAD FAUZI SOFYAN | XI TOI 1
+   15. NISN: 2526100094 | AHMAD HIBAN JAELANI | X TE 3
+   16. NISN: 2526100463 | AHMAD IDAM MUCHLIS | X TJKT 1
+   17. NISN: 2526100007 | AHMAD JENAN | X TE 1
+   18. NISN: 2425100363 | AHMAD LUTHFI MAULANA | XI TSM 2
+   19. NISN: 2425100364 | AHMAD MAULANA MUFID | XI TSM 2
+   20. NISN: 2526100008 | AHMAD NASRULLOH | X TE 1
+   21. NISN: 2526100009 | AHMAD NAZRIL PERMADI | X TE 1
+   22. NISN: 2425100037 | AHMAD NURYANA | XI TOI 2
+   23. NISN: 2425100004 | AHMAD REHAN | XI TOI 1
+   24. NISN: 2425100328 | AHMAD RIPALDI | XI TSM 1
+   25. NISN: 2526100095 | AHMAD SAEPU TAPTA JANI | X TE 3
+   26. NISN: 2526100010 | AHMAD SALDAN | X TE 1
+   27. NISN: 2526100049 | AHMAD SANUSI | X TE 2
+   28. NISN: 2425100038 | AHMAD SUBHAN | XI TOI 2
+   29. NISN: 2425100075 | AHMAD SYAIFUL HIDAYAT | XI TOI 3
+   30. NISN: 2526100323 | AHMAD TAUFIK HERLANSYA | X TO 2
+   31. NISN: 2425100291 | AHMAD TOLIB AZIS RAMADHAN | XI TKR 2
+   32. NISN: 2526100415 | AHMAD YOPI JUMAEDI | X TO 4
+   33. NISN: 2526100232 | AHMAD ZAINUL IHWAN | X TM 2
+   34. NISN: 2425100433 | AHONG TRIYANTO | XI TKJ 2
+   35. NISN: 2425100648 | AI SOPIAH | XI KUL 2
+   36. NISN: 2425100614 | AIRA TRI ARYANI | XI KUL 1
+   37. NISN: 2425100577 | AISAH WULAN MAULIDINA | XI PHT 2
+   38. NISN: 2526100689 | AJENG CAHYA AULIYA | X KUL
+   39. NISN: 2425100649 | AJENG SITI KAUKAH | XI KUL 2
+   40. NISN: 2425100112 | AKBAR AHMAD RAFIQ | XI TAV 1
+   41. NISN: 2526100644 | AKBAR FAUZI | X PHT
+   42. NISN: 2526100096 | AKBAR MAULANA | X TE 3
+   43. NISN: 2425100292 | AKBAR RIZKI MAULANA | XI TKR 2
+   44. NISN: 2526100011 | AKBARUL GOFUR | X TE 1
+   45. NISN: 2526100187 | AKHMAD LATIF | X TM 1
+   46. NISN: 2425100113 | AKMAL JUL PUTRA ELJA | XI TAV 1
+   47. NISN: 2425100005 | AKMAL LUTFIA ASHARI | XI TOI 1
+   48. NISN: 2526100553 | AL ASYA SYARKLA | X AKL 1
+   49. NISN: 2425100186 | AL FATHIR ZUNIOR | XI TP 1
+   50. NISN: 2526100370 | AL HAFIZ SHABIR SALAM | X TO 3
+   51. NISN: 2526100012 | ALBIAN SUKMA MAULANA | X TE 1
+   52. NISN: 2526100050 | ALDI AFILLAH BIFARY | X TE 2
+   53. NISN: 2425100146 | ALDI HARDIANSYAH | XI TAV 2
+   54. NISN: 2425100039 | ALDI MANSYUR | XI TOI 2
+   55. NISN: 2425100257 | ALDI PADILAH | XI TKR 1
+   56. NISN: 2425100365 | ALDI RAMDANI | XI TSM 2
+   57. NISN: 2425100006 | ALDI SAPUTRA | XI TOI 1
+   58. NISN: 2526100324 | ALDI SETIAWAN | X TO 2
+   59. NISN: 2425100542 | ALDIYANSYAH | XI PHT 1
+   60. NISN: 2425100293 | ALDO JUNIAWAN | XI TKR 2
+   61. NISN: 2526100599 | ALENA NUR AWALIZA | X AKL 2
+   62. NISN: 2425100040 | ALFATH MAULANA YUSUF | XI TOI 2
+   63. NISN: 2425100578 | ALFIAH LUTFIANTI | XI PHT 2
+   64. NISN: 2526100141 | ALFIAN BAGUS RAMADHAN | X TE 4
+   65. NISN: 2526100509 | ALFIAN FIRDAUS | X TJKT 2
+   66. NISN: 2425100007 | ALFIAN NURYAMAN | XI TOI 1
+   67. NISN: 2425100543 | ALFIN | XI PHT 1
+   68. NISN: 2526100097 | ALFIN DESTIAN | X TE 3
+   69. NISN: 2526100416 | ALGI FALGIAN | X TO 4
+   70. NISN: 2425100329 | ALI AKBAR | XI TSM 1
+   71. NISN: 2526100417 | ALI PERMANA | X TO 4
+   72. NISN: 2526100098 | ALIEF MUHAMAD ARRIADY | X TE 3
+   73. NISN: 2526100233 | ALIF MAULANA SURYADI | X TM 2
+   74. NISN: 2526100188 | ALIKHA NUR AZIZAH | X TM 1
+   75. NISN: 2526100645 | ALIN NURFAIDA | X PHT
+   76. NISN: 2425100579 | ALIP | XI PHT 2
+   77. NISN: 2526100646 | ALIPIA MAULIDIA PUTRI | X PHT
+   78. NISN: 2425100076 | ALPARIJAL | XI TOI 3
+   79. NISN: 2526100371 | ALPIN AZIZ | X TO 3
+   80. NISN: 2526100234 | ALVIAN PRAMUDYA AZHAR | X TM 2
+   81. NISN: 2425100544 | ALVIAN YUSUF | XI PHT 1
+   82. NISN: 2425100222 | ALVIN IRHAM PADILLAH | XI TP 2
+   83. NISN: 2425100580 | ALVINA EFARINA | XI PHT 2
+   84. NISN: 2425100258 | ALWIS SAEPUL ADHA | XI TKR 1
+   85. NISN: 2526100647 | ALYA RAMADANI | X PHT
+   86. NISN: 2526100690 | ALYA RENAULTFA HALAWATI | X KUL
+   87. NISN: 2526100051 | ALZIAN ILHAM PRATAMA | X TE 2
+   88. NISN: 2425100615 | AMEL AULIYA | XI KUL 1
+   89. NISN: 2425100505 | AMIRA SANIA | XI AK 2
+   90. NISN: 2425100008 | ANANG ANDRIANSYAH | XI TOI 1
+   91. NISN: 2526100325 | ANDI KURNIAWAN | X TO 2
+   92. NISN: 2526100013 | ANDIKA FARHAN PAUZI | X TE 1
+   93. NISN: 2425100366 | ANDIKA PURNAMA DANI | XI TSM 2
+   94. NISN: 2526100464 | ANDINI SAHIRA RAMADANI | X TJKT 1
+   95. NISN: 2526100052 | ANDITIKACHIE | X TE 2
+   96. NISN: 2425100147 | ANDRA RAMADHAN | XI TAV 2
+   97. NISN: 2526100554 | ANDRI VALENTINO RUKMANA | X AKL 1
+   98. NISN: 2526100691 | ANE AWALIAH | X KUL
+   99. NISN: 2526100600 | ANGELINA TIVANY | X AKL 2
+   100. NISN: 2526100014 | ANGGA PRADITA | X TE 1
+   101. NISN: 2425100148 | ANGGA SAPUTRA | XI TAV 2
+   102. NISN: 2526100510 | ANI NUROHIMAH | X TJKT 2
+   103. NISN: 2526100692 | ANIDA ALIMATUNISA | X KUL
+   104. NISN: 2526100555 | ANISA | X AKL 1
+   105. NISN: 2526100601 | ANISA FATONATUL ABROR | X AKL 2
+   106. NISN: 2425100470 | ANISA LAILA ROMADON | XI AK 1
+   107. NISN: 2526100693 | ANISA PITRI | X KUL
+   108. NISN: 2425100398 | ANNISA DWI TRI HAPSARI | XI TKJ 1
+   109. NISN: 2425100650 | ANNISA RIZKIYATI | XI KUL 2
+   110. NISN: 2425100009 | ANUGRAH FAJRI | XI TOI 1
+   111. NISN: 2526100694 | ANWAR NASRULOH | X KUL
+   112. NISN: 2526100695 | ARBAITY PUTRI HAYATI | X KUL
+   113. NISN: 2526100053 | ARDI PRATAMA | X TE 2
+   114. NISN: 2526100465 | ARDIYANTO MIRZA HENDRAWAN | X TJKT 1
+   115. NISN: 2425100259 | ARFANDHANI SYAHPUTRA | XI TKR 1
+   116. NISN: 2526100189 | ARFI AL YASIL RAMDHANI | X TM 1
+   117. NISN: 2425100260 | ARI GUNTORO | XI TKR 1
+   118. NISN: 2526100099 | ARI MUHAMAD IKBAL | X TE 3
+   119. NISN: 2425100077 | ARIF | XI TOI 3
+   120. NISN: 2425100187 | ARIF AMRUL NURHIDAYAT | XI TP 1
+   121. NISN: 2526100556 | ARIF RAHMAN | X AKL 1
+   122. NISN: 2425100078 | ARIF RAPI PADLU RAHMAN | XI TOI 3
+   123. NISN: 2526100235 | ARIP NURDIN | X TM 2
+   124. NISN: 2526100054 | ARIP RAHMAN | X TE 2
+   125. NISN: 2425100041 | ARIS MULYADI | XI TOI 2
+   126. NISN: 2425100367 | ARIS SETIAWAN | XI TSM 2
+   127. NISN: 2526100511 | ARISMA NUR JAMILAH | X TJKT 2
+   128. NISN: 2526100190 | ARNI NURHAYATI | X TM 1
+   129. NISN: 2425100114 | ARYA ERLANGGA | XI TAV 1
+   130. NISN: 2526100326 | ARYA RIZKI RAMDANI | X TO 2
+
+🚀 Meluncurkan Chromium headless...
+✅ Chromium berhasil diluncurkan
+
+──────────────────────────────────────────────────────────────────────
+  SIMULASI LOGIN 130 SISWA BERSAMAAN
+──────────────────────────────────────────────────────────────────────
+   [Siswa #1] Ditemukan 1 input field di halaman
+   [Siswa #3] Ditemukan 1 input field di halaman
+   ✅ [Siswa #1] AHMAD AJWAR SETIADI — Berhasil masuk & lihat ujian
+   ❌ [Siswa #4] AHMAD DADIH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #5] AHMAD DANIAL — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #6] AHMAD DAVIN NABIL NURZAKY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #7] AHMAD DILFA DANIAR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #8] AHMAD FAHRI SUDARNA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #9] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #10] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #11] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #12] AHMAD FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #13] AHMAD FAUZI ALFADLAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #14] AHMAD FAUZI SOFYAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #2] AHMAD ARIF AZKA — ERROR: Waiting for selector `input` failed: Waiting failed: 15000ms exceeded
+   ❌ [Siswa #15] AHMAD HIBAN JAELANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #16] AHMAD IDAM MUCHLIS — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #17] AHMAD JENAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #18] AHMAD LUTHFI MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #19] AHMAD MAULANA MUFID — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #20] AHMAD NASRULLOH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #21] AHMAD NAZRIL PERMADI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #22] AHMAD NURYANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #23] AHMAD REHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #24] AHMAD RIPALDI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #25] AHMAD SAEPU TAPTA JANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #26] AHMAD SALDAN — ERROR: Navigation timeout of 30000 ms exceeded
+   [Browser #3] Console Error: Failed to load resource: net::ERR_CONNECTION_TIMED_OUT
+   ❌ [Siswa #27] AHMAD SANUSI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #28] AHMAD SUBHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #29] AHMAD SYAIFUL HIDAYAT — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #3] AHMAD BARKAH — ERROR: Waiting failed: 20000ms exceeded
+   ❌ [Siswa #30] AHMAD TAUFIK HERLANSYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #31] AHMAD TOLIB AZIS RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #32] AHMAD YOPI JUMAEDI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #33] AHMAD ZAINUL IHWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   [Siswa #36] Ditemukan 1 input field di halaman
+   ✅ [Siswa #36] AIRA TRI ARYANI — Berhasil masuk & lihat ujian
+   [Siswa #35] Ditemukan 1 input field di halaman
+   ❌ [Siswa #34] AHONG TRIYANTO — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #39] AJENG SITI KAUKAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #38] AJENG CAHYA AULIYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #40] AKBAR AHMAD RAFIQ — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #41] AKBAR FAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #37] AISAH WULAN MAULIDINA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #42] AKBAR MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #44] AKBARUL GOFUR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #43] AKBAR RIZKI MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #45] AKHMAD LATIF — ERROR: Navigation timeout of 30000 ms exceeded
+   ✅ [Siswa #35] AI SOPIAH — Berhasil masuk & lihat ujian
+   ❌ [Siswa #47] AKMAL LUTFIA ASHARI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #50] AL HAFIZ SHABIR SALAM — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #48] AL ASYA SYARKLA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #49] AL FATHIR ZUNIOR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #53] ALDI HARDIANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #52] ALDI AFILLAH BIFARY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #51] ALBIAN SUKMA MAULANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #46] AKMAL JUL PUTRA ELJA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #54] ALDI MANSYUR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #56] ALDI RAMDANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #55] ALDI PADILAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #58] ALDI SETIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #57] ALDI SAPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #60] ALDO JUNIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #59] ALDIYANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #63] ALFIAH LUTFIANTI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #61] ALENA NUR AWALIZA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #62] ALFATH MAULANA YUSUF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #64] ALFIAN BAGUS RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #66] ALFIAN NURYAMAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #65] ALFIAN FIRDAUS — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #67] ALFIN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #68] ALFIN DESTIAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #69] ALGI FALGIAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #71] ALI PERMANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #75] ALIN NURFAIDA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #70] ALI AKBAR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #76] ALIP — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #73] ALIF MAULANA SURYADI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #72] ALIEF MUHAMAD ARRIADY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #74] ALIKHA NUR AZIZAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #77] ALIPIA MAULIDIA PUTRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #78] ALPARIJAL — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #79] ALPIN AZIZ — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #80] ALVIAN PRAMUDYA AZHAR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #84] ALWIS SAEPUL ADHA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #90] ANANG ANDRIANSYAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #81] ALVIAN YUSUF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #85] ALYA RAMADANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #82] ALVIN IRHAM PADILLAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #83] ALVINA EFARINA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #86] ALYA RENAULTFA HALAWATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #88] AMEL AULIYA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #87] ALZIAN ILHAM PRATAMA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #89] AMIRA SANIA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #91] ANDI KURNIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #92] ANDIKA FARHAN PAUZI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #94] ANDINI SAHIRA RAMADANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #93] ANDIKA PURNAMA DANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #95] ANDITIKACHIE — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #97] ANDRI VALENTINO RUKMANA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #96] ANDRA RAMADHAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #99] ANGELINA TIVANY — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #98] ANE AWALIAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #100] ANGGA PRADITA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #101] ANGGA SAPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #103] ANIDA ALIMATUNISA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #102] ANI NUROHIMAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #104] ANISA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #105] ANISA FATONATUL ABROR — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #106] ANISA LAILA ROMADON — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #107] ANISA PITRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #109] ANNISA RIZKIYATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #108] ANNISA DWI TRI HAPSARI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #112] ARBAITY PUTRI HAYATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #110] ANUGRAH FAJRI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #111] ANWAR NASRULOH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #113] ARDI PRATAMA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #115] ARFANDHANI SYAHPUTRA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #114] ARDIYANTO MIRZA HENDRAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #116] ARFI AL YASIL RAMDHANI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #121] ARIF RAHMAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #118] ARI MUHAMAD IKBAL — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #117] ARI GUNTORO — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #120] ARIF AMRUL NURHIDAYAT — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #122] ARIF RAPI PADLU RAHMAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #119] ARIF — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #123] ARIP NURDIN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #124] ARIP RAHMAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #127] ARISMA NUR JAMILAH — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #125] ARIS MULYADI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #128] ARNI NURHAYATI — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #126] ARIS SETIAWAN — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #129] ARYA ERLANGGA — ERROR: Navigation timeout of 30000 ms exceeded
+   ❌ [Siswa #130] ARYA RIZKI RAMDANI — ERROR: Navigation timeout of 30000 ms exceeded
+
+✅ Semua browser telah ditutup
+
+══════════════════════════════════════════════════════════════════════
+  LAPORAN DETAIL PER SISWA
+══════════════════════════════════════════════════════════════════════
+
+[Siswa #1] ✅ AHMAD AJWAR SETIADI | XI TKR 1 | NISN: 2425100255
+  Total Waktu : 24909 ms
+  Step 1: [OK] Buka Tab Browser — 175 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 9444 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 827 ms | NISN: 2425100255
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 10 ms
+  Step 5: [OK] Halaman Profile Muncul — 1477 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AHMAD AJWAR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 9 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 10471 ms | Ditemukan 4 ujian
+  Daftar Ujian Bukti Nyata:
+    - PKK (Oleh: DANI SETIAWAN, S.E. | 📅 Selasa, 2 Juni 2026  |  🕒 10:00 | 🔒 Terkunci)
+    - MP KODING (Oleh: IRWANDONY WIJAYANTO, S.Pd. | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: CECE AHMAD NURHIDAYAT, S.Pd | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #2] ❌ AHMAD ARIF AZKA | XI TP 2 | NISN: 2425100221
+  Total Waktu : 44428 ms
+  Step 1: [OK] Buka Tab Browser — 146 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 21423 ms | Judul: "Orkestrator Ujian"
+  Error       : Waiting for selector `input` failed: Waiting failed: 15000ms exceeded
+
+[Siswa #3] ❌ AHMAD BARKAH | X TM 2 | NISN: 2526100231
+  Total Waktu : 57473 ms
+  Step 1: [OK] Buka Tab Browser — 180 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 12520 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 14658 ms | NISN: 2526100231
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 2101 ms
+  Error       : Waiting failed: 20000ms exceeded
+
+[Siswa #4] ❌ AHMAD DADIH | X TO 3 | NISN: 2526100369
+  Total Waktu : 34792 ms
+  Step 1: [OK] Buka Tab Browser — 171 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #5] ❌ AHMAD DANIAL | X TE 4 | NISN: 2526100140
+  Total Waktu : 34294 ms
+  Step 1: [OK] Buka Tab Browser — 177 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #6] ❌ AHMAD DAVIN NABIL NURZAKY | X TE 1 | NISN: 2526100006
+  Total Waktu : 35678 ms
+  Step 1: [OK] Buka Tab Browser — 185 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #7] ❌ AHMAD DILFA DANIAR | X TO 1 | NISN: 2526100280
+  Total Waktu : 35277 ms
+  Step 1: [OK] Buka Tab Browser — 129 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #8] ❌ AHMAD FAHRI SUDARNA | XI TAV 2 | NISN: 2425100145
+  Total Waktu : 34915 ms
+  Step 1: [OK] Buka Tab Browser — 143 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #9] ❌ AHMAD FAUZI | XI TKR 1 | NISN: 2425100256
+  Total Waktu : 35752 ms
+  Step 1: [OK] Buka Tab Browser — 109 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #10] ❌ AHMAD FAUZI | XI TAV 1 | NISN: 2425100111
+  Total Waktu : 36078 ms
+  Step 1: [OK] Buka Tab Browser — 157 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #11] ❌ AHMAD FAUZI | X TM 1 | NISN: 2526100186
+  Total Waktu : 38231 ms
+  Step 1: [OK] Buka Tab Browser — 112 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #12] ❌ AHMAD FAUZI | X TO 4 | NISN: 2526100414
+  Total Waktu : 37852 ms
+  Step 1: [OK] Buka Tab Browser — 259 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #13] ❌ AHMAD FAUZI ALFADLAN | X TO 2 | NISN: 2526100322
+  Total Waktu : 38841 ms
+  Step 1: [OK] Buka Tab Browser — 198 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #14] ❌ AHMAD FAUZI SOFYAN | XI TOI 1 | NISN: 2425100003
+  Total Waktu : 38429 ms
+  Step 1: [OK] Buka Tab Browser — 140 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #15] ❌ AHMAD HIBAN JAELANI | X TE 3 | NISN: 2526100094
+  Total Waktu : 38024 ms
+  Step 1: [OK] Buka Tab Browser — 130 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #16] ❌ AHMAD IDAM MUCHLIS | X TJKT 1 | NISN: 2526100463
+  Total Waktu : 38623 ms
+  Step 1: [OK] Buka Tab Browser — 157 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #17] ❌ AHMAD JENAN | X TE 1 | NISN: 2526100007
+  Total Waktu : 38621 ms
+  Step 1: [OK] Buka Tab Browser — 110 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #18] ❌ AHMAD LUTHFI MAULANA | XI TSM 2 | NISN: 2425100363
+  Total Waktu : 39539 ms
+  Step 1: [OK] Buka Tab Browser — 120 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #19] ❌ AHMAD MAULANA MUFID | XI TSM 2 | NISN: 2425100364
+  Total Waktu : 39238 ms
+  Step 1: [OK] Buka Tab Browser — 107 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #20] ❌ AHMAD NASRULLOH | X TE 1 | NISN: 2526100008
+  Total Waktu : 39771 ms
+  Step 1: [OK] Buka Tab Browser — 141 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #21] ❌ AHMAD NAZRIL PERMADI | X TE 1 | NISN: 2526100009
+  Total Waktu : 39873 ms
+  Step 1: [OK] Buka Tab Browser — 139 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #22] ❌ AHMAD NURYANA | XI TOI 2 | NISN: 2425100037
+  Total Waktu : 40862 ms
+  Step 1: [OK] Buka Tab Browser — 155 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #23] ❌ AHMAD REHAN | XI TOI 1 | NISN: 2425100004
+  Total Waktu : 40367 ms
+  Step 1: [OK] Buka Tab Browser — 147 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #24] ❌ AHMAD RIPALDI | XI TSM 1 | NISN: 2425100328
+  Total Waktu : 41716 ms
+  Step 1: [OK] Buka Tab Browser — 309 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #25] ❌ AHMAD SAEPU TAPTA JANI | X TE 3 | NISN: 2526100095
+  Total Waktu : 41434 ms
+  Step 1: [OK] Buka Tab Browser — 122 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #26] ❌ AHMAD SALDAN | X TE 1 | NISN: 2526100010
+  Total Waktu : 40937 ms
+  Step 1: [OK] Buka Tab Browser — 232 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #27] ❌ AHMAD SANUSI | X TE 2 | NISN: 2526100049
+  Total Waktu : 41456 ms
+  Step 1: [OK] Buka Tab Browser — 308 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #28] ❌ AHMAD SUBHAN | XI TOI 2 | NISN: 2425100038
+  Total Waktu : 41139 ms
+  Step 1: [OK] Buka Tab Browser — 195 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #29] ❌ AHMAD SYAIFUL HIDAYAT | XI TOI 3 | NISN: 2425100075
+  Total Waktu : 43896 ms
+  Step 1: [OK] Buka Tab Browser — 4998 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #30] ❌ AHMAD TAUFIK HERLANSYA | X TO 2 | NISN: 2526100323
+  Total Waktu : 44744 ms
+  Step 1: [OK] Buka Tab Browser — 7517 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #31] ❌ AHMAD TOLIB AZIS RAMADHAN | XI TKR 2 | NISN: 2425100291
+  Total Waktu : 44984 ms
+  Step 1: [OK] Buka Tab Browser — 8590 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #32] ❌ AHMAD YOPI JUMAEDI | X TO 4 | NISN: 2526100415
+  Total Waktu : 44727 ms
+  Step 1: [OK] Buka Tab Browser — 9746 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #33] ❌ AHMAD ZAINUL IHWAN | X TM 2 | NISN: 2526100232
+  Total Waktu : 44258 ms
+  Step 1: [OK] Buka Tab Browser — 9367 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #34] ❌ AHONG TRIYANTO | XI TKJ 2 | NISN: 2425100433
+  Total Waktu : 82381 ms
+  Step 1: [OK] Buka Tab Browser — 52325 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #35] ✅ AI SOPIAH | XI KUL 2 | NISN: 2425100648
+  Total Waktu : 85826 ms
+  Step 1: [OK] Buka Tab Browser — 51856 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 28249 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 2173 ms | NISN: 2425100648
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 84 ms
+  Step 5: [OK] Halaman Profile Muncul — 870 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AI SOPIAH |
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 20 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2501 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - MPP (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #36] ✅ AIRA TRI ARYANI | XI KUL 1 | NISN: 2425100614
+  Total Waktu : 77277 ms
+  Step 1: [OK] Buka Tab Browser — 51354 ms
+  Step 2: [OK] Buka https://smkn1pld.absenta.id — 20397 ms | Judul: "Orkestrator Ujian"
+  Step 3: [OK] Isi NISN — 1779 ms | NISN: 2425100614
+  Step 4: [OK] Klik Tombol "MASUK PORTAL" — 32 ms
+  Step 5: [OK] Halaman Profile Muncul — 945 ms | 🔄 | SMKN 1 PLERED | PSAS GENAP 2025 2026 | SEB SECURE MODE | 🎓 | PORTAL SISWA | NAMA | AIRA TRI AR
+  Step 6: [OK] Klik "🚀 BUKA DAFTAR UJIAN" — 34 ms
+  Step 7: [OK] Daftar Ujian Terbuka — 2636 ms | Ditemukan 3 ujian
+  Daftar Ujian Bukti Nyata:
+    - MPP (Oleh: Annisa Ropiatusholihah, S.Pd | 📅 Kamis, 4 Juni 2026  |  🕒 07:30 | 🔒 Terkunci)
+    - SEJARAH (Oleh: M. CECEP SUKARPI, S.Pd. | 📅 Rabu, 3 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+    - PAI (Oleh: H. SURYAMAN, S.Ag.,M.M.Pd. | 📅 Selasa, 2 Juni 2026  |  🕒 08:30 | 🔒 Terkunci)
+
+[Siswa #37] ❌ AISAH WULAN MAULIDINA | XI PHT 2 | NISN: 2425100577
+  Total Waktu : 81113 ms
+  Step 1: [OK] Buka Tab Browser — 50903 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #38] ❌ AJENG CAHYA AULIYA | X KUL | NISN: 2526100689
+  Total Waktu : 80602 ms
+  Step 1: [OK] Buka Tab Browser — 50420 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #39] ❌ AJENG SITI KAUKAH | XI KUL 2 | NISN: 2425100649
+  Total Waktu : 80101 ms
+  Step 1: [OK] Buka Tab Browser — 49953 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #40] ❌ AKBAR AHMAD RAFIQ | XI TAV 1 | NISN: 2425100112
+  Total Waktu : 79653 ms
+  Step 1: [OK] Buka Tab Browser — 49489 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #41] ❌ AKBAR FAUZI | X PHT | NISN: 2526100644
+  Total Waktu : 79113 ms
+  Step 1: [OK] Buka Tab Browser — 48917 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #42] ❌ AKBAR MAULANA | X TE 3 | NISN: 2526100096
+  Total Waktu : 78662 ms
+  Step 1: [OK] Buka Tab Browser — 48450 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #43] ❌ AKBAR RIZKI MAULANA | XI TKR 2 | NISN: 2425100292
+  Total Waktu : 78225 ms
+  Step 1: [OK] Buka Tab Browser — 47984 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #44] ❌ AKBARUL GOFUR | X TE 1 | NISN: 2526100011
+  Total Waktu : 77626 ms
+  Step 1: [OK] Buka Tab Browser — 47398 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #45] ❌ AKHMAD LATIF | X TM 1 | NISN: 2526100187
+  Total Waktu : 77260 ms
+  Step 1: [OK] Buka Tab Browser — 46977 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #46] ❌ AKMAL JUL PUTRA ELJA | XI TAV 1 | NISN: 2425100113
+  Total Waktu : 85174 ms
+  Step 1: [OK] Buka Tab Browser — 54916 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #47] ❌ AKMAL LUTFIA ASHARI | XI TOI 1 | NISN: 2425100005
+  Total Waktu : 83917 ms
+  Step 1: [OK] Buka Tab Browser — 53854 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #48] ❌ AL ASYA SYARKLA | X AKL 1 | NISN: 2526100553
+  Total Waktu : 83456 ms
+  Step 1: [OK] Buka Tab Browser — 53293 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #49] ❌ AL FATHIR ZUNIOR | XI TP 1 | NISN: 2425100186
+  Total Waktu : 83017 ms
+  Step 1: [OK] Buka Tab Browser — 52869 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #50] ❌ AL HAFIZ SHABIR SALAM | X TO 3 | NISN: 2526100370
+  Total Waktu : 82505 ms
+  Step 1: [OK] Buka Tab Browser — 52369 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #51] ❌ ALBIAN SUKMA MAULANA | X TE 1 | NISN: 2526100012
+  Total Waktu : 82648 ms
+  Step 1: [OK] Buka Tab Browser — 52418 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #52] ❌ ALDI AFILLAH BIFARY | X TE 2 | NISN: 2526100050
+  Total Waktu : 82106 ms
+  Step 1: [OK] Buka Tab Browser — 51904 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #53] ❌ ALDI HARDIANSYAH | XI TAV 2 | NISN: 2425100146
+  Total Waktu : 81566 ms
+  Step 1: [OK] Buka Tab Browser — 51388 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #54] ❌ ALDI MANSYUR | XI TOI 2 | NISN: 2425100039
+  Total Waktu : 81164 ms
+  Step 1: [OK] Buka Tab Browser — 50893 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #55] ❌ ALDI PADILAH | XI TKR 1 | NISN: 2425100257
+  Total Waktu : 80673 ms
+  Step 1: [OK] Buka Tab Browser — 50381 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #56] ❌ ALDI RAMDANI | XI TSM 2 | NISN: 2425100365
+  Total Waktu : 80108 ms
+  Step 1: [OK] Buka Tab Browser — 49828 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #57] ❌ ALDI SAPUTRA | XI TOI 1 | NISN: 2425100006
+  Total Waktu : 79728 ms
+  Step 1: [OK] Buka Tab Browser — 49413 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #58] ❌ ALDI SETIAWAN | X TO 2 | NISN: 2526100324
+  Total Waktu : 79173 ms
+  Step 1: [OK] Buka Tab Browser — 48870 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #59] ❌ ALDIYANSYAH | XI PHT 1 | NISN: 2425100542
+  Total Waktu : 78776 ms
+  Step 1: [OK] Buka Tab Browser — 48431 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #60] ❌ ALDO JUNIAWAN | XI TKR 2 | NISN: 2425100293
+  Total Waktu : 78242 ms
+  Step 1: [OK] Buka Tab Browser — 47914 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #61] ❌ ALENA NUR AWALIZA | X AKL 2 | NISN: 2526100599
+  Total Waktu : 77802 ms
+  Step 1: [OK] Buka Tab Browser — 47404 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #62] ❌ ALFATH MAULANA YUSUF | XI TOI 2 | NISN: 2425100040
+  Total Waktu : 77311 ms
+  Step 1: [OK] Buka Tab Browser — 46882 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #63] ❌ ALFIAH LUTFIANTI | XI PHT 2 | NISN: 2425100578
+  Total Waktu : 76736 ms
+  Step 1: [OK] Buka Tab Browser — 46360 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #64] ❌ ALFIAN BAGUS RAMADHAN | X TE 4 | NISN: 2526100141
+  Total Waktu : 76549 ms
+  Step 1: [OK] Buka Tab Browser — 46272 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #65] ❌ ALFIAN FIRDAUS | X TJKT 2 | NISN: 2526100509
+  Total Waktu : 76030 ms
+  Step 1: [OK] Buka Tab Browser — 45753 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #66] ❌ ALFIAN NURYAMAN | XI TOI 1 | NISN: 2425100007
+  Total Waktu : 75581 ms
+  Step 1: [OK] Buka Tab Browser — 45317 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #67] ❌ ALFIN | XI PHT 1 | NISN: 2425100543
+  Total Waktu : 74954 ms
+  Step 1: [OK] Buka Tab Browser — 44666 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #68] ❌ ALFIN DESTIAN | X TE 3 | NISN: 2526100097
+  Total Waktu : 74553 ms
+  Step 1: [OK] Buka Tab Browser — 44255 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #69] ❌ ALGI FALGIAN | X TO 4 | NISN: 2526100416
+  Total Waktu : 74122 ms
+  Step 1: [OK] Buka Tab Browser — 43837 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #70] ❌ ALI AKBAR | XI TSM 1 | NISN: 2425100329
+  Total Waktu : 73658 ms
+  Step 1: [OK] Buka Tab Browser — 43351 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #71] ❌ ALI PERMANA | X TO 4 | NISN: 2526100417
+  Total Waktu : 73107 ms
+  Step 1: [OK] Buka Tab Browser — 42821 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #72] ❌ ALIEF MUHAMAD ARRIADY | X TE 3 | NISN: 2526100098
+  Total Waktu : 72672 ms
+  Step 1: [OK] Buka Tab Browser — 42333 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #73] ❌ ALIF MAULANA SURYADI | X TM 2 | NISN: 2526100233
+  Total Waktu : 72113 ms
+  Step 1: [OK] Buka Tab Browser — 41785 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #74] ❌ ALIKHA NUR AZIZAH | X TM 1 | NISN: 2526100188
+  Total Waktu : 71771 ms
+  Step 1: [OK] Buka Tab Browser — 41514 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #75] ❌ ALIN NURFAIDA | X PHT | NISN: 2526100645
+  Total Waktu : 71076 ms
+  Step 1: [OK] Buka Tab Browser — 40779 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #76] ❌ ALIP | XI PHT 2 | NISN: 2425100579
+  Total Waktu : 70638 ms
+  Step 1: [OK] Buka Tab Browser — 40321 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #77] ❌ ALIPIA MAULIDIA PUTRI | X PHT | NISN: 2526100646
+  Total Waktu : 70378 ms
+  Step 1: [OK] Buka Tab Browser — 40315 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #78] ❌ ALPARIJAL | XI TOI 3 | NISN: 2425100076
+  Total Waktu : 69948 ms
+  Step 1: [OK] Buka Tab Browser — 39867 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #79] ❌ ALPIN AZIZ | X TO 3 | NISN: 2526100371
+  Total Waktu : 69389 ms
+  Step 1: [OK] Buka Tab Browser — 39298 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #80] ❌ ALVIAN PRAMUDYA AZHAR | X TM 2 | NISN: 2526100234
+  Total Waktu : 68938 ms
+  Step 1: [OK] Buka Tab Browser — 38835 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #81] ❌ ALVIAN YUSUF | XI PHT 1 | NISN: 2425100544
+  Total Waktu : 68818 ms
+  Step 1: [OK] Buka Tab Browser — 38437 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #82] ❌ ALVIN IRHAM PADILLAH | XI TP 2 | NISN: 2425100222
+  Total Waktu : 68283 ms
+  Step 1: [OK] Buka Tab Browser — 37880 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #83] ❌ ALVINA EFARINA | XI PHT 2 | NISN: 2425100580
+  Total Waktu : 67827 ms
+  Step 1: [OK] Buka Tab Browser — 37424 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #84] ❌ ALWIS SAEPUL ADHA | XI TKR 1 | NISN: 2425100258
+  Total Waktu : 67190 ms
+  Step 1: [OK] Buka Tab Browser — 36832 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #85] ❌ ALYA RAMADANI | X PHT | NISN: 2526100647
+  Total Waktu : 66746 ms
+  Step 1: [OK] Buka Tab Browser — 36355 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #86] ❌ ALYA RENAULTFA HALAWATI | X KUL | NISN: 2526100690
+  Total Waktu : 66336 ms
+  Step 1: [OK] Buka Tab Browser — 35907 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #87] ❌ ALZIAN ILHAM PRATAMA | X TE 2 | NISN: 2526100051
+  Total Waktu : 65794 ms
+  Step 1: [OK] Buka Tab Browser — 35344 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #88] ❌ AMEL AULIYA | XI KUL 1 | NISN: 2425100615
+  Total Waktu : 65325 ms
+  Step 1: [OK] Buka Tab Browser — 34887 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #89] ❌ AMIRA SANIA | XI AK 2 | NISN: 2425100505
+  Total Waktu : 64887 ms
+  Step 1: [OK] Buka Tab Browser — 34426 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #90] ❌ ANANG ANDRIANSYAH | XI TOI 1 | NISN: 2425100008
+  Total Waktu : 64314 ms
+  Step 1: [OK] Buka Tab Browser — 33944 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #91] ❌ ANDI KURNIAWAN | X TO 2 | NISN: 2526100325
+  Total Waktu : 63929 ms
+  Step 1: [OK] Buka Tab Browser — 33434 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #92] ❌ ANDIKA FARHAN PAUZI | X TE 1 | NISN: 2526100013
+  Total Waktu : 63440 ms
+  Step 1: [OK] Buka Tab Browser — 32926 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #93] ❌ ANDIKA PURNAMA DANI | XI TSM 2 | NISN: 2425100366
+  Total Waktu : 62958 ms
+  Step 1: [OK] Buka Tab Browser — 32421 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #94] ❌ ANDINI SAHIRA RAMADANI | X TJKT 1 | NISN: 2526100464
+  Total Waktu : 62457 ms
+  Step 1: [OK] Buka Tab Browser — 31933 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #95] ❌ ANDITIKACHIE | X TE 2 | NISN: 2526100052
+  Total Waktu : 61983 ms
+  Step 1: [OK] Buka Tab Browser — 31436 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #96] ❌ ANDRA RAMADHAN | XI TAV 2 | NISN: 2425100147
+  Total Waktu : 61516 ms
+  Step 1: [OK] Buka Tab Browser — 30936 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #97] ❌ ANDRI VALENTINO RUKMANA | X AKL 1 | NISN: 2526100554
+  Total Waktu : 60990 ms
+  Step 1: [OK] Buka Tab Browser — 30428 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #98] ❌ ANE AWALIAH | X KUL | NISN: 2526100691
+  Total Waktu : 60421 ms
+  Step 1: [OK] Buka Tab Browser — 29824 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #99] ❌ ANGELINA TIVANY | X AKL 2 | NISN: 2526100600
+  Total Waktu : 59895 ms
+  Step 1: [OK] Buka Tab Browser — 29303 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #100] ❌ ANGGA PRADITA | X TE 1 | NISN: 2526100014
+  Total Waktu : 59520 ms
+  Step 1: [OK] Buka Tab Browser — 28914 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #101] ❌ ANGGA SAPUTRA | XI TAV 2 | NISN: 2425100148
+  Total Waktu : 59016 ms
+  Step 1: [OK] Buka Tab Browser — 28399 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #102] ❌ ANI NUROHIMAH | X TJKT 2 | NISN: 2526100510
+  Total Waktu : 58537 ms
+  Step 1: [OK] Buka Tab Browser — 27900 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #103] ❌ ANIDA ALIMATUNISA | X KUL | NISN: 2526100692
+  Total Waktu : 58024 ms
+  Step 1: [OK] Buka Tab Browser — 27397 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #104] ❌ ANISA | X AKL 1 | NISN: 2526100555
+  Total Waktu : 57544 ms
+  Step 1: [OK] Buka Tab Browser — 26895 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #105] ❌ ANISA FATONATUL ABROR | X AKL 2 | NISN: 2526100601
+  Total Waktu : 57046 ms
+  Step 1: [OK] Buka Tab Browser — 26388 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #106] ❌ ANISA LAILA ROMADON | XI AK 1 | NISN: 2425100470
+  Total Waktu : 56651 ms
+  Step 1: [OK] Buka Tab Browser — 25997 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #107] ❌ ANISA PITRI | X KUL | NISN: 2526100693
+  Total Waktu : 56159 ms
+  Step 1: [OK] Buka Tab Browser — 25495 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #108] ❌ ANNISA DWI TRI HAPSARI | XI TKJ 1 | NISN: 2425100398
+  Total Waktu : 55938 ms
+  Step 1: [OK] Buka Tab Browser — 25082 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #109] ❌ ANNISA RIZKIYATI | XI KUL 2 | NISN: 2425100650
+  Total Waktu : 55412 ms
+  Step 1: [OK] Buka Tab Browser — 24569 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #110] ❌ ANUGRAH FAJRI | XI TOI 1 | NISN: 2425100009
+  Total Waktu : 54937 ms
+  Step 1: [OK] Buka Tab Browser — 24068 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #111] ❌ ANWAR NASRULOH | X KUL | NISN: 2526100694
+  Total Waktu : 54497 ms
+  Step 1: [OK] Buka Tab Browser — 23616 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #112] ❌ ARBAITY PUTRI HAYATI | X KUL | NISN: 2526100695
+  Total Waktu : 53858 ms
+  Step 1: [OK] Buka Tab Browser — 22995 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #113] ❌ ARDI PRATAMA | X TE 2 | NISN: 2526100053
+  Total Waktu : 53493 ms
+  Step 1: [OK] Buka Tab Browser — 22720 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #114] ❌ ARDIYANTO MIRZA HENDRAWAN | X TJKT 1 | NISN: 2526100465
+  Total Waktu : 53034 ms
+  Step 1: [OK] Buka Tab Browser — 22241 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #115] ❌ ARFANDHANI SYAHPUTRA | XI TKR 1 | NISN: 2425100259
+  Total Waktu : 52519 ms
+  Step 1: [OK] Buka Tab Browser — 21740 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #116] ❌ ARFI AL YASIL RAMDHANI | X TM 1 | NISN: 2526100189
+  Total Waktu : 52044 ms
+  Step 1: [OK] Buka Tab Browser — 21264 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #117] ❌ ARI GUNTORO | XI TKR 1 | NISN: 2425100260
+  Total Waktu : 51584 ms
+  Step 1: [OK] Buka Tab Browser — 20770 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #118] ❌ ARI MUHAMAD IKBAL | X TE 3 | NISN: 2526100099
+  Total Waktu : 51064 ms
+  Step 1: [OK] Buka Tab Browser — 20261 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #119] ❌ ARIF | XI TOI 3 | NISN: 2425100077
+  Total Waktu : 50611 ms
+  Step 1: [OK] Buka Tab Browser — 19769 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #120] ❌ ARIF AMRUL NURHIDAYAT | XI TP 1 | NISN: 2425100187
+  Total Waktu : 50086 ms
+  Step 1: [OK] Buka Tab Browser — 19264 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #121] ❌ ARIF RAHMAN | X AKL 1 | NISN: 2526100556
+  Total Waktu : 49557 ms
+  Step 1: [OK] Buka Tab Browser — 18766 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #122] ❌ ARIF RAPI PADLU RAHMAN | XI TOI 3 | NISN: 2425100078
+  Total Waktu : 49091 ms
+  Step 1: [OK] Buka Tab Browser — 18258 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #123] ❌ ARIP NURDIN | X TM 2 | NISN: 2526100235
+  Total Waktu : 48636 ms
+  Step 1: [OK] Buka Tab Browser — 17775 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #124] ❌ ARIP RAHMAN | X TE 2 | NISN: 2526100054
+  Total Waktu : 48127 ms
+  Step 1: [OK] Buka Tab Browser — 17276 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #125] ❌ ARIS MULYADI | XI TOI 2 | NISN: 2425100041
+  Total Waktu : 47644 ms
+  Step 1: [OK] Buka Tab Browser — 16774 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #126] ❌ ARIS SETIAWAN | XI TSM 2 | NISN: 2425100367
+  Total Waktu : 47169 ms
+  Step 1: [OK] Buka Tab Browser — 16302 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #127] ❌ ARISMA NUR JAMILAH | X TJKT 2 | NISN: 2526100511
+  Total Waktu : 46642 ms
+  Step 1: [OK] Buka Tab Browser — 15782 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #128] ❌ ARNI NURHAYATI | X TM 1 | NISN: 2526100190
+  Total Waktu : 46162 ms
+  Step 1: [OK] Buka Tab Browser — 15291 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #129] ❌ ARYA ERLANGGA | XI TAV 1 | NISN: 2425100114
+  Total Waktu : 45679 ms
+  Step 1: [OK] Buka Tab Browser — 14802 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+[Siswa #130] ❌ ARYA RIZKI RAMDANI | X TO 2 | NISN: 2526100326
+  Total Waktu : 45205 ms
+  Step 1: [OK] Buka Tab Browser — 14499 ms
+  Error       : Navigation timeout of 30000 ms exceeded
+
+══════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR — PUPPETEER BROWSER TEST (NO SCREENSHOTS)
+══════════════════════════════════════════════════════════════════════
+  URL Diuji        : https://smkn1pld.absenta.id
+  Browser Concurrent: 130
+  Durasi Total      : 109.72 detik
+  ✅ Berhasil        : 3 / 130
+  ❌ Gagal           : 127 / 130
+  📉 Latency Rata2   : 60055 ms
+  🟢 Latency Tercepat: 24909 ms
+  🔴 Latency Terlambat: 85826 ms
+  📁 Output Dir      : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T06-12-57-089Z
+  📄 Laporan         : C:\Users\Public\gform-orkestrator\puppeteer_2026-05-28T06-12-57-089Z\report.txt
+  KESIMPULAN        : ⚠️ ADA 127 KEGAGALAN
+══════════════════════════════════════════════════════════════════════

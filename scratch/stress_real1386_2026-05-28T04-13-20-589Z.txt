@@ -1,0 +1,156 @@
+════════════════════════════════════════════════════════════════════════
+  STRESS TEST REAL — LOGIN 1386 NISN UNIK SMKN 1 PLD
+  Setiap siswa login tepat 1x dengan NISN aslinya sendiri
+  Flow: Login NISN → Parse Response → Load Daftar Ujian
+  Waktu Mulai  : 2026-05-28T04:13:20.590Z
+  Concurrency  : 100 siswa simultan
+════════════════════════════════════════════════════════════════════════
+🔄 [PERSIAPAN] Mengambil seluruh NISN siswa aktif dari database (paginasi)...
+   ✅ Halaman 1: 1000 siswa diambil (offset 0)
+   ✅ Halaman 2: 386 siswa diambil (offset 1000)
+   📊 Total unik setelah deduplikasi: 1386 siswa
+
+🎯 Target: 1386 siswa akan login masing-masing dengan NISN uniknya sendiri
+   Contoh 5 siswa pertama:
+   1. NISN: 2425100001 | A MAULA YUSUF RAHMAN
+   2. NISN: 2425100613 | A. SYARIF HIDAYAT
+   3. NISN: 2425100361 | A.RIZKI ADITIA
+   4. NISN: 2425100109 | AAJ ULIL AJMI
+   5. NISN: 2425100181 | AANG ANGGARA
+
+========================================================================
+🚀 Memulai Stress Test Real — 1386 Login Unik, 100 Simultan
+========================================================================
+   ⏳ [ 10%] 139/1386 selesai — 0.9s berlalu
+   ⏳ [ 20%] 278/1386 selesai — 1.2s berlalu
+   ⏳ [ 30%] 417/1386 selesai — 1.6s berlalu
+   ⏳ [ 40%] 556/1386 selesai — 1.9s berlalu
+   ⏳ [ 50%] 695/1386 selesai — 2.3s berlalu
+   ⏳ [ 60%] 834/1386 selesai — 2.6s berlalu
+   ⏳ [ 70%] 973/1386 selesai — 2.9s berlalu
+   ⏳ [ 80%] 1112/1386 selesai — 3.3s berlalu
+   ⏳ [ 90%] 1251/1386 selesai — 3.6s berlalu
+   ⏳ [100%] 1386/1386 selesai — 3.9s berlalu
+
+========================================================================
+📋 HASIL STRESS TEST REAL — 1386 SISWA UNIK
+========================================================================
+   ✅ Login NISN Sukses        : 1386 / 1386  (100.0%)
+   ✅ Load Daftar Ujian Sukses : 1386 / 1386  (100.0%)
+   ✅ FULL FLOW Sukses (2/2)   : 1386 / 1386  (100.0%)
+   ❌ Login Gagal              : 0
+   ❌ Load Ujian Gagal         : 0
+   ⏱️  Total Waktu             : 3.94 detik
+   ⚡ Throughput               : 352.22 sesi siswa / detik
+   📉 Latency Login Rata-rata  : 145 ms
+   📉 Latency Ujian Rata-rata  : 126 ms
+   📉 Latency Gabungan Rata2   : 271 ms
+   🟢 Latency Tercepat         : 215 ms
+   🔴 Latency Terlambat        : 772 ms
+
+   🎉 TIDAK ADA KEGAGALAN — Semua 1386 siswa berhasil login dan memuat ujian!
+
+========================================================================
+🔍 [BUKTI INTEGRITAS] 10 Sampel Response Nyata (Siswa Berbeda-beda)
+========================================================================
+
+   ┌─ Sampel #1 (Urutan ke-1 dari 1386) ─────────────────────
+   │  NISN         : 2425100217
+   │  Nama         : ABIL WAKOS
+   │  Kelas        : XI TP 2
+   │  Login (HTTP) : 200 ✅  |  Latency: 355 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 229 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 584 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #2 (Urutan ke-101 dari 1386) ─────────────────────
+   │  NISN         : 2526100012
+   │  Nama         : ALBIAN SUKMA MAULANA
+   │  Kelas        : X TE 1
+   │  Login (HTTP) : 200 ✅  |  Latency: 115 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 115 ms  |  Jumlah: 4 ujian
+   │  Total Waktu  : 230 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #3 (Urutan ke-251 dari 1386) ─────────────────────
+   │  NISN         : 2425100116
+   │  Nama         : DEDE HAMDANI
+   │  Kelas        : XI TAV 1
+   │  Login (HTTP) : 200 ✅  |  Latency: 114 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 117 ms  |  Jumlah: 4 ujian
+   │  Total Waktu  : 231 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #4 (Urutan ke-401 dari 1386) ─────────────────────
+   │  NISN         : 2425100402
+   │  Nama         : GALAT SAMMY JULIAN
+   │  Kelas        : XI TKJ 1
+   │  Login (HTTP) : 200 ✅  |  Latency: 115 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 107 ms  |  Jumlah: 4 ujian
+   │  Total Waktu  : 222 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #5 (Urutan ke-551 dari 1386) ─────────────────────
+   │  NISN         : 2526100664
+   │  Nama         : JIHAN NABILA
+   │  Kelas        : X PHT
+   │  Login (HTTP) : 200 ✅  |  Latency: 143 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 120 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 263 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #6 (Urutan ke-701 dari 1386) ─────────────────────
+   │  NISN         : 2526100390
+   │  Nama         : MUHAMAD HAIKAL
+   │  Kelas        : X TO 3
+   │  Login (HTTP) : 200 ✅  |  Latency: 120 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 110 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 230 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #7 (Urutan ke-851 dari 1386) ─────────────────────
+   │  NISN         : 2526100445
+   │  Nama         : MUHAMMAD NAZIL SIBTHURRIDHO
+   │  Kelas        : X TO 4
+   │  Login (HTTP) : 200 ✅  |  Latency: 115 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 127 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 242 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #8 (Urutan ke-1001 dari 1386) ─────────────────────
+   │  NISN         : 2526100581
+   │  Nama         : QISMATUL AMANAH
+   │  Kelas        : X AKL 1
+   │  Login (HTTP) : 200 ✅  |  Latency: 120 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 119 ms  |  Jumlah: 2 ujian
+   │  Total Waktu  : 239 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #9 (Urutan ke-1151 dari 1386) ─────────────────────
+   │  NISN         : 2425100249
+   │  Nama         : RUSLI SANJAYA
+   │  Kelas        : XI TP 2
+   │  Login (HTTP) : 200 ✅  |  Latency: 112 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 120 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 232 ms
+   └────────────────────────────────────────────────────────────
+
+   ┌─ Sampel #10 (Urutan ke-1386 dari 1386) ─────────────────────
+   │  NISN         : 2526100413
+   │  Nama         : ZAKKI ZAIDAN
+   │  Kelas        : X TO 3
+   │  Login (HTTP) : 200 ✅  |  Latency: 123 ms
+   │  Ujian (HTTP) : 200 ✅  |  Latency: 125 ms  |  Jumlah: 3 ujian
+   │  Total Waktu  : 248 ms
+   └────────────────────────────────────────────────────────────
+
+════════════════════════════════════════════════════════════════════════
+  RINGKASAN AKHIR
+════════════════════════════════════════════════════════════════════════
+  Siswa Diuji    : 1386 (NISN unik masing-masing)
+  Total Request  : 2772 HTTP request (login + load ujian)
+  Concurrency    : 100 siswa simultan
+  Waktu Total    : 3.94 detik
+  Throughput     : 352.22 sesi/detik
+  KESIMPULAN     : ✅ LULUS SEMPURNA — SEMUA SISWA DAPAT LOGIN DAN MEMUAT UJIAN
+════════════════════════════════════════════════════════════════════════

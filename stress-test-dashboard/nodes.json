@@ -1,0 +1,30 @@
+[
+  {
+    "ip": "10.10.10.64",
+    "hostname": "ADVAN-TKJ01",
+    "username": "admin",
+    "password": "11223344",
+    "status": "offline"
+  },
+  {
+    "ip": "10.10.10.65",
+    "hostname": "ADVAN-TKJ02",
+    "username": "admin",
+    "password": "11223344",
+    "status": "offline"
+  },
+  {
+    "ip": "10.10.10.66",
+    "hostname": "ADVAN-TKJ03",
+    "username": "admin",
+    "password": "11223344",
+    "status": "offline"
+  },
+  {
+    "ip": "10.10.10.62",
+    "hostname": "ADVAN-TKJ04",
+    "username": "admin",
+    "password": "11223344",
+    "status": "online"
+  }
+]

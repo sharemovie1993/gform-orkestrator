@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress Test Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow-container">
+    <div class="glow-bubble gb-1"></div>
+    <div class="glow-bubble gb-2"></div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-main">
+        <h1>Orkestrator Ujian</h1>
+        <p class="subtitle">Distributed Capacity Testing Orchestrator</p>
+      </div>
+      <div class="header-actions" style="display: flex; gap: 1rem; align-items: center;">
+        <button id="btn-install-host-vnc" class="btn btn-secondary btn-sm" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.35); color: #c084fc;">📥 Install Local VNC Viewer</button>
+        <div class="server-status-pill">
+          <span class="status-dot online"></span>
+          <span>Coordinator Server Online</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <!-- Left Column: Controls and Node Management -->
+      <div class="left-column">
+        <!-- Node Management Form & List -->
+        <section class="glass-card node-management-card">
+          <div class="card-header">
+            <h2>🖥️ Remote Testing Nodes</h2>
+            <button id="btn-check-conn" class="btn btn-secondary btn-sm">🔄 Check Connectivity</button>
+          </div>
+
+          <!-- Add Node Form -->
+          <form id="add-node-form" class="node-form">
+            <div class="form-row">
+              <input type="text" id="node-hostname" placeholder="Hostname (e.g. ADVAN-TKJ01)" required>
+              <input type="text" id="node-ip" placeholder="IP Address (e.g. 10.10.10.64)" required>
+            </div>
+            <div class="form-row">
+              <input type="text" id="node-user" placeholder="SSH User" value="admin" required>
+              <input type="password" id="node-pass" placeholder="SSH Password" value="11223344" required>
+              <button type="submit" class="btn btn-primary">➕ Add Node</button>
+            </div>
+          </form>
+
+          <!-- Nodes List -->
+          <div id="nodes-container" class="nodes-list">
+            <!-- Node cards will be populated here by app.js -->
+            <div class="loading-placeholder">Loading nodes...</div>
+          </div>
+        </section>
+
+        <!-- Test Configuration & Control Panel -->
+        <section class="glass-card control-panel-card">
+          <div class="card-header">
+            <h2>⚙️ Control Panel & Load Configuration</h2>
+          </div>
+          <div class="control-content">
+            <div class="capacity-preset-row">
+              <label for="preset-capacity">Set Capacity (All Nodes):</label>
+              <div class="preset-input-wrapper">
+                <input type="number" id="preset-capacity" value="130" min="1" max="200">
+                <button id="btn-apply-preset" class="btn btn-secondary btn-sm">Apply to All</button>
+              </div>
+            </div>
+
+            <div class="action-buttons-group" style="grid-template-columns: repeat(2, 1fr);">
+              <button id="btn-bulk-setup" class="btn btn-warning btn-lg">🔧 Setup Nodes</button>
+              <button id="btn-bulk-rdp" class="btn btn-primary btn-lg" style="background: var(--primary); box-shadow: 0 4px 12px var(--primary-glow);">🛡️ Enable RDP</button>
+              <button id="btn-bulk-vnc" class="btn btn-secondary btn-lg" style="background: #3b82f6; color: white; border: none; box-shadow: 0 4px 12px rgba(59,130,246,0.25);">📺 Install VNC</button>
+              <button id="btn-run-test" class="btn btn-emerald btn-lg">🚀 Launch Test</button>
+            </div>
+            <div style="margin-top: 1rem;">
+              <button id="btn-stop-test" class="btn btn-lg" style="width: 100%; background: #ef4444; color: white; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);">🛑 Emergency Stop Test</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Live Console & Reports -->
+      <div class="right-column">
+        <!-- Live Logging Console -->
+        <section class="glass-card terminal-card">
+          <div class="card-header">
+            <h2>💻 Real-Time Console Stream</h2>
+            <div class="terminal-controls">
+              <button id="btn-clear-logs" class="btn btn-secondary btn-xs">🗑️ Clear Terminal</button>
+              <span id="operation-spinner" class="spinner hidden"></span>
+            </div>
+          </div>
+          <div class="terminal-body">
+            <div id="terminal-output" class="terminal-output">
+              <div class="system-line">Ready. Waiting for operations...</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Past Test Reports -->
+        <section class="glass-card reports-card">
+          <div class="card-header">
+            <h2>📄 Consolidated Run Reports</h2>
+          </div>
+          <div id="reports-container" class="reports-list">
+            <!-- Reports will be dynamically populated -->
+            <div class="no-reports">No reports generated yet.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for viewing report contents -->
+  <div id="report-modal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Report Title</h3>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <button id="btn-export-report" class="btn btn-secondary btn-sm" style="background: var(--emerald-glow); border: 1px solid var(--emerald); color: var(--emerald);">📥 Export CSV</button>
+          <button id="btn-close-modal" class="btn-close">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-text-content">Loading report...</pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2955 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Ujian CBT — Absenta.id | Orkestrator Ujian Google Forms</title>
+    <meta name="description" content="Platform Ujian Absenta: solusi CBT berbasis Google Forms dengan kios mode Android. Ujian aman, anti-kecurangan, tanpa biaya per perangkat.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0F172A;
+            --card-dark: #1E293B;
+            --border-dark: #334155;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --primary: #3B82F6;
+            --primary-hover: #2563EB;
+            --secondary: #6366F1;
+            --accent: #F59E0B;
+            --success: #10B981;
+            --danger: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ── HEADER & NAVBAR ── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-dark);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* ── HERO SECTION ── */
+        .hero {
+            padding: 150px 5% 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 60%);
+        }
+
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #A5B4FC;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin: 0 0 20px;
+            max-width: 900px;
+            background: linear-gradient(to right, #FFF 20%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 0 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(51, 65, 85, 0.4);
+            border: 1px solid var(--border-dark);
+            color: var(--text-main);
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(51, 65, 85, 0.7);
+            border-color: #475569;
+        }
+
+        /* ── FEATURES SECTION ── */
+        .features {
+            padding: 80px 5%;
+            background: rgba(30, 41, 59, 0.2);
+            border-top: 1px solid rgba(51, 65, 85, 0.5);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin: 0 0 10px;
+            color: var(--text-main);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin: 0 0 12px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ── PRICING SECTION ── */
+        .pricing {
+            padding: 80px 5% 120px;
+        }
+
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .price-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .price-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .price-card.popular::before {
+            content: 'TERPOPULER';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .price-card.best {
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15);
+        }
+
+        .price-card.best::before {
+            content: 'TERBAIK';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #0F172A;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .price-title {
+            font-size: 1.4rem;
+            margin: 0 0 10px;
+            color: var(--text-main);
+        }
+
+        .price-amount {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .price-duration {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .price-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .price-features-list li {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .btn-price {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-dark);
+            background: rgba(51, 65, 85, 0.3);
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-price:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .price-card.popular .btn-price {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .price-card.popular .btn-price:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .price-card.best .btn-price {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0F172A;
+        }
+
+        .price-card.best .btn-price:hover {
+            background: #E08E0B;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* ── MODAL SYSTEM ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        /* ── CUSTOM SCROLLBARS ── */
+        .modal-card::-webkit-scrollbar,
+        .payment-channels-list::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        .modal-card::-webkit-scrollbar-track,
+        .payment-channels-list::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.2);
+            border-radius: 10px;
+        }
+
+        .modal-card::-webkit-scrollbar-thumb,
+        .payment-channels-list::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+
+        .modal-card::-webkit-scrollbar-thumb:hover,
+        .payment-channels-list::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #334155;
+            border: none;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #475569;
+            color: var(--text-main);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            margin: 0 0 6px;
+            color: var(--text-main);
+        }
+
+        .modal-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0 0 15px;
+        }
+
+        /* ── FORM ELEMENTS ── */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* ── PAYMENT METHOD SELECTOR ── */
+        .payment-channels-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-height: 160px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 5px;
+            margin-bottom: 15px;
+        }
+
+        .payment-channel-item {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .payment-channel-item:hover {
+            border-color: #475569;
+            background-color: rgba(51, 65, 85, 0.2);
+        }
+
+        .payment-channel-item.selected {
+            border-color: var(--primary);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .channel-logo {
+            width: 45px;
+            height: 25px;
+            object-fit: contain;
+            background: white;
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        .channel-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .channel-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+
+        .channel-fee {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .fee-breakdown-box {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .fee-row.total {
+            border-top: 1px dashed var(--border-dark);
+            padding-top: 10px;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .fee-row.total span:last-child {
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-checkout:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ── INVOICE VIEW ── */
+        .invoice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge-status {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+            70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        .license-key-box {
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--border-dark);
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .license-key-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .license-key-text {
+            font-family: monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .qris-image {
+            width: 220px;
+            height: 220px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pay-code-box {
+            background-color: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            margin: 15px 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pay-code-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-copy {
+            background: #334155;
+            border: 1px solid var(--border-dark);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: #475569;
+            border-color: #64748B;
+        }
+
+        /* ── ACCORDION INSTRUCTIONS ── */
+        .instructions-container {
+            width: 100%;
+            text-align: left;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .instruction-item {
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .instruction-header {
+            background-color: var(--bg-dark);
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .instruction-content {
+            background-color: rgba(30, 41, 59, 0.4);
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #CBD5E1;
+            line-height: 1.5;
+            display: none;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .instruction-content ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instruction-content li {
+            margin-bottom: 8px;
+        }
+
+        /* ── COMPLIANCE FOOTER ── */
+        footer {
+            background-color: #0B0F19;
+            border-top: 1px solid var(--border-dark);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--border-dark);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        /* ── LOADER SPINNER ── */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ── COMPARISON SUB-SECTION ── */
+        .comparison-container {
+            margin-top: 80px;
+            padding: 60px 0 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ── TOPOLOGY ARCHITECTURE SECTION ── */
+        .topology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+        }
+
+        .topology-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .topology-card.our-card {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+
+        .topology-card h3 {
+            font-size: 1.25rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topology-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            margin: 0 0 25px 0;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        .topology-svg-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(51, 65, 85, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SVG styles for lines and nodes */
+        .topo-line-red {
+            stroke: #EF4444;
+            stroke-dasharray: 6, 6;
+            animation: dash-move-reverse 1s linear infinite;
+        }
+
+        .topo-line-green {
+            stroke: #10B981;
+            stroke-dasharray: 6, 6;
+            animation: dash-move 1.5s linear infinite;
+        }
+
+        .topo-line-blue {
+            stroke: #3B82F6;
+            stroke-dasharray: 4, 4;
+            animation: dash-move 2s linear infinite;
+        }
+
+        @keyframes dash-move {
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
+        @keyframes dash-move-reverse {
+            to {
+                stroke-dashoffset: 20;
+            }
+        }
+
+        .topo-node {
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .topo-node:hover {
+            transform: scale(1.05);
+        }
+
+        .topo-text {
+            font-size: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            fill: var(--text-main);
+            text-anchor: middle;
+        }
+
+        .topo-subtext {
+            font-size: 8px;
+            font-family: 'Inter', sans-serif;
+            fill: var(--text-muted);
+            text-anchor: middle;
+        }
+
+        .topo-badge {
+            font-size: 8px;
+            font-weight: 700;
+            fill: #fff;
+            text-anchor: middle;
+        }
+
+        .comparison-header h2 {
+            font-size: 2.2rem;
+            margin: 0 0 12px;
+            color: var(--text-main);
+        }
+
+        .comparison-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .comparison-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-dark);
+            background-color: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 800px;
+        }
+
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-dark);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .comparison-table th {
+            background-color: rgba(15, 23, 42, 0.6);
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .comparison-table th:first-child {
+            width: 25%;
+        }
+
+        .comparison-table th:nth-child(2) {
+            width: 37.5%;
+            color: var(--text-muted);
+        }
+
+        .comparison-table th:nth-child(3) {
+            width: 37.5%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+            border-left: 2px solid var(--primary);
+            border-right: 2px solid var(--primary);
+            color: #60A5FA;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td.param-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+        }
+
+        .comparison-table td.conv-val {
+            color: #94A3B8;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table td.our-val {
+            color: #E2E8F0;
+            font-size: 0.95rem;
+            background-color: rgba(59, 130, 246, 0.03);
+            border-left: 2px solid rgba(59, 130, 246, 0.4);
+            border-right: 2px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .comparison-table tr:last-child td.our-val {
+            border-bottom: 2px solid rgba(59, 130, 246, 0.4);
+        }
+
+        /* ── RESPONSIVE DESIGN ── */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .nav-links {
+                display: none; /* simple for now */
+            }
+            .pricing-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .price-card {
+                width: 100%;
+                max-width: 340px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .comparison-table-wrapper {
+                border-radius: 12px;
+            }
+            .comparison-table th, 
+            .comparison-table td {
+                padding: 16px;
+            }
+            .comparison-header h2 {
+                font-size: 1.8rem;
+            }
+            .topology-grid {
+                grid-template-columns: 1fr;
+            }
+            .topology-svg-container {
+                height: 240px;
+            }
+        }
+        /* ── DEPLOYMENT MODEL SECTION ── */
+        .deployment-section {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(99,102,241,0.04) 50%, rgba(15,23,42,0) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deployment-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .deployment-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+        }
+
+        .deployment-card {
+            border-radius: 24px;
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s;
+        }
+
+        .deployment-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .deployment-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .deployment-card.cloud {
+            background: linear-gradient(145deg, rgba(30,41,59,0.9) 0%, rgba(30,58,138,0.15) 100%);
+            border: 1px solid rgba(59,130,246,0.3);
+            box-shadow: 0 8px 40px rgba(59,130,246,0.08);
+        }
+
+        .deployment-card.cloud:hover {
+            box-shadow: 0 20px 60px rgba(59,130,246,0.18);
+            border-color: rgba(59,130,246,0.6);
+        }
+
+        .deployment-card.onpremise {
+            background: linear-gradient(145deg, rgba(30,41,59,0.9) 0%, rgba(79,70,229,0.12) 100%);
+            border: 1px solid rgba(99,102,241,0.3);
+            box-shadow: 0 8px 40px rgba(99,102,241,0.08);
+        }
+
+        .deployment-card.onpremise:hover {
+            box-shadow: 0 20px 60px rgba(99,102,241,0.18);
+            border-color: rgba(99,102,241,0.6);
+        }
+
+        .deployment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .deployment-badge.saas {
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.35);
+            color: #93C5FD;
+        }
+
+        .deployment-badge.onp {
+            background: rgba(99,102,241,0.12);
+            border: 1px solid rgba(99,102,241,0.35);
+            color: #A5B4FC;
+        }
+
+        .deployment-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .deployment-icon-wrap.cloud {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(99,102,241,0.2) 100%);
+            box-shadow: 0 4px 20px rgba(59,130,246,0.15);
+        }
+
+        .deployment-icon-wrap.onpremise {
+            background: linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(139,92,246,0.2) 100%);
+            box-shadow: 0 4px 20px rgba(99,102,241,0.15);
+        }
+
+        .deployment-card h3 {
+            font-size: 1.7rem;
+            margin: 0;
+            color: #F8FAFC;
+        }
+
+        .deployment-card .desc {
+            color: #94A3B8;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .deployment-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            flex-grow: 1;
+        }
+
+        .deployment-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #CBD5E1;
+            line-height: 1.5;
+        }
+
+        .deployment-features li .check {
+            font-size: 0.8rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .deployment-features li .check.blue { color: #60A5FA; }
+        .deployment-features li .check.purple { color: #A78BFA; }
+
+        .deployment-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .deployment-cta.saas {
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+            color: white;
+            box-shadow: 0 6px 24px rgba(59,130,246,0.3);
+        }
+
+        .deployment-cta.saas:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(59,130,246,0.45);
+        }
+
+        .deployment-cta.onp {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            color: white;
+            box-shadow: 0 6px 24px rgba(99,102,241,0.3);
+        }
+
+        .deployment-cta.onp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(99,102,241,0.45);
+        }
+
+        /* ── COMPARISON TABLE ── */
+        .deploy-compare-wrap {
+            max-width: 860px;
+            margin: 0 auto 60px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(51,65,85,0.6);
+            background: rgba(15,23,42,0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .deploy-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .deploy-compare-table thead {
+            background: rgba(30,41,59,0.8);
+        }
+
+        .deploy-compare-table th {
+            padding: 18px 24px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .deploy-compare-table th:first-child {
+            color: #64748B;
+        }
+
+        .deploy-compare-table th.th-saas {
+            color: #60A5FA;
+            text-align: center;
+        }
+
+        .deploy-compare-table th.th-onp {
+            color: #A78BFA;
+            text-align: center;
+        }
+
+        .deploy-compare-table td {
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(51,65,85,0.4);
+            vertical-align: middle;
+        }
+
+        .deploy-compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .deploy-compare-table tr:hover td {
+            background: rgba(51,65,85,0.15);
+        }
+
+        .deploy-compare-table td:first-child {
+            color: #94A3B8;
+            font-weight: 600;
+        }
+
+        .deploy-compare-table td.val-saas,
+        .deploy-compare-table td.val-onp {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .deploy-compare-table td.val-saas { color: #93C5FD; }
+        .deploy-compare-table td.val-onp  { color: #C4B5FD; }
+
+        .deploy-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .deploy-pill.yes-saas { background: rgba(59,130,246,0.12); color: #93C5FD; border: 1px solid rgba(59,130,246,0.3); }
+        .deploy-pill.yes-onp  { background: rgba(99,102,241,0.12); color: #C4B5FD; border: 1px solid rgba(99,102,241,0.3); }
+        .deploy-pill.no       { background: rgba(51,65,85,0.3);    color: #64748B; border: 1px solid rgba(51,65,85,0.5); }
+
+        /* ── CONSULT BANNER ── */
+        .consult-banner {
+            max-width: 860px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(30,58,138,0.25) 100%);
+            border: 1px solid rgba(59,130,246,0.25);
+            border-radius: 20px;
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .consult-banner .left h4 {
+            font-size: 1.2rem;
+            margin: 0 0 6px;
+            color: #F8FAFC;
+        }
+
+        .consult-banner .left p {
+            font-size: 0.88rem;
+            color: #94A3B8;
+            margin: 0;
+        }
+
+        .btn-consult {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.4);
+            color: #93C5FD;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .btn-consult:hover {
+            background: rgba(59,130,246,0.2);
+            border-color: rgba(59,130,246,0.6);
+            color: #BFDBFE;
+        }
+
+        @media (max-width: 768px) {
+            .deployment-cards {
+                grid-template-columns: 1fr;
+            }
+            .consult-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .deploy-compare-table th,
+            .deploy-compare-table td {
+                padding: 12px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── HEADER & NAVBAR ── -->
+    <header>
+        <a href="landing.html" class="logo">
+            <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> PLATFORM UJIAN
+        </a>
+        <nav class="nav-links">
+            <a href="#features" class="nav-link">Fitur</a>
+            <a href="#deployment-model" class="nav-link">Solusi</a>
+            <a href="#pricing" class="nav-link">Harga Paket</a>
+            <a href="mailto:support@absenta.id" class="nav-link">Dukungan</a>
+            <a href="#pricing" class="btn-nav">Daftar Sekolah</a>
+        </nav>
+    </header>
+
+    <!-- ── HERO SECTION ── -->
+    <section class="hero">
+        <div class="hero-badge">Sistem Proteksi Ujian CBT #1</div>
+        <h1>Amankan Ujian Sekolah Anda Tanpa Celah Kecurangan</h1>
+        <p>Absenta.id mengunci penuh smartphone siswa secara total, mengintegrasikan Google Forms secara instan, dan dilengkapi alur pembayaran retail, VA, atau QRIS terintegrasi.</p>
+        
+        <!-- LICENSE LOOKUP SEARCH BAR -->
+        <div style="margin-top: 30px; margin-bottom: 25px; max-width: 480px; margin-left: auto; margin-right: auto; display: flex; gap: 8px; background: rgba(255, 255, 255, 0.05); padding: 6px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);">
+            <input type="text" id="licenseSearchInput" style="flex: 1; border: none; background: transparent; padding: 10px 16px; color: var(--text-main); font-size: 0.9rem; font-weight: 500; outline: none;" placeholder="Punya kunci lisensi? Cek status tagihan di sini...">
+            <button onclick="lookupLicense()" style="background: var(--primary); border: none; padding: 10px 24px; border-radius: 24px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                Cari 🔍
+            </button>
+        </div>
+
+        <div class="hero-actions">
+            <a href="#pricing" class="btn-primary">Ajukan Lisensi Baru ⚡</a>
+            <a href="#features" class="btn-secondary">Pelajari Fitur</a>
+        </div>
+    </section>
+
+    <!-- ── FEATURES SECTION ── -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Didesain Khusus Demi Integritas Ujian</h2>
+            <p>Mencegah segala bentuk celah kecurangan siswa demi hasil penilaian sekolah yang objektif dan kredibel.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🛡️</span>
+                <h3>Lock Kios Mode</h3>
+                <p>Mencegah siswa membuka tab browser lain, keluar dari layar ujian, split-screen, multitasking, screenshot, atau screen-record.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📝</span>
+                <h3>Integrasi Google Form</h3>
+                <p>Cukup gunakan tautan soal Google Forms sekolah yang sudah Anda buat, masukkan ke panel proktor, dan soal siap dikerjakan dengan aman.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Tripay Auto-Activation</h3>
+                <p>Alur checkout otomatis di mana status lisensi sekolah Anda langsung aktif dalam 5 detik setelah pembayaran VA, QRIS, atau kasir ritel dideteksi.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Branding Subdomain</h3>
+                <p>Setiap sekolah mendapatkan subdomain pribadi terdedikasi (contoh: <code>smk.absenta.id</code>) lengkap dengan pengaturan branding sekolah Anda sendiri.</p>
+            </div>
+        </div>
+
+        <!-- ── PERBANDINGAN FITUR (BATTLE GRID) ── -->
+        <div class="comparison-container">
+            <div class="comparison-header">
+                <h2>Alur Kerja &amp; Perbandingan Teknis</h2>
+                <p>Mengapa Absenta.id jauh lebih unggul, hemat, dan disukai guru/kurikulum dibanding CBT Konvensional (LMS Biasa).</p>
+            </div>
+
+            <!-- ── TOPOLOGY ARCHITECTURE DIAGRAMS ── -->
+            <div class="topology-grid">
+                <!-- LMS Konvensional -->
+                <div class="topology-card">
+                    <h3>🌐 Arsitektur CBT Konvensional (LMS)</h3>
+                    <p>Sistem sentralisasi database tunggal yang rawan crash saat jam sibuk ujian serentak karena semua data tertumpuk di server pusat.</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <linearGradient id="grad-red" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#EF4444"/>
+                                    <stop offset="100%" stop-color="#991B1B"/>
+                                </linearGradient>
+                                <linearGradient id="grad-node" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#334155"/>
+                                    <stop offset="100%" stop-color="#1E293B"/>
+                                </linearGradient>
+                                <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#EF4444"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Paths / Connections -->
+                            <path d="M 90 60 C 140 60, 160 110, 200 120" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 130 H 200" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            <path d="M 90 200 C 140 200, 160 150, 200 140" fill="none" stroke-width="1.5" marker-end="url(#arrow-red)" class="topo-line-red" />
+                            
+                            <path d="M 300 115 C 320 95, 330 80, 350 70" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+                            <path d="M 390 85 V 175" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+                            <path d="M 350 195 C 320 190, 310 170, 290 155" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
+
+                            <!-- Siswa Nodes -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Siswa 1</text>
+                                <text x="55" y="72" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Siswa 2</text>
+                                <text x="55" y="142" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Siswa 3</text>
+                                <text x="55" y="212" class="topo-subtext">HP / Laptop</text>
+                            </g>
+
+                            <!-- Server LMS Node (Bottleneck) -->
+                            <g class="topo-node">
+                                <rect x="200" y="100" width="100" height="60" rx="10" fill="url(#grad-red)" stroke="#EF4444" stroke-width="2" filter="url(#glow-red)" />
+                                <text x="250" y="125" class="topo-text" style="font-size: 11px;">Server LMS</text>
+                                <text x="250" y="138" class="topo-subtext" style="fill: #FECACA;">Pusat Tunggal</text>
+                                <text x="250" y="150" class="topo-badge" style="fill: #FCA5A5; font-weight: 800;">💥 BOTTLENECK</text>
+                            </g>
+
+                            <!-- Admin/Kurikulum -->
+                            <g class="topo-node">
+                                <rect x="350" y="40" width="80" height="45" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="390" y="60" class="topo-text">Kurikulum</text>
+                                <text x="390" y="73" class="topo-subtext" style="fill: #F59E0B;">⚠️ Sibuk Rekap</text>
+                            </g>
+
+                            <!-- Guru -->
+                            <g class="topo-node">
+                                <rect x="350" y="175" width="80" height="45" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="390" y="195" class="topo-text">Guru Mapel</text>
+                                <text x="390" y="208" class="topo-subtext">Setor &amp; Menunggu</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- G-Form Orkestrator -->
+                <div class="topology-card our-card">
+                    <h3>🛡️ Absenta.id - Orkestrator Ujian</h3>
+                    <p>Sistem terdesentralisasi: portal memuat roster &amp; jadwal dari Database Sekolah (Supabase Cloud), sedangkan pengisian soal langsung ditangani server Google (anti-down).</p>
+                    
+                    <div class="topology-svg-container">
+                        <svg viewBox="0 0 450 260" width="100%" height="100%">
+                            <defs>
+                                <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                                <linearGradient id="grad-green" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="100%" stop-color="#047857"/>
+                                </linearGradient>
+                                <linearGradient id="grad-blue" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#3B82F6"/>
+                                    <stop offset="100%" stop-color="#1D4ED8"/>
+                                </linearGradient>
+                                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981"/>
+                                </marker>
+                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#3B82F6"/>
+                                </marker>
+                            </defs>
+
+                            <!-- Paths / Connections -->
+                            <!-- Google submissions -->
+                            <path d="M 90 60 H 180" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 130 C 130 120, 150 75, 180 70" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            <path d="M 90 200 C 130 190, 140 90, 180 80" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+                            
+                            <!-- Database roster & schedule loading -->
+                            <path d="M 90 65 C 130 75, 140 175, 180 180" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+                            <path d="M 90 135 C 130 145, 150 185, 180 190" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+                            <path d="M 90 205 H 180" fill="none" stroke-width="1" marker-end="url(#arrow-blue)" class="topo-line-blue" />
+
+                            <!-- Google Forms to Google Drive result stream -->
+                            <path d="M 290 62 C 325 70, 340 105, 350 115" fill="none" stroke-width="1.5" marker-end="url(#arrow-green)" class="topo-line-green" />
+
+                            <!-- Siswa Nodes -->
+                            <g class="topo-node">
+                                <rect x="20" y="40" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="60" class="topo-text">Siswa 1</text>
+                                <text x="55" y="72" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="110" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="130" class="topo-text">Siswa 2</text>
+                                <text x="55" y="142" class="topo-subtext">HP / Laptop</text>
+                            </g>
+                            <g class="topo-node">
+                                <rect x="20" y="180" width="70" height="40" rx="8" fill="url(#grad-node)" stroke="#475569" stroke-width="1" />
+                                <text x="55" y="200" class="topo-text">Siswa 3</text>
+                                <text x="55" y="212" class="topo-subtext">HP / Laptop</text>
+                            </g>
+
+                            <!-- Google Cloud engine -->
+                            <g class="topo-node">
+                                <rect x="180" y="35" width="110" height="55" rx="10" fill="url(#grad-green)" stroke="#10B981" stroke-width="2" filter="url(#glow-green)" />
+                                <text x="235" y="58" class="topo-text" style="font-size: 11px;">Server Google</text>
+                                <text x="235" y="71" class="topo-subtext" style="fill: #A7F3D0;">Forms Database</text>
+                                <text x="235" y="82" class="topo-badge" style="fill: #34D399; font-weight: 800;">🛡️ ANTI CRASH</text>
+                            </g>
+
+                            <!-- Database Sekolah (Supabase Cloud) -->
+                            <g class="topo-node">
+                                <rect x="180" y="170" width="110" height="55" rx="10" fill="url(#grad-blue)" stroke="#3B82F6" stroke-width="2" filter="url(#glow-blue)" />
+                                <text x="235" y="193" class="topo-text" style="font-size: 10px;">Database Sekolah</text>
+                                <text x="235" y="206" class="topo-subtext" style="fill: #93C5FD;">Supabase Cloud</text>
+                                <text x="235" y="217" class="topo-badge" style="fill: #60A5FA; font-weight: 800;">⚡ DATA TERISOLASI</text>
+                            </g>
+
+                            <!-- Decentralized Google Drive Guru -->
+                            <g class="topo-node">
+                                <rect x="350" y="105" width="85" height="50" rx="8" fill="url(#grad-node)" stroke="#10B981" stroke-width="1" />
+                                <text x="392" y="128" class="topo-text" style="font-size: 9px;">Google Drive</text>
+                                <text x="392" y="141" class="topo-subtext" style="fill: #34D399; font-weight: bold;">Rekap Otomatis</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter Fitur</th>
+                            <th>🌐 CBT Konvensional (LMS Lain)</th>
+                            <th>🛡️ Absenta.id - Orkestrator Ujian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-title">Alur Pembuatan Soal &amp; Nilai</td>
+                            <td class="conv-val">
+                                <strong>Sentralisasi Kaku (Beban Kurikulum):</strong><br>
+                                Guru menyetor file Word/Excel &rarr; Kurikulum input manual satu per satu ke LMS &rarr; Hasil nilai disetor kembali dari Admin ke Guru.
+                            </td>
+                            <td class="our-val">
+                                <strong>Desentralisasi Mandiri (Hemat Waktu 95%):</strong><br>
+                                Guru membuat soal langsung di Google Forms. Portal Ujian memuat roster siswa dari Database Sekolah (Supabase Cloud), dan jawaban masuk langsung ke Google Drive Guru secara instan.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Risiko Server Down / Lag</td>
+                            <td class="conv-val">
+                                <strong>Sangat Tinggi (Jam Puncak):</strong><br>
+                                Menggunakan shared cloud server. Ratusan ribu siswa klik "Kirim" bersamaan rawan membuat server lag atau crash (Error 503).
+                            </td>
+                            <td class="our-val">
+                                <strong>Hampir 0% (Infrastruktur Google):</strong><br>
+                                Server lisensi &amp; database sekolah hanya memproses query ringan (data login &amp; jadwal). Pengiriman jawaban sepenuhnya ditangani oleh kapasitas Google.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Kurva Belajar Guru</td>
+                            <td class="conv-val">
+                                <strong>Tinggi &amp; Rumit:</strong><br>
+                                Guru wajib mempelajari editor bank soal sistem baru. Rumus matematika, simbol fisika, atau tabel sering rusak saat dipindahkan.
+                            </td>
+                            <td class="our-val">
+                                <strong>Sangat Rendah (Tanpa Belajar):</strong><br>
+                                Guru tetap 100% menggunakan Google Forms yang sudah biasa mereka pakai. Cukup salin tautan soal dalam 5 detik.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Kepemilikan Data Jawaban</td>
+                            <td class="conv-val">
+                                <strong>Pihak Ketiga:</strong><br>
+                                Data nilai dan soal disimpan di server database pihak ketiga, bukan di bawah kontrol langsung sekolah.
+                            </td>
+                            <td class="our-val">
+                                <strong>Milik Sekolah (Kedaulatan Data):</strong><br>
+                                Soal dan database nilai tersimpan aman di akun Google Drive / Spreadsheet milik guru atau instansi sekolah masing-masing.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="param-title">Batasan Jumlah Siswa</td>
+                            <td class="conv-val">
+                                <strong>Dibatasi Ketat:</strong><br>
+                                Jumlah siswa dibatasi sesuai paket (Maksimal 1.000 atau 1.500 siswa). Sekolah harus membayar lebih mahal jika jumlah siswa bertambah.
+                            </td>
+                            <td class="our-val">
+                                <strong>Tanpa Batas (Unlimited):</strong><br>
+                                Bebas daftarkan siswa dan perangkat sebanyak apa pun tanpa biaya tambahan per kepala.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="landing.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#A5B4FC;padding:7px 16px;border-radius:10px;font-size:0.82rem;font-weight:700;text-decoration:none;">← Beranda Absenta</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── DEPLOYMENT MODEL SECTION ── -->
+    <section id="deployment-model" class="deployment-section">
+        <div class="section-header" style="margin-bottom: 56px;">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.25); color:#A5B4FC; padding:6px 18px; border-radius:20px; font-size:0.8rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;">⚡ Pilih Model Deployment</div>
+            <h2 style="font-size:2.6rem; margin:0 0 14px; background:linear-gradient(to right, #F8FAFC 20%, #A5B4FC 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Cloud SaaS atau On-Premise<br>— Kami Siapkan Keduanya</h2>
+            <p style="color:#94A3B8; font-size:1.05rem; max-width:620px; margin:0 auto;">Satu platform, dua jalur distribusi. Pilih yang paling sesuai dengan infrastruktur dan kebijakan data sekolah Anda.</p>
+        </div>
+
+        <!-- ── DUA KARTU DEPLOYMENT ── -->
+        <div class="deployment-cards">
+
+            <!-- CLOUD / SaaS -->
+            <div class="deployment-card cloud">
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <div class="deployment-badge saas">☁️ Cloud SaaS</div>
+                        <h3 style="margin-top:14px;">Langsung Pakai,<br>Tanpa Ribet</h3>
+                    </div>
+                    <div class="deployment-icon-wrap cloud">☁️</div>
+                </div>
+
+                <p class="desc">Tidak perlu server, tidak perlu tim IT. Cukup daftar, bayar, dan sistem langsung siap digunakan oleh seluruh sekolah Anda melalui browser manapun.</p>
+
+                <ul class="deployment-features">
+                    <li><span class="check blue">✦</span> Tidak perlu instalasi — langsung aktif dalam hitungan menit</li>
+                    <li><span class="check blue">✦</span> Akses via browser dari perangkat apapun</li>
+                    <li><span class="check blue">✦</span> Update fitur otomatis tanpa tindakan IT</li>
+                    <li><span class="check blue">✦</span> Subdomain sekolah pribadi (contoh: <code style="background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:4px;font-size:0.85rem;">smk.absenta.id</code>)</li>
+                    <li><span class="check blue">✦</span> Infrastruktur dikelola penuh oleh tim Absenta</li>
+                    <li><span class="check blue">✦</span> Cocok untuk semua sekolah tanpa staff IT</li>
+                </ul>
+
+                <div style="background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.15); border-radius:14px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <div style="font-size:0.75rem; color:#60A5FA; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px;">Model Harga</div>
+                        <div style="font-size:1.1rem; font-weight:800; color:#F8FAFC;">Berlangganan Bulanan / Tahunan</div>
+                    </div>
+                    <div style="font-size:0.8rem; color:#94A3B8;">Mulai dari <strong style="color:#60A5FA;">Rp 299.000</strong> / bulan</div>
+                </div>
+
+                <a href="cloud.html" class="deployment-cta saas">Pelajari Panduan Cloud SaaS ⚡</a>
+            </div>
+
+            <!-- ON-PREMISE -->
+            <div class="deployment-card onpremise">
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <div class="deployment-badge onp">🖥️ On-Premise</div>
+                        <h3 style="margin-top:14px;">Kontrol Penuh,<br>Data di Tangan Anda</h3>
+                    </div>
+                    <div class="deployment-icon-wrap onpremise">🖥️</div>
+                </div>
+
+                <p class="desc">Untuk sekolah atau lembaga yang ingin menginstal sistem di server mereka sendiri. Data sensitif siswa tidak pernah meninggalkan jaringan internal Anda.</p>
+
+                <ul class="deployment-features">
+                    <li><span class="check purple">✦</span> Data 100% tersimpan di server sekolah sendiri</li>
+                    <li><span class="check purple">✦</span> Berjalan tanpa koneksi internet (intranet lokal)</li>
+                    <li><span class="check purple">✦</span> Kustomisasi bebas sesuai kebijakan IT sekolah</li>
+                    <li><span class="check purple">✦</span> Cocok untuk pesantren, madrasah, sekolah BUMN/TNI</li>
+                    <li><span class="check purple">✦</span> Kontrol penuh atas update dan konfigurasi sistem</li>
+                    <li><span class="check purple">✦</span> Lisensi hardware-locked per server</li>
+                </ul>
+
+                <div style="background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.15); border-radius:14px; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                    <div>
+                        <div style="font-size:0.75rem; color:#A78BFA; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px;">Model Harga</div>
+                        <div style="font-size:1.1rem; font-weight:800; color:#F8FAFC;">Lisensi Sekali Beli + Perpanjangan</div>
+                    </div>
+                    <div style="font-size:0.8rem; color:#94A3B8;">Hubungi tim kami untuk penawaran</div>
+                </div>
+
+                <a href="onpremise.html" class="deployment-cta onp">Baca Panduan Teknis On-Premise →</a>
+            </div>
+        </div>
+
+        <!-- ── TABEL PERBANDINGAN CEPAT ── -->
+        <div class="deploy-compare-wrap">
+            <table class="deploy-compare-table">
+                <thead>
+                    <tr>
+                        <th style="width:40%;">Aspek</th>
+                        <th class="th-saas" style="width:30%;">☁️ Cloud SaaS</th>
+                        <th class="th-onp" style="width:30%;">🖥️ On-Premise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Instalasi server</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Tidak perlu</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">⚙️ Perlu setup</span></td>
+                    </tr>
+                    <tr>
+                        <td>Koneksi internet</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Wajib</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">✓ Opsional</span></td>
+                    </tr>
+                    <tr>
+                        <td>Data tersimpan di</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">☁️ Server Absenta</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🏫 Server Sekolah</span></td>
+                    </tr>
+                    <tr>
+                        <td>Update sistem</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">✓ Otomatis</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🔧 Manual (IT)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cocok untuk</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">🏫 Semua sekolah</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🔒 IT mandiri</span></td>
+                    </tr>
+                    <tr>
+                        <td>Model pembayaran</td>
+                        <td class="val-saas"><span class="deploy-pill yes-saas">📅 Berlangganan</span></td>
+                        <td class="val-onp"><span class="deploy-pill yes-onp">🏷️ Lisensi tetap</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── CONSULT BANNER ── -->
+        <div class="consult-banner">
+            <div class="left">
+                <h4>🤔 Tidak yakin mana yang tepat untuk sekolah Anda?</h4>
+                <p>Tim teknis kami siap membantu menentukan pilihan terbaik sesuai infrastruktur dan kebijakan data sekolah Anda — gratis, tanpa kewajiban.</p>
+            </div>
+            <a href="mailto:support@absenta.id" class="btn-consult">Konsultasi Gratis →</a>
+        </div>
+    </section>
+
+    <!-- ── PRICING SECTION ── -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>Pilih Paket Lisensi Sekolah</h2>
+            <p>Dapatkan lisensi resmi Orkestrator Ujian yang aktif instan. Dukungan akses perangkat (HP) tanpa batas untuk siswa sekolah Anda.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Bulanan -->
+            <div class="price-card">
+                <h3 class="price-title">Bulanan</h3>
+                <div class="price-amount">Rp 299.000<span>/ Paket</span></div>
+                <div class="price-duration">Masa Aktif 30 Hari</div>
+                <ul class="price-features-list">
+                    <li>Aktivasi HP Siswa: <strong>Unlimited</strong></li>
+                    <li>Integrasi Google Forms</li>
+                    <li>Sistem Anti-Screenshot</li>
+                    <li>Auto-Unlock Lisensi</li>
+                    <li>Full Support Teknis 24/7</li>
+                </ul>
+                <button class="btn-price" onclick="openCheckout('monthly', 'Bulanan', 299000)">Beli Sekarang</button>
+            </div>
+
+            <!-- Semesteran -->
+            <div class="price-card popular">
+                <h3 class="price-title">Semesteran</h3>
+                <div class="price-amount">Rp 699.000<span>/ Paket</span></div>
+                <div class="price-duration">Masa Aktif 180 Hari</div>
+                <ul class="price-features-list">
+                    <li>Aktivasi HP Siswa: <strong>Unlimited</strong></li>
+                    <li>Integrasi Google Forms</li>
+                    <li>Sistem Anti-Screenshot</li>
+                    <li>Auto-Unlock Lisensi</li>
+                    <li>Full Support Teknis 24/7</li>
+                    <li>Prioritas Update Fitur</li>
+                </ul>
+                <button class="btn-price" onclick="openCheckout('semester', 'Semesteran', 699000)">Beli Sekarang</button>
+            </div>
+
+            <!-- Tahunan -->
+            <div class="price-card best">
+                <h3 class="price-title">Tahunan</h3>
+                <div class="price-amount">Rp 1.199.000<span>/ Paket</span></div>
+                <div class="price-duration">Masa Aktif 365 Hari</div>
+                <ul class="price-features-list">
+                    <li>Aktivasi HP Siswa: <strong>Unlimited</strong></li>
+                    <li>Integrasi Google Forms</li>
+                    <li>Sistem Anti-Screenshot</li>
+                    <li>Auto-Unlock Lisensi</li>
+                    <li>Full Support Teknis 24/7</li>
+                    <li>Lebih Hemat 33%</li>
+                </ul>
+                <button class="btn-price" onclick="openCheckout('annual', 'Tahunan', 1199000)">Beli Sekarang</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CHECKOUT MODAL ── -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeCheckout()">✕</button>
+            
+            <div id="checkoutFormStep">
+                <h3 class="modal-title">⚡ Registrasi &amp; Checkout</h3>
+                <p class="modal-subtitle">Silakan isi formulir sekolah untuk mengajukan lisensi baru</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Sekolah / Lembaga</label>
+                    <input type="text" id="schoolNameInput" class="form-input" placeholder="Masukkan nama sekolah lengkap...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subdomain Sekolah Pilihan</label>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <input type="text" id="schoolSlugInput" class="form-input" style="flex: 1;" placeholder="contoh: smkn2bdg" oninput="this.value = this.value.toLowerCase().replace(/[^a-z0-9-]/g, ''); checkSlugAvailabilityDebounced();">
+                        <span style="font-weight: bold; color: var(--text-color); font-size: 0.9rem;">.absenta.id</span>
+                    </div>
+                    <p id="slugCheckStatus" style="font-size: 0.75rem; font-weight: bold; margin-top: 4px; margin-bottom: 0; display: none;"></p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Subdomain ini yang akan diakses oleh siswa dan pengawas sekolah Anda.</p>
+                </div>
+
+                <div class="form-group" style="display: flex; align-items: center; gap: 8px; margin-top: 15px; margin-bottom: 15px;">
+                    <input type="checkbox" id="advancedDbCheckbox" onchange="toggleAdvancedDbSettings()" style="width: 16px; height: 16px; cursor: pointer;">
+                    <label for="advancedDbCheckbox" style="font-size: 0.85rem; font-weight: bold; color: var(--text-color); cursor: pointer; user-select: none;">
+                        Gunakan Database Supabase Sendiri (Lanjutan / Private Project)
+                    </label>
+                </div>
+
+                <div id="advancedDbSettingsContainer" style="display: none; border-left: 2px solid var(--primary); padding-left: 12px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Supabase URL Sekolah</label>
+                        <input type="url" id="schoolSupabaseUrlInput" class="form-input" placeholder="https://xxx.supabase.co">
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Isi dengan URL Supabase Project mandiri sekolah Anda.</p>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label class="form-label">Supabase Anon Key Sekolah</label>
+                        <input type="text" id="schoolSupabaseKeyInput" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">Isi dengan Anon Key (Public API Key) Supabase Project sekolah Anda.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Metode Pembayaran</label>
+                    <div id="paymentChannelsLoading" style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0;">
+                        <div class="spinner" style="margin: 0 auto 10px;"></div>
+                        Memuat daftar metode pembayaran Tripay...
+                    </div>
+                    <div id="paymentChannelsContainer" class="payment-channels-list" style="display: none;">
+                        <!-- dynamic items -->
+                    </div>
+                </div>
+
+                <div class="fee-breakdown-box" id="priceSummaryBox">
+                    <div class="fee-row">
+                        <span>Paket Lisensi (<span id="summaryPlanName">Bulanan</span>):</span>
+                        <span id="summaryBasePrice">Rp 299.000</span>
+                    </div>
+                    <div class="fee-row">
+                        <span>Biaya Admin Gateway:</span>
+                        <span id="summaryAdminFee">Rp 0</span>
+                    </div>
+                    <div class="fee-row total">
+                        <span>Total Pembayaran:</span>
+                        <span id="summaryTotalPrice">Rp 299.000</span>
+                    </div>
+                </div>
+
+                <button id="btnProcessCheckout" class="btn-checkout" onclick="submitCheckoutRequest()">
+                    ⚡ PROSES PEMBAYARAN TRIPAY
+                </button>
+                <div id="checkoutErrorMsg" style="color: var(--danger); font-size: 0.85rem; font-weight: bold; margin-top: 10px; display: none; text-align: center;"></div>
+            </div>
+
+            <!-- ── INVOICE DISPLAY STEP ── -->
+            <div id="checkoutInvoiceStep" style="display: none;">
+                <div class="invoice-container">
+                    <div id="invStatusBadge" class="badge-status">
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span>
+                        Menunggu Pembayaran
+                    </div>
+
+                    <h3 id="invTitle" class="modal-title">Tagihan Menunggu Pembayaran</h3>
+                    <p id="invSubtitle" class="modal-subtitle" style="margin-bottom: 15px;">Silakan selesaikan transfer untuk mengaktifkan lisensi sekolah Anda</p>
+
+                    <div class="license-key-box">
+                        <div class="license-key-title">KUNCI LISENSI ANDA (SIMPAN &amp; SALIN):</div>
+                        <div class="license-key-text" id="invLicenseKey">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px;" onclick="copyText('invLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 15px; text-align: left; gap: 8px; display: flex; flex-direction: column;">
+                        <div class="fee-row">
+                            <span>Nomor Invoice:</span>
+                            <span id="invNumber" style="font-weight: bold; color: var(--text-main);">INV-ORK-XXXX</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Metode Pembayaran:</span>
+                            <span id="invMethodName" style="font-weight: bold; color: var(--text-main);">QRIS</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px;">
+                            <span>TOTAL NOMINAL TRANSFER:</span>
+                            <span id="invTotalAmount" style="font-weight: 900; color: var(--accent); font-size: 1.15rem;">Rp 301.240</span>
+                        </div>
+                        <div class="fee-row" style="border-top: 1px solid var(--border-dark); padding-top: 8px; font-size: 0.82rem; color: #FBBF24;">
+                            <span>BATAS WAKTU PEMBAYARAN:</span>
+                            <span id="invExpiryTime" style="font-weight: bold; color: #FBBF24;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Box Context (QRIS vs VA) -->
+                    <div id="qrisContainer" style="display: none; align-items: center; flex-direction: column;">
+                        <img id="qrisImageCode" class="qris-image" src="" alt="QRIS Code">
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4;">Arahkan kamera e-wallet (OVO, GoPay, Dana, ShopeePay, LinkAja) atau mobile banking Anda ke kode QRIS di atas untuk membayar.</p>
+                    </div>
+
+                    <div id="vaContainer" style="display: none; align-items: center; flex-direction: column; width: 100%;">
+                        <div class="pay-code-box">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: var(--text-muted);">NOMOR REKENING / KODE BAYAR:</span>
+                            <span id="invPayCode" class="pay-code-number">1234567890</span>
+                            <button class="btn-copy" onclick="copyText('invPayCode', 'Kode pembayaran tersalin!')">📋 Salin Kode</button>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; max-width: 320px; line-height: 1.4; text-align: center;">Lakukan transfer nominal persis sesuai dengan instruksi yang tertera di bawah.</p>
+                    </div>
+
+                    <div class="instructions-container" id="invInstructionsList">
+                        <!-- dynamic accordions -->
+                    </div>
+
+                    <div id="invBottomBox" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border-dark); width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            Menunggu konfirmasi pembayaran instan...
+                        </div>
+                        <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SUCCESS SCREEN STEP ── -->
+            <div id="checkoutSuccessStep" style="display: none;">
+                <div class="invoice-container">
+                    <span style="font-size: 4rem; display: block; margin-bottom: 15px; animation: scaleUp 0.3s ease;">🎉</span>
+                    <h3 class="modal-title" style="color: var(--success); font-size: 1.6rem; font-weight: 800;">Lisensi Berhasil Aktif!</h3>
+                    <p class="modal-subtitle" style="margin-bottom: 25px;">Sekolah Anda telah terverifikasi penuh dan siap menggunakan aplikasi</p>
+
+                    <div class="license-key-box" style="background-color: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="license-key-title" style="color: #A7F3D0;">KUNCI LISENSI AKTIF:</div>
+                        <div class="license-key-text" id="successLicenseKey" style="color: var(--success);">ORK-XXXX-XXXX-XXXX</div>
+                        <button class="btn-copy" style="margin-top: 10px; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #A7F3D0;" onclick="copyText('successLicenseKey', 'Kunci Lisensi tersalin!')">📋 Salin Kunci</button>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 12px; width: 100%; padding: 18px; text-align: left; gap: 10px; display: flex; flex-direction: column; margin-bottom: 25px;">
+                        <div class="fee-row">
+                            <span>Nama Sekolah:</span>
+                            <span id="successSchoolName" style="font-weight: bold; color: var(--text-main);">SMK Baru</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Masa Langganan:</span>
+                            <span id="successDurationName" style="font-weight: bold; color: var(--text-main);">Bulanan</span>
+                        </div>
+                        <div class="fee-row">
+                            <span>Status Lisensi:</span>
+                            <span style="font-weight: 800; color: var(--success);">AKTIF (APPROVED)</span>
+                        </div>
+                    </div>
+
+                    <!-- PROVISIONING LOADER & STATUS -->
+                    <div id="provisioningStatusBox" style="background-color: rgba(59, 130, 246, 0.05); padding: 16px; border-radius: 10px; border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 20px; text-align: left;">
+                        <div id="provisioningLoader" style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #93C5FD;">
+                            <div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>
+                            <span>Menyiapkan SSL Let's Encrypt & domain...</span>
+                        </div>
+                        <div id="provisioningText" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+                            Mohon tunggu sebentar, sistem sedang mengamankan subdomain sekolah Anda dengan sertifikat SSL HTTPS agar siap diakses secara aman.
+                        </div>
+                    </div>
+
+                    <a id="successAppLinkBtn" class="btn-primary" style="margin-top: 10px; width: 100%; justify-content: center; text-decoration: none; display: none; align-items: center; box-sizing: border-box;" href="#" target="_blank">🚀 BUKA PORTAL SEKOLAH ANDA</a>
+                    <button class="btn-secondary" style="margin-top: 12px; width: 100%; justify-content: center; box-sizing: border-box; padding: 12px;" onclick="closeCheckout()">TUTUP / SELESAI</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── COMPLIANCE FOOTER ── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Absenta Logo" class="logo-img"> ABSENTA.ID <span style="color: var(--text-muted); font-weight: 300; margin: 0 4px;">|</span> ORKESTRATOR UJIAN
+            </div>
+            <div class="footer-links">
+                <a href="/privacy.html" target="_blank" class="footer-link">Kebijakan Privasi</a>
+                <a href="/terms.html" target="_blank" class="footer-link">Ketentuan Layanan</a>
+                <a href="/refund.html" target="_blank" class="footer-link">Kebijakan Refund</a>
+                <a href="/contact.html" target="_blank" class="footer-link">Hubungi Kami</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Baraya Teknologi. Hak Cipta Dilindungi.</div>
+                <div>Sistem Proteksi Ujian Sekolah Terpercaya</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ── INTERACTIVE JAVASCRIPT ── -->
+    <script>
+        const API_BASE = 'https://api.absenta.id';
+        const PRODUCT_ID = 'gform-orkestrator';
+        
+        let currentPlan = 'monthly';
+        let currentPlanTitle = 'Bulanan';
+        let currentBasePrice = 299000;
+        
+        let selectedPaymentCode = 'QRIS2';
+        let activePaymentChannels = [];
+        let isGatewayOnline = true; // tracks live Tripay reachability
+        
+        let activeCheckoutKey = '';
+        let pollingInterval = null;
+
+        // Modal triggers
+        const checkoutModal = document.getElementById('checkoutModal');
+        const summaryPlanName = document.getElementById('summaryPlanName');
+        const summaryBasePrice = document.getElementById('summaryBasePrice');
+        const summaryAdminFee = document.getElementById('summaryAdminFee');
+        const summaryTotalPrice = document.getElementById('summaryTotalPrice');
+
+        function openCheckout(planId, title, price) {
+            currentPlan = planId;
+            currentPlanTitle = title;
+            currentBasePrice = price;
+            
+            summaryPlanName.textContent = title;
+            summaryBasePrice.textContent = 'Rp ' + price.toLocaleString('id-ID');
+            
+            // Show Form Step, hide others
+            document.getElementById('checkoutFormStep').style.display = 'block';
+            document.getElementById('checkoutInvoiceStep').style.display = 'none';
+            document.getElementById('checkoutSuccessStep').style.display = 'none';
+
+            checkoutModal.classList.add('active');
+            
+            // Reset slug check status
+            isSlugAvailable = true;
+            const statusEl = document.getElementById('slugCheckStatus');
+            if (statusEl) statusEl.style.display = 'none';
+            const btn = document.getElementById('btnProcessCheckout');
+            if (btn) btn.disabled = false;
+            
+            loadPaymentChannels();
+        }
+
+        function closeCheckout() {
+            checkoutModal.classList.remove('active');
+            stopPollingStatus();
+        }
+
+        // Fetch Tripay channels
+        function loadPaymentChannels() {
+            const loading = document.getElementById('paymentChannelsLoading');
+            const container = document.getElementById('paymentChannelsContainer');
+            
+            loading.style.display = 'block';
+            loading.textContent = '⏳ Memuat metode pembayaran...';
+            container.style.display = 'none';
+            
+            fetch(`${API_BASE}/api/license/payment-channels`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success && Array.isArray(res.data)) {
+                        activePaymentChannels = res.data;
+
+                        if (res.gateway_online === false) {
+                            isGatewayOnline = false;
+                            showGatewayOfflineBanner();
+                        } else {
+                            isGatewayOnline = true;
+                            removeGatewayOfflineBanner();
+                        }
+
+                        renderPaymentChannels();
+                    } else {
+                        throw new Error('Response is not success');
+                    }
+                })
+                .catch(err => {
+                    console.error('Failed to load payment channels', err);
+                    isGatewayOnline = false;
+                    showGatewayOfflineBanner();
+                });
+        }
+
+        function showGatewayOfflineBanner() {
+            // Remove any existing banner first
+            removeGatewayOfflineBanner();
+
+            // Lock the checkout button
+            const btn = document.getElementById('btnProcessCheckout');
+            btn.disabled = true;
+            btn.innerHTML = '🚫 LAYANAN PEMBAYARAN SEDANG GANGGUAN';
+
+            // Hide channel cards & price summary — irrelevant while gateway is down
+            const container = document.getElementById('paymentChannelsContainer');
+            if (container) container.style.display = 'none';
+            const priceSummary = document.getElementById('priceSummaryBox');
+            if (priceSummary) priceSummary.style.display = 'none';
+
+            const banner = document.createElement('div');
+            banner.id = 'gatewayOfflineBanner';
+            banner.style.cssText = `
+                background: rgba(239, 68, 68, 0.12);
+                border: 1px solid rgba(239, 68, 68, 0.4);
+                border-radius: 10px;
+                padding: 14px 16px;
+                margin-top: 8px;
+                margin-bottom: 4px;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-size: 0.82rem;
+                color: #fca5a5;
+                line-height: 1.5;
+            `;
+            banner.innerHTML = `
+                <span style="font-size:1.2rem; flex-shrink:0;">🔴</span>
+                <div>
+                    <strong style="display:block; color:#f87171; margin-bottom:2px;">Payment Gateway Sedang Gangguan</strong>
+                    Layanan pembayaran Tripay saat ini tidak dapat dihubungi. Proses pendaftaran tidak dapat dilanjutkan untuk menjaga keamanan data Anda.
+                    Silakan coba beberapa saat lagi.
+                </div>
+            `;
+
+            // Insert banner after the loading indicator
+            const channelsSection = document.getElementById('paymentChannelsLoading');
+            channelsSection.style.display = 'none';
+            channelsSection.parentNode.insertBefore(banner, channelsSection.nextSibling);
+        }
+
+        function removeGatewayOfflineBanner() {
+            const existing = document.getElementById('gatewayOfflineBanner');
+            if (existing) existing.remove();
+
+            // Restore channel cards & price summary
+            const container = document.getElementById('paymentChannelsContainer');
+            if (container) container.style.display = 'grid';
+            const priceSummary = document.getElementById('priceSummaryBox');
+            if (priceSummary) priceSummary.style.display = '';
+
+            const btn = document.getElementById('btnProcessCheckout');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+            }
+        }
+
+
+        function renderPaymentChannels() {
+            const container = document.getElementById('paymentChannelsContainer');
+            const loading = document.getElementById('paymentChannelsLoading');
+            container.innerHTML = '';
+            
+            activePaymentChannels.forEach(channel => {
+                const isSelected = channel.code === selectedPaymentCode;
+                
+                const flat = parseInt(channel.fee_flat, 10) || 0;
+                const percent = parseFloat(channel.fee_percent) || 0;
+                const calculatedFee = flat + Math.round(currentBasePrice * (percent / 100));
+                
+                const card = document.createElement('div');
+                card.className = `payment-channel-item ${isSelected ? 'selected' : ''}`;
+                card.onclick = () => selectPaymentChannel(channel.code);
+                
+                card.innerHTML = `
+                    <img class="channel-logo" src="${channel.icon_url}" alt="${channel.name}">
+                    <div class="channel-info">
+                        <span class="channel-name">${channel.name}</span>
+                        <span class="channel-fee">+Rp ${calculatedFee.toLocaleString('id-ID')} fee</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            loading.style.display = 'none';
+
+            // Never show cards when gateway is offline
+            if (!isGatewayOnline) {
+                container.style.display = 'none';
+                return;
+            }
+
+            container.style.display = 'grid';
+            calculateAggregatePrice();
+        }
+
+        function selectPaymentChannel(code) {
+            selectedPaymentCode = code;
+            
+            // Re-render selection class
+            const items = document.querySelectorAll('.payment-channel-item');
+            items.forEach((item, idx) => {
+                const channel = activePaymentChannels[idx];
+                if (channel && channel.code === code) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+            
+            calculateAggregatePrice();
+        }
+
+        function toggleAdvancedDbSettings() {
+            const chk = document.getElementById('advancedDbCheckbox');
+            const container = document.getElementById('advancedDbSettingsContainer');
+            if (chk && chk.checked) {
+                container.style.display = 'block';
+            } else if (container) {
+                container.style.display = 'none';
+                document.getElementById('schoolSupabaseUrlInput').value = '';
+                document.getElementById('schoolSupabaseKeyInput').value = '';
+            }
+        }
+
+        function calculateAggregatePrice() {
+            const channel = activePaymentChannels.find(c => c.code === selectedPaymentCode);
+            if (!channel) return;
+            
+            const flat = parseInt(channel.fee_flat, 10) || 0;
+            const percent = parseFloat(channel.fee_percent) || 0;
+            const fee = flat + Math.round(currentBasePrice * (percent / 100));
+            const total = currentBasePrice + fee;
+            
+            summaryAdminFee.textContent = 'Rp ' + fee.toLocaleString('id-ID');
+            summaryTotalPrice.textContent = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        // Real-time Subdomain check logic
+        let slugCheckTimeout = null;
+        let isSlugAvailable = true;
+
+        function checkSlugAvailabilityDebounced() {
+            const statusEl = document.getElementById('slugCheckStatus');
+            const slugInput = document.getElementById('schoolSlugInput');
+            const btn = document.getElementById('btnProcessCheckout');
+            const slug = slugInput.value.trim().toLowerCase();
+
+            if (slugCheckTimeout) clearTimeout(slugCheckTimeout);
+            
+            if (!slug) {
+                statusEl.style.display = 'none';
+                // Only re-enable button if gateway is online
+                if (isGatewayOnline) btn.disabled = false;
+                isSlugAvailable = true;
+                return;
+            }
+
+            statusEl.style.display = 'block';
+            statusEl.style.color = 'var(--text-muted)';
+            statusEl.textContent = '⏳ Memeriksa ketersediaan subdomain...';
+            btn.disabled = true;
+
+            slugCheckTimeout = setTimeout(() => {
+                checkSlugAvailability(slug);
+            }, 600);
+        }
+
+        function checkSlugAvailability(slug) {
+            const statusEl = document.getElementById('slugCheckStatus');
+            const btn = document.getElementById('btnProcessCheckout');
+
+            fetch(`${API_BASE}/api/license/check-slug/${slug}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        if (res.available) {
+                            statusEl.style.color = '#10B981';
+                            statusEl.textContent = '🟢 Subdomain tersedia!';
+                            isSlugAvailable = true;
+                            if (isGatewayOnline) {
+                                btn.disabled = false;
+                                btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+                            }
+                        } else if (res.is_recovery) {
+                            statusEl.style.color = '#F59E0B';
+                            statusEl.textContent = '🟡 Subdomain terdaftar (Kedaluwarsa). Lanjutkan untuk melakukan perpanjangan lisensi Anda.';
+                            isSlugAvailable = true;
+                            if (isGatewayOnline) {
+                                btn.disabled = false;
+                                btn.innerHTML = '🔄 AKTIFKAN & PERPANJANG LISENSI';
+                            }
+                        } else if (res.status_code === 'pending_payment') {
+                            statusEl.style.color = '#F59E0B';
+                            statusEl.textContent = '⏳ Subdomain sedang dipesan (Menunggu Pembayaran)';
+                            btn.disabled = true;
+                            btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+                            isSlugAvailable = false;
+                        } else {
+                            statusEl.style.color = '#EF4444';
+                            statusEl.textContent = '🔴 Subdomain sudah digunakan oleh sekolah lain yang memiliki lisensi aktif!';
+                            btn.disabled = true;
+                            btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+                            isSlugAvailable = false;
+                        }
+                    } else {
+                        statusEl.style.display = 'none';
+                        isSlugAvailable = true;
+                        if (isGatewayOnline) btn.disabled = false;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    statusEl.style.display = 'none';
+                    isSlugAvailable = true;
+                    if (isGatewayOnline) btn.disabled = false;
+                });
+        }
+
+        // Submit to API
+        function submitCheckoutRequest() {
+            const schoolName = document.getElementById('schoolNameInput').value.trim();
+            const requestedSlug = document.getElementById('schoolSlugInput').value.trim();
+            
+            const isAdvanced = document.getElementById('advancedDbCheckbox').checked;
+            const supabaseUrl = document.getElementById('schoolSupabaseUrlInput').value.trim();
+            const supabaseAnonKey = document.getElementById('schoolSupabaseKeyInput').value.trim();
+            
+            const btn = document.getElementById('btnProcessCheckout');
+            const errorMsg = document.getElementById('checkoutErrorMsg');
+            
+            if (!schoolName) {
+                alert('Silakan masukkan Nama Sekolah / Lembaga terlebih dahulu.');
+                return;
+            }
+            if (!requestedSlug) {
+                alert('Silakan tentukan Subdomain Pilihan sekolah Anda.');
+                return;
+            }
+            if (!isSlugAvailable) {
+                alert('Subdomain pilihan Anda sudah digunakan sekolah lain. Harap gunakan subdomain lainnya.');
+                return;
+            }
+            if (isAdvanced && (!supabaseUrl || !supabaseAnonKey)) {
+                alert('Kredensial database Supabase (URL & Anon Key) wajib diisi jika Anda memilih opsi Database Sendiri.');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = `<div class="spinner"></div> Sedang memproses transaksi...`;
+            errorMsg.style.display = 'none';
+            
+            fetch(`${API_BASE}/api/license/request`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    school_name: schoolName,
+                    plan_id: currentPlan,
+                    payment_method: selectedPaymentCode,
+                    product_id: PRODUCT_ID,
+                    device_limit: 99999,
+                    is_unlimited: 1,
+                    requested_slug: requestedSlug,
+                    requested_supabase_url: supabaseUrl,
+                    requested_supabase_anon_key: supabaseAnonKey
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success && res.data) {
+                    activeCheckoutKey = res.data.license_key;
+                    renderInvoiceDetails(res.data, schoolName);
+                } else {
+                    throw new Error(res.message || 'Transaksi ditolak oleh server.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                errorMsg.textContent = '❌ Terjadi kesalahan: ' + err.message;
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+            });
+        }
+
+        // Render Invoice Step
+        function renderInvoiceDetails(data, schoolName) {
+            document.getElementById('checkoutFormStep').style.display = 'none';
+            document.getElementById('checkoutInvoiceStep').style.display = 'block';
+            
+            document.getElementById('invLicenseKey').textContent = data.license_key;
+            document.getElementById('invNumber').textContent = data.invoice_number;
+            document.getElementById('invTotalAmount').textContent = 'Rp ' + data.amount.toLocaleString('id-ID');
+            
+            // Channel specific info
+            const channel = activePaymentChannels.find(c => c.code === data.payment_method) || { name: data.payment_method };
+            document.getElementById('invMethodName').textContent = channel.name;
+
+            // Handle Expiration Time & Deadline Display
+            if (data.expired_time) {
+                const expiryDate = new Date(data.expired_time * 1000);
+                
+                const day = String(expiryDate.getDate()).padStart(2, '0');
+                const month = String(expiryDate.getMonth() + 1).padStart(2, '0');
+                const year = expiryDate.getFullYear();
+                const hours = String(expiryDate.getHours()).padStart(2, '0');
+                const minutes = String(expiryDate.getMinutes()).padStart(2, '0');
+                const seconds = String(expiryDate.getSeconds()).padStart(2, '0');
+                
+                document.getElementById('invExpiryTime').textContent = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+            } else {
+                document.getElementById('invExpiryTime').textContent = '-';
+            }
+
+            const qrisCont = document.getElementById('qrisContainer');
+            const vaCont = document.getElementById('vaContainer');
+            
+            if (data.qr_url) {
+                qrisCont.style.display = 'flex';
+                vaCont.style.display = 'none';
+                document.getElementById('qrisImageCode').src = data.qr_url;
+            } else {
+                qrisCont.style.display = 'none';
+                vaCont.style.display = 'flex';
+                document.getElementById('invPayCode').textContent = data.pay_code;
+            }
+
+            // Accordion instructions
+            const instList = document.getElementById('invInstructionsList');
+            instList.innerHTML = '';
+            
+            if (Array.isArray(data.payment_instructions)) {
+                data.payment_instructions.forEach((group, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'instruction-item';
+                    
+                    const stepsHtml = group.steps.map(s => `<li>${s}</li>`).join('');
+                    
+                    item.innerHTML = `
+                        <div class="instruction-header" onclick="toggleAccordion(${index})">
+                            <span>👉 ${group.title}</span>
+                            <span id="accordion-arrow-${index}">▼</span>
+                        </div>
+                        <div class="instruction-content" id="accordion-content-${index}">
+                            <ol>${stepsHtml}</ol>
+                        </div>
+                    `;
+                    instList.appendChild(item);
+                });
+            }
+
+            // Restore process button state for next usage
+            const btn = document.getElementById('btnProcessCheckout');
+            btn.disabled = false;
+            btn.innerHTML = '⚡ PROSES PEMBAYARAN TRIPAY';
+
+            // If expired, immediately transition to expired layout
+            const nowSec = Math.floor(Date.now() / 1000);
+            if (data.expired_time && nowSec > data.expired_time) {
+                showExpiredStep('Batas waktu transfer telah habis. Transaksi ini kedaluwarsa.');
+                return;
+            }
+
+            // Reset modal styles to default pending state if they were previously overridden by expired step
+            const badge = document.getElementById('invStatusBadge');
+            if (badge) {
+                badge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--accent);"></span> Menunggu Pembayaran`;
+                badge.style.backgroundColor = '';
+                badge.style.borderColor = '';
+                badge.style.color = '';
+            }
+            const title = document.getElementById('invTitle');
+            if (title) title.textContent = 'Tagihan Menunggu Pembayaran';
+            const subtitle = document.getElementById('invSubtitle');
+            if (subtitle) subtitle.textContent = 'Silakan selesaikan transfer untuk mengaktifkan lisensi sekolah Anda';
+            if (qrisCont && data.qr_url) qrisCont.style.display = 'flex';
+            if (vaCont && !data.qr_url) vaCont.style.display = 'flex';
+            if (instList) instList.style.display = 'block';
+
+            const bottomBox = document.getElementById('invBottomBox');
+            if (bottomBox) {
+                bottomBox.innerHTML = `
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <div class="spinner" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                        Menunggu konfirmasi pembayaran instan...
+                    </div>
+                    <button class="btn-secondary" style="padding: 10px; font-size: 0.85rem;" onclick="cancelCheckoutProcess()">✕ Batalkan Transaksi</button>
+                `;
+            }
+
+            // Start Polling
+            startPollingStatus(data.license_key, schoolName);
+        }
+
+        // Accordion toggle helper
+        function toggleAccordion(index) {
+            const content = document.getElementById(`accordion-content-${index}`);
+            const arrow = document.getElementById(`accordion-arrow-${index}`);
+            
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                arrow.textContent = '▼';
+            } else {
+                content.style.display = 'block';
+                arrow.textContent = '▲';
+            }
+        }
+
+        let sslPollInterval = null;
+
+        // Polling loop
+        function startPollingStatus(key, schoolName) {
+            stopPollingStatus();
+            
+            pollingInterval = setInterval(() => {
+                fetch(`${API_BASE}/api/license/check/${key}?device_id=DUMMY-CHECK`)
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.success) {
+                            if (res.status === 'active') {
+                                showSuccessStep(key, schoolName);
+                            } else if (res.status === 'expired') {
+                                showExpiredStep(res.message);
+                            }
+                        }
+                    })
+                    .catch(err => console.log('Polling error:', err));
+            }, 4000);
+        }
+
+        function showExpiredStep(message) {
+            stopPollingStatus();
+            
+            // Update the status badge in checkoutInvoiceStep to show expired
+            const badge = document.getElementById('invStatusBadge');
+            if (badge) {
+                badge.innerHTML = `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color: var(--danger);"></span> Tagihan Kedaluwarsa`;
+                badge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                badge.style.color = 'var(--danger)';
+            }
+            
+            const title = document.getElementById('invTitle');
+            if (title) title.textContent = 'Tagihan Telah Kedaluwarsa';
+            
+            const subtitle = document.getElementById('invSubtitle');
+            if (subtitle) subtitle.textContent = message || 'Batas waktu transfer telah habis. Silakan buat pengajuan lisensi baru.';
+            
+            // Hide payment barcode and instructions
+            const qrisCont = document.getElementById('qrisContainer');
+            const vaCont = document.getElementById('vaContainer');
+            const instList = document.getElementById('invInstructionsList');
+            if (qrisCont) qrisCont.style.display = 'none';
+            if (vaCont) vaCont.style.display = 'none';
+            if (instList) instList.style.display = 'none';
+            
+            // Update the waiting status box at the bottom
+            const bottomBox = document.getElementById('invBottomBox');
+            if (bottomBox) {
+                bottomBox.innerHTML = `
+                    <div style="font-size: 0.85rem; color: var(--danger); font-weight: bold; text-align: center; margin-bottom: 10px;">
+                        ❌ Pembayaran Gagal / Kedaluwarsa
+                    </div>
+                    <button class="btn-primary" style="background-color: var(--primary); padding: 12px; font-size: 0.9rem; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white;" onclick="closeCheckout()">Tutup Jendela</button>
+                `;
+            }
+        }
+
+        function stopPollingStatus() {
+            if (pollingInterval) {
+                clearInterval(pollingInterval);
+                pollingInterval = null;
+            }
+            if (sslPollInterval) {
+                clearInterval(sslPollInterval);
+                sslPollInterval = null;
+            }
+        }
+
+        function showSuccessStep(key, schoolName) {
+            stopPollingStatus();
+            
+            document.getElementById('checkoutInvoiceStep').style.display = 'none';
+            document.getElementById('checkoutSuccessStep').style.display = 'block';
+            
+            document.getElementById('successLicenseKey').textContent = key;
+            document.getElementById('successSchoolName').textContent = schoolName;
+            document.getElementById('successDurationName').textContent = currentPlanTitle;
+
+            // Generate direct link to school subdomain
+            const requestedSlug = document.getElementById('schoolSlugInput').value.trim().toLowerCase();
+            const provisioningStatusBox = document.getElementById('provisioningStatusBox');
+            const provisioningLoader = document.getElementById('provisioningLoader');
+            const provisioningText = document.getElementById('provisioningText');
+            const successAppLinkBtn = document.getElementById('successAppLinkBtn');
+
+            if (requestedSlug) {
+                const appUrl = `https://${requestedSlug}.absenta.id`;
+                if (successAppLinkBtn) {
+                    successAppLinkBtn.href = appUrl;
+                    successAppLinkBtn.textContent = `🚀 BUKA PORTAL: ${requestedSlug.toUpperCase()}.ABSENTA.ID`;
+                }
+
+                // Show provisioning box, hide button initially
+                provisioningStatusBox.style.display = 'block';
+                provisioningLoader.innerHTML = `<div class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></div><span>Menyiapkan SSL Let's Encrypt & domain...</span>`;
+                provisioningLoader.style.color = '#93C5FD';
+                provisioningText.innerHTML = `Mohon tunggu sebentar, sistem sedang mengamankan subdomain sekolah Anda dengan sertifikat SSL HTTPS agar siap diakses secara aman.`;
+                successAppLinkBtn.style.display = 'none';
+
+                // Start polling SSL status
+                let attempts = 0;
+                sslPollInterval = setInterval(() => {
+                    attempts++;
+                    fetch(`${API_BASE}/api/license/provision-status/${requestedSlug}`)
+                        .then(res => res.json())
+                        .then(res => {
+                            if (res.success && res.ssl_ready) {
+                                clearInterval(sslPollInterval);
+                                sslPollInterval = null;
+                                // Set UI to ready
+                                provisioningLoader.innerHTML = `✅ <span style="font-weight: bold; color: var(--success);">SSL Aktif & Portal Siap!</span>`;
+                                provisioningLoader.style.color = 'var(--success)';
+                                provisioningText.innerHTML = `Konfigurasi subdomain dan SSL HTTPS Let's Encrypt selesai. Akun admin utama telah disiapkan. Klik tombol di bawah ini untuk membuka portal sekolah Anda!`;
+                                successAppLinkBtn.style.display = 'inline-flex';
+                            } else if (attempts >= 15) {
+                                // Fallback after 60 seconds (15 attempts * 4s)
+                                clearInterval(sslPollInterval);
+                                sslPollInterval = null;
+                                provisioningLoader.innerHTML = `⚠️ <span style="font-weight: bold; color: #FBBF24;">Menyelesaikan Konfigurasi...</span>`;
+                                provisioningLoader.style.color = '#FBBF24';
+                                provisioningText.innerHTML = `Server memerlukan waktu lebih lama untuk memproses SSL. Anda tetap dapat mencoba membuka portal, jika muncul peringatan "Connection not private", mohon muat ulang (refresh) halaman setelah 1 menit.`;
+                                successAppLinkBtn.style.display = 'inline-flex';
+                            }
+                        })
+                        .catch(err => {
+                            console.log('SSL polling error:', err);
+                        });
+                }, 4000);
+            } else {
+                provisioningStatusBox.style.display = 'none';
+                successAppLinkBtn.style.display = 'inline-flex';
+            }
+        }
+
+        function lookupLicense() {
+            const keyInput = document.getElementById('licenseSearchInput');
+            const key = keyInput ? keyInput.value.trim() : '';
+            
+            if (!key) {
+                alert('Silakan masukkan Kunci Lisensi Anda terlebih dahulu.');
+                return;
+            }
+            
+            keyInput.disabled = true;
+            
+            fetch(`${API_BASE}/api/license/my-invoices/${key}`)
+                .then(res => res.json())
+                .then(res => {
+                    keyInput.disabled = false;
+                    
+                    if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+                        const inv = res.data[0];
+                        
+                        let parsedInstructions = [];
+                        if (inv.payment_instructions) {
+                            try {
+                                parsedInstructions = typeof inv.payment_instructions === 'string' 
+                                    ? JSON.parse(inv.payment_instructions) 
+                                    : inv.payment_instructions;
+                            } catch (e) {
+                                console.error('Failed to parse instructions:', e);
+                            }
+                        }
+                        
+                        const dataForRender = {
+                            license_key: key,
+                            invoice_number: inv.invoice_number,
+                            amount: inv.amount,
+                            payment_method: inv.payment_method.replace(' VA', 'VA').replace('QRIS', 'QRIS2'),
+                            qr_url: inv.qr_url,
+                            pay_code: inv.pay_code,
+                            payment_instructions: parsedInstructions,
+                            expired_time: inv.expired_time
+                        };
+                        
+                        if (inv.status === 'paid') {
+                            showSuccessStep(key, inv.school_name);
+                            checkoutModal.classList.add('active');
+                        } else {
+                            renderInvoiceDetails(dataForRender, inv.school_name);
+                            checkoutModal.classList.add('active');
+                        }
+                    } else {
+                        alert('Kunci Lisensi tidak ditemukan atau belum memiliki riwayat invoice.');
+                    }
+                })
+                .catch(err => {
+                    keyInput.disabled = false;
+                    console.error(err);
+                    alert('Gagal menghubungi server. Silakan coba beberapa saat lagi.');
+                });
+        }
+
+        function cancelCheckoutProcess() {
+            if (confirm('Apakah Anda yakin ingin membatalkan transaksi pending ini?')) {
+                closeCheckout();
+            }
+        }
+
+        // Copy utilities
+        function copyText(elementId, msg) {
+            const text = document.getElementById(elementId).textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert(msg);
+            }).catch(err => {
+                console.error('Failed to copy', err);
+            });
+        }
+    </script>
+</body>
+</html>
